@@ -9,17 +9,77 @@
 	}
 
 \section{Functional requirements} 
-	\begin{itemize}
-		\item 
-		\item
-		\item
-		\item
-		\item
-		\item
-		\item
-		\item
-		\item
-		\item
-		\item
-	\end{itemize}
+	
+	\subsection{Scheduler}
+	
+		\begin{itemize}
+			\item Support of Master-Slave scheduling strategy
+			\item First in first out strategy
+			\item Last in first out strategy
+			\item Shortest job first strategy
+			\item Longest job first strategy 
+			\item Support of multible-queues parallel scheduling strategy
+			\item Rule-based multible-queues strategy
+			\item Random multible-queues strategy
+			\item Task-stealing multible-queues strategy
+			\item Statistics-based multible-queues strategy
+			\item Receive command line parameters
+			\item Initialize the MPI-World 
+			\item Receive a new task from the scientific code
+			\item Query statistics for a task at data mining
+			\item Read data from the bookkeeping database
+			\item Write data into the bookkeeping database
+			\item Does bookkeeping
+			\item Execute a task
+			\item Initialize the scientific code
+			\item Change the scheduling strategy
+		\end{itemize}
+	
+	
+	\subsection{Data mining}
+	
+		\begin{itemize}
+			\item Read data from a statistic database
+			\item Write data into the statistic database
+			\item Analyze data from statistic
+			\item Make forecast for the task
+			\item Store statistics for computations
+		\end{itemize}
+	
+	
+	\subsection{Bookkeeping database}
+	
+		\begin{itemize}
+			\item Keep bookkeeping
+			\item Parallel accessible
+			\item Collect times tamp, task parameters and parent process when a task appears
+			\item Collect times tamp, task parameters, hosting process when a task started
+			\item Collect time stamp, task parameters, hosting process when a task finished
+		\end{itemize}
+	
+	
+	\subsection{Statistics database}
+	
+		\begin{itemize}
+			\item Keep statistics
+			\item Parallel accessible
+			\item Collect the runtime of each task depending on task parameters
+		\end{itemize}
+	
+	
+	\subsection{Interface}
+	
+		\begin{itemize}
+			\item The program must provide the run\_task interface
+			\item Receive different task types
+		\end{itemize}
+		
+		
+	\subsection{Visualization}
+	
+		\begin{itemize}
+			\item Export bookkeping to .vtk format
+			\item Export statistic to .vtk format
+			\item ???Export scientific results to .vtk format???
+		\end{itemize}
 }
