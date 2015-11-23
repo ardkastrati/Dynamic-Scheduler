@@ -37,36 +37,44 @@
 			\item Change the scheduling strategy
 		\end{itemize}
 	
-	
-	\subsection{Data mining}
-	
-		\begin{itemize}
-			\item Read data from a statistic database
-			\item Write data into the statistic database
-			\item Analyze data from statistic
-			\item Make forecast for the task
-			\item Store statistics for computations
-		\end{itemize}
-	
-	
-	\subsection{Bookkeeping database}
+	\subsection{database}
 	
 		\begin{itemize}
-			\item Keep bookkeeping
-			\item Parallel accessible
-			\item Collect times tamp, task parameters and parent process when a task appears
-			\item Collect times tamp, task parameters, hosting process when a task started
-			\item Collect time stamp, task parameters, hosting process when a task finished
+			\item Generate files after initialization of the scheduler.
+			\item Files will be placed after computation as usable files for plotting.
 		\end{itemize}
+		
+		\subsubsection{Data mining}
 	
+			\begin{itemize}
+				\item Read data from a statistic database
+				\item Write data into the statistic database
+				\item Analyze data from statistic
+				\item Make forecast for the task
+				\item Store statistics for computations
+			\end{itemize}
 	
-	\subsection{Statistics database}
+		\subsubsection{Queue database}
 	
-		\begin{itemize}
-			\item Keep statistics
-			\item Parallel accessible
-			\item Collect the runtime of each task depending on task parameters
-		\end{itemize}
+			\begin{itemize}
+				\item Read-functions for the queue file.
+				\item Write-functions for the queue file.
+			\end{itemize}
+		
+		\subsubsection{Bookkeeping database}
+	
+			\begin{itemize}
+				\item Write-function for the bookkeeping file.
+			\end{itemize}
+	
+		\subsubsection{Statistics database}
+	
+			\begin{itemize}
+				\item Possibility to load an already used statistic file.
+				\item Read-/write-functions for the data mining module for the statistic file.
+				\item Search-function for similar data in statistics.
+				\item Duplication of files on too high amount of requests.
+			\end{itemize}
 	
 	
 	\subsection{Interface}
@@ -86,17 +94,4 @@
 			% use gnuplot ????
 		\end{itemize}
 
-	\begin{itemize}
-		\item Generate 3 files after initialization of the scheduler.
-		\item Possibility to load an already used statistic file.
-		\item Read-/write-functions for the queue file.
-		\item Write-function for the bookkeeping file.
-		\item Read-/write-functions for the data mining module for the statistic file.
-		\item Search-function for similar data in statistics.
-		\item Duplication of files on too high amount of requests.
-		\item Files will be placed after computation as usable files for plotting.
-		\item 
-		\item
-		\item 
-	\end{itemize}
 }
