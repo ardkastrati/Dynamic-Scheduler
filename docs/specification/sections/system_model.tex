@@ -1,7 +1,7 @@
 \section{Systemmodel}
 	\subsection{System structure}
 			\subsubsection{Modules}
-				INSERT SYSTEMMODELCHART HERE
+				%INSERT SYSTEMMODELCHART HERE
 				The main architecture pattern the system is oriented to, is the Model-View-Controller. But 				only the main structure, the architecture should be seen as parallel model.
 			\subsubsection{Controller}
 				The Controller is basically the whole scheduler-module. It controls the data flow with the 				data structure(Model) and the Data Mining-module which both of them are part of the 						scheduler. Furthermore, the scheduler is responsible for the communication with the code-             				and executer interface and the MPI-world. There will be a scientific code bound to the 						scheduler and executed with different tasks(different parameter input), those will be 						brought in order through the scheduler. This will be organized with special scheduler 						algorithms depend on the data mining and the statistics
@@ -15,8 +15,10 @@
 			%szenario
 \subsection{Use cases}
 
+	\begin{figure}
 		\includegraphics[width=1.5\textwidth,scale=0.75,trim=7cm 0 -7cm 0]{images/usecasediagram.png}
-			
+		\caption{Activity diagram}
+	\end{figure}
 
 \title{Task Stealing (Nice to have)}
 
