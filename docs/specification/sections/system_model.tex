@@ -69,13 +69,49 @@ If there isn't any task in the queue, the task stealing process will be initiate
 \subsection{Dynamic models}
 
 \begin{itemize}
-\item Sequence diagram \newline
+	\item Sequence diagram \newline
 	\begin{figure}
-	\includegraphics[width=15cm]{images/Master-slave.jpg}
-	\caption{Master-slave diagram} 
-	\includegraphics[width=15cm]{images/Task-stealing.jpg}
-	\caption{Task-stealing algorithm}
+		\includegraphics[width=15cm]{images/Master-slave.jpg}
+		\caption{Master-slave diagram} 
+		\includegraphics[width=15cm]{images/Task-stealing.jpg}
+		\caption{Task-stealing algorithm (nice-to-have)}
 	\end{figure}
 \end{itemize}
+
 \subsection{Graphical user interface}
-			maybe
+	\subsubsection{Command line parameters}
+		The dynamic scheduler for scientific simulations is started via the command line. The scheduler takes the following parameter as command line parameters:
+	
+		\begin{itemize}	
+			\item Syntax: [OPTION]... [RUN ARGUMENTS]...
+				
+			\item OPTIONS:
+							
+				\subitem -m: choose between multiple-queues scheduling (multi-queue) and single-queue scheduling (single-queue) (e.g. -m multi-queue or -m single-queue)
+				
+				\subitem -a: choose between the provided scheduling algorithm such as task-stealing, FIFO, LIFO, SJF, LSF and statistic based scheduling (e.g. -a fifo)
+				\subitem Default is single-queue with FIFO scheduling (task-stealing and single-queue can not be combined)
+					
+			\item RUN ARGUMENTS:
+				\subitem The run arguments will be passed to the scientific code to initialized the code
+		\end{itemize}
+	\subsubsection{Graphical user interface (GUI) (nice-to-have)}
+		The Graphical user interface (GUI) is a nice to have feature. The scientist should be able to generate easily a shell script which can run via MOAB Workload Manager on the supercomputer. Following configuration can be edit via the GUI:
+		
+		\begin{itemize}
+			\item Scheduling strategy
+			\item Number of nodes
+			\item Number of processes per node
+			\item Wall-clock time. Default units are seconds. 
+			HH:MM:SS format is also accepted.
+			\item Maximum amount of physical memory used by any single process of the job. Allowed units are kb, mb, gb. Be aware that processes are either MPI tasks if running MPI parallel jobs or threads if running multithreaded jobs.
+			\item Maximum amount of physical memory used by the job.
+			Allowed units are kb, mb, gb. Be aware that this memory value is the accumulated memory for all MPI tasks or all threads of the job.
+			\item Run Arguments for the scientific code
+			\item User specified name for the job.
+			\item Defines the queue class
+			\item Expand the list of environment variables that are exported to the job
+			\item Send email to the specified email address when job begins, ends or aborts
+		\end{itemize}
+	
+	
