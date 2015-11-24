@@ -1,1 +1,32 @@
 \section{Product use}
+
+\subsection{Scope of application}
+The dynamic scheduler is for scientists and researchers at 'SimLab for Elementary- and Astro- Particle' (SCC). The scientist or researcher can use the dynamic scheduler to run the scientific code with different scheduling algorithms. Furthermore the dynamic scheduler can also collect statistics, do bookkeeping and visualize the statistics and bookkeepings.
+
+
+\subsection{Target group}
+
+The target group are scientists and researchers at 'SimLab for Elementary- and Astro- Particle' (SCC). The dynamic scheduler is called via the command line. The user need to have basic skills of using the command line and working on the supercomputer with 'Moab Workload Manager'. Moreover the scientist or researcher needs to have basic skills in programming and compiling c++ with Message Passing Interface (MPI) to connect the scientific code with the dynamic scheduler.
+\linebreak
+(Nice-to-have: The dynamic scheduler provides a graphical user interface that allows running a new simulation on the supercomputer)
+
+
+\subsection{Operation conditions}
+
+The following requirements have to be met:
+\begin{itemize}
+	\item A parallel computer environment (supercomputer)
+	\item A long enough time slice for finishing the job on the supercomputer
+	\item An installation of the Message Passing Interface (MPI)
+	\item A scientific code that provides the following interface:
+		\begin{itemize}
+			\item code\_preprocessing\_master(run arguments): set of initial tasks
+			\item code\_preprocessing\_slave(run arguments): void
+			\item  code\_postprocessing\_master(void): void
+			\item  code\_postprocessing\_slave(void): void
+		\end{itemize}
+	\item A scientific code that uses the following interface:
+		\begin{itemize}
+			\item run\_task(task): run result
+		\end{itemize}
+\end{itemize}
