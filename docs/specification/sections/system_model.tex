@@ -10,74 +10,111 @@
 			\subsubsection{View}
 				The essential point of visualization will be the graphical output of the collected data. 					Bookkeeping and statistic can be plotted after the calculation.
 				A GUI is a nice-to-have feature and is first of all not in planning. The input for the 						controller will be managed trough the MOAB Interface.
-
+\newpage
 \subsection{Scenarios}
 			\textbf{szenario missing!!!}
+
+\newpage
+
 \subsection{Use cases}
 
+\subsubsection{Scheduling system - Activity diagram}
 	\begin{figure}[H]
 		\includegraphics[width=1.5\textwidth,scale=0.75,trim=7cm 0 -7cm 0]{images/usecasediagram.png}
 		\caption{Use case diagram}
 	\end{figure}
 
-\title{Task Stealing (Nice to have)}
-
-\begin{enumerate}[1. ]
-
-
-\item Brief Description
-\newline
+\newpage
+\subsubsection{Task Stealing (Nice to have) - activity diagram with textual description}
+\vspace{1.5cm}
+\begin{figure}[H]
+	\includegraphics[width=15cm]{images/task_stealing_pap.jpg}
+	\caption{Activity diagram of the task stealing algorithm (Source: PSE-Scheduling.pdf)}
+\end{figure}
+\newpage
+\begin{description}
+\item [1. Brief Description]\hfill \\
 This use case describes the way a task stealing algorithm works inside a dynamic scheduler in order to reduce the amount of process migration between processors.
 
-\item Actors
-\newline
+\item [2. Actors]\hfill \\
 No actors. 
 
 
-\item Preconditions
-\begin{enumerate}
+\item [3. Preconditions]\hfill \\
+\vspace{-6.5mm}
+\begin{itemize}
 \item The scheduler has been initialized and it has already created a MPI memory window for RMA (Remote Memory Access).
 \item Information about initial tasks has been collected from code preprocessing, received tasks from which have been placed to the queue.
-\end{enumerate}
+\end{itemize}
 
-\item Basic Flow of Event
-\newline
+\item [4. Basic Flow of Event]\hfill \\
 The use case begins when the scheduler checks if there are tasks in its own queue.If there is a task in the queue, it will be executed. After the task has been executed, all collected results will get placed in the database in an organized manner.
-If there isn't any task in the queue, the task stealing process will be initiated. First of all, the scheduler will cycle through all running processes in other processors and try to steal an idle task from them. In order to check the other processes' queue for an idle task, the scheduler tries to block the RMA window for offsets and statuses, after which it checks whether there are any idle tasks. If the queue is empty or if the RMA window is currently blocked, the scheduler repeats the same procedure for remaining processors. If after checking all processes, no idle task was found, the scheduler changes its own state to idle. If this idle state doesn't change for a specific amount of cycles, which means that no tasks were stolen in this period, the scheduler finally checks to make sure that no process is currently running in any processor and if that's the case, it finishes its own routine. 
+If there isn't any task in the queue, the task stealing process will be initiated.\newline First of all, the scheduler will cycle through all running processes in other processors and try to steal an idle task from them. In order to check the other processes' queue for an idle task, the scheduler tries to block the RMA window for offsets and statuses, after which it checks whether there are any idle tasks. If the queue is empty or if the RMA window is currently blocked, the scheduler repeats the same procedure for remaining processors. If after checking all processes, no idle task was found, the scheduler changes its own state to idle. If this idle state doesn't change for a specific amount of cycles, which means that no tasks were stolen in this period, the scheduler finally checks to make sure that no process is currently running in any processor and if that's the case, it finishes its own routine. 
 
 
-\item Post-conditions
+\item [5. Post-conditions]\hfill \\
+\vspace{-6.5mm}
 \begin{enumerate}
 \item The scheduler frees the allocated MPI memory window for RMA.
 \item The scheduler executes the finishing post processing routine, where it collects information from the whole process (e.g. global total run time).
 \end{enumerate}
 
-\item Special requirements
-
+\item [6. Special requirements]\hfill \\
+\vspace{-6.5mm}
 \begin{enumerate}
 \item The scheduler should have access to the executer interface.
 \item The scheduler should be accessible through an interface, in order to receive new tasks from the code interface.
 \end{enumerate}
 
-\end{enumerate}
+\end{description}
 
+\newpage
 \subsection{Object model}
+
+\vspace{0.5cm}
+\subsubsection{Scheduler modules and system events}
+\vspace{0.5cm}
+The main modules of the project are the following:
+\begin{description}
+\item[Scheduler] Contains a variety of scheduling algorithms and strategies;
+\item[Data Mining] Analyses the statistics to define resource requirements for a task
+\item[Database] Is used to keep statistics, bookkeeping and local schedule
+\item[Communicator (Nice-to-have)] Has to organize a multi-level communication among
+multiple parallel schedulers
+\end{description}
+\vspace{1cm}
+The picture below describes the basic object model of a scheduler, its modules and interaction (system events) between them.
+
+\vspace{1cm}
 	\begin{figure}[H]
-		\includegraphics[width=15cm]{images/modules.jpg}
-		\caption{Basic module diagram}
+\includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]	{images/modules.jpg}
+	\caption{Basic description of modules}
 	\end{figure}
+\newpage
 
 \subsection{Dynamic models}
+\vspace{0.5cm}
+\subsubsection{Single-queue master-managed scheduling}
+\vspace{0.5cm}
+A single-queue master-managed scheduling is a way to schedule many tasks, where each process (instance of the task) can request master to access the queue. The picture below describes the program flow of a scheduler by a single queue, where the queue is managed by only one process (master). 
+\vspace{1cm}
 	\begin{figure}[H]
-		\includegraphics[width=15cm]{images/Master-slave.jpg}
-		\caption{Master-slave sequence diagram} 
-		
+	\centering
+	\includegraphics[width=15cm]{images/Master-slave.jpg}
+	\caption{Single queue scheduling with a master-slave diagram} 
 	\end{figure}
+\newpage
+\subsubsection{Multiple-queues scheduling}	
+\vspace{0.5cm}
+A multiple-queues scheduling is a way to schedule many tasks, where each process has its own queue, and does the same task. The picture below describes the program flow of a scheduler designed by multiple queues, where the queue managing is based on task-stealing algorithm.
+\vspace{1cm}
 	\begin{figure}[H]
-		\includegraphics[width=15cm]{images/Task-stealing.jpg}
-		\caption{Task-stealing sequence diagram (nice-to-have)}
+	\centering
+	\includegraphics[width=15cm]{images/Task-stealing.jpg}
+	\caption{Multiple-queues scheduling managed by task-stealing algorithm}
 	\end{figure}
-
+\newpage
+	
 \subsection{Graphical user interface}
 	\subsubsection{Command line parameters}
 		The dynamic scheduler for scientific simulations is started via the command line. The scheduler takes the following parameters as command line parameters:
