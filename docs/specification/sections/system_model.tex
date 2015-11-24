@@ -87,14 +87,12 @@ If there isn't any task in the queue, the task stealing process will be initiate
 				
 			\item OPTIONS:
 							
-				\subitem -m: choose between multiple-queues scheduling (multi-queue) and single-queue scheduling (single-queue) (e.g. -m multi-queue or -m single-queue)
-				
-				\subitem -a: choose between the provided scheduling algorithm such as task-stealing, FIFO, LIFO, SJF, LSF and statistic based scheduling (e.g. -a fifo)
-				\subitem Default is single-queue with FIFO scheduling (task-stealing and single-queue can not be combined)
+				\subitem -a: choose between multiple-queues scheduling (multi-queue) and single-queue scheduling (single-queue) (e.g. -a multi-queue or -a single-queue). The default strategy is single-queue (nice-to-have)
 					
 			\item RUN ARGUMENTS:
-				\subitem The run arguments will be passed to the scientific code to initialized the code
+				\subitem The run arguments will be passed to the scientific code to initialize the code
 		\end{itemize}
+		
 	\subsubsection{Graphical user interface (GUI) (nice-to-have)}
 		The Graphical user interface (GUI) is a nice to have feature. The scientist should be able to generate easily a shell script which can run via MOAB Workload Manager on the supercomputer. Following configuration can be edit via the GUI:
 		
