@@ -8,22 +8,36 @@
 	\else $/D \arabic{funcD} /$\addtocounter{funcD}{10}\fi
 	}
 \section{Product data}
-	\begin{itemize}
-		\item Tasks of the computation
-		\item Parent process for each task
-		\item Task parameters for each task
-		\item Start time for each task
-		\item Hosting process for each task
-		\item Result of scientific computations
-		\item The runtime for each task
-		\item Configuration command line parameters
-		======		
-		\item task appears (timestamp, task parameters, parent process)
-		\item task started (timestamp, task parameters, hosting process)
-		\item task finished (timestamp, task parameters, hosting process)
-		\item results ?
-		\item statistic data: runtime depending on the parameters
-	
-	\end{itemize}
 
+	\subsection{Scheduler}
+		\begin{itemize}
+			\item All tasks of the computation. A Task is a set of two:
+				\begin{itemize}
+					\item \textbf{Data\_Type} (e.g. structure or array);
+					\item \textbf{Data} of this type
+				\end{itemize}
+			\item Command line parameter that choose scheduling strategy
+			\item Run arguments for the scientific code initialization
+		\end{itemize}
+
+
+	\subsection{Bookkeeping}
+		\begin{itemize}
+			\item Hosting process for each task
+			\item Time stamp when a task appears
+			\item Time stamp when a task is started
+			\item Time stamp when a task is finished
+			\item Task parameters when a task appears
+			\item Task parameters when a task is started
+			\item Task parameters when a task is finished
+			\item Parent process of the task that appears
+			\item Hosting process of the task that started
+			\item Hosting process of the task that finished
+		\end{itemize}
+			
+			
+	\subsection{Statistics}
+		\begin{itemize}
+			\item The runtime for each task depending on task parameters (Which data are important for the statistics is defined in the task data type)
+		\end{itemize}
 }
