@@ -1,33 +1,483 @@
+{
+\newcounter{test}
+\setcounter{test}{10}
+\renewcommand{\labelitemi}{
+	\ifnum \value{test}<10$/T 0\arabic{test} /$\addtocounter{test}{10}
+	\else $/T \arabic{test} /$\addtocounter{test}{10}\fi
+}
+
 \section{Global test cases}
+	\subsection{Test cases}
+		\subsubsection{Scheduler tests}
+			\begin{itemize}
+				
+				%TEST
+				\item Start the scheduler managed with a single-queue master-worker design 				
+				
+					\begin{enumerate}
+						\item Description\newline
+In this test case the scheduler should be successfully started via MOAB Workload manager with the "single-queue" option in the command line.
+						\item Related requirements\newline
+ 							  /F10/		
+					\end{enumerate}					  
+											
+				
+				
+				\item Start the scheduler managed with a multiple-queue task-stealing design
+				\begin{enumerate}
+						\item Description\newline
+In this test case the scheduler should be successfully started via MOAB Workload manager with the "multiple-queue" option in the command line.
+						\item Related requirements\newline
+ 							  /F20/		
+				\end{enumerate}	
+				
+				
+				%TEST
+				\item Select a scheduling strategy 
+			    \begin{enumerate}
+						\item Description\newline
+							Test whether the scheduler is able to select the following strategies
+							\begin{itemize}
+							 	\item First in first out (FIFO)
+							 	\item Last in first out (LIFO)
+							 	\item Shortest job first (SJF)
+							 	\item Longest job first
+(LJF)
+								
+							\end{itemize}
+							
+						\item Related requirements\newline
+ 							  /F30/, /F40/, /F50/, /F60/		
+				\end{enumerate}	
+				
+				
+				
+				\item Change the strategy during the scheduling process
+				\begin{enumerate}
+						\item Description\newline
+Test whether the scheduler is able to change the current strategy during the program, if the current strategy is inefficient.
+						\item Related requirements\newline
+ 							  /F70/		
+				\end{enumerate}				
+				
+				\item Add a new strategy to program
+				\begin{enumerate}
+					\item Description\newline
+Test whether it is possible for the user to add strategies to the program by using a strategy interface.
+					\item Related requirements\newline
+						/F80/
+				\end{enumerate}
+					
+				
+				%TEST
+				\item Process Command Line Interface (CLI) parameter 		
+					\begin{enumerate}
+						\item Description\newline
+Test whether the scheduler is able to process a command line interface parameter.
+						\item Related requirements\newline
+ 							  /F90/		
+				\end{enumerate}	
+				
+				%TEST
+				\item Initialize the MPI World 
+				\begin{enumerate}
+						\item Description\newline
+Test whether the scheduler successfully creates and initializes the MPI World with the given arguments after it starts.
+						\item Related requirements\newline
+ 							  /F100/		
+				\end{enumerate}
+
+
+
+				%TEST
+				\item Execute master functions
+				\begin{enumerate}
+						\item Description\newline
+Test whether the scheduler, which is managed with a single-queue master-worker design, is able to execute the following master functions: 
+					\begin{enumerate}
+\item code\_preprocessing\_master(:RunArguments)
+						\item code\_postprocessing\_master(:RunArguments)
+					\end{enumerate}
+						\item Related requirements\newline
+ 							  /F110/	, /F130/	
+				\end{enumerate}
+				
+				
+				
+				%TEST
+				\item Execute worker functions
+				\begin{enumerate}
+						\item Description\newline
+Test whether the workers(slaves) are able to execute the following worker functions: 
+					\begin{enumerate}
+						\item code\_preprocessing\_slave(:RunArguments)
+						\item code\_postprocessing\_slave(:RunArguments)
+					\end{enumerate}
+						\item Related requirements\newline
+ 							  /F120/	, /F130/
+				\end{enumerate}
+				
+				
+				%TEST
+				\item Receive new tasks from scientific code
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to receive new tasks from the scientific code and place them correctly in the queue.
+					\item Related requirements\newline
+						/F140/
+				\end{enumerate}
+				
+				
+				
+				%TEST
+				\item Query Data Mining module, how much resources a specific task needs
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to ask the Data Mining module to estimate the weight of the task.
+					\item Related requirements\newline
+						/F150/
+				\end{enumerate}
+				
+				
+				%TEST
+				\item Read data from the bookkeeping database
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to correctly and trouble-free read the data from the bookkeeping database
+					\item Related requirements\newline
+						/F160/
+				\end{enumerate}
+				
+				
+				%TEST
+				\item Write data into the bookkeeping database
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to correctly and trouble-freely write the data into the bookkeeping database
+					\item Related requirements\newline
+						/F170/
+				\end{enumerate}
+				
+				
+				%TEST 
+				\item Send a specific number of tasks to available workers
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to correctly send different tasks to available workers using the current strategy
+					\item Related requirements\newline
+						/F180/
+				\end{enumerate}
+								
+			
+			
+			
+			%TEST 
+				\item Steal a task from another queues
+				\begin{enumerate}
+					\item Description\newline
+Test whether a scheduler with an empty queue is able to steal tasks from other schedulers
+					\item Related requirements\newline
+						/F350/
+				\end{enumerate}
+							
+			
+			
+			%TEST 
+				\item Use an already created statistic file
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler is able to use an already created statistic file.
+					\item Related requirements\newline
+						/F360/
+				\end{enumerate}
+								
+			\end{itemize}
+		
+		\subsubsection{Database tests}
+			\begin{itemize}
+				
+		
+				%TEST 
+				\item Initialize database
+				\begin{enumerate}
+					\item Description\newline
+Test whether the scheduler successfully creates and initializes the database.
+					\item Related requirements\newline
+					/F190/
+				\end{enumerate}
+			\end{itemize}
+		
+		\subsubsection{Data mining tests}
+			\begin{itemize}
+			
+			%TEST 
+				\item Read data from statistics
+				\begin{enumerate}
+					\item Description\newline
+Test whether data mining module is able to correctly and trouble-freely read data from statistics database
+					\item Related requirements\newline
+					/F200/
+				\end{enumerate}
+				
+			%TEST
+				\item Write data into statistics
+				\begin{enumerate}
+					\item Description\newline
+Test whether data mining module is able to correctly and trouble-freely write data from statistics database
+					\item Related requirements\newline
+					/F210/
+				\end{enumerate}
+				
+				
+				
+				%TEST 
+				\item Analyses the statistics to define resource requirements for a task
+				\begin{enumerate}
+					\item Description\newline
+Test whether the data mining module is able to approximate the resource requirements for a task and improve its results as time passes and more data are stored in database.
+					\item Related requirements\newline
+					/220/, /230/
+				\end{enumerate}
+				
+				
+				
+				%TEST 
+				\item Keep statistics after a specific task is finished
+				\begin{enumerate}
+					\item Description\newline
+Test whether the data mining module is able to keep statistics for completed tasks and accumulate statistics of the equal computations on a single database.
+					\item Related requirements\newline
+					/F240/
+				\end{enumerate}
+				
+			
+		\end{itemize}	
+		\subsubsection{Bookkeeping tests}
 		\begin{itemize}
-			\item MOAB input is starting the scheduler
-			\item successfully MPI World initialization (F100)
-			
-			\item receive a task (F310)
-			\item Master Scheduler is creating Dummy-workers(fußnote erklärung:)
-			\item bind dummy code on scheduler (F130, F140)
-			
-			for both designs all test all strategy
-			1.
-			\item select Master-Worker design (F70, F80)
-			\item select scheduling strategy in user interface (F70, F80)
-			\item place tasks on workers (F190)
-			\item execute each strategy through execution interface Master/Worker (F30, F40, F50, F60, 							F70, F110, F120)
-			2.
-			\item select Multiple-queue parallel scheduling design (F70, F80)
-			\item select scheduling strategy in user interface (F70, F80)
-			\item place tasks on workers (F190)
-			\item execute each strategy through execution interface, Master/Worker(F30, F40, F50, F60, 							F70, F110, F120)
-			
-			
-			\item Initialize database (F200)
-			\item write a task entry in statistic file (F210, F220, F270)
-			\item read a task entry in statistic file (F210, F220, F270)
-			\item calculate a weight for one task (F240)
-			\item use the search function on this one task in statistic (F280)
-			\item duplicate one statistic file (F290)
-			\item delete the (duplicated) file (F260)
-			\item write a task entry in bookkeeping file
-			\item export a .vtk file (F320, F330)
+		
+		
+		%TEST 
+				\item Write a data into bookkeeping database
+				\begin{enumerate}
+				
+					\item Description\newline
+Test whether writing to the bookkeeping database is trouble-freely possible.
+					\item Related requirements\newline
+					/F250/
+				\end{enumerate}
+		
+		
+		%TEST
+		\item Bookkeep data for a specific task
+				\begin{enumerate}
+					\item Description\newline
+Test whether is possible to bookkeep the following data for a specific task: 	
+					\begin{enumerate}
+					\item Task appears
+					\item Task started
+					\item Task finished 
+					\end{enumerate}
+					
+					\item Related requirements\newline
+					/F260/
+				\end{enumerate}
 		\end{itemize}
-	
+		\subsubsection{Statistics tests}
+		\begin{itemize}
+		
+		
+		
+		%TEST 
+				\item Read and write data into statistics file.
+				\begin{enumerate}
+					\item Description\newline
+					\begin{enumerate}
+					
+					\item 
+Test whether the program is able to correcly read in the file.
+					\item
+Test wheterh the program is able to write correctly new task informations into the statistic file.
+					\end{enumerate}
+					\item Related requirements\newline
+					/F280/
+					
+				\end{enumerate}
+				
+				
+				%TEST 
+				\item Search in statistics
+				\begin{enumerate}
+					\item Description\newline
+Test whether the programm is able to efficiently search informations into the statistic file. 
+					\item Related requirements\newline
+					/F280/
+				\end{enumerate}
+				
+				
+				%TEST 
+				\item Duplicate files on too high amount of request
+				\begin{enumerate}
+					\item Description\newline
+Test whether the program is able to duplicate files when there are too many requests for the same file.
+					\item Related requirements\newline
+					/F290/
+				\end{enumerate}
+				
+				
+				
+				%TEST 
+				\item Delete duplicated files 
+				\begin{enumerate}
+					\item Description\newline
+Test whether the program is able to delete duplicated files when there are not many tasks left or the scientific code is finished.
+					\item Related requirements\newline
+					/F290/
+				\end{enumerate}
+				
+				
+				
+				%TEST 
+				\item Interpret information of the statistic file
+				\begin{enumerate}
+					\item Description\newline
+Test whether the program is able to read and correctly interpret the information of the statistic file, in order to collect to approximiate the runtime of a specific task.
+					\item Related requirements\newline
+					/F300/
+				\end{enumerate}
+				
+		\end{itemize}		
+		\subsubsection{Visualisation tests}
+		\begin{itemize}
+		
+		%TEST 
+				\item Export bookkeeping data to .vtk
+				\begin{enumerate}
+					\item Description\newline
+Test whether the program correctly exports the bookkeeping data to .vtk format
+					\item Related requirements\newline
+					/F330/
+				\end{enumerate}
+				
+		
+		%TEST 
+				\item Export statistics data to .vtk
+				\begin{enumerate}
+					\item Description\newline
+Test whether the program correctly exports the statistics data to .vtk format
+					\item Related requirements\newline
+					/F340/
+				\end{enumerate}
+				
+		\end{itemize}				
+		
+%	\susubbsection
+		
+		\subsection{Test scenarios}
+		
+		\subsubsection{Basic test scenarios}
+		
+		\begin{enumerate}
+			\item Perform a simple scheduling managed with a single-queue master-slave design with a dummy code with a specific number of tasks.
+			\begin{enumerate}
+				\item /T10/, /T60/ Start the scheduler with a single-queue master-worker design
+				\item /T70/ Initialize the MPI World
+				\item /T30/ Select a default strategy
+				\item /T80/ Execute master function (code\_preprocessing\_master)
+				\item /T140/ Send a tasks to available workers
+				\item /T90/ Execute worker functions (code\_preprocessing\_slave)
+				\item /T100/ Receive new tasks from scientific code
+				\item /T110/ Query Data Mining module, how muc resources the current task needs
+				\item /T240/ Read data from the statistics file
+				\item /T200/ Analyse data to define resource requirements for the task
+				\item /T80/ Execute master function (code\_postprocessing\_master)
+				\item /T80/ Execute worker function (code\_postprocessing\_master)
+				\item /230/ Bookkeep data after the task is finished
+				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
+			\end{enumerate}
+			
+			
+			
+			\item Perform a dynamic scheduling with a (dummy) scientific code, that produces tasks, which can't be efficiently processed with the current strategy 
+				
+				\begin{enumerate}
+					\item /T10/, /T60/ Start the scheduler with a single-queue master-worker design
+				\item /T70/ Initialize the MPI World
+				\item /T30/ Select a default strategy
+				\item /T80/ Execute master function (code\_preprocessing\_master)
+				\item /T140/ Send a tasks to available workers
+				\item /T90/ Execute worker functions (code\_preprocessing\_slave)
+				\item /T100/ Receive new tasks from scientific code
+				\item /T40/ Change the current strategy during the scheduling process
+				\item /T110/ Query Data Mining module, how muc resources the current task needs
+				\item /T240/ Read data from the statistics file
+				\item /T200/ Analyse data to define resource requirements for the task
+				\item /T80/ Execute master function (code\_postprocessing\_master)
+				\item /T80/ Execute worker function (code\_postprocessing\_master)
+				\item /230/ Bookkeep data after the task is finished
+				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
+				\end{enumerate}
+			
+			
+			\item Add new strategies to program
+			
+			\begin{enumerate}
+				\item /T50/ Add a new strategy to program
+				\item Use then the first or second test scenario
+			\end{enumerate}
+			
+			
+			\item Run again the same scientific code
+				\begin{enumerate}
+					\item Use the first or second test scenario
+					\item /T160/ Use an already created statistic file.
+				\end{enumerate}
+		\end{enumerate}
+		
+		
+		\subsubsection{Advanced (Nice-to-have) test scenarios}
+			\begin{enumerate}
+							
+			\item Perform a simple scheduling managed with a multiple-queue task-stealing algorithm
+				\begin{enumerate}
+				
+				\item /T20/, /T60/ Start the scheduler with a multiple-queue master-worker design
+				\item /T70/ Initialize the MPI World
+				\item /T30/ Select a default strategy
+				\item /T80/ Execute master function (code\_preprocessing\_master)
+				\item /T140/ Send a tasks to available workers
+				\item /T90/ Execute worker functions (code\_preprocessing\_slave)
+				\item /T100/ Receive new tasks from scientific code
+				\item /T110/ Query Data Mining module, how muc resources the current task needs
+				\item /T240/ Read data from the statistics file
+				\item /T200/ Analyse data to define resource requirements for the task
+				\item /T150/ Steal a task from another queue
+				\item /T80/ Execute master function (code\_postprocessing\_master)
+				\item /T80/ Execute worker function (code\_postprocessing\_master)
+				\item /230/ Bookkeep data after the task is finished
+				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
+				
+				\end{enumerate}
+		     \end{enumerate}	
+		     
+		   \subsubsection{Stress testing scenarios}
+		   
+		   \begin{enumerate}
+		   	 \item Perform a scheduling with a code, which produces a lot of tasks that take very little time to complete
+		   	   \begin{enumerate}
+		   	   \item /T260/ Duplicate files on too high amount of request
+		   			\item Use first basic test scenario 
+		   			\item /T270/ Delete duplacated files
+		   			
+		   	   \end{enumerate}
+		   	\item Perform a scheduling with a code, which produces a few of tasks that take a lot of time to complete
+		   	
+		   	   \begin{enumerate}
+		   			\item Use the first basic test scenario
+		   	   \end{enumerate}
+		   	\item Perform a scheduling with a code, where the completion time of tasks differs a lot from task to task. Some tasks take a lot of time to complete compared to the other ones.
+		      	\begin{enumerate}
+		      		\item /T260/ Duplicate files on too high amount of request
+		   			\item Use the second basic test scenario  in order to dynamically change the strategy
+		   			\item /T270/ Delete duplacated files
+		      	\end{enumerate}
+		   \end{enumerate}		   	
