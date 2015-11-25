@@ -13,20 +13,19 @@
 	\subsubsection{Scheduler}
 	
 		\begin{itemize}
-			\item Master-Worker scheduling design
-			\item Multiple-queue parallel scheduling design
+			\item Provides Master-Worker scheduling design 
+			\item Provides Multiple-queue parallel scheduling design
 			\item First in first out strategy
 			\item Last in first out strategy
 			\item Shortest job first strategy
 			\item Longest job first strategy 
-			\item Provide a general interface for scheduling strategies
 			\item Change scheduling strategy
-			\item Command line parameter processing
-			\item MPI-World initialisation
-			\item Be instance of master
-			\item Be instance of worker
+			\item Add a strategy to program
+			\item CLI parameter processing
+			\item MPI-World initialization
+			\item Execute master functions
+			\item Execute worker functions
 			\item Initialize scientific code
-			\item Run tasks on scientific code 
 			\item Receive new tasks from scientific code
 			\item Enqueue tasks in the scheduling queue
 			\item Dequeue task from the scheduling queue
@@ -41,7 +40,7 @@
 	\subsubsection{Database}
 	
 		\begin{itemize}
-			\item Initialise database
+			\item Initialie database
 			%\item Files will be placed after computation as usable files for plotting.
 		\end{itemize}
 		
@@ -66,26 +65,30 @@
 		\subsubsection{Bookkeeping database}
 	
 			\begin{itemize}
-				\item Does bookkeeping for 'task appears'
-				\item Does bookkeeping for 'task started'
-				\item Does bookkeeping for 'task finished'
+				\item Bookkeeping should be conducted for the following events:
+				\begin{enumerate}
+					\item Task appears
+					\item Task started
+					\item Task finished 
+				\end{enumerate}
 			\end{itemize}
 	
 		\subsubsection{Statistics database}
 	
 			%TODO WARNING
 			\begin{itemize}
-				
-				\item Read entry from statistics
-				\item Write entry to statistics
+				\item Read-/write-functions for the data mining module for the statistic file.
 				\item Search for similar and equal data in statistics
+				\item Duplication of files on too high amount of requests.
+				\item Delete duplicated files after finishing the scientific simulation
+				\item Collect information about the runtime of the task depending on task parameters.
 			\end{itemize}
 	
 	
 	\subsubsection{Interface}
-	
 		\begin{itemize}
-			\item Provide place\_task method
+		
+			\item The program must provide the place\_task interface
 			\item Receive different task types from the scientific code
 		\end{itemize}
 		
@@ -107,11 +110,6 @@
 			%\item Random multiple-queues strategy
 			%\item Task-stealing multiple-queues strategy%nice
 			%\item Statistics-based multiple-queues strategy
-		\end{itemize}
-		
-	\subsubsection{Bookkeeping}
-		\begin{itemize}
-			\item Does bookkeeping for 'interconnection between processes'
 		\end{itemize}
 		
 }
