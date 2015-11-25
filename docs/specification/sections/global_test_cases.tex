@@ -1,14 +1,33 @@
 \section{Global test cases}
 		\begin{itemize}
 			\item MOAB input is starting the scheduler
-			\item successfully MPI World initialization
+			\item successfully MPI World initialization (F100)
+			
+			\item receive a task (F310)
 			\item Master Scheduler is creating Dummy-workers(fußnote erklärung:)
-			\item bind dummy code on scheduler
-			\item select scheduling strategy in user interface
-			\item execute
-			\item 
+			\item bind dummy code on scheduler (F130, F140)
+			
+			for both designs all test all strategy
+			1.
+			\item select Master-Worker design (F70, F80)
+			\item select scheduling strategy in user interface (F70, F80)
+			\item place tasks on workers (F190)
+			\item execute each strategy through execution interface Master/Worker (F30, F40, F50, F60, 							F70, F110, F120)
+			2.
+			\item select Multiple-queue parallel scheduling design (F70, F80)
+			\item select scheduling strategy in user interface (F70, F80)
+			\item place tasks on workers (F190)
+			\item execute each strategy through execution interface, Master/Worker(F30, F40, F50, F60, 							F70, F110, F120)
 			
 			
-			
+			\item Initialize database (F200)
+			\item write a task entry in statistic file (F210, F220, F270)
+			\item read a task entry in statistic file (F210, F220, F270)
+			\item calculate a weight for one task (F240)
+			\item use the search function on this one task in statistic (F280)
+			\item duplicate one statistic file (F290)
+			\item delete the (duplicated) file (F260)
+			\item write a task entry in bookkeeping file
+			\item export a .vtk file (F320, F330)
 		\end{itemize}
 	
