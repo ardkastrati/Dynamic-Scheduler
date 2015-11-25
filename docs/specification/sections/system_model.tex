@@ -1,10 +1,10 @@
-\section{Systemmodel}
+\section{System model}
 	\subsection{System structure}
 			\subsubsection{Modules}
-				%INSERT SYSTEMMODELCHART HERE
-				The main architecture pattern the system is oriented to, is the Model-View-Controller. But 				only the main structure, the architecture should be seen as parallel model.
+				%TODO INSERT SYSTEMMODELCHART HERE
+				The main architecture pattern, the system is oriented to, is the Model-View-Controller. Yet only the architecture should be seen as parallel model.
 			\subsubsection{Controller}
-				The Controller is basically the whole scheduler-module. It controls the data flow with the 				data structure(Model) and the Data Mining-module which both of them are part of the 						scheduler. Furthermore, the scheduler is responsible for the communication with the code-             				and executer interface and the MPI-world. There will be a scientific code bound to the 						scheduler and executed with different tasks(different parameter input), those will be 						brought in order through the scheduler. This will be organized with special scheduler 						algorithms depend on the data mining and the statistics
+				The controller is basically the whole scheduler-module. It controls the data flow with the 				data structure(Model) and the Data Mining-module which both of them are part of the 						scheduler. Furthermore, the scheduler is responsible for the communication with the code-             				and executer interface and the MPI-world. There will be a scientific code bound to the 						scheduler and executed with different tasks(different parameter input), those will be 						brought in order through the scheduler. This will be organized with special scheduler 						algorithms depend on the data mining and the statistics
 			\subsubsection{Model}
 				The Model is represented as an high performance file system. Data which will be collected 					for statistics will be stored in such a file in the file system. Also the data for 							bookkeeping with information about the progress of the tasks which are executed on the 						computer cluster will be stored in one file. The queue of the task order will be also 						placed in a file. 
 			\subsubsection{View}
@@ -15,7 +15,7 @@
 			
 \subsubsection{Expanding universe simulation}
 
-A scientist named John wrote some computer code to simulate the physics of mass in an expanding universe. In order to track trillions of particles in universe, the code should be executed on a supercomputer in an organized and smart manner. 
+A scientist named John wrote some computer code to simulate the physics of mass in an expanding universe. In order to track trillions of particles in universe, the code should be executed on a HPC in an organized and smart manner. 
 Firstly, John reserves the required number of nodes using MOAB Workload Manager. After receiving the specific number of nodes, John runs the scheduler and chooses whether he wants to have multiple-queue or single queue scheduling. The scheduler initializes the scientific code and starts to schedule the initial tasks. The scheduler strives to keep as many processes as possible running at the same time and get
 their results as soon as possible. To achieve these results, the scheduler uses different strategies at specific times (e.g. Shortest Job First, First In First Out, Longest Job First, etc). After all tasks have been successfully executed, John gets an information that the expanding universe was successfully simulated. 
 
@@ -28,7 +28,7 @@ their results as soon as possible. To achieve these results, the scheduler uses 
 	\end{figure}
 	\begin{description}
 \item [1. Brief Description]\hfill \\
-This diagram describes the general flow of use case of a computation with the scheduler system.
+This diagram describes a computation's use case general flow with the scheduler system.
 
 \item [2. Actors]\hfill \\
 \vspace{-6.5mm}
@@ -48,7 +48,7 @@ This diagram describes the general flow of use case of a computation with the sc
 \end{itemize}
 
 \item [4. Basic Flow of Event]\hfill \\
-The scientific code for the computation will be provided from the code interface, so the use case "scientific code" extends the function of the scheduler. After binding the code on the scheduler and the interaction with the MPI world the computation can be placed through the executer interface. The use case "analyse data" is analysing the data of the database and place the task in the queue, this is the use case "check queue/task placing". The function of the scheduler to use the database is represented through the use case "take/place data".
+The scientific code for the computation will be provided from the code interface, so the use case "scientific code" extends the function of the scheduler. After binding the code on the scheduler and the interaction with the MPI world the computation can be placed through the executer interface. The use case "analyze data" is analyzing the data of the database and places the task in the queue. This is the use case "check queue/task placing". The function of the scheduler to use the database is represented through the use case "take/place data".
 
 
 \item [5. Post-conditions]\hfill \\
@@ -75,16 +75,16 @@ None
 The main modules of the project are the following:
 \begin{itemize}
 	\item Scheduler
-		\subitem Contains a variety of scheduling algorithms and strategies.
-		\subitem Queries Data Mining module how much recourses the task needs.
-		\subitem Makes decision how to place a task in a schedule.
+		\subitem Contains a variety of scheduling algorithms and strategies
+		\subitem Queries Data Mining module how much resources the task needs
+		\subitem Decides how to place a task in a schedule
 		\subitem Does bookkeeping for the following events:
 			\subsubitem - task appears
 			\subsubitem - task started
 			\subsubitem - task finished
 			\subsubitem - interconnection between processes
 	\item Data Mining
-		\subitem Analyses the statistics to define resource requirements for a task.
+		\subitem Analyzes the statistics to define resource requirements for a task
 		\subitem Stores statistic for completed tasks in the database
 	
 	\item Code interface
@@ -99,13 +99,13 @@ The main modules of the project are the following:
 			\subsubitem run\_task(task):run result
 	
 	\item Database
-		\subitem Is used to keep statistics, bookkeeping and local schedule
+		\subitem Keeps statistics, does bookkeeping and local schedule
 		
-	\item Communicator (Nice-to-have)
-		\subitem Has to organize a multi-level communication among multiple parallel schedulers
+	\item Communicator (Optional)
+		\subitem Has to organize multi-level communication among multiple parallel schedulers
 \end{itemize}
 \vspace{1cm}
-The picture below describes the basic object model of a scheduler, its modules and interaction (system events) between them.
+The picture below describes the basic object model of the dynamic scheduler, its modules and the interaction (system events) in between.
 
 \vspace{1cm}
 \begin{figure}[H]
@@ -124,7 +124,7 @@ The picture below describes the basic object model of a scheduler, its modules a
 
 \begin{description}
 	\item [1. Brief Description]\hfill \\
-	This use case describes the way a task stealing algorithm works inside a dynamic scheduler in order to reduce the amount of process migration between processors.
+	Use case describing the way the task stealing algorithm works inside the dynamic scheduler in order to reduce the amount of process migration between processors.
 	
 	\item [2. Actors]\hfill \\
 	No actors. 
@@ -137,7 +137,7 @@ The picture below describes the basic object model of a scheduler, its modules a
 		\item Information about initial tasks has been collected from code preprocessing, received tasks from which have been placed to the queue.
 	\end{itemize}
 	
-	\item [4. Basic Flow of Event]\hfill \\
+	\item [4. Basic Flow of Events]\hfill \\
 	The use case begins when the scheduler checks if there are tasks in its own queue.If there is a task in the queue, it will be executed. After the task has been executed, all collected results will get placed in the database in an organized manner.
 	If there isn't any task in the queue, the task stealing process will be initiated.\newline First of all, the scheduler will cycle through all running processes in other processors and try to steal an idle task from them. In order to check the other processes' queue for an idle task, the scheduler tries to block the RMA window for offsets and statuses, after which it checks whether there are any idle tasks. If the queue is empty or if the RMA window is currently blocked, the scheduler repeats the same procedure for remaining processors. If after checking all processes, no idle task was found, the scheduler changes its own state to idle. If this idle state doesn't change for a specific amount of cycles, which means that no tasks were stolen in this period, the scheduler finally checks to make sure that no process is currently running in any processor and if that's the case, it finishes its own routine. 
 	
@@ -181,23 +181,23 @@ A multiple-queues scheduling is a way to schedule many tasks, where each process
 	
 \subsection{Graphical user interface}
 	\subsubsection{Command line parameters}
-		The dynamic scheduler for scientific simulations is started via the command line. The scheduler takes the following parameters as command line parameters:
+		The dynamic scheduler is started via the command line, taking the following parameters as command line parameters:
 	
 		\begin{itemize}	
 			\item Syntax: [OPTION]... [RUN ARGUMENTS]...
 				
 			\item OPTIONS:
 							
-				\subitem -d: choose between multiple-queues scheduling (multi-queue) and single-queue scheduling (single-queue) (e.g. -d multi-queue or -d single-queue). The default strategy is single-queue (nice-to-have)
+				\subitem -d: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
 				
 				\subitem -s: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
 					
 			\item RUN ARGUMENTS:
-				\subitem The run arguments will be passed to the scientific code to initialize the code
+				\subitem The run arguments is passed to the scientific code for initialization
 		\end{itemize}
 		
-	\subsubsection{Graphical user interface (GUI) (nice-to-have)}
-		The Graphical user interface (GUI) is a nice to have feature. The scientist should be able to generate easily a shell script which can run via MOAB Workload Manager on the supercomputer. Following configuration can be edit via the GUI:
+	\subsubsection{Graphical user interface (GUI) (optional)}
+		The Graphical user interface (GUI) is a optional feature. Scientists should be able to easily generate a shell script running via MOAB Workload Manager on the HPC. The following configuration can be edited via GUI:
 		
 		\begin{itemize}
 			\item Scheduling strategy
