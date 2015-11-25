@@ -1,34 +1,47 @@
+{
+\newcounter{funcGTC}
+\setcounter{funcGTC}{10}
+\renewcommand{\labelitemi}{
+	\ifnum \value{funcGTC}<10$/T 0\arabic{funcNFR} /$\addtocounter{funcGTC}{10}
+	\else $/T \arabic{funcNFR} /$\addtocounter{funcGTC}{10}\fi
+}
+
 \section{Global test cases}
+	\subsection{Required features}		
 		\begin{itemize}
-			\item MOAB input is starting the scheduler
-			\item successfully MPI World initialization (F100)
+			\item MOAB input starts the dynamic scheduler
+			\item Successful MPI World initialization (F100)
 			
-			\item receive a task (F310)
-			\item Master Scheduler is creating Dummy-workers(fußnote erklärung:)
-			\item bind dummy code on scheduler (F130, F140)
+			\item The dynamic scheduler receives a task from the scientific code (F310)
+			%TODO erklärung (Fußnote:)			
+			\item Master-scheduler creates dummy-workers
+			\item Bind dummy scientific code to scheduler (F130, F140)
 			
-			for both designs all test all strategy
-			1.
-			\item select Master-Worker design (F80)
-			\item select scheduling strategy in user interface (F80, F90)
-			\item place tasks on workers (F190)
-			\item execute each strategy through execution interface Master/Worker (F30, F40, F50, F60, 							F110, F120, F90)
-			2.
-			\item select Multiple-queue parallel scheduling design (F80)
-			\item Insert Test-strategy (F70)
+			\item Select Master-Worker design (F80)
+			\item Select scheduling strategy in command line interface (F80, F90)
+			\item Run tasks on workers (F190)
+			\item Execute each strategy through execution interface Master-Worker (F30, F40, F50, F60, 							F110, F120, F90)	
+			\item Select Multiple-queue parallel scheduling design (F80)
+			\item Insert dummy Test-strategy (F70)
 			
 			\item Initialize database (F200)
-			\item write a task entry in statistic file (F210, F220, F270)
-			\item read a task entry in statistic file (F210, F220, F270)
-			\item calculate a weight for one task (F240)
-			\item use the search function on this one task in statistic (F280)
-			\item duplicate one statistic file (F290)
-			\item delete the (duplicated) file (F260)
-			\item write a task entry in bookkeeping file
-			\item export a .vtk file (F320, F330)
-			
-			test cases for optional features
-			\item select task-stealing multiple queue strategy (F80, F90, F340)
-			\item load a existing statistic file (F350)
+			\item Write task entry in statistic file (F210, F220, F270)
+			\item Read task entry from statistic file (F210, F220, F270)
+			\item Calculate weight for one task (F240)
+			\item Search specific data entry within dummy statistic (F280)
+			\item Create new statistic file (F290)
+			\item Delete statistic file (duplicated) file (F260)
+			\item Write appearing task entry in bookkeeping file
+			\item Write starting task entry in bookkeeping file
+			\item Write finished task entry in bookkeeping file
+			\item Export statistic file to .vtk (F320, F330)
+			\item Export bookkeeping file to .vtk (F320, F330)
 		\end{itemize}
-	
+		
+	\subsection{Optional features}
+			\begin{itemize}
+				\item Select task-stealing multiple queue strategy (F80, F90, F340)
+				\item Load existing statistic file (F350)
+			\end{itemize}
+		
+}
