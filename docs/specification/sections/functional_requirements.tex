@@ -32,6 +32,7 @@
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
 			\item Assign tasks to worker
+			\item Save computation results
 		\end{itemize}
 	
 	\subsubsection{Database}
@@ -59,11 +60,12 @@
 		%	\end{itemize}
 		
 		
-		%TODO how to implement database
 		\subsubsection{Bookkeeping database}
 	
 			\begin{itemize}
-				\item Write-function for the bookkeeping file.
+				\item Trek started tasks
+				\item Trek finished tasks
+				\item Trek task appearance 
 			\end{itemize}
 	
 		\subsubsection{Statistics database}
@@ -80,7 +82,7 @@
 	\subsubsection{Interface}
 	
 		\begin{itemize}
-			\item The program must provide the run\_task interface
+			\item Provide place_task method
 			\item Receive different task types
 		\end{itemize}
 		
@@ -90,7 +92,6 @@
 		\begin{itemize}
 			\item Export bookkeeping to .vtk format
 			\item Export statistics to .vtk format
-%			\item ???Export scientific results to .vtk format??? 
 		\end{itemize}
 		
 	\subsection{Functions required for optional features}
@@ -104,4 +105,10 @@
 			%\item Task-stealing multiple-queues strategy%nice
 			%\item Statistics-based multiple-queues strategy
 		\end{itemize}
+		
+	\subsubsection{Bookkeeping}
+		\begin{itemize}
+			\item Trek stolen tasks
+		\end{itemize}
+		
 }
