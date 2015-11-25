@@ -19,19 +19,22 @@
 			\item Last in first out strategy
 			\item Shortest job first strategy
 			\item Longest job first strategy 
-			\item Strategy interface
+			\item Provide a general interface for scheduling strategies
 			\item Change scheduling strategy
-			\item CLI parameter processing
+			\item Command line parameter processing
 			\item MPI-World initialisation
-			\item Execute master functions
-			\item Execute worker functions
+			\item Be instance of master
+			\item Be instance of worker
 			\item Initialize scientific code
-			\item Process scientific code 
+			\item Run tasks on scientific code 
 			\item Receive new tasks from scientific code
+			\item Enqueue tasks in the scheduling queue
+			\item Dequeue task from the scheduling queue
 			\item Query weight estimation of each task at data mining
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
-			\item Assign tasks to worker
+			\item Send task via MPI to Worker
+			\item Receive 'finished task' message via MPI  
 			\item Save computation results
 		\end{itemize}
 	
@@ -63,9 +66,9 @@
 		\subsubsection{Bookkeeping database}
 	
 			\begin{itemize}
-				\item Trek started tasks
-				\item Trek finished tasks
-				\item Trek task appearance 
+				\item Does bookkeeping for 'task appears'
+				\item Does bookkeeping for 'task started'
+				\item Does bookkeeping for 'task finished'
 			\end{itemize}
 	
 		\subsubsection{Statistics database}
@@ -73,9 +76,9 @@
 			%TODO WARNING
 			\begin{itemize}
 				
-				\item Read-/write-functions for the data mining module for the statistic file.
-				\item Search-function for similar data in statistics.
-				\item Duplication of files on too high amount of requests.
+				\item Read entry from statistics
+				\item Write entry to statistics
+				\item Search for similar and equal data in statistics
 			\end{itemize}
 	
 	
@@ -83,7 +86,7 @@
 	
 		\begin{itemize}
 			\item Provide place\_task method
-			\item Receive different task types
+			\item Receive different task types from the scientific code
 		\end{itemize}
 		
 		
@@ -98,7 +101,7 @@
 	
 		\begin{itemize}
 			\item Task-stealing multiple-queues strategy%nice
-			\item Possibility to import an already used statistic file.%nice
+			\item Possibility to import an already used statistic file%nice
 						%\item Support of multiple-queues parallel scheduling strategy
 			%\item Rule-based multiple-queues strategy
 			%\item Random multiple-queues strategy
@@ -108,7 +111,7 @@
 		
 	\subsubsection{Bookkeeping}
 		\begin{itemize}
-			\item Trek stolen tasks
+			\item Does bookkeeping for 'interconnection between processes'
 		\end{itemize}
 		
 }
