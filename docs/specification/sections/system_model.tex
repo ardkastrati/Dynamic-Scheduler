@@ -26,6 +26,42 @@ their results as soon as possible. To achieve these results, the scheduler uses 
 		\includegraphics[width=1.5\textwidth,scale=0.75,trim=7cm 0 -7cm 0]{images/usecasediagram.png}
 		\caption{Use case diagram}
 	\end{figure}
+	\begin{description}
+\item [1. Brief Description]\hfill \\
+This diagram describes the general flow of use case of a computation with the scheduler system.
+
+\item [2. Actors]\hfill \\
+\vspace{-6.5mm}
+	\begin{enumerate}
+		\item Code Interface
+		\item Executer Interface
+		\item MPI Interface
+	\end{enumerate}
+
+\newpage
+\item [3. Preconditions]\hfill \\
+\vspace{-6.5mm}
+\begin{itemize}
+\item Call of the code interface
+\item MPI interaction
+
+\end{itemize}
+
+\item [4. Basic Flow of Event]\hfill \\
+The scientific code for the computation will be provided from the code interface, so the use case "scientific code" extends the function of the scheduler. After binding the code on the scheduler and the interaction with the MPI world the computation can be placed through the executer interface. The use case "analyse data" is analysing the data of the database and place the task in the queue, this is the use case "check queue/task placing". The function of the scheduler to use the database is represented through the use case "take/place data".
+
+
+\item [5. Post-conditions]\hfill \\
+\vspace{-6.5mm}
+\begin{enumerate}
+\item Call for execution on executer interface
+\end{enumerate}
+
+\item [6. Special requirements]\hfill \\
+\vspace{-6.5mm}
+None
+
+\end{description}
 
 \newpage
 
