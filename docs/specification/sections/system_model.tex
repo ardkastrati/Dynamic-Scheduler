@@ -1,4 +1,4 @@
-\section{System model}
+\section{System model}%TODO queue out of database 
 	\subsection{System structure}
 			\subsubsection{Modules}
 				%TODO INSERT SYSTEMMODELCHART HERE
@@ -116,6 +116,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 
 \subsection{Dynamic models}
 \subsubsection{Task Stealing (Nice to have) - activity diagram with textual description}
+%TODO must have
 \vspace{1.5cm}
 \begin{figure}[H]
 	\includegraphics[width=15cm]{images/task_stealing_pap.jpg}
@@ -168,7 +169,8 @@ A single-queue master-managed scheduling is a way to schedule many tasks, where 
 	\caption{Single queue scheduling with a master-slave diagram} 
 	\end{figure}
 \newpage
-\subsubsection{Multiple-queues scheduling (nice-to-have)}	
+\subsubsection{Multiple-queues scheduling (nice-to-have)}
+%TODO unite with taskstealing paragraphs (must have)	
 
 \vspace{0.5cm}
 A multiple-queues scheduling is a way to schedule many tasks, where each process has its own queue, and does the same task. The picture below describes the program flow of a scheduler designed by multiple queues, where the queue managing is based on task-stealing algorithm.
@@ -190,6 +192,7 @@ A multiple-queues scheduling is a way to schedule many tasks, where each process
 			\item OPTIONS:
 							
 				\subitem -d: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
+				%TODO spelling				
 				
 				\subitem -s: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
 					

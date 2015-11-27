@@ -28,7 +28,7 @@
 			\item Initialize scientific code
 			\item Receive new tasks from scientific code
 			\item Enqueue tasks in the scheduling queue
-			\item Dequeue task from the scheduling queue
+			\item Dequeue task from the scheduling queue% Delete or remove 
 			\item Query weight estimation of each task at data mining
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
@@ -47,8 +47,8 @@
 		\subsubsection{Data mining}
 	
 			\begin{itemize}
-				\item Read data from statistics database
-				\item Write data into statistics database
+				\item Read data from statistics database %TODO database????
+				\item Write data into statistics database%TODO database????
 				\item Process task queries from scheduler
 				\item Calculate weight estimation 
 				\item Create statistics from task computation
@@ -98,13 +98,14 @@
 		\begin{itemize}
 			\item Export bookkeeping to .vtk format
 			\item Export statistics to .vtk format
+			%TODO interconnection graph for master-slave / taskstealing
 		\end{itemize}
 		
 	\subsection{Functions required for optional features}
 	
 		\begin{itemize}
 			\item Task-stealing multiple-queues strategy%nice
-			\item Possibility to import an already used statistic file%nice
+			\item Possibility to import an already used statistic file%TODO 	must-have
 						%\item Support of multiple-queues parallel scheduling strategy
 			%\item Rule-based multiple-queues strategy
 			%\item Random multiple-queues strategy
