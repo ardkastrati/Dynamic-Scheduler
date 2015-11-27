@@ -3,6 +3,5 @@
 #MSUB -l pmem=200mb
 #MSUB -N test
 #MSUB -q singlenode
-module load devel/scalasca
 mpirun --bind-to core --map-by core -report-bindings nodename_mpi.x
 
