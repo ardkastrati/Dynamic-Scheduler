@@ -13,45 +13,42 @@
 	\subsubsection{Scheduler}
 	
 		\begin{itemize}
-			\item Master-Worker scheduling design
-			\item Multiple-queue parallel scheduling design
+			\item Provides Master-Worker scheduling design 
+			\item Provides Multiple-queue parallel scheduling design
 			\item First in first out strategy
 			\item Last in first out strategy
 			\item Shortest job first strategy
 			\item Longest job first strategy 
-			\item strategy interface
 			\item Change scheduling strategy
-			%\item Support of multiple-queues parallel scheduling strategy
-			%\item Rule-based multiple-queues strategy
-			%\item Random multiple-queues strategy
-			%\item Task-stealing multiple-queues strategy%nice
-			%\item Statistics-based multiple-queues strategy
+			\item Add a strategy to program
 			\item CLI parameter processing
-			\item MPI-World initialisation
+			\item MPI-World initialization
 			\item Execute master functions
 			\item Execute worker functions
 			\item Initialize scientific code
-			\item Process scientific code 
 			\item Receive new tasks from scientific code
+			\item Enqueue tasks in the scheduling queue
+			\item Dequeue task from the scheduling queue% Delete or remove 
 			\item Query weight estimation of each task at data mining
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
-			%\item Does bookkeeping
-			\item Assign tasks to worker
+			\item Send task via MPI to Worker
+			\item Receive 'finished task' message via MPI  
+			\item Save computation results
 		\end{itemize}
 	
 	\subsubsection{Database}
 	
 		\begin{itemize}
-			\item Initialise database
+			\item Initialie database
 			%\item Files will be placed after computation as usable files for plotting.
 		\end{itemize}
 		
 		\subsubsection{Data mining}
 	
 			\begin{itemize}
-				\item Read data from statistics database
-				\item Write data into statistics database
+				\item Read data from statistics database %TODO database????
+				\item Write data into statistics database%TODO database????
 				\item Process task queries from scheduler
 				\item Calculate weight estimation 
 				\item Create statistics from task computation
@@ -65,29 +62,34 @@
 		%	\end{itemize}
 		
 		
-		%TODO how to implement database
 		\subsubsection{Bookkeeping database}
 	
 			\begin{itemize}
-				\item Write-function for the bookkeeping file.
+				\item Bookkeeping should be conducted for the following events:
+				\begin{enumerate}
+					\item Task appears
+					\item Task started
+					\item Task finished 
+				\end{enumerate}
 			\end{itemize}
 	
 		\subsubsection{Statistics database}
 	
 			%TODO WARNING
 			\begin{itemize}
-				
 				\item Read-/write-functions for the data mining module for the statistic file.
-				\item Search-function for similar data in statistics.
+				\item Search for similar and equal data in statistics
 				\item Duplication of files on too high amount of requests.
+				\item Delete duplicated files after finishing the scientific simulation
+				\item Collect information about the runtime of the task depending on task parameters.
 			\end{itemize}
 	
 	
 	\subsubsection{Interface}
-	
 		\begin{itemize}
-			\item The program must provide the run\_task interface
-			\item Receive different task types
+		
+			\item The program must provide the place\_task interface
+			\item Receive different task types from the scientific code
 		\end{itemize}
 		
 		
@@ -95,14 +97,20 @@
 	
 		\begin{itemize}
 			\item Export bookkeeping to .vtk format
-			\item Export statistic to .vtk format
-%			\item ???Export scientific results to .vtk format??? 
+			\item Export statistics to .vtk format
+			%TODO interconnection graph for master-slave / taskstealing
 		\end{itemize}
 		
 	\subsection{Functions required for optional features}
 	
 		\begin{itemize}
 			\item Task-stealing multiple-queues strategy%nice
-			\item Possibility to load an already used statistic file.%nice
+			\item Possibility to import an already used statistic file%TODO 	must-have
+						%\item Support of multiple-queues parallel scheduling strategy
+			%\item Rule-based multiple-queues strategy
+			%\item Random multiple-queues strategy
+			%\item Task-stealing multiple-queues strategy%nice
+			%\item Statistics-based multiple-queues strategy
 		\end{itemize}
+		
 }

@@ -1,27 +1,50 @@
 \section{Definition of goals}
 	\subsection{Must-have}
 		\begin{itemize}
-			\item The program can be integrated to scientific code which provides the given code interface.
-			\item The program must be able to receive different task-structures.
-			\item The program must be able to execute and call scientific code.
+			\item The dynamic scheduler can be integrated to scientific code which provides the following interface:
+				\subitem code\_preprocessing\_master(run arguments):set of initial tasks
+				\subitem code\_preprocessing\_slave(void):void
+				\subitem code\_postprocessing\_master(void):void
+				\subitem code\_postprocessing\_slave(void):void
+				\subitem run\_task(task):run result
+			\item The dynamic scheduler can be integrated to scientific code which uses the following interface:
+				\subitem place\_task(task)
+			\item The program must be able to receive different task-structures (task data types). The task data type must provide the task\_params interface:
+				\subitem int task\_type\_length
+				\subitem int num\_stat\_task\_params
+				\subitem int result\_type\_length
+				\subitem int stat\_task\_params
+				\subitem type task\_type\_unit
+				\subitem type task\_type
+				\subitem type result\_type\_unit
+				\subitem type result\_type
+				
+			\item The program must be able to execute and call scientific code.%call or execute
 			\item Must provide different scheduling strategies.
-			\item Must be able to dynamically chose between provided strategies.
-			\item Must be able to keep track of each task.
-			\item Must perform data mining on collected statistics.
-			\item Collected data must be visualised.
-			\item Must collect statistic data for each task.
-			\item Must store the result of the calculation for each task.
-			\item It must be possible to use variable numbers of parameters for statistics.
-			\item Must callable from the command line.
+			\item Must provide a strategy interface.
+			\item Must be able to dynamically choose between provided strategies.
+			\item Must be able to bookkeep following events of each task:
+				\subitem task appears
+				\subitem task started
+				\subitem task finished
+				\subitem interconnection between precesses
+			\item Must perform data mining on collected statistics
+			\item Collected data must be visualized
+			\item Estimate runtime each task will have
+			\item Must collect following statistic data for each task:
+				\subitem the runtime of the task depending on task parameters
+			\item Accumulate all results during the computation and store them
+			\item It must be possible to use variable numbers of parameters for statistics
+			\item The dynamic scheduler must be callable from the command line
 		\end{itemize}
 	\subsection{Nice-to-have}
 		\begin{itemize}
-			\item Provide a GUI to configure the program.
-			\item Several scheduler instances should be able to communicate.
-			\item Scheduler should be able to dynamically change it's MPI-world.
-			\item Scheduler provides a task stealing algorithm in order to reduce the amount of process migration between processors.
+			\item Provide a GUI to configure the program and generate a MOAB Workload Manager shell script
+			\item Several scheduler instances should be able to communicate
+			\item Scheduler should be able to dynamically change it's MPI-world
+			\item Scheduler provides a task stealing algorithm in order to reduce the amount of process migration between processors%must-have%
 		\end{itemize}
 	\subsection{Demarcation criterion}
 		\begin{itemize}
-			\item
+			\item Dynamically choosing the scheduling strategy doesn't use adaptive learning
 		\end{itemize}
