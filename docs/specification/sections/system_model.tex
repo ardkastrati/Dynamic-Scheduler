@@ -115,7 +115,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 \newpage
 
 \subsection{Dynamic models}
-\subsubsection{Task Stealing (Nice to have) - activity diagram with textual description}
+\subsubsection{Task Stealing - activity diagram with textual description}
 %TODO must have
 \vspace{1.5cm}
 \begin{figure}[H]
@@ -159,7 +159,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 	
 \end{description}
 \vspace{0.5cm}
-\subsubsection{Single-queue master-managed scheduling}
+\subsubsection{Single-queue scheduling managed by master/slave design }
 \vspace{0.5cm}
 A single-queue master-managed scheduling is a way to schedule many tasks, where each process (instance of the task) can request master to access the queue. The picture below describes the program flow of a scheduler by a single queue, where the queue is managed by only one process (master). 
 \vspace{1cm}
@@ -169,7 +169,7 @@ A single-queue master-managed scheduling is a way to schedule many tasks, where 
 	\caption{Single queue scheduling with a master-slave diagram} 
 	\end{figure}
 \newpage
-\subsubsection{Multiple-queues scheduling (nice-to-have)}
+\subsubsection{Multiple-queues scheduling}
 %TODO unite with taskstealing paragraphs (must have)	
 
 \vspace{0.5cm}
@@ -191,10 +191,10 @@ A multiple-queues scheduling is a way to schedule many tasks, where each process
 				
 			\item OPTIONS:
 							
-				\subitem -d: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
+				\subitem -design: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
 				%TODO spelling				
 				
-				\subitem -s: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
+				\subitem -strategy: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
 					
 			\item RUN ARGUMENTS:
 				\subitem The run arguments is passed to the scientific code for initialization
