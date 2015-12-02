@@ -79,6 +79,7 @@
 \section{Introduction}
 	\begin{frame}{Introduction}
 		\begin{itemize}
+			\pause
 			\item User-friendly middle ware between scientific simulation and HPC
 			\pause
 			\item Runtime administration service for scientific simulations
@@ -91,109 +92,49 @@
 			\pause
 			\item Dynamically changing of scheduling strategies
 			\pause
-			\item Bookkeeping for later performance analyze
+			\item Bookkeeping for further performance analysis
 		\end{itemize}
 	\end{frame}
 	
 \section{Most important features}
 	\begin{frame}{Most important features}
 		\begin{itemize}
+			\pause
 			\item Usable with several scientific codes
 			\pause
-			\item Dynamically chose between provided scheduling strategies
+			\item Scheduling	
+				\begin{itemize}
+					\item Support of several scheduling architecture and strategies
+					\item Dynamically chose between provided scheduling strategies
+				\end{itemize}
+				
 			\pause
-			\item
+			\item Data mining
 			\pause
-			\item
+			\item Bookkeeping
 			\pause
-			\item
+			\item Visualization
 		\end{itemize}
 	\end{frame}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Section 1}
-\subsection{Subsection 1.1}
-\begin{frame}{Example slide A}
-\begin{itemize}
-\item PCM, Citation: \cite{becker2008a} %\language
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{frame}
-
-\subsection{Subsection 1.2}
-\begin{frame}{Example slide B}
-\begin{block}{Block 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{block}
-\end{frame}
-
-\section{Section 2}
-\begin{frame}{Example slide C}
-\begin{exampleblock}{Example 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}{Example slide D}
-\begin{alertblock}{Alert 1}
-\begin{itemize}
-\item Bullet point 1
-\pause
-\item Bullet point 2
-\item \dots
-\end{itemize}
-\end{alertblock}
-\end{frame}
-
-\appendix
-\beginbackup
-
-\begin{frame}[allowframebreaks]{References}
-\printbibliography
-\end{frame}
-
-\backupend
+\section{Scenario}
+	\begin{frame}{Scenario (1)}
+		Scenario to show connection between functional requirements:
+		\pause
+		\begin{itemize}
+			\item Start the dynamic scheduler via moab:
+			\item 'msub run\_scheduler.sh'
+		\end{itemize}
+		\begin{block}{run\_scheduler.sh}
+			\#MSUB -l nodes=2:ppn=6 \\
+			\#MSUB -l walltime=0:10:00 \\
+			\#MSUB -l pmem=200mb \\
+			\#MSUB -q multinode \\
+			mpirun \textbf{scheduler -design master-worker}
+		\end{block}
+	\end{frame}
+	\begin{frame}{Scenario (2)}
+		\center -activity diagram in image viewer-
+	\end{frame}
 
 \end{document}
