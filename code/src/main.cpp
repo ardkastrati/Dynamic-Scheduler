@@ -2,6 +2,8 @@
 #include <mpi.h>
 #include "executer.hpp"
 
+typedef int TaskType;
+
 static string TAG = "MAIN";
 
 using namespace std;
@@ -18,6 +20,8 @@ int main(int argc, char* argv[]) {
     
     Executer* executer = Executer::get_executer_by_rank(rank, number_of_processors);
     (*executer).execute();
+
+    delete executer;
 
     MPI_Finalize();
     return 0;
