@@ -17,6 +17,11 @@ $(TARGET): $(OBJECTS)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
+	@mkdir -p $(BUILDDIR)/scheduler
+	@mkdir -p $(BUILDDIR)/worker
+	@mkdir -p $(BUILDDIR)/datamining
+	@mkdir -p $(BUILDDIR)/database
+	@mkdir -p $(BUILDDIR)/visualiser
 	@echo " $(CC) $(CFLAGS) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
