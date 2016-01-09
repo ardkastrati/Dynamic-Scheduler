@@ -5,6 +5,7 @@
 #include "ScientificCode.h"
 #include "easylogging++.h"
 #include <cmath>
+#include "worker/Worker.h"
 
 void code_postprocessing_master()
 {
@@ -32,7 +33,12 @@ void code_preprocessing_slave(int argc, char* argv[])
 }
 
 void code_run_task(TaskType task) {
-    for (int i = 0; i < task * 100; i++) {
-        log(i);
+    if (task + 20 < 100) {
+        Worker::place_task(task + 100);
     }
+    for (int i = 0; i < task * 100000; i++) {
+        log(i);
+
+    }
+    LOG(INFO) << "task done:" << task;
 }

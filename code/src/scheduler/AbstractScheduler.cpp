@@ -11,7 +11,7 @@
  */
 
 
-AbstractScheduler::AbstractScheduler(SchedulingStrategy* schedulingStrategy)
+AbstractScheduler::AbstractScheduler(SchedulingStrategy* schedulingStrategy, int rank, int number_of_processors) : Executer(rank, number_of_processors)
 {
     this->schedulingStrategy = schedulingStrategy;
 }

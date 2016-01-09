@@ -33,4 +33,7 @@ tester:
 	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester
 run: 
 	mpirun -n 4 bin/scheduler
+runbig: 
+	mpirun -n 16 bin/scheduler
+
 .PHONY: clean

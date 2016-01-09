@@ -9,8 +9,11 @@
 #include <string>
 
 class Executer {
+protected:
+    int rank;
+    int number_of_processors;
 public: 
-
+    Executer(int rank, int number_of_processors);
     virtual void execute(int argc, char* argv[]) = 0;
     
     /**

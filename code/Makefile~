@@ -18,6 +18,10 @@ $(TARGET): $(OBJECTS)
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
 	@mkdir -p $(BUILDDIR)/scheduler
+	@mkdir -p $(BUILDDIR)/worker
+	@mkdir -p $(BUILDDIR)/datamining
+	@mkdir -p $(BUILDDIR)/database
+	@mkdir -p $(BUILDDIR)/visualiser
 	@echo " $(CC) $(CFLAGS) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
@@ -29,4 +33,7 @@ tester:
 	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester
 run: 
 	mpirun -n 4 bin/scheduler
+runbig: 
+	mpirun -n 16 bin/scheduler
+
 .PHONY: clean

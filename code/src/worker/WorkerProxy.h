@@ -10,9 +10,8 @@
 #include <queue>
 
 
-class WorkerProxy: public AbstractWorker {
+/*class WorkerProxy: public AbstractWorker {
 public:
-    WorkerProxy(int number_of_processors);
     void execute(int argc, char* argv[]);
     void run_task(TaskType task);
 private:
@@ -20,5 +19,5 @@ private:
     void preporcessing();
     void postprocessing();
 };
-
+*/
 #endif //_WORKERPROXY_H

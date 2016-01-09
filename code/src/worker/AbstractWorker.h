@@ -12,6 +12,8 @@
 
 class AbstractWorker: public Executer {
 public: 
+    AbstractWorker(int rank, int number_of_processors);
+    void preporcessing();
 
     virtual void run_task(TaskType task) = 0;
     /**

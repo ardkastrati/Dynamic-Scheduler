@@ -10,6 +10,11 @@
  * AbstractWorker implementation
  */
 
+AbstractWorker::AbstractWorker(int rank, int number_of_processors) : Executer(rank, number_of_processors)
+{
+
+}
+
 
 /**
  * @param listener

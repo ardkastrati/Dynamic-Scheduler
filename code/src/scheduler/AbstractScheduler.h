@@ -15,7 +15,7 @@ protected:
     SchedulingStrategy* schedulingStrategy;
 
 public: 
-    AbstractScheduler(SchedulingStrategy* schedulingStrategy);
+    AbstractScheduler(SchedulingStrategy* schedulingStrategy, int rank, int number_of_processors);
     ~AbstractScheduler();
 };
 

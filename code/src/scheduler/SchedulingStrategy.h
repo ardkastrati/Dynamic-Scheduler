@@ -9,6 +9,7 @@
 #include "Types.h"
 #include <utility>
 
+
 typedef std::pair<TaskType, long> TaskTimeType;
 
 class SchedulingStrategy {
