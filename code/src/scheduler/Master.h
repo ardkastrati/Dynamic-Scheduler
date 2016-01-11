@@ -20,7 +20,7 @@ private:
     std::queue<int>* free_worker;
     void preprocessing(int argc, char* arcv[], TaskType* buffer, int* initail_tasks_number);
     void postprocessing();
-    void loop();
+    void run();
     bool is_finish();
 };
 

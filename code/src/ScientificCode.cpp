@@ -33,8 +33,11 @@ void code_preprocessing_slave(int argc, char* argv[])
 }
 
 void code_run_task(TaskType task) {
-    if (task + 20 < 100) {
-        Worker::place_task(task + 100);
+    if (task < 50) {
+        for (int i = 0; i < 1; i++) {
+            Worker::place_task(task + 100 + i);
+        }
+
     }
     for (int i = 0; i < task * 100000; i++) {
         log(i);

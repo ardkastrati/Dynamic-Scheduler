@@ -3,10 +3,10 @@
  */
 
 
+#include <mpi.h>
 #include "Worker.h"
 #include "../ScientificCode.h"
 #include "../Const.h"
-#include "../easylogging++.h"
 /**
  * Worker implementation
  */
@@ -16,9 +16,9 @@ Worker::Worker(int rank, int number_of_processors) : AbstractWorker(rank, number
 
 }
 
-void Worker::preporcessing()
+void Worker::preporcessing(int argc, char* argv[])
 {
-    code_preprocessing_slave(0, NULL);
+    code_preprocessing_slave(argc, argv);
     TaskType task;
     MPI_Send(&task, 1, MPI_INT, MASTER, FINISH, MPI_COMM_WORLD);
 }
@@ -28,7 +28,6 @@ void Worker::postprocessing()
     code_postprocessing_slave();
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    LOG(INFO) << "worker " << rank << " sagt ade";
 }
 
 void Worker::run_task(TaskType task)
@@ -61,7 +60,7 @@ void Worker::place_task(TaskType task)
 
 void Worker::execute(int argc, char* argv[])
 {
-    preporcessing();
+    preporcessing(argc, argv);
     wait_for_task();
     postprocessing();
 }

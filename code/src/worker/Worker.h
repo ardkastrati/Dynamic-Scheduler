@@ -16,7 +16,7 @@ public:
     void run_task(TaskType task);
     static void place_task(TaskType task);
 private:
-    void preporcessing();
+    void preporcessing(int argc, char* argv[]);
     void postprocessing();
     void wait_for_task();
 

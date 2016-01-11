@@ -6,7 +6,7 @@
 #define SCIENTIFIC_CODE
 
 #include <string>
-#include "scheduler/Types.h"
+#include "Types.h"
 
     
 void code_postprocessing_master();

@@ -7,13 +7,13 @@
 #define _ABSTRACTWORKER_H
 
 #include "../Executer.h"
-#include "../scheduler/Types.h"
+#include "../Types.h"
 
 
 class AbstractWorker: public Executer {
 public: 
     AbstractWorker(int rank, int number_of_processors);
-    void preporcessing();
+    void preporcessing(int argc, char* argv[]);
 
     virtual void run_task(TaskType task) = 0;
     /**

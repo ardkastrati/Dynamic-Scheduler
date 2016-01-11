@@ -3,10 +3,12 @@
  */
 
 
+#include <mpi.h>
 #include "Master.h"
 #include "../easylogging++.h"
 #include "../ScientificCode.h"
 #include "../Const.h"
+#include "LJF.h"
 
 /**
  * Master implementation
@@ -15,10 +17,6 @@
 Master::Master(SchedulingStrategy* schedulingStrategy, int rank, int number_of_processors) : AbstractScheduler(schedulingStrategy, rank, number_of_processors)
 {
     free_worker = new std::queue<int>();
-    /*for (int i = 1; i < 4; i++) {
-        free_worker->push(i);
-    }*/
-
 }
 
 Master::~Master(){
@@ -35,7 +33,7 @@ void Master::postprocessing()
     code_postprocessing_master();
 }
 
-void Master::loop()
+void Master::run()
 {
     TaskType task;
     MPI_Status status;
@@ -44,14 +42,12 @@ void Master::loop()
     {
         if(is_finish())
         {
-            LOG(INFO) << "Finish";
             int size = free_worker->size();
             for(int i = 0; i < size; i++) {
                 int worker = free_worker->front();
                 MPI_Send(&task, 1, MPI_INT, worker, STOP, MPI_COMM_WORLD);
                 free_worker->pop();
             }
-            LOG(INFO) << "All finish messeges sent";
             return;
         }
 
@@ -62,9 +58,8 @@ void Master::loop()
             int worker = status.MPI_SOURCE;
             free_worker->push(worker);
         }else if (status.MPI_TAG == REQUEST) {
-
             schedulingStrategy->push_new_task(task, task);
-            LOG(INFO) << "Added new Task to queue: " << task;
+            LOG(INFO) << "added task: " << task;
         }
         if (free_worker->size() > 0 && schedulingStrategy->get_task_count() > 0) {
             int worker = free_worker->front();
@@ -79,7 +74,7 @@ void Master::loop()
 
 bool Master::is_finish()
 {
-    return schedulingStrategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 1;
+    return schedulingStrategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 2;
 }
 
 void Master::execute(int argc, char* argv[]){
@@ -93,7 +88,7 @@ void Master::execute(int argc, char* argv[]){
         schedulingStrategy->push_new_task(init_tasks[i], init_tasks[i]);
     }
 
-    loop();
+    run();
 
     postprocessing();
 }
