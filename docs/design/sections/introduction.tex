@@ -1,0 +1,18 @@
+\section{Introduction}
+
+
+%Die Anwendung wird in wissenschaftlichen Code eingebunden und verwaltet Ausführung einer gesamten Berechnung, die in einzelne tasks unterteilt ist. Tasks stellen hierbei einzelne Simulationsinstanzen mit spezifischen Parametern dar. Durch die Ausführung der tasks werden Metainformationen gespeichert, mit dem Ziel einen möglichst optimalen Programmfluss zu gewährleisten. Die gespeicherten Metainformationen werden von einem Datamining Modul ausgewertet. Daraus kann dynamisch zur Laufzeit der Berechnung die Laufzeit optimiert werden. Die aufgezeichneten Informationen können anschließend wahlweise grafisch ausgegeben werden.
+
+
+%The application is meant to be linked into scientific code, functioning as runtime managing service for scientific simulations constisting of huge ammounts of tasks beeing single calculations unter specified changing parameters.
+%Gathering meta informations about single calculation runs the schedular is able to use these to boost performance and throughtput of the whole scientific simulation. If chosen, the all data gathered can be plotted and put out graphically.
+
+
+%<<<<<<< HEAD
+The application works as runtime administration service for scientific simulations. Linked into scientific code it manages huge computations consisting of large amounts of individual tasks. In this context tasks are specified as particular calculation runs with a given set of parameters. The scheduling module will load prestored data from the data base module and use it as initial information for scheduling. Gathering meta information about seperately performed calculations the schedular is able to dynamically adjust administration to increase performance of the whole computation. Obtained data can be plotted after the simulation is finished, if the user so chooses. In any case, it will be stored on a data base module to be used as initial information for scheduling calculation in future simulations.
+
+
+%The application to be developed works as runtime administration service for scientific simulations calculated on high performance comuters(HPCs) at Steinbruch Centre for Computing(SCC). Linked into scientific code the scheduling module manages huge computations consisting of large ammounts of individual jobs to increase goodput(XXXXXXXXXX). Therefore it fetches stored data from previous simulations to process estimate job values. A data mining module calculates job values according to duration and used recources during runtime. The scheduler uses this information to dynamically adjust the administration. Obtained meta information is stored in the data base module and used as initial reference for future scheduling calculations.
+%=======
+%The application works as runtime administration service for scientific simulations. Linked into scientific code it manages huge computations consisting of large amounts of individual tasks. In this context tasks are specified as particular calculation runs with a given set of parameters. The scheduling module will load prestored data from the data base module and use it as initial information for scheduling. Gathering meta information about seperately performed calculations the schedular is able to dynamically adjust administration to increase performance of the whole computation. Obtained data can be plotted after the simulation is finished, if the user so chooses. In any case, it will be stored on a data base module to be used as initial information for scheduling calculation in future simulations. 
+%>>>>>>> 51222b5102e5cfc07b78d4453a965a3eabe6d233
