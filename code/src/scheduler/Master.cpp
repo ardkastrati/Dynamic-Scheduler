@@ -90,7 +90,7 @@ void Master::execute(int argc, char* argv[]){
     preprocessing(argc, argv, init_tasks, &init_tasks_number);
 
     for (int i = 0; i < init_tasks_number; i++) {
-        schedulingStrategy->push_new_task(init_tasks[i], 1);
+        schedulingStrategy->push_new_task(init_tasks[i], init_tasks[i]);
     }
 
     loop();

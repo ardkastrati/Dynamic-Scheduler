@@ -5,6 +5,7 @@
 
 #include "SJF.h"
 
+
 /**
  * SJF implementation
  * 
@@ -12,10 +13,14 @@
  * SJF is a statistically based scheduling strategy
  */
 
+bool ComparisonClassSJF::operator ()(TaskTimeType task1, TaskTimeType task2) {
+    return task1.second > task2.second;
+}
+
 SJF::SJF()
 {
     //TODO:Set right comparer
-    queue = new std::priority_queue<TaskTimeType>();
+    queue = new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassSJF>();
 }
 
 SJF::~SJF()

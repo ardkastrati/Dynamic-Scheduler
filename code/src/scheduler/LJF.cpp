@@ -12,10 +12,14 @@
  * LJF is a statistically based scheduling strategy
  */
 
+bool ComparisonClassLJF::operator ()(TaskTimeType task1, TaskTimeType task2) {
+    return task1.second < task2.second;
+}
+
 LJF::LJF()
 {
     //TODO:Set right comparer
-    queue = new std::priority_queue<TaskTimeType>();
+    queue = new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassLJF>();
 }
 
 LJF::~LJF()

@@ -8,13 +8,20 @@
 
 #include "SchedulingStrategy.h"
 #include <queue>
+#include <vector>
+
+class ComparisonClassSJF {
+public:
+    bool operator()(TaskTimeType, TaskTimeType);
+};
+
 
 class SJF: public SchedulingStrategy {
 private: 
     /**
      * priority  queue  of TaskTypes. The priority queue   keeps the scientific tasks and orders them using the estimated runtime with Shortest Job First  (SJF) strategy
      */
-    std::priority_queue<TaskTimeType>* queue;
+    std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassSJF>* queue;
 
 public:
     /**
