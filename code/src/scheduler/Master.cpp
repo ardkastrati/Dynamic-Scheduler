@@ -74,7 +74,7 @@ void Master::run()
 
 bool Master::is_finish()
 {
-    return schedulingStrategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 2;
+    return schedulingStrategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 1;
 }
 
 void Master::execute(int argc, char* argv[]){

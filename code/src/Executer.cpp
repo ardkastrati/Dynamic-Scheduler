@@ -30,10 +30,10 @@ Executer* Executer::get_new_executer_by_rank(int rank, int number_of_processors,
     {
         return new Master(new SJF(), rank, number_of_processors);
     }
-    else if (rank == 20)
-    {
-        return new DatabaseServer(rank, number_of_processors);
-    }
+ //   else if (rank == 20)
+ //   {
+ //       return new DatabaseServer(rank, number_of_processors);
+ //   }
     else
     {
         return new Worker(rank, number_of_processors);
