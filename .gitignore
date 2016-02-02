@@ -1,5 +1,12 @@
 *.pdf
 .DS_Store
+/GUI/bin/
+/GUI/target/
+/GUI/integration-test.launch
+/GUI/checkstyle.launch
+/GUI/.classpath
+/GUI/.settings/
+
 # Compiled Object files
 *.slo
 *.lo
@@ -172,3 +179,6 @@ pythontex-files-*/
 # WinEdt
 *.bak
 *.sav
+/Test/nbproject/private/
+/Test/dist/
+/Test/build/

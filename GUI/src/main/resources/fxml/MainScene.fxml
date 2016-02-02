@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainSceneController">
+    
+           
+   <children>
+        
+            <BorderPane layoutX="4.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label mouseTransparent="true" prefHeight="17.0" prefWidth="118.0" text="Status:" />
+                  <Label prefHeight="17.0" prefWidth="118.0" text="Not connected" />
+               </children>
+            </FlowPane>
+         </bottom>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <AnchorPane prefHeight="543.0" prefWidth="105.0" BorderPane.alignment="CENTER" />
+         </center>
+         <left>
+            <TabPane prefHeight="543.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="100.0" tabMinHeight="100.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab fx:id="tab1">
+                     <content>
+                         <fx:include fx:id="body" source="SSHConnection.fxml" />
+                    </content>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="118.0" text="SSHConnection" />
+                     </graphic>
+                </Tab>
+                <Tab>
+                  <content>
+                     <fx:include fx:id="moab" source="MOABScene.fxml" />
+                  </content>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="MOAB Workload Manager" textAlignment="CENTER" wrapText="true" />
+                     </graphic>
+                </Tab>
+                  <Tab>
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />
+                     </graphic>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </left>
+         <right>
+            <Pane prefHeight="543.0" prefWidth="43.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
