@@ -71,6 +71,14 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                      <graphic>
+                        <Label text="Jobs" />
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                     <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />
                      </graphic>
                   </Tab>
