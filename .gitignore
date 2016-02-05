@@ -6,7 +6,9 @@
 /GUI/checkstyle.launch
 /GUI/.classpath
 /GUI/.settings/
-
+/code/bin/scheduler
+/code/.idea/
+/code/.settings/
 # Compiled Object files
 *.slo
 *.lo
