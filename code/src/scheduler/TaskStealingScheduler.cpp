@@ -19,7 +19,7 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
 
 
 
-    TaskStealingWorker worker;
+    TaskStealingWorker worker(this);
 
     if (rank == 0)
     {

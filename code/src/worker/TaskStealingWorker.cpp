@@ -5,9 +5,17 @@
 #include "TaskStealingWorker.h"
 #include "../ScientificCode.h"
 
+TaskStealingWorker::TaskStealingWorker(TaskStealingScheduler *scheduler)
+{
+    if (scheduler == NULL) {
+        throw "Illegal argument: scheduler must not be NULL";
+    }
+    this->scheduler = scheduler;
+}
+
 void TaskStealingWorker::place_task(Task task)
 {
-
+    scheduler->place_task(task);
 }
 
 void TaskStealingWorker::preprocessing(int argc, char* argv[])

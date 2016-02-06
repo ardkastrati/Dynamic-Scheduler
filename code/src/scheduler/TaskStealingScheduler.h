@@ -28,7 +28,6 @@ class TaskStealingScheduler: public AbstractScheduler {
          */
         void run();
 
-
     bool is_finish();
 };
 

@@ -23,3 +23,12 @@ void AbstractScheduler::preprocessing(int argc, char* argv[], Task* buffer, int 
 void AbstractScheduler::postprocessing() {
     code_postprocessing_master();
 }
+
+void AbstractScheduler::place_task(Task task)
+{
+    long runtime = scheduling_strategy->DEFAULT_RUNTIME;
+    if (scheduling_strategy->is_statistic_based()) {
+        runtime = data_miner->predict(task.parameters);
+    }
+    scheduling_strategy->push_new_task(task, runtime);
+}

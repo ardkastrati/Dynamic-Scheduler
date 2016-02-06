@@ -92,6 +92,8 @@ void MpiWinLIFO::push_new_task(Task task, long runtime)
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
     *offset = current_offset;
     MPI_Win_unlock(rank, win_offset);
+
+    //LOG(INFO) << "pushed: " << task.parameters[0];
 }
 
 
@@ -100,6 +102,7 @@ SchedulingStrategy* MpiWinLIFO::change_strategy(SchedulingStrategy* new_strategy
     throw 404;
 }
 Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
+    //LOG(INFO) << "try to steal task from: " <<target_rank;
     int current_offset;
     bool already_locked = true;
     int tries = 0;
@@ -132,7 +135,6 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     {
         current_offset--;
 
-        Task task;
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
         MPI_Get(&task, 1, MPI_INT, target_rank, current_offset, 1, MPI_INT, win_queue);
         MPI_Win_unlock(target_rank, win_queue);

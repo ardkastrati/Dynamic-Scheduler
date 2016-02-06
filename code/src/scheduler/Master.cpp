@@ -42,15 +42,7 @@ void Master::run()
 
         }else if (status.MPI_TAG == REQUEST) {
 
-            long runtime = 0;
-
-            if (scheduling_strategy->is_statistic_based()) {
-                //TODO: update code to new TaskType
-                double param = 0;
-                data_miner->predict(&param);
-            }
-
-            scheduling_strategy->push_new_task(task, runtime);
+            place_task(task);
             LOG(INFO) << "added task: " << task.parameters[0];
         }
         if (free_worker->size() > 0 && scheduling_strategy->get_task_count() > 0) {

@@ -6,10 +6,17 @@
 #define _TASKSTEALINGWORKER_H
 
 #include "Worker.h"
+#include "../scheduler/TaskStealingScheduler.h"
 
 
 class TaskStealingWorker : public Worker {
+
+private:
+    TaskStealingScheduler* scheduler;
+
 public:
+
+    TaskStealingWorker(TaskStealingScheduler* scheduler);
 
     void run_task(Task task);
 

@@ -17,13 +17,11 @@ void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initia
 {
     LOG(INFO) << "code preprocessing master";
     *initial_tasks_number = 100;
-    Task task;
     for (int i = 0; i < 100; i++)
     {
-        task.parameter_size = 100;
-        for (int j = 0; j < task.parameter_size; j++) {
-            task.parameters[j] = (double) i;
-        }
+        Task task;
+        task.parameters[0] = 1;
+        task.parameter_size = 1;
         buffer[i] = task;
     }
 }
@@ -34,10 +32,11 @@ void code_preprocessing_slave(int argc, char* argv[])
 }
 
 void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* context) {
-    if (task.parameters[0] < 50) {
+    if (task.parameters[0] > 50) {
         for (int i = 0; i < 1; i++) {
             Task newTask;
-            newTask.parameter_size = -1;
+            newTask.parameter_size = 1;
+            newTask.parameters[0] = 100;
             place_task_forwarder(context, newTask);
         }
 
