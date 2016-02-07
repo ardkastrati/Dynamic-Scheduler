@@ -1,4 +1,5 @@
 #include "FIFO.h"
+#include "../../lib/easylogging++.h"
 
 FIFO::FIFO() :
 queue(new std::queue<Task>())
@@ -8,6 +9,7 @@ queue(new std::queue<Task>())
 FIFO::~FIFO()
 {
     delete queue;
+    LOG(INFO) << "FIFIO Destructor";
 }
 
 Task FIFO::get_next_task()

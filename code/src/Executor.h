@@ -30,6 +30,8 @@ class Executor {
          */
         Executor(int rank, int number_of_processors);
 
+        virtual ~Executor();
+
         /**
          * This procedure is called on all executor subtypes to start them
          *

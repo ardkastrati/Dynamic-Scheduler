@@ -10,6 +10,7 @@ free_worker(new std::queue<int>())
 }
 
 Master::~Master(){
+    LOG(INFO) << "Destructor master";
     delete free_worker;
 }
 

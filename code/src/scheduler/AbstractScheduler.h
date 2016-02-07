@@ -87,7 +87,7 @@ public:
     /**
      * Deletes the scheduling_strategy and data_miner object
      */
-    ~AbstractScheduler();
+    virtual ~AbstractScheduler();
 
     virtual void place_task(Task task);
 

@@ -63,6 +63,8 @@ public:
      */
     virtual bool is_statistic_based() = 0;
 
+    //virtual ~SchedulingStrategy() = 0;
+
     /**
      * Default runtime of tasks in milli seconds
      */

@@ -14,6 +14,8 @@ Executor::Executor(int rank, int number_of_processors) :
 {
 }
 
+Executor::~Executor() { }
+
 Executor *Executor::get_new_executor_by_rank(int rank, int number_of_processors, std::string design,
                                              std::string strategy)
 {
