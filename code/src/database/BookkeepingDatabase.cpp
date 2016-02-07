@@ -27,7 +27,7 @@ void BookkeepingDatabase::initNewFile()
 
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
-	bkfile.open ("datafiles/Bookkeeping.txt", std::fstream::out | std::fstream::ate);
+	bkfile.open ("Bookkeeping.txt", std::fstream::out | std::fstream::ate);
 	bkfile << "Bookkeeping: File created on: ";
 	bkfile << std::ctime(&now_c) << std::endl;
 	bkfile.close();
