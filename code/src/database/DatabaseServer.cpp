@@ -6,7 +6,7 @@
 
 DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(rank, number_of_processors)
 {
-    //database_handler = new DatabaseHandler();
+    database_handler = new DatabaseHandler();
 	//init
 }
 DatabaseServer::~DatabaseServer()
