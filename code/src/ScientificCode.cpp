@@ -20,7 +20,7 @@ void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initia
     for (int i = 0; i < 100; i++)
     {
         Task task;
-        task.parameters[0] = 1;
+        task.parameters[0] = i;
         task.parameter_size = 1;
         buffer[i] = task;
     }
@@ -37,7 +37,7 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
             Task newTask;
             newTask.parameter_size = 1;
             newTask.parameters[0] = 100;
-            place_task_forwarder(context, newTask);
+            //place_task_forwarder(context, newTask);
         }
 
     }

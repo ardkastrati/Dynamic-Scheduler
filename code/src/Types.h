@@ -16,14 +16,16 @@
 } TaskType;*/
 
 typedef struct _Task {
+    long time_appeared;
+    int parent;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
 } Task;
 
 typedef struct _TaskData {
-    int time_appeared;
-    int time_started;
-    int time_ended;
+    long time_appeared;
+    long time_started;
+    long time_ended;
     int event;
     int mode;
     int parent;
@@ -36,9 +38,9 @@ typedef struct _TaskData {
 
 const int mpi_task_data_type_field_count = 11;
 int mpi_task_data_type_blocklength[11] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_data_type_type[11] = {MPI_INT,
-                                            MPI_INT,
-                                            MPI_INT,
+MPI_Datatype mpi_task_data_type_type[11] = {MPI_LONG,
+                                            MPI_LONG,
+                                            MPI_LONG,
                                             MPI_INT,
                                             MPI_INT,
                                             MPI_INT,
@@ -53,14 +55,14 @@ MPI_Aint mpi_task_data_type_offset[11];
 
 
 
-const int mpi_task_type_field_count = 2;
+const int mpi_task_type_field_count = 4;
 
-int mpi_task_type_blocklength[2] = {1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_type_type[2] = {MPI_INT, MPI_DOUBLE};
+int mpi_task_type_blocklength[4] = {1, 1, 1, PARAMTER_LENGTH};
+MPI_Datatype mpi_task_type_type[4] = {MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
 
 MPI_Datatype MY_MPI_TASK_TYPE;
 
-MPI_Aint mpi_task_type_offsets[2];
+MPI_Aint mpi_task_type_offsets[4];
 
 #define MAX_INIT_TASKS 100
 #endif // TYPES
