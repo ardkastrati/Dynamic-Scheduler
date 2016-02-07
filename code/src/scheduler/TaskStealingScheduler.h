@@ -12,8 +12,11 @@
 
 class TaskStealingScheduler: public AbstractScheduler {
     private:
+        MPI_Win win_status;
+        int* status;
     public:
         TaskStealingScheduler(MpiWinSchedulingStrategy* scheduling_strategy, DataMining* data_miner, int rank, int number_of_processors);
+        //~TaskStealingScheduler();
         void execute(int argc, char* argv[]);
 
         /**

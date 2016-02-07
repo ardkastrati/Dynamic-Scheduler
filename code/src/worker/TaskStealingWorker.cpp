@@ -5,6 +5,7 @@
 #include "TaskStealingWorker.h"
 #include "../ScientificCode.h"
 #include "../util/TimeUtility.h"
+#include "../../lib/easylogging++.h"
 
 TaskStealingWorker::TaskStealingWorker(TaskStealingScheduler *scheduler)
 {
@@ -18,6 +19,7 @@ void TaskStealingWorker::place_task(Task task)
 {
     task.time_appeared = get_time_in_mirco();
     scheduler->place_task(task);
+    LOG(INFO) << "task added: " << task.parameters[0];
 }
 
 void TaskStealingWorker::preprocessing(int argc, char* argv[])
@@ -38,6 +40,8 @@ void TaskStealingWorker::run_task(Task task)
     time_begin = get_time_in_mirco();
     code_run_task(task, &place_task_forwarder_taskstealing, this);
     time_end = get_time_in_mirco();
+
+    LOG(INFO) << "rank: " << scheduler->get_rank() << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
 
     TaskData task_data;
     task_data.time_intercommunication_end = -1;
