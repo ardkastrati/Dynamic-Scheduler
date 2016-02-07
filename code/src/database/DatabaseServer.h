@@ -10,6 +10,8 @@ public:
     DatabaseServer(int rank, int number_of_processors);
     ~DatabaseServer();
     void execute(int argc, char* argv[]);
+    //need to be constructed for multiple server
+    void initDatabase();
 private:
 
     DatabaseHandler*  database_handler;
