@@ -39,7 +39,7 @@ void BookkeepingDatabase::createFile()
 }
 
 
-void BookkeepingDatabase::insertTaskData(char data[])
+void BookkeepingDatabase::insertTaskData(string data)
 {
 	/*data[] is structed in ID;Timestamp_APP/START/END;Mode;Parent_Process of appearing task/
 	* Hosting process of starting task/Hosting process of ended task;Timestamp intercommunication start;

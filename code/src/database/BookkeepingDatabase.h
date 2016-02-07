@@ -8,15 +8,15 @@
 #ifndef BOOKKEEPINGDATABASE_H_
 #define BOOKKEEPINGDATABASE_H_
 #include "Database.h"
-#include <cstring>
+#include <string>
 
 using namespace std;
-class BookkeepingDatabase : Database
+class BookkeepingDatabase : public Database
 {
 public:
 	BookkeepingDatabase();
 	//~BookkeepingDatabase();
-	void insertTaskData(char data[]);
+	void insertTaskData(string data);
 	void createFile();
 private:
 	void initNewFile();

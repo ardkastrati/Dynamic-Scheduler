@@ -8,15 +8,15 @@
 #ifndef STATISTICDATABASE_H_
 #define STATISTICDATABASE_H_
 #include "Database.h"
-#include <cstring>
+#include <string>
 
 using namespace std;
-class StatisticDatabase : Database
+class StatisticDatabase : public Database
 {
 public:
 	StatisticDatabase();
 	//~BookkeepingDatabase();
-	void insertTaskData(char data[]);
+	void insertTaskData(string data);
 	void createFile();
 private:
 	void initNewFile();

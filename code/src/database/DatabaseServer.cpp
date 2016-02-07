@@ -7,6 +7,7 @@
 DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(rank, number_of_processors)
 {
     //database_handler = new DatabaseHandler();
+	//init
 }
 DatabaseServer::~DatabaseServer()
 {
@@ -27,6 +28,7 @@ void DatabaseServer::preprocessing()
 
 void DatabaseServer::run()
 {
+
     TaskData task_data;
     MPI_Status status;
     while (true) {

@@ -6,9 +6,9 @@
  */
 
 #include "Database.h"
-//#include <mpi.h>
 #include <iostream>
 #include <fstream>
+#include <string>
 //database initialisieren bzw laden
 
 Database::Database()
@@ -16,7 +16,17 @@ Database::Database()
 
 }
 
-void insertTaskData(char data[])
+void insertTaskData(string data)
+{
+
+}
+
+void deleteLastEntry()
+{
+
+}
+
+void exportDatabase()
 {
 
 }

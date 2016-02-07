@@ -7,6 +7,8 @@
 
 #include "DatabaseHandler.h"
 #include "Database.h"
+#include "BookkeepingDatabase.h"
+#include "StatisticDatabase.h"
 #include <stdio.h>
 #include <string>
 #include <iomanip>
@@ -14,25 +16,33 @@
 
 using namespace std;
 
-//Database database;
+
+DatabaseHandler::DatabaseHandler()
+{
+	data_bookkeeping = new BookkeepingDatabase();
+	data_statistic = new StatisticDatabase();
+}
 
 /*
  *
  */
 void DatabaseHandler::storeData(TaskData *data)
 {
-	dataParserBookkeeping(data);
+
+	string bookkeeping_package = dataParserBookkeeping(data);
 	if(data->event == 2)
 	{
-		dataParserStatistic(data);
+		string statistic_package = dataParserStatistic(data);
+		data_statistic->insertTaskData(statistic_package);
 	}
+	data_bookkeeping->insertTaskData(bookkeeping_package);
 }
 
 //pass by value or reference? server has struct
 /*
  *
  */
-char* DatabaseHandler::dataParserBookkeeping(TaskData *data)
+string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 {
 
 	//timestamp abfrage
@@ -120,14 +130,14 @@ char* DatabaseHandler::dataParserBookkeeping(TaskData *data)
 	package.append("#");
 	part_of_task.clear();
 
-	char* returnpackage =(char*)package.c_str();
-	return returnpackage;
+	//char* returnpackage =(char*)package.c_str();
+	return package;
 }
 
 /*
  *
  */
-char* DatabaseHandler::dataParserStatistic(TaskData *data)
+string DatabaseHandler::dataParserStatistic(TaskData *data)
 {
 	string package;
 	string part_of_task;
@@ -148,7 +158,7 @@ char* DatabaseHandler::dataParserStatistic(TaskData *data)
 
 	package.append("#");
 
-	char* returnpackage =(char*)package.c_str();
-	return returnpackage;
+	//char* returnpackage =(char*)package.c_str();
+	return package;
 }
 

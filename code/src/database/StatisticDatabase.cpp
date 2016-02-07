@@ -14,6 +14,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 std::fstream stfile;
 
 /*
@@ -50,7 +52,7 @@ void StatisticDatabase::createFile()
 /*
  *
  */
-void StatisticDatabase::insertTaskData(char data[])
+void StatisticDatabase::insertTaskData(string data)
 {
 	/*data[] is structed in ID;Timestamp_APP/START/END;Mode;Parent_Process of appearing task/
 	* Hosting process of starting task/Hosting process of ended task;Timestamp intercommunication start;
