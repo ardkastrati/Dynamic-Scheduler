@@ -1,6 +1,9 @@
-//
-// Created by fabio on 07.02.16.
-//
+/**
+ * This header contains all functions that works with time
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
 
 #ifndef CODE_TIMEUTILITY_H
 #define CODE_TIMEUTILITY_H

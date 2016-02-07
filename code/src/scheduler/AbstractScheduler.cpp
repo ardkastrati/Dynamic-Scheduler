@@ -32,3 +32,8 @@ void AbstractScheduler::place_task(Task task)
     }
     scheduling_strategy->push_new_task(task, runtime);
 }
+
+int AbstractScheduler::get_rank()
+{
+    return this->rank;
+}

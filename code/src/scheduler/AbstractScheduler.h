@@ -90,6 +90,13 @@ public:
     ~AbstractScheduler();
 
     virtual void place_task(Task task);
+
+    /**
+     * Returns the rank of the scheduler
+     *
+     * @return the rank of the scheduler
+     */
+    int get_rank();
 };
 
 #endif //_ABSTRACTSCHEDULER_H
