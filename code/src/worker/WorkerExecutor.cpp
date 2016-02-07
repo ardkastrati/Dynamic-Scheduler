@@ -66,9 +66,9 @@ void WorkerExecutor::run_task(Task task)
 
 
     //TODO: Send task data to database
-    MPI_Send(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD);
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
 
-    MPI_Isend(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD, &request);
+    MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD);
 }
 
 void WorkerExecutor::place_task(Task task)
