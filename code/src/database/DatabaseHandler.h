@@ -15,8 +15,9 @@ public:
 	DatabaseHandler();
 	~DatabaseHandler();
 	//char* dataParser(double[][]); //return pointer to an char array
-	char* dataParser(TaskData* data);
-	void storeData(char[]);
+	char* dataParserBookkeeping(TaskData* data);
+	char* dataParserStatistic(TaskData* data);
+	void storeData(TaskData* data);
 	struct data* dataMiningInquiry(int NumberOfParameters);
 
 private:

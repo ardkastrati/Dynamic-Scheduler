@@ -16,6 +16,10 @@ Database::Database()
 
 }
 
+void insertTaskData(char data[])
+{
+
+}
 
 
 

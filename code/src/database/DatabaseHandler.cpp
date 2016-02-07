@@ -6,39 +6,86 @@
  */
 
 #include "DatabaseHandler.h"
+#include "Database.h"
 #include <stdio.h>
-#include <chrono>
-#include <ctime>
-#include <iomanip>
-//#include <mpi.h>
-#include <iostream>
-#include <fstream>
 #include <string>
+#include <iomanip>
+#include <iostream>
 
 using namespace std;
 
+//Database database;
+
+/*
+ *
+ */
+void DatabaseHandler::storeData(TaskData *data)
+{
+	dataParserBookkeeping(data);
+	if(data->event == 2)
+	{
+		dataParserStatistic(data);
+	}
+}
+
 //pass by value or reference? server has struct
-char* DatabaseHandler::dataParser(TaskData *data)
+/*
+ *
+ */
+char* DatabaseHandler::dataParserBookkeeping(TaskData *data)
 {
 
 	//timestamp abfrage
 	string package;
 	string part_of_task;
 
-	part_of_task = to_string(data->time_appeared);
-	package.append(part_of_task);
-	package.append(";");
-	part_of_task.clear();
 
-	part_of_task = to_string(data->event);
-	package.append(part_of_task);
-	package.append(";");
-	part_of_task.clear();
+	if(data->event == 0)
+	{
+		part_of_task = to_string(data->time_appeared);
+		package.append(part_of_task);
+		package.append(";");
+		part_of_task.clear();
 
-	part_of_task = to_string(data->mode);
-	package.append(part_of_task);
-	package.append(";");
-	part_of_task.clear();
+		//event 0: Appeared
+		package.append("Appeared");
+		package.append(";");
+		part_of_task.clear();
+	} else if (data->event == 1)
+	{
+		part_of_task = to_string(data->time_started);
+		package.append(part_of_task);
+		package.append(";");
+		part_of_task.clear();
+
+		//event 1: Started
+		package.append("Started");
+		package.append(";");
+		part_of_task.clear();
+	} else
+	{
+		part_of_task = to_string(data->time_ended);
+		package.append(part_of_task);
+		package.append(";");
+		part_of_task.clear();
+
+		//event 2: Ended
+		package.append("Ended");
+		package.append(";");
+		part_of_task.clear();
+	}
+
+	if(data->mode == 0)
+	{
+		package.append("Master/Worker");
+		package.append(";");
+		part_of_task.clear();
+	} else
+	{
+		package.append("Task-Stealing");
+		package.append(";");
+		part_of_task.clear();
+	}
 
 	part_of_task = to_string(data->parent);
 	package.append(part_of_task);
@@ -73,9 +120,35 @@ char* DatabaseHandler::dataParser(TaskData *data)
 	package.append("#");
 	part_of_task.clear();
 
-
-
+	char* returnpackage =(char*)package.c_str();
+	return returnpackage;
 }
 
+/*
+ *
+ */
+char* DatabaseHandler::dataParserStatistic(TaskData *data)
+{
+	string package;
+	string part_of_task;
 
+	int task_runtime = data->time_ended - data->time_started;
+
+	part_of_task = to_string(task_runtime);
+	package.append(part_of_task);
+	package.append(";");
+	part_of_task.clear();
+
+	for(int i = 0; i < data->parameter_size; i++)
+	{
+		part_of_task = to_string(data->parameters[i]);
+		package.append(";");
+	}
+	part_of_task.clear();
+
+	package.append("#");
+
+	char* returnpackage =(char*)package.c_str();
+	return returnpackage;
+}
 
