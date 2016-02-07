@@ -6,31 +6,38 @@
 
 DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(rank, number_of_processors)
 {
-
+    //database_handler = new DatabaseHandler();
+}
+DatabaseServer::~DatabaseServer()
+{
+    //delete database_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
 {
     LOG(INFO) << "Ich bin ein Datenbankserver";
-    //run();
+    run();
 }
 
 void DatabaseServer::preprocessing()
 {
-    Task task;
+    //Task task;
     //MPI_Send();
 }
 
 void DatabaseServer::run()
 {
-    Task task;
+    TaskData task_data;
     MPI_Status status;
     while (true) {
-        LOG(INFO) << "Database Running";
-        MPI_Recv(&task, 1, MPI_INT, MASTER, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-        LOG(INFO) << "Database recv";
+        MPI_Recv(&task_data, 1, MY_MPI_TASK_DATA_TYPE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
         if (status.MPI_TAG == STOP) {
             return;
+        }
+        else if (status.MPI_TAG == DATAENTRY)
+        {
+            database_handler->storeData(&task_data);
+            LOG(INFO) << "Stored: " << task_data.parameters[0];
         }
     }
 }

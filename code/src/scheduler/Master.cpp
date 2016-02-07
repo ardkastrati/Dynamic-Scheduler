@@ -30,6 +30,8 @@ void Master::run()
                 MPI_Send(&task, 1, MY_MPI_TASK_TYPE, worker, STOP, MPI_COMM_WORLD);
                 free_worker->pop();
             }
+            TaskData taskData;
+            MPI_Send(&taskData, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, STOP, MPI_COMM_WORLD);
             return;
         }
 
@@ -57,7 +59,8 @@ void Master::run()
 
 bool Master::is_finish()
 {
-    return scheduling_strategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 1;
+    //TODO: -2 replace dynamische databaseserver count
+    return scheduling_strategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 2;
 }
 
 void Master::execute(int argc, char* argv[]){
