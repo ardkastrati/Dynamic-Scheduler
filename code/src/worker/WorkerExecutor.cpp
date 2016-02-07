@@ -35,10 +35,6 @@ void WorkerExecutor::run_task(Task task)
     long time_end;
 
     time_begin = get_time_in_mirco();
-    code_run_task(task, &place_task_forwarder_master, this);
-    time_end = get_time_in_mirco();
-
-    LOG(INFO) << "task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
 
     TaskData task_data;
     task_data.time_intercommunication_end = -1;
@@ -46,18 +42,33 @@ void WorkerExecutor::run_task(Task task)
     task_data.rank = rank;
     task_data.time_appeared = task.time_appeared;
     task_data.time_started = time_begin;
-    task_data.time_ended = time_end;
+
     task_data.parent  = task.parent;
-    task_data.event = 1; //TODO: Right event
-    task_data.mode = 1; //TODO: Right mode
+    task_data.event = 1;
+    task_data.mode = 0;
     task_data.parameter_size = task.parameter_size;
     memcpy(task_data.parameters, task.parameters, sizeof(double) * task.parameter_size);
+
+
+    MPI_Request request;
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
+
+
+    code_run_task(task, &place_task_forwarder_master, this);
+    time_end = get_time_in_mirco();
+
+    task_data.time_ended = time_end;
+    task_data.event = 2;
+
+    LOG(INFO) << "task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
+
+
 
 
     //TODO: Send task data to database
     MPI_Send(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD);
 
-    MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD);
+    MPI_Isend(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD, &request);
 }
 
 void WorkerExecutor::place_task(Task task)
@@ -65,6 +76,18 @@ void WorkerExecutor::place_task(Task task)
     LOG(INFO) << "place_task: " << task.parameters[0];
     task.time_appeared = get_time_in_mirco();
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, REQUEST, MPI_COMM_WORLD);
+
+    TaskData task_data;
+    task_data.rank = rank;
+    task_data.time_appeared = task.time_appeared;
+    task_data.parent  = task.parent;
+    task_data.event = 0;
+    task_data.mode = 0;
+    task_data.parameter_size = task.parameter_size;
+    memcpy(task_data.parameters, task.parameters, sizeof(double) * task.parameter_size);
+
+    MPI_Request request;
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
 }
 
 void WorkerExecutor::wait_for_task()
