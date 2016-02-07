@@ -6,9 +6,10 @@
 #define CODE_WORKERFORWARDER_H
 
 #include "../TypesExtern.h"
-#include "Worker.h"
 
 
-void place_task_forwarder(void* context, Task task);
+void place_task_forwarder_master(void* context, Task task);
+
+void place_task_forwarder_taskstealing(void* context, Task task);
 
 #endif //CODE_WORKERFORWARDER_H

@@ -41,7 +41,7 @@ void Master::run()
             free_worker->push(worker);
 
         }else if (status.MPI_TAG == REQUEST) {
-
+            LOG(INFO) << "palce task funktion: " << task.parameters[0];
             place_task(task);
             LOG(INFO) << "added task: " << task.parameters[0];
         }

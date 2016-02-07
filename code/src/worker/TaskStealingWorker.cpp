@@ -36,7 +36,7 @@ void TaskStealingWorker::run_task(Task task)
     long time_end;
 
     time_begin = get_time_in_mirco();
-    code_run_task(task, &place_task_forwarder, this);
+    code_run_task(task, &place_task_forwarder_taskstealing, this);
     time_end = get_time_in_mirco();
 
     TaskData task_data;

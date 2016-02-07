@@ -26,7 +26,7 @@ void AbstractScheduler::postprocessing() {
 
 void AbstractScheduler::place_task(Task task)
 {
-    long runtime = scheduling_strategy->DEFAULT_RUNTIME;
+    long runtime = 1;//scheduling_strategy->DEFAULT_RUNTIME;
     if (scheduling_strategy->is_statistic_based()) {
         runtime = data_miner->predict(task.parameters);
     }
