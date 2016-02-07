@@ -15,13 +15,13 @@ MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
 MpiWinLIFO::~MpiWinLIFO()
 {
     LOG(INFO) << "MPIWINLIFO destructor!";
-    //MPI_Win_free(&win_queue);
-    //MPI_Win_free(&win_offset);
+    MPI_Win_free(&win_queue);
+    MPI_Win_free(&win_offset);
     //MPI_Win_free(&win_size);
 
-    //MPI_Free_mem(queue);
+    MPI_Free_mem(queue);
     //MPI_Free_mem(size);
-    //MPI_Free_mem(offset);
+    MPI_Free_mem(offset);
 }
 
 void MpiWinLIFO::init(int max_size)

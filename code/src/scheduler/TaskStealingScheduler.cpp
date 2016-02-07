@@ -14,30 +14,28 @@ TaskStealingScheduler::TaskStealingScheduler(MpiWinSchedulingStrategy* schedulin
     MPI_Alloc_mem(sizeof(int), MPI_INFO_NULL, &status);
     *status = WORKING;
     MPI_Win_create(status, sizeof(int), sizeof(int), MPI_INFO_NULL, MPI_COMM_WORLD, &win_status);
+    worker = new TaskStealingWorker(this);
 
 }
 
-/*TaskStealingScheduler::~TaskStealingScheduler()
+TaskStealingScheduler::~TaskStealingScheduler()
 {
-    //MPI_Win_free(&win_status);
-    //MPI_Free_mem(status);
-}*/
+    LOG(INFO) << "Destructor TaskStealingScheduler";
+    MPI_Win_free(&win_status);
+    MPI_Free_mem(status);
+    delete worker;
+}
 void TaskStealingScheduler::execute(int argc, char* argv[])
 {
 
-    MpiWinSchedulingStrategy* scheduler = static_cast<MpiWinSchedulingStrategy*>(scheduling_strategy);
-
-
-
-    TaskStealingWorker worker(this);
-
     if (rank == 0)
     {
+        //TODO: Change 100 to dynamic one
         Task tasks[100];
         int number_of_tasks;
 
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-            *status = WORKING;
+        *status = WORKING;
         MPI_Win_unlock(rank, win_status);
 
         code_preprocessing_master(argc, argv, tasks, &number_of_tasks);
@@ -46,22 +44,33 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
         }
 
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-            *status = IDLE;
+        *status = IDLE;
         MPI_Win_unlock(rank, win_status);
     }
     else
     {
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-            *status = WORKING;
+        *status = WORKING;
         MPI_Win_unlock(rank, win_status);
 
-        worker.preprocessing(argc, argv);
+        worker->preprocessing(argc, argv);
 
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-            *status = IDLE;
+        *status = IDLE;
         MPI_Win_unlock(rank, win_status);
 
     }
+    run();
+    if (rank == 0) {
+        postprocessing();
+    } else {
+        worker->postprocessing();
+    }
+
+}
+
+void TaskStealingScheduler::run() {
+
     bool is_running = true;
     while (is_running) {
 
@@ -70,13 +79,13 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
         if (task.parameter_size > 0) {
 
             MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-                *status = WORKING;
+            *status = WORKING;
             MPI_Win_unlock(rank, win_status);
 
-            worker.run_task(task);
+            worker->run_task(task);
 
             MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-                *status = IDLE;
+            *status = IDLE;
             MPI_Win_unlock(rank, win_status);
         } else
         {
@@ -84,23 +93,6 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
         }
 
     }
-
-    if (rank == 0) {
-        code_postprocessing_master();
-    } else {
-        worker.postprocessing();
-    }
-
-    //scheduler->free();
-}
-
-
-void TaskStealingScheduler::postprocessing() {
-    //AbstractScheduler::postprocessing();
-}
-
-void TaskStealingScheduler::run() {
-
 }
 
 bool TaskStealingScheduler::is_finish() {

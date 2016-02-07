@@ -63,12 +63,12 @@ public:
      */
     virtual bool is_statistic_based() = 0;
 
-    //virtual ~SchedulingStrategy() = 0;
+    virtual ~SchedulingStrategy();
 
     /**
      * Default runtime of tasks in milli seconds
      */
     static const long DEFAULT_RUNTIME = 1;
 };
-
+inline SchedulingStrategy::~SchedulingStrategy(){};
 #endif //_SCHEDULINGSTRATEGY_H

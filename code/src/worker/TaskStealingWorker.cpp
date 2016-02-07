@@ -7,7 +7,7 @@
 #include "../util/TimeUtility.h"
 #include "../../lib/easylogging++.h"
 
-TaskStealingWorker::TaskStealingWorker(TaskStealingScheduler *scheduler)
+TaskStealingWorker::TaskStealingWorker(AbstractScheduler *scheduler)
 {
     if (scheduler == NULL) {
         throw "Illegal argument: scheduler must not be NULL";

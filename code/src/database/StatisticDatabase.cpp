@@ -13,7 +13,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <direct.h>
 
 using namespace std;
 
@@ -36,7 +35,6 @@ void StatisticDatabase::initNewFile()
 	fstream stfile;
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
-	mkdir("databases");
 	stfile.open ("Statistic.txt", std::fstream::out | std::fstream::ate);
 	stfile << "Statistic: File created on: ";
 	stfile << std::ctime(&now_c) << std::endl;

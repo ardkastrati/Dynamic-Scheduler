@@ -30,7 +30,8 @@ void AbstractScheduler::place_task(Task task)
 {
     long runtime = 1;//scheduling_strategy->DEFAULT_RUNTIME;
     if (scheduling_strategy->is_statistic_based()) {
-        runtime = data_miner->predict(task.parameters);
+        //TODO: Uncomment line
+        //runtime = data_miner->predict(task.parameters);
     }
     scheduling_strategy->push_new_task(task, runtime);
 }
