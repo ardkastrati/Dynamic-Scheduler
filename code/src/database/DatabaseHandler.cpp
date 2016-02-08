@@ -13,6 +13,8 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
+#include "../../lib/easylogging++.h"
+#include <mpi.h>
 
 using namespace std;
 
@@ -122,15 +124,9 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 	package.append(";");
 	part_of_task.clear();
 
-	for(int i = 0; i < data->parameter_size; i++)
-	{
-		part_of_task = to_string(data->parameters[i]);
-		package.append(";");
-	}
 	package.append("#");
 	part_of_task.clear();
 
-	//char* returnpackage =(char*)package.c_str();
 	return package;
 }
 
@@ -152,13 +148,13 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 	for(int i = 0; i < data->parameter_size; i++)
 	{
 		part_of_task = to_string(data->parameters[i]);
+		package.append(part_of_task);
 		package.append(";");
 	}
 	part_of_task.clear();
 
 	package.append("#");
 
-	//char* returnpackage =(char*)package.c_str();
 	return package;
 }
 

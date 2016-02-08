@@ -59,9 +59,8 @@ void StatisticDatabase::insertTaskData(string data)
 	* Timestamp intercommmunication end;CPU rank
 	*/
 
-	stfile.open("datafiles/Statistic.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);
+	stfile.open("Statistic.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);
 
-	stfile << data;
-	stfile << "#" << std::endl;
+	stfile << data << std::endl;
 	stfile.close();
 }

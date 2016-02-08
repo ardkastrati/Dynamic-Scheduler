@@ -46,10 +46,9 @@ void BookkeepingDatabase::insertTaskData(string data)
 	* Timestamp intercommmunication end;CPU rank
 	*/
 
-	bkfile.open("datafiles/Bookkeeping.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);
+	bkfile.open("Bookkeeping.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);
 
-	bkfile << data;
-	bkfile << "#" << std::endl;
+	bkfile << data << std::endl;
 	bkfile.close();
 }
 
