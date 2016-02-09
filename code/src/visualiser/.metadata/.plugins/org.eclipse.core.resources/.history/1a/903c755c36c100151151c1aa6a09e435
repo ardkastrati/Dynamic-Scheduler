@@ -1,0 +1,13 @@
+package visualiser;
+
+import com.panayotis.gnuplot.*;
+
+public class Visualiser {
+
+	public void visualise() {
+		JavaPlot p = new JavaPlot();
+		p.addPlot("sin(x)");
+		p.plot();
+		System.out.println("Debug2");
+	}
+}

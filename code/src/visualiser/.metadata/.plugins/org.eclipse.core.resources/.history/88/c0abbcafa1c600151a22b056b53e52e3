@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package main;
+
+import visualiser.Visualiser;
+
+/**
+ * 
+ *
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		JavaFXWindow.main(args);
+		// TODO Automatisch generierter Methodenstub
+		Visualiser v = new Visualiser();
+		System.out.println("Debug");
+		v.visualise();
+		
+	}
+
+}

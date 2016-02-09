@@ -1,0 +1,26 @@
+/*
+ * Main.cpp
+ *
+ *  Created on: 21.01.2016
+ *      Author: kai
+ */
+
+#include "Main.h"
+#include "Visualiser.h"
+#include "UsageVisualiser.h"
+
+Main::Main() {
+	// TODO Automatisch generierter Konstruktorstub
+
+}
+
+Main::~Main() {
+	// TODO !CodeTemplates.destructorstub.tododesc!
+}
+
+
+int main(int argc, char **argv){
+	UsageVisualiser *v = new UsageVisualiser();
+	visualise();
+	delete v;
+}

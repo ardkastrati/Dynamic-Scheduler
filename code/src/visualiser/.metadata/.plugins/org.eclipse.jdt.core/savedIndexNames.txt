@@ -1,0 +1,18 @@
+INDEX VERSION 1.127+/home/kai/Dokumente/PSE/workspace/PSE-WS15-16-Team17/code/src/visualiser/.metadata/.plugins/org.eclipse.jdt.core
+720374442.index
+1778827947.index
+2696719010.index
+970741212.index
+1876296875.index
+4219264201.index
+2324208673.index
+2065134808.index
+972330027.index
+3693686998.index
+1481959266.index
+428803090.index
+3100868517.index
+3298313762.index
+2379332243.index
+2413086003.index
+1353783501.index

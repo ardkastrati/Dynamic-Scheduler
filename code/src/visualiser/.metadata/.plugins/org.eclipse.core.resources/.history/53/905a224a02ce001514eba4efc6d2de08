@@ -1,0 +1,47 @@
+package visualiser;
+
+import javax.swing.JFrame;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.Node;
+import javafx.embed.swing.SwingNode;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import com.panayotis.gnuplot.JavaPlot;
+import com.panayotis.gnuplot.swing.*;
+import com.panayotis.gnuplot.terminal.*;
+
+public class Visualiser extends Application {
+
+	public void visualise() {
+		WritableImage i = new WritableImage(600,400);
+		
+		JavaPlot p = new JavaPlot(true);
+		p.addPlot("sin(x)");
+		JPlot j = new JPlot(p);
+		j.plot();
+		
+		SwingFXUtils.toFXImage(null, i);
+		JFrame f = new JFrame();
+		SwingNode node = new SwingNode();
+		node.setContent(j);
+		
+		StackPane pane = new StackPane();
+        pane.getChildren().add(node);
+        
+//		p.addPlot("sin(x)");
+//		p.plot();
+//		System.out.println("Debug2");
+//		for( int i = 0; i < 8; i++) {
+//			
+//		}
+	}
+	
+	@Override
+    public void start (Stage stage) {
+		
+	}
+	}
+}

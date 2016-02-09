@@ -1,0 +1,21 @@
+/*
+ * Visualiser.cpp
+ *
+ *  Created on: 21.01.2016
+ *      Author: kai
+ */
+
+#include "Visualiser.h"
+
+Visualiser::Visualiser() {
+	// TODO Automatisch generierter Konstruktorstub
+
+}
+
+Visualiser::~Visualiser() {
+	// TODO !CodeTemplates.destructorstub.tododesc!
+}
+
+void visualise(){
+
+}
