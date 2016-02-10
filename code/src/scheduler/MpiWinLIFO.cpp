@@ -2,6 +2,7 @@
 #include <iostream>
 #include "MpiWinLIFO.h"
 #include "../../lib/easylogging++.h"
+#include "../Const.h"
 
 #define ASSERT 0
 
@@ -35,8 +36,8 @@ void MpiWinLIFO::init(int max_size)
 
     int disp_unit = sizeof(Task);
 
-    MPI_Win_create(queue, queue_size, disp_unit, MPI_INFO_NULL, MPI_COMM_WORLD, &win_queue);
-    MPI_Win_create(offset, sizeof(int), sizeof(int), MPI_INFO_NULL, MPI_COMM_WORLD, &win_offset);
+    MPI_Win_create(queue, queue_size, disp_unit, MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_queue);
+    MPI_Win_create(offset, sizeof(int), sizeof(int), MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_offset);
 
 }
 Task MpiWinLIFO::get_next_task() {
@@ -53,6 +54,7 @@ int MpiWinLIFO::get_task_count() {
 Task MpiWinLIFO::pop_next_task() {
     Task task;
     bool task_found = false;
+    //TODO: hard coded DATABASE
     for (int i = 0; i < number_of_processors && !task_found; i++) {
         int target_rank = (rank + i) % number_of_processors;
         task = steal_next_task(target_rank, 0);

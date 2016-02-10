@@ -3,6 +3,7 @@
 #include "MpiWinLIFO.h"
 #include "../ScientificCode.h"
 #include "../worker/TaskStealingWorker.h"
+#include "../Const.h"
 
 #define WORKING 1
 #define IDLE 0
@@ -13,7 +14,7 @@ TaskStealingScheduler::TaskStealingScheduler(MpiWinSchedulingStrategy* schedulin
 
     MPI_Alloc_mem(sizeof(int), MPI_INFO_NULL, &status);
     *status = WORKING;
-    MPI_Win_create(status, sizeof(int), sizeof(int), MPI_INFO_NULL, MPI_COMM_WORLD, &win_status);
+    MPI_Win_create(status, sizeof(int), sizeof(int), MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_status);
     worker = new TaskStealingWorker(this);
 
 }
@@ -27,7 +28,7 @@ TaskStealingScheduler::~TaskStealingScheduler()
 }
 void TaskStealingScheduler::execute(int argc, char* argv[])
 {
-
+    LOG(INFO) << "Ich bin ein TaskStealingScheduler";
     if (rank == 0)
     {
         //TODO: Change 100 to dynamic one
@@ -63,6 +64,8 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
     run();
     if (rank == 0) {
         postprocessing();
+        short temp;
+        MPI_Send(&temp, DATABASE, MPI_SHORT, DATABASE, STOP, MPI_COMM_WORLD);
     } else {
         worker->postprocessing();
     }
@@ -99,6 +102,7 @@ bool TaskStealingScheduler::is_finish() {
     bool is_finish = true;
     //TODO: change vor datacore
     for (int target_rank = 0; target_rank < number_of_processors && is_finish; target_rank++) {
+
         int status;
         MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_status);
         MPI_Get(&status, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_status);
@@ -106,7 +110,6 @@ bool TaskStealingScheduler::is_finish() {
         if (status == WORKING) {
             is_finish = false;
         }
-
     }
     return is_finish;
 }

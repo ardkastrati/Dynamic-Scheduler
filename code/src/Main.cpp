@@ -12,7 +12,7 @@
 
 INITIALIZE_EASYLOGGINGPP
 
-void create_mpi_task_type();
+void create_mpi_task_types();
 void parse_command_line_parameters(int argc, char* argv[], char*);
 
 /**
@@ -40,15 +40,16 @@ int main(int argc, char* argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &number_of_processors);
 
-    create_mpi_task_type();
+    create_mpi_task_types();
 
     LOG(INFO) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
 
     //TODO: Argument processing
-    Executor * executer = Executor::get_new_executor_by_rank(rank, number_of_processors, "single-queue", "fifo");
-    executer->execute(argc, argv);
+    Executor * executor = Executor::get_new_executor_by_rank(rank, number_of_processors, TASK_STEALING ,
+    ENUM_FIFO);
+    executor->execute(argc, argv);
 
-    delete executer;
+    delete executor;
 
     MPI_Finalize();
     LOG(INFO) << rank << " finalized";
@@ -61,7 +62,7 @@ int main(int argc, char* argv[])
  * Creates own MPI datatypes for communication.
  * Creates MY_MPI_TASK_TYPE for sending Task structures and creates MY_MPI_TASK_DATA_TYPE for sending TaskData structures.
  */
-void create_mpi_task_type()
+void create_mpi_task_types()
 {
 
     //Create MY_MPI_TASK_TYPE datatype for communication

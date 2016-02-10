@@ -6,6 +6,7 @@
 #include "../ScientificCode.h"
 #include "../util/TimeUtility.h"
 #include "../../lib/easylogging++.h"
+#include "../Const.h"
 
 TaskStealingWorker::TaskStealingWorker(AbstractScheduler *scheduler)
 {
@@ -20,6 +21,19 @@ void TaskStealingWorker::place_task(Task task)
     task.time_appeared = get_time_in_mirco();
     scheduler->place_task(task);
     LOG(INFO) << "task added: " << task.parameters[0];
+
+
+    TaskData task_data;
+    task_data.rank = scheduler->get_rank();
+    task_data.time_appeared = task.time_appeared;
+    task_data.parent  = task.parent;
+    task_data.event = 0;
+    task_data.mode = 1;
+    task_data.parameter_size = task.parameter_size;
+    memcpy(task_data.parameters, task.parameters, sizeof(double) * task.parameter_size);
+
+    MPI_Request request;
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
 }
 
 void TaskStealingWorker::preprocessing(int argc, char* argv[])
@@ -38,10 +52,6 @@ void TaskStealingWorker::run_task(Task task)
     long time_end;
 
     time_begin = get_time_in_mirco();
-    code_run_task(task, &place_task_forwarder_taskstealing, this);
-    time_end = get_time_in_mirco();
-
-    LOG(INFO) << "rank: " << scheduler->get_rank() << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
 
     TaskData task_data;
     task_data.time_intercommunication_end = -1;
@@ -49,10 +59,25 @@ void TaskStealingWorker::run_task(Task task)
     task_data.rank = scheduler->get_rank();
     task_data.time_appeared = task.time_appeared;
     task_data.time_started = time_begin;
-    task_data.time_ended = time_end;
+
     task_data.parent  = task.parent;
-    task_data.event = 1; //TODO: Right event
-    task_data.mode = 1; //TODO: Right mode
+    task_data.event = 1;
+    task_data.mode = 1;
     task_data.parameter_size = task.parameter_size;
     memcpy(task_data.parameters, task.parameters, sizeof(double) * task.parameter_size);
+
+
+    MPI_Request request;
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
+
+
+    code_run_task(task, &place_task_forwarder_taskstealing, this);
+
+    time_end = get_time_in_mirco();
+
+    task_data.time_ended = time_end;
+    task_data.event = 2;
+
+    //TODO: Send task data to database
+    MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
 }

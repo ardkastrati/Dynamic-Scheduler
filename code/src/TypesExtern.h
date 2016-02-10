@@ -52,5 +52,7 @@ extern MPI_Datatype MY_MPI_TASK_TYPE;
 
 extern MPI_Aint mpi_task_type_offsets[4];
 
+extern MPI_Comm MY_MPI_COMM_TASKSTEALING;
+
 #define MAX_INIT_TASKS 100
 #endif // TYPES_EXTERN

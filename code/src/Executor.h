@@ -9,7 +9,8 @@
 #ifndef _EXECUTER_H
 #define _EXECUTER_H
 
-#include <string>
+#include "scheduler/StrategyEnum.h"
+#include "scheduler/DesignEnum.h"
 
 class Executor {
     protected:
@@ -48,8 +49,11 @@ class Executor {
          *
          * @return a executor object
          */
-        static Executor *get_new_executor_by_rank(int rank, int number_of_processors, std::string design,
-                                                  std::string strategy);
+        static Executor *get_new_executor_by_rank(int rank, int number_of_processors, DesignEnum design,
+                                                  StrategyEnum strategy);
+private:
+        static Executor *get_new_executor_for_master_worker(int rank, int number_of_processors, StrategyEnum strategy);
+        static Executor *get_new_executor_for_taskstealing(int rank, int number_of_processors, StrategyEnum strategy);
 };
 
 #endif //_EXECUTER_H
