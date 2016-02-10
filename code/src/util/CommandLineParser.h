@@ -5,7 +5,9 @@
 #ifndef CODE_COMMANDLINEPARSER_H
 #define CODE_COMMANDLINEPARSER_H
 
-#include <string>
+#include "../scheduler/StrategyEnum.h"
+#include "../scheduler/DesignEnum.h"
+#include <getopt.h>
 /**
  *
  */
@@ -15,20 +17,20 @@ private:
     /**
      *
      */
-    std::string design;
+    DesignEnum design = MASTER_WORKER;
     /**
      *
      */
-    std::string strategy;
-    std::string command_line_for_scientific_code[];
+    StrategyEnum strategy = ENUM_FIFO;
 
-    void parse(int argc, char* argv[]);
 
+
+    void parse_design();
+    void parse_strategy();
 public:
-    CommandLineParser(int argc, char* argv[], char* buffer[]);
-    std::string get_design();
-    std::string get_strategy();
-    void get_command_line_for_scientific_code(char** command_line_parameters[]);
+    void parse(int argc, char* argv[]);
+    DesignEnum get_design();
+    StrategyEnum get_strategy();
 
 };
 

@@ -10,11 +10,12 @@
 #include "Executor.h"
 #include "Types.h"
 #include "util/TimeUtility.h"
+#include "util/CommandLineParser.h"
 
 INITIALIZE_EASYLOGGINGPP
 
 void create_mpi_task_types();
-void parse_command_line_parameters(int argc, char* argv[], char*);
+
 
 /**
  * The main function of the dynamic scheduler
@@ -46,14 +47,22 @@ int main(int argc, char* argv[])
 
     LOG(INFO) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
 
-    //TODO: Argument processing
-    StrategyEnum strategy = ENUM_FIFO;
-    DesignEnum design = TASK_STEALING;
+    CommandLineParser parser;
+    try {
+        parser.parse(argc, argv);
+    } catch (const char* msg)
+    {
+        LOG(ERROR) << msg;
+        MPI_Abort(MPI_COMM_WORLD, -1);
+    }
+    StrategyEnum strategy = parser.get_strategy();
+    DesignEnum design = parser.get_design();
 
 
 
     if (design == TASK_STEALING)
     {
+        LOG(INFO) << "Run in task-stealing design";
         if (number_of_processors < 2) {
 
             LOG(INFO) << "You need at least 2 processes for task stealing!";
@@ -62,13 +71,15 @@ int main(int argc, char* argv[])
     }
     else if (design == MASTER_WORKER)
     {
+        LOG(INFO) << "Run in Master-Worker design";
         if (number_of_processors < 3) {
 
             LOG(INFO) << "You need at least 3 processes for master worker!";
             MPI_Abort(MPI_COMM_WORLD, -1);
         }
     }
-    Executor * executor = Executor::get_new_executor_by_rank(rank, number_of_processors, TASK_STEALING ,
+
+    Executor * executor = Executor::get_new_executor_by_rank(rank, number_of_processors, design ,
     ENUM_FIFO);
     executor->execute(argc, argv);
 

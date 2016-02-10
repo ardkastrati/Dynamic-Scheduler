@@ -11,8 +11,8 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 }
 DatabaseServer::~DatabaseServer()
 {
-    //delete database_handler;
     LOG(INFO) << "Destructor DatabaseServer";
+    delete database_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])

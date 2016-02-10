@@ -19,7 +19,6 @@ class DatabaseHandler
 {
 public:
 	DatabaseHandler();
-	~DatabaseHandler();
 	//char* dataParser(double[][]); //return pointer to an char array
 	void initDatabase();
 	string dataParserBookkeeping(TaskData* data);
