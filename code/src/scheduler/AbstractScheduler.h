@@ -1,14 +1,3 @@
-/**
- * The abstract AbstractScheduler class is the base class for all types of scheduler objects like master-worker scheduler
- * or task stealing scheduler and inherits from the Executor class. Subclasses have to override the run() and the is_finish() function.
- * The preprocessing and the postprocessing function call the code_proprocessing_master() and the code_postprocessing_master()
- * functions on the code interface.
- *
- * @author Fabio Broghammer
- * @version 1.0
- */
-
-
 #ifndef _ABSTRACTSCHEDULER_H
 #define _ABSTRACTSCHEDULER_H
 
@@ -22,8 +11,10 @@
  * or task stealing scheduler and inherits from the Executor class. Subclasses have to override the run() and the is_finish() function.
  * The preprocessing and the postprocessing function call the code_proprocessing_master() and the code_postprocessing_master()
  * functions on the code interface.
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
  */
-
 class AbstractScheduler: public Executor {
 protected:
     /**

@@ -1,13 +1,29 @@
-//
-// Created by fabio on 05.02.16.
-//
-
 #ifndef CODE_SCHEDULINGSTRATEGYENUM_H
 #define CODE_SCHEDULINGSTRATEGYENUM_H
 
-
+/**
+ * This Enum contains all provided scheduling strategies
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
 enum SchedulingStrategyEnum {
-    FIFO, LIFO, SJF, LJF
+    /**
+     * First-in first-out policy
+     */
+    FIFO,
+    /**
+     * Last-in first-out policy
+     */
+    LIFO,
+    /**
+     * Shortest job first policy
+     */
+    SJF,
+    /**
+     * Longest job first policy
+     */
+    LJF
 };
 
 

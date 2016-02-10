@@ -1,6 +1,7 @@
 #include "MpiWinSchedulingStrategy.h"
 /**
- * This class implements the MpiWinSchedulingStrategy and realize a LIFO queue
+ * This class implements the MpiWinSchedulingStrategy and realize a LIFO queue.
+ * The queue itself and the offset are inside several MPI window to give other processes access to the data.
  *
  * @author Fabio Broghammer
  * @version 1.0
@@ -12,14 +13,12 @@
 
 #include <mpi.h>
 #include "MpiWinSchedulingStrategy.h"
-/**
- * This class implements the MpiWinSchedulingStrategy and realize a LIFO queue
- */
+
+
 class MpiWinLIFO : public MpiWinSchedulingStrategy {
     private:
         MPI_Win win_queue;
         MPI_Win win_offset;
-        MPI_Win win_size;
         int* offset;
         int* size;
         Task* queue;
@@ -32,6 +31,10 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
     public:
         /**
          * Constructs a new LIFO scheduling queue
+         *
+         * @param size of the queue
+         * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
+         * @param number_of_processors inside the MY_MPI_COMM_TASKSTEALING communicator
          */
         MpiWinLIFO(int size, int rank, int number_of_processors);
 

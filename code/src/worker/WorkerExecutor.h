@@ -30,6 +30,13 @@ public:
      */
     WorkerExecutor(int rank, int number_of_processors);
 
+
+    /**
+     * Calls the code_run_task() function of the scientific and starts the scientific calculation with the given task.
+     * If the computation finish, a MPI message with the TAG finish will be send to the Master (rank 0).
+     *
+     * @param task scientific task to be computed
+     */
     void run_task(Task task);
 
     /**
@@ -39,16 +46,16 @@ public:
      *
      * @param argc command line argument count
      * @param argv command line arguments
- */
+    */
     void preprocessing(int argc, char* argv[]);
 
     void postprocessing();
 
     /**
-     * Calls the code_run_task() function of the scientific and starts the scientific calculation with the given task.
-     * If the computation finish, a MPI message with the TAG finish will be send to the Master (rank 0).
+     * This function is called from the scientific code to add a new task to the scheduling queue.
+     * This function sends a non-blocking message to the database server: task appeared
      *
-     * @param task scientific task to be computed
+     * @param task task to be added
      */
     void place_task(Task task);
 

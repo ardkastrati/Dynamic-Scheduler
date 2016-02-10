@@ -1,5 +1,9 @@
 /**
- * Project Dynamic Scheduler for Scientific Simulations
+ * This class represents a independent task-stealing scheduler. The scheduler uses MPIWinSchedulingStrategy as queue
+ * to make ist accessible from other task-stealing scheduling.
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
  */
 
 

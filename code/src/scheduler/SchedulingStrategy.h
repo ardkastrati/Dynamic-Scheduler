@@ -63,6 +63,9 @@ public:
      */
     virtual bool is_statistic_based() = 0;
 
+    /**
+     * Frees dynamic allocated memory
+     */
     virtual ~SchedulingStrategy();
 
     /**

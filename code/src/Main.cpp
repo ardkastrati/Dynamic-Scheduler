@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
     }
 
     Executor * executor = Executor::get_new_executor_by_rank(rank, number_of_processors, design ,
-    ENUM_FIFO);
+    strategy);
     executor->execute(argc, argv);
 
     delete executor;
