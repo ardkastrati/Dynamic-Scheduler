@@ -3,6 +3,7 @@
 #include "AbstractScheduler.h"
 #include "../ScientificCode.h"
 #include "../../lib/easylogging++.h"
+#include <assert.h>
 
 AbstractScheduler::AbstractScheduler(SchedulingStrategy* scheduling_strategy,
     DataMining* data_miner, int rank, int number_of_processors) :
@@ -20,6 +21,10 @@ AbstractScheduler::~AbstractScheduler()
 }
 
 void AbstractScheduler::preprocessing(int argc, char* argv[], Task* buffer, int *initial_tasks_number) {
+    assert(argc > 0);
+    assert(argv != NULL);
+    assert(buffer != NULL);
+    assert(initial_tasks_number != NULL);
 
     code_preprocessing_master(argc, argv, buffer, initial_tasks_number);
 }

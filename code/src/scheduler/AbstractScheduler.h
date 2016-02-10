@@ -36,10 +36,10 @@ protected:
     /**
      * This function is called before the master starts the scheduling of the
      * scientific tasks. This function calls the scientific code_preprocessing_master() code
-     * @param argc command line argument count
-     * @param argv command line arguments
-     * @param buffer buffer where the scientific code can store the initial tasks
-     * @param initial_tasks_number the count of initial tasks
+     * @param argc command line argument count. Must not be negative
+     * @param argv command line arguments. Must not be NULL
+     * @param buffer buffer where the scientific code can store the initial tasks. Must not be NULL
+     * @param initial_tasks_number the count of initial tasks. Must not be NULL
      */
     virtual void preprocessing(int argc, char* argv[], Task* buffer, int* initial_tasks_number);
 
