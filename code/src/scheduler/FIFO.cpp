@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include "FIFO.h"
 #include "../../lib/easylogging++.h"
 
@@ -9,7 +11,7 @@ queue(new std::queue<Task>())
 FIFO::~FIFO()
 {
     delete queue;
-    LOG(INFO) << "FIFIO Destructor";
+    LOG(DEBUG) << "FIFIO Destructor";
 }
 
 Task FIFO::get_next_task()

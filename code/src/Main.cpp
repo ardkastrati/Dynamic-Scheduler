@@ -5,6 +5,8 @@
  * @version 1.0
  */
 
+#define NDEBUG
+
 #include "../lib/easylogging++.h"
 #include <mpi.h>
 #include "Executor.h"
@@ -45,7 +47,7 @@ int main(int argc, char* argv[])
 
     create_mpi_task_types();
 
-    LOG(INFO) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
+    LOG(DEBUG) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
 
     CommandLineParser parser;
     try {
@@ -89,8 +91,8 @@ int main(int argc, char* argv[])
     long time_end = get_time_in_mirco();
     long time_delta = time_end - time_started;
     double time_delta_sec = ((double) time_delta) / 1000000;
-    LOG(INFO) << rank << " finalized";
-    LOG(INFO) << "Total runtime: " << time_delta_sec << " seconds";
+    LOG(DEBUG) << rank << " finalized";
+    LOG(INFO) << "Finish! Total runtime: " << time_delta_sec << " seconds";
     return 0;
 }
 

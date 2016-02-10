@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include "AbstractScheduler.h"
 #include "../ScientificCode.h"
 #include "../../lib/easylogging++.h"
@@ -14,7 +16,7 @@ AbstractScheduler::~AbstractScheduler()
 {
     delete scheduling_strategy;
     delete data_miner;
-    LOG(INFO) << "Destructor AbstractScheduler";
+    LOG(DEBUG) << "Destructor AbstractScheduler";
 }
 
 void AbstractScheduler::preprocessing(int argc, char* argv[], Task* buffer, int *initial_tasks_number) {

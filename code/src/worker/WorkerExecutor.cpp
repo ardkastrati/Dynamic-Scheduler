@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include "WorkerExecutor.h"
 #include <mpi.h>
 #include <cstring>
@@ -60,20 +62,20 @@ void WorkerExecutor::run_task(Task task)
     task_data.time_ended = time_end;
     task_data.event = 2;
 
-    LOG(INFO) << "task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
+
 
 
 
 
     //TODO: Send task data to database
     MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
-
+    LOG(INFO) << "task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD);
 }
 
 void WorkerExecutor::place_task(Task task)
 {
-    LOG(INFO) << "place_task: " << task.parameters[0];
+    LOG(DEBUG) << "place_task: " << task.parameters[0];
     task.time_appeared = get_time_in_mirco();
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, REQUEST, MPI_COMM_WORLD);
 

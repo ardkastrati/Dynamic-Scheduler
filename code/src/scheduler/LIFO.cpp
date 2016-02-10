@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include "LIFO.h"
 #include "../../lib/easylogging++.h"
 
@@ -9,7 +11,7 @@ stack(new std::stack<Task>())
 LIFO::~LIFO()
 {
     delete stack;
-    LOG(INFO) << "LIFO destructor";
+    LOG(DEBUG) << "LIFO destructor";
 }
 
 Task LIFO::get_next_task()

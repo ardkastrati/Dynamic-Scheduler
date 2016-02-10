@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include <stddef.h>
 #include <iostream>
 #include "MpiWinLIFO.h"
@@ -5,6 +7,7 @@
 #include "../Const.h"
 
 #define ASSERT 0
+
 
 MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
     rank(rank),
@@ -15,7 +18,7 @@ MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
 
 MpiWinLIFO::~MpiWinLIFO()
 {
-    LOG(INFO) << "MPIWINLIFO destructor!";
+    LOG(DEBUG) << "MPIWINLIFO destructor!";
     MPI_Win_free(&win_queue);
     MPI_Win_free(&win_offset);
     //MPI_Win_free(&win_size);
