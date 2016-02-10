@@ -38,5 +38,6 @@ run:
 	mpirun -n 4 bin/scheduler
 runbig: 
 	mpirun -n 16 bin/scheduler
-
+runsmall:
+	mpirun -n 2 bin/scheduler
 .PHONY: clean

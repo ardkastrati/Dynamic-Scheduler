@@ -9,6 +9,7 @@
 #include <mpi.h>
 #include "Executor.h"
 #include "Types.h"
+#include "util/TimeUtility.h"
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -25,6 +26,7 @@ void parse_command_line_parameters(int argc, char* argv[], char*);
  */
 int main(int argc, char* argv[])
 {
+    long time_started = get_time_in_mirco();
     LOG(INFO) << "Scheduler started";
     int mpierr;
     mpierr = MPI_Init(&argc, &argv);
@@ -45,6 +47,27 @@ int main(int argc, char* argv[])
     LOG(INFO) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
 
     //TODO: Argument processing
+    StrategyEnum strategy = ENUM_FIFO;
+    DesignEnum design = TASK_STEALING;
+
+
+
+    if (design == TASK_STEALING)
+    {
+        if (number_of_processors < 2) {
+
+            LOG(INFO) << "You need at least 2 processes for task stealing!";
+            MPI_Abort(MPI_COMM_WORLD, -1);
+        }
+    }
+    else if (design == MASTER_WORKER)
+    {
+        if (number_of_processors < 3) {
+
+            LOG(INFO) << "You need at least 3 processes for master worker!";
+            MPI_Abort(MPI_COMM_WORLD, -1);
+        }
+    }
     Executor * executor = Executor::get_new_executor_by_rank(rank, number_of_processors, TASK_STEALING ,
     ENUM_FIFO);
     executor->execute(argc, argv);
@@ -52,7 +75,11 @@ int main(int argc, char* argv[])
     delete executor;
 
     MPI_Finalize();
+    long time_end = get_time_in_mirco();
+    long time_delta = time_end - time_started;
+    double time_delta_sec = ((double) time_delta) / 1000000;
     LOG(INFO) << rank << " finalized";
+    LOG(INFO) << "Total runtime: " << time_delta_sec << " seconds";
     return 0;
 }
 
