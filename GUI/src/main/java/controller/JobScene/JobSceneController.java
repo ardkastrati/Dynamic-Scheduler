@@ -1,10 +1,8 @@
-package controller;
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Here comes the text of your license
+ * Each line should be prefixed with  * 
  */
+package controller.JobScene;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author ardkastrati
  */
-public class MOABSceneController implements Initializable {
+public class JobSceneController implements Initializable {
 
     /**
      * Initializes the controller class.

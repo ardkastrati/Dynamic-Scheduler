@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainSceneController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainScene.MainSceneController">
     
            
    <children>
@@ -44,26 +44,18 @@
               </menus>
             </MenuBar>
          </top>
+         <right>
+            <Pane prefHeight="543.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </right>
          <center>
-            <AnchorPane prefHeight="543.0" prefWidth="105.0" BorderPane.alignment="CENTER" />
-         </center>
-         <left>
-            <TabPane prefHeight="543.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="100.0" tabMinHeight="100.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
+            <TabPane fx:id="mainTabPane" prefHeight="543.0" prefWidth="471.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="91.0" tabMinHeight="100.0" tabMinWidth="91.0" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab fx:id="tab1">
+                <Tab fx:id="SSHConnection">
                      <content>
                          <fx:include fx:id="body" source="SSHConnection.fxml" />
                     </content>
                      <graphic>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="118.0" text="SSHConnection" />
-                     </graphic>
-                </Tab>
-                <Tab>
-                  <content>
-                     <fx:include fx:id="moab" source="MOABScene.fxml" />
-                  </content>
-                     <graphic>
-                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="MOAB Workload Manager" textAlignment="CENTER" wrapText="true" />
+                        <Label alignment="CENTER" prefHeight="76.0" prefWidth="104.0" text="SSH" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
                   <Tab>
@@ -71,10 +63,26 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                      <graphic>
+                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="123.0" text="Compile/Install Job" textAlignment="CENTER" wrapText="true" />
+                     </graphic>
+                  </Tab>
+                <Tab fx:id="MOAB">
+                  <content>
+                     <fx:include fx:id="moab" source="MOABScene.fxml" />
+                  </content>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="Run Job via MOAB" textAlignment="CENTER" wrapText="true" />
+                     </graphic>
+                </Tab>
+                  <Tab fx:id="jobs">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                     <graphic>
                         <Label text="Jobs" />
                      </graphic>
                   </Tab>
-                  <Tab>
+                  <Tab fx:id="visualizer">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
@@ -84,10 +92,7 @@
                   </Tab>
               </tabs>
             </TabPane>
-         </left>
-         <right>
-            <Pane prefHeight="543.0" prefWidth="43.0" BorderPane.alignment="CENTER" />
-         </right>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

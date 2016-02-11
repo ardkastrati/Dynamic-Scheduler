@@ -5,22 +5,23 @@
  */
 package model;
 
+import model.commands.*;
+import java.util.List;
+
 /**
  *
  * @author ardkastrati
  */
-public class ScriptGenerator {
+public class Job {
+    
+    private int ID;
+    private JobStatus status;
+    private String username;
+    private String state;
+    private int procs;
+    private int startTime;
     
     
-    
-    
-   
-    public static void createScript(String[] rows) {
-        
-        
-        
-        
-    }
-    
+    //Getter, Setter
     
 }

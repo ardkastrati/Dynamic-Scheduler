@@ -1,34 +1,22 @@
-package controller;
+package controller.SSHConnectionScene;
 
 import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
 import components.NumericTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
+import javafx.concurrent.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.util.Duration;
-import model.Shell;
 
-public class SSHConnectionController extends BodyController implements Initializable {
+public class SSHConnectionController implements Initializable {
   
     
     @FXML
@@ -43,25 +31,50 @@ public class SSHConnectionController extends BodyController implements Initializ
     @FXML
     private AnchorPane anchorpane;
     
+    private Service service;
     
     
      @FXML
     private void connect(ActionEvent event) {
-         JSch shell = new JSch();
+            
+        
+            /*String user = username.getText();
+            String host = ;
+            int port=22;
+
+            Session session= jsch.getSession(user, host, port);
+
+            // username and password will be given via UserInfo interface.
+            //UserInfo ui=new Sftp.MyUserInfo();
+           // session.setPassword("");
+            //session.setHost(host);
+            //sessio
+            java.util.Properties config = new java.util.Properties(); 
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+            session.connect();
+
+            Channel channel=session.openChannel("sftp");
+            channel.connect();
+            ChannelSftp c=(ChannelSftp)channel;
+       */
+         /*JSch shell = new JSch();
         try {
             
             Session session = shell.getSession(username.getText(), server.getText(), port.getPort());
             session.setPassword(password.getText());
-            UserInfo ui = new Shell.MyUserInfo(){
+            UserInfo ui = new .MyUserInfo(){
+                @Override
                 public void showMessage(String message){
                     System.out.println(message);
                 }
+                @Override
                 public boolean promptYesNo(String message){
                     
                     System.out.println(message);
                     Scanner in = new Scanner(System.in);
                     String answer = in.next();
-                    return answer.equals("yes") ? true : false;
+                    return answer.equals("yes");
                 }
             };
             session.setUserInfo(null);
@@ -78,16 +91,21 @@ public class SSHConnectionController extends BodyController implements Initializ
             
         } catch (JSchException ex) {
             Logger.getLogger(SSHConnectionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
+    }
+    
+    public void initService(Service service) {
+        this.service = service;
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }    
     
    
-
+    //not to use!
     @FXML
     private void handleSSHAction(ActionEvent event) {
         
@@ -131,9 +149,6 @@ public class SSHConnectionController extends BodyController implements Initializ
         */
     }
     
-    public void init(MainSceneController controller) {
-        this.controller = controller;
-    }
     
     
     
