@@ -54,7 +54,7 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 
 	if(data->event == 0)
 	{
-		part_of_task = to_string(static_cast<int>(data->time_appeared));
+		part_of_task = to_string(static_cast<long long>(data->time_appeared));
 		package.append(part_of_task);
 		package.append(";");
 		part_of_task.clear();
@@ -65,7 +65,7 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 		part_of_task.clear();
 	} else if (data->event == 1)
 	{
-		part_of_task = to_string(static_cast<long>(data->time_started));
+		part_of_task = to_string(static_cast<long long>(data->time_started));
 		package.append(part_of_task);
 		package.append(";");
 		part_of_task.clear();
@@ -76,7 +76,7 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 		part_of_task.clear();
 	} else
 	{
-		part_of_task = to_string(static_cast<long>(data->time_ended));
+		part_of_task = to_string(static_cast<long long>(data->time_ended));
 		package.append(part_of_task);
 		package.append(";");
 		part_of_task.clear();
@@ -99,27 +99,27 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 		part_of_task.clear();
 	}
 
-	part_of_task = to_string(static_cast<int>(data->parent));
+	part_of_task = to_string(static_cast<long long>(data->parent));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
-	part_of_task = to_string(static_cast<long>(data->time_intercommunication_start));
+	part_of_task = to_string(static_cast<long long>(data->time_intercommunication_start));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
-	part_of_task = to_string(static_cast<long>(data->time_intercommunication_end));
+	part_of_task = to_string(static_cast<long long>(data->time_intercommunication_end));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
-	part_of_task = to_string(static_cast<int>(data->rank));
+	part_of_task = to_string(static_cast<long long>(data->rank));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
-	part_of_task = to_string(static_cast<int>(data->parameter_size));
+	part_of_task = to_string(static_cast<long long>(data->parameter_size));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
@@ -140,14 +140,14 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 
 	int task_runtime = data->time_ended - data->time_started;
 
-	part_of_task = to_string(task_runtime);
+	part_of_task = to_string(static_cast<long long>(task_runtime));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
 	for(int i = 0; i < data->parameter_size; i++)
 	{
-		part_of_task = to_string(data->parameters[i]);
+		part_of_task = to_string(static_cast<long double>(data->parameters[i]));
 		package.append(part_of_task);
 		package.append(";");
 	}
