@@ -1,2 +1,2 @@
--jobs:	 
-- script: cd code/ && make clean && make
+jobs:	 
+	script: cd code/ && make clean && make
