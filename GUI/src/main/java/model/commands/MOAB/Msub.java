@@ -4,12 +4,9 @@
  */
 package model.commands.MOAB;
 
-import com.jcraft.jsch.Channel;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Control;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.ToolBar;
+import model.NodeAccessPolicy;
 import model.commands.ICommand;
 
 /**
@@ -28,9 +25,9 @@ public class Msub implements ICommand {
         private String jobName;
         private String outputFileName;
         private String shell;
-        private char sendEmail = 'n';
+        private char[] sendEmail;
         private String email;
-        
+        private NodeAccessPolicy nodeAccessPolicy;
             
         public void setJobName() {
             this.jobName = jobName;
@@ -50,13 +47,16 @@ public class Msub implements ICommand {
          * Send email when job begins (b), ends (e) or aborts (a).
          * @param sendEmail 
          */ 
-        public void sendEmail(char sendEmail, String email) {
+        public void sendEmail(char[] sendEmail, String email) {
             this.sendEmail = sendEmail;
             this.email = email;
         }
 
         public void setShell(String shell) {
             this.shell = shell;
+        }
+        public void setNodeAccessPolicy(NodeAccessPolicy nodeAccessPolicy) {
+            this.nodeAccessPolicy = nodeAccessPolicy;
         }
 
 
@@ -84,7 +84,7 @@ public class Msub implements ICommand {
                 String scriptLine = new String(" -S " + shell);
                 scriptLines.add(scriptLine);
             }
-            if(sendEmail != 'n') {
+            if(sendEmail != null && sendEmail.length != 0) {
                 String scriptLine = new String(" -m " + sendEmail);
                 scriptLines.add(scriptLine);
             }
@@ -118,15 +118,15 @@ public class Msub implements ICommand {
                 command.append(" -o ");
                 command.append(outputFileName);
             }
-            if(shell != null) {
+            if(shell != null && shell.length() > 0) {
                 command.append(" -S ");
                 command.append(shell);
             }
-            if(sendEmail != 'n') {
+            if(sendEmail.length != 0) {
                 command.append(" -m ");
                 command.append(sendEmail);
             }
-            if(email != null) {
+            if(email != null && email.length() > 0) {
                 command.append(" -M ");
                 command.append(email);
             }
@@ -145,6 +145,10 @@ public class Msub implements ICommand {
      */
     public boolean equals(ICommand command) {
        return command.toString().equalsIgnoreCase(this.toString());        
+    }
+
+    public void setJobName(String jobname) {
+      this.jobName = jobname;
     }
    
     

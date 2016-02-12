@@ -16,6 +16,7 @@ public interface CommandController {
     public void onCancelClicked();
     
     
+    
     public String getOnExecuteText();
     
 }

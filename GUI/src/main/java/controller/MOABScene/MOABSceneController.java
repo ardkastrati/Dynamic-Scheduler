@@ -84,7 +84,7 @@ public class MOABSceneController implements Initializable {
         
         
         if (click.getClickCount() == 2) {
-            System.out.println(listOfCommands.getSelectionModel().getSelectedItems());
+            
             
             
                  commandChosen();
@@ -126,7 +126,7 @@ public class MOABSceneController implements Initializable {
 
     @FXML
     public void execute() {
-        
+        System.out.println(currentCommandController);
         
          FXMLLoader loader = currentCommandController.onExecuteClicked();
         

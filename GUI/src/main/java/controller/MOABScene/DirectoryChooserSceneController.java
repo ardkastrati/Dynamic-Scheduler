@@ -16,7 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import model.commands.ICommand;
 import services.LoadSftpTreeService;
 import services.LoadSftpTreeTask;
 //import services.TreeItemLoaderService;
@@ -28,13 +30,14 @@ import services.LoadSftpTreeTask;
  */
 public class DirectoryChooserSceneController implements Initializable, CommandController {
 
+    private static final String CHANGE_DIRECTORY_COMMAND = "cd ";
+    
     /**
      * Initializes the controller class.
      */
     @FXML
-    private Button choose;
-    @FXML
     private TextField sftpPath;
+    
     
 //    private TreeItemLoaderService sftpService;
     private LoadSftpTreeTask loader;
@@ -54,6 +57,9 @@ public class DirectoryChooserSceneController implements Initializable, CommandCo
     public void init(ChannelSftp sftp) {
         //LoadSftpTreeService sftpService = new LoadSftpTreeService();
         //sftpService.setChannel(sftp);
+        sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            sftpPath.setText(newValue.getValue());
+        });
         SftpTreeItem.setSFTPChannel(sftp);
         sftpTree.setRoot(new SftpTreeItem("."));
         initTree();
@@ -105,14 +111,16 @@ public class DirectoryChooserSceneController implements Initializable, CommandCo
                     lazyTreeItem.childrenLoadedStatusProperty().addListener(listener);
                 } 
             });
-
+           
             // change text if item changes:
             cell.itemProperty().addListener((obs, oldItem, newItem) -> {
                 if (newItem == null) {
                     cell.setText(null);
                     cell.setGraphic(null);
                 } else {
+                    
                     cell.setText(newItem.toString());
+                    
                 }
             });
 
@@ -135,6 +143,13 @@ public class DirectoryChooserSceneController implements Initializable, CommandCo
     @Override
     public String getOnExecuteText() {
         return "Choose";
+    }
+
+    
+    public String getDirectory() {
+        StringBuilder builder = new StringBuilder(CHANGE_DIRECTORY_COMMAND);
+        builder.append(sftpPath.getText());
+        return builder.toString();
     }
 
     

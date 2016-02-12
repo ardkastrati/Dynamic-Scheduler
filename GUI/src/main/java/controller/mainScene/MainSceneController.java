@@ -6,6 +6,7 @@
 package controller.mainScene;
 
 
+import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class MainSceneController implements Initializable {
     @FXML
     private BorderPane border;
     
-    private Session session;
+    private Session ard;
     
     @FXML
     private ScrollPane body;
@@ -46,6 +47,7 @@ public class MainSceneController implements Initializable {
     @FXML
     private TabPane mainTabPane;
     
+    public static Session session;
     
     
     /**
@@ -70,6 +72,10 @@ public class MainSceneController implements Initializable {
         popUpMessage.getStyleClass().add("popup");
         
         popUp.getContent().add(popUpMessage);
+        
+        mainTabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+            System.err.println("changed");
+        });
             
     }    
     
@@ -98,6 +104,23 @@ public class MainSceneController implements Initializable {
        fadeTransition.play();
         
     }
+    public static Session getSession() throws Exception {
+        try {
+            ChannelExec testChannel = (ChannelExec) session.openChannel("exec");
+            testChannel.setCommand("true");
+            testChannel.connect();
+            
+            System.out.println("Session erfolgreich getestet, verwende sie erneut");
+            testChannel.disconnect();
+           
+        } catch (Throwable t) {
+            System.out.println("Session kaputt. Baue neue.");
+            /*session = jsch.getSession(user, host, port);
+            session.setConfig(config);
+            session.connect();*/
+        }
+    return session;
+}
     
     
 }

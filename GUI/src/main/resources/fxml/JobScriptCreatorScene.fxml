@@ -9,6 +9,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MOABScene.JobScriptCreatorSceneController">
    <children>
-      <Pagination fx:id="commandPages" maxHeight="-Infinity" maxPageIndicatorCount="3" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pageCount="3" prefHeight="500.0" prefWidth="732.0" styleClass="bullet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pagination fx:id="commandPages" cache="true" maxHeight="-Infinity" maxPageIndicatorCount="3" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pageCount="3" prefHeight="500.0" prefWidth="732.0" styleClass="bullet" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

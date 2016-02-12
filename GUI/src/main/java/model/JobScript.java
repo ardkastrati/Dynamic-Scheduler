@@ -45,4 +45,5 @@ public class JobScript {
         dir.append(this.directory);
         return dir.toString();
     }
+    
 }

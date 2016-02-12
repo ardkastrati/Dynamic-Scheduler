@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import model.commands.ICommand;
 
 /**
  * FXML Controller class
@@ -44,6 +45,7 @@ public class JobScriptSceneController implements Initializable, CommandControlle
     public String getOnExecuteText() {
          return "Save";
     }
+
 
     
     

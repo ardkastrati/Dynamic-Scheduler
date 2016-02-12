@@ -28,4 +28,8 @@ public enum NodeAccessPolicy {
         return this.nodeAccessPolicy;
     }
     
+    public static NodeAccessPolicy getNodeAccessPolicyFromName(String name) {
+        return valueOf(name);
+    }
+    
 }

@@ -26,14 +26,32 @@ public class JobScriptGenerator {
     public static final String msubPrefix = "#MSUB ";
 
     
-    public File createScript(JobScript script, String name) {
+    public ArrayList<String> createScript(JobScript script) {
         //TODO: pathname
-        File file = new File("src/main/resources/generated_docs/" + name + ".sh");
+        //File file = new File("src/main/resources/generated_docs/" + name + ".sh");
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add(moabCommands);
         
-     
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-              
-                writer.write(moabCommands);
+        lines.add("");
+        
+        
+        ArrayList<String> msubCommand = script.getMsubCommand().getScriptCommands();
+        
+        for(String line : msubCommand) {
+            lines.add(msubPrefix + line);
+        }
+        lines.add("");
+        lines.add("");
+        lines.add(directoryCommand);
+        lines.add("");
+        lines.add(script.getDirectory());
+        lines.add("");
+        lines.add("");
+        lines.add(shellCommands);
+        lines.add("");
+        lines.add(script.getMpirunCommand().getCommand());
+        
+        /* writer.write(moabCommands);
                 writer.newLine();
                 
                 ArrayList<String> msubCommand = script.getMsubCommand().getScriptCommands();
@@ -54,10 +72,10 @@ public class JobScriptGenerator {
         } catch (IOException ex) {
             Logger.getLogger(JobScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
         
         
-        
-        return null;
+        return lines;
     }
     
     

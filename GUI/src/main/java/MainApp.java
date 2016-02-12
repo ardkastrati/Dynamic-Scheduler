@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
             // username and password will be given via UserInfo interface.
             //UserInfo ui=new Sftp.MyUserInfo();
-            session.setPassword("(3K19t)%=1");
+            session.setPassword("");
             //session.setHost(host);
             //sessio
             java.util.Properties config = new java.util.Properties(); 
