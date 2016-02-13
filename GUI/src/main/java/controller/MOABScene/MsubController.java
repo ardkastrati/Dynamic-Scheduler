@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.MemoryUnit;
+import model.MySession;
 import model.NodeAccessPolicy;
 import model.commands.CommandException;
 import model.commands.MOAB.MoabResources;
@@ -41,7 +42,6 @@ public class MsubController  implements Initializable, CommandController {
     @FXML
     private ListView queueTypes;
     protected ListProperty<QueueType> listProperty;
-    
     @FXML
     private ComboBox<NodeAccessPolicy> nodeAccessPolicy;
     protected ListProperty<NodeAccessPolicy> nodeAccessPolicyProperty;
@@ -134,8 +134,8 @@ public class MsubController  implements Initializable, CommandController {
     }
 
     @Override
-    public FXMLLoader onExecuteClicked() {
-        return null;
+    public void onExecuteClicked() {
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -153,13 +153,16 @@ public class MsubController  implements Initializable, CommandController {
     
     
     public Msub createMsubFromDataInGUI() throws ParserException, CommandException {
+        
         Msub msub = new Msub();
         
+        System.out.println("QueueTypes parsed:" + queueTypes);
         if(queueTypes.getSelectionModel().getSelectedItem() == null) {
             throw new ParserException("Please select a queue type!");
         } else {
            msub.setQueueType((QueueType) queueTypes.getSelectionModel().getSelectedItem());  // ?
         }
+         System.out.println("QueueTypes parsed:" + queueTypes);
         
         if(jobName.getText() == null || jobName.getText().equals("")) {
            
@@ -167,7 +170,7 @@ public class MsubController  implements Initializable, CommandController {
         } else {
              msub.setJobName(jobName.getText());
         }
-        
+        System.out.println("Job name parsed: " + queueTypes);
         if(outputFileName.getText() == null || outputFileName.getText().equals("")) {
             throw new ParserException("Please write a name for the output file of the job");
         } else {
@@ -176,8 +179,8 @@ public class MsubController  implements Initializable, CommandController {
         
        
         msub.setShell((shell.getText() == null || shell.getText().equals("")) ? shell.getPromptText() : shell.getText());
-        
-        if(getEmailMeCode() != null) { 
+         System.out.println("Shell parsed " + queueTypes);
+        if(getEmailMeCode() != null ) { 
             msub.sendEmail(getEmailMeCode(), email.getText());
         }
         
@@ -224,7 +227,7 @@ public class MsubController  implements Initializable, CommandController {
         a += emailMeWhenJobAborts.isSelected() ? 1 : 0;
         a += emailMeWhenJobBegins.isSelected() ? 1 : 0;
         a += emailMeWhenJobEnds.isSelected() ? 1 :0;
-        char[] emailMeCode;
+        char[] emailMeCode = null;
         if (a != 0) {
             emailMeCode = new char[a];
             int i = 0;
@@ -235,6 +238,16 @@ public class MsubController  implements Initializable, CommandController {
             return null;
         }
         return emailMeCode;
+    }
+
+    @Override
+    public void onEntry() {
+        //MySession.getInstant().initiateOpeningChannel(null);
+    }
+
+    @Override
+    public void onExit() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

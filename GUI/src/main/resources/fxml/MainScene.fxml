@@ -18,7 +18,7 @@
             <FlowPane alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
                   <Label mouseTransparent="true" prefHeight="17.0" prefWidth="118.0" text="Status:" />
-                  <Label prefHeight="17.0" prefWidth="118.0" text="Not connected" />
+                  <Label fx:id="status" prefHeight="17.0" prefWidth="118.0" text="Disconnected" />
                </children>
             </FlowPane>
          </bottom>
@@ -50,15 +50,15 @@
          <center>
             <TabPane fx:id="mainTabPane" prefHeight="543.0" prefWidth="471.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="91.0" tabMinHeight="100.0" tabMinWidth="91.0" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab fx:id="SSHConnection">
+                <Tab id="sshConnection" fx:id="SSHConnection">
                      <content>
-                         <fx:include fx:id="body" source="SSHConnection.fxml" />
+                         <fx:include fx:id="sshConnection" source="SSHConnection.fxml" />
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="76.0" prefWidth="104.0" text="SSH" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
-                  <Tab>
+                  <Tab id="compileJob">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
@@ -66,7 +66,7 @@
                         <Label alignment="CENTER" prefHeight="59.0" prefWidth="123.0" text="Compile/Install Job" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                   </Tab>
-                <Tab fx:id="MOAB">
+                <Tab id="moab" fx:id="MOAB">
                   <content>
                      <fx:include fx:id="moab" source="MOABScene.fxml" />
                   </content>
@@ -74,7 +74,7 @@
                         <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="Run Job via MOAB" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
-                  <Tab fx:id="jobs">
+                  <Tab id="jobs" fx:id="jobs">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
@@ -82,7 +82,7 @@
                         <Label text="Jobs" />
                      </graphic>
                   </Tab>
-                  <Tab fx:id="visualizer">
+                  <Tab id="visualizer" fx:id="visualizer">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

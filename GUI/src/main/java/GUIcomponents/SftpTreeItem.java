@@ -11,7 +11,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import services.LoadSftpTreeService;
 import services.LoadSftpTreeTask;
 
 /**
@@ -80,9 +79,12 @@ public class SftpTreeItem extends TreeItem<String> {
             }
 
         };*/
+        if(sftp == null) {
+            System.out.println("Sftp not set");
+        }
         
-        LoadSftpTreeTask loadTask = new LoadSftpTreeTask(sftp, value);
-        
+        LoadSftpTreeTask loadTask = new LoadSftpTreeTask(value);
+        System.out.println(loadTask);
         // when loading is complete:
         // 1. set actual child nodes to loaded nodes
         // 2. update status to "loaded"
@@ -91,11 +93,14 @@ public class SftpTreeItem extends TreeItem<String> {
             setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
         });*/
         loadTask.setOnSucceeded(event -> {
+            System.out.println("GetCHildren: " + super.getChildren());
+            System.out.println(loadTask.getValue());
             super.getChildren().setAll(loadTask.getValue());
             setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
         });
         
         loadTask.setOnFailed(event -> {
+            System.out.println("Failed to load tree items");
             setChildrenLoadedStatus(ChildrenLoadedStatus.NOT_LOADED);
         });
 
@@ -127,9 +132,7 @@ public class SftpTreeItem extends TreeItem<String> {
         this.childrenLoadedStatusProperty().set(childrenLoadedStatus);
     }
     
-    public static void setSFTPChannel(ChannelSftp sftp) {
-        SftpTreeItem.sftp = sftp;
-    }
+   
     
     /*public static void setSFTPService(LoadSftpTreeService sftpService) {
         SftpTreeItem.sftpService = sftpService;

@@ -1,5 +1,6 @@
 package controller.MOABScene;
 
+import controller.Controller;
 import controller.LoadSceneHelper;
 import controller.mainScene.MainSceneController;
 import java.io.IOException;
@@ -33,13 +34,12 @@ import javafx.scene.layout.StackPane;
  *
  * @author ardkastrati
  */
-public class MOABSceneController implements Initializable {
+public class MOABSceneController implements Initializable, Controller {
 
     @FXML
     private ListView listOfCommands;
-    
-    
     protected ListProperty<String> listProperty;
+    
     @FXML
     private GridPane grid;
     @FXML
@@ -51,11 +51,8 @@ public class MOABSceneController implements Initializable {
     @FXML
     private Button next;
     
-    
     private CommandController currentCommandController;
     
-    
-
     public MOABSceneController() {
         this.listProperty = new SimpleListProperty<>();
     }
@@ -81,56 +78,43 @@ public class MOABSceneController implements Initializable {
     
     @FXML
     public void onMouseClicked(MouseEvent click) {
-        
-        
         if (click.getClickCount() == 2) {
-            
-            
-            
-                 commandChosen();
-            
+            commandChosen();
         }
-              
     }
     
     
    
-     
-     private void commandChosen() {
+    private void commandChosen() {
+        
         Node parent = null;
         String command = (String) listOfCommands.getSelectionModel().getSelectedItem();
-        if(command != null) {
-            LoadSceneHelper loaderHelper = new LoadSceneHelper();
-            FXMLLoader loader  = loaderHelper.loadScene(command);
-            try {
-                parent = loader.load();
-                currentCommandController = loader.getController();
-                execute.setText(currentCommandController.getOnExecuteText());
-                listOfCommands.setVisible(false);
-                cancel.setVisible(true);
-            
-                execute.setVisible(true);
-            
-                grid.add(parent, 1, 1);
-            } catch (IOException ex) {
-                Logger.getLogger(MOABSceneController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-         
-            
-           // MainSceneController.showPopupMessage("Please choose a commmand", grid, -90, 0, true, false);
+        
+        LoadSceneHelper loaderHelper = new LoadSceneHelper();
+        FXMLLoader loader  = loaderHelper.loadScene(command);
+        try {
+            System.out.println(loader);
+            parent = loader.load();
+            currentCommandController = loader.getController();
+            System.out.println(currentCommandController);
+            execute.setText(currentCommandController.getOnExecuteText());
+            listOfCommands.setVisible(false);
+            cancel.setVisible(true);
+            execute.setVisible(true);
+            grid.add(parent, 1, 1);
+        } catch (IOException ex) {
+            Logger.getLogger(MOABSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
+           // MainSceneController.showPopupMessage("Please choose a commmand", grid, -90, 0, true, false);
         
-        
-     }
+    }
 
     @FXML
     public void execute() {
         System.out.println(currentCommandController);
         
-         FXMLLoader loader = currentCommandController.onExecuteClicked();
-        
-         
+        currentCommandController.onExecuteClicked();
+         /* 
          if(loader != null) {
             Node newBody = null;
             try {
@@ -143,7 +127,8 @@ public class MOABSceneController implements Initializable {
 
             grid.getChildren().remove(grid.getChildren().size() - 1);
             grid.add(newBody, 1, 1);
-         }
+         } 
+         */
     }
     
     @FXML
@@ -159,21 +144,20 @@ public class MOABSceneController implements Initializable {
         execute.setVisible(false);
         
     }
+   
     
-   /* private void next() {
-        FXMLLoader loader = currentCommandController.onExecutedClicked();
-         Node newBody = null;
-        try {
-            newBody= loader.load();
-            currentCommandController = loader.getController();
-        } catch (IOException ex) {
-            Logger.getLogger(MOABSceneController.class.getName()).log(Level.SEVERE, null, ex);
+    public void onEntry() {
+        // there is already a chosen command
+        if(currentCommandController != null) {
+            currentCommandController.onEntry();
         }
-        grid.getChildren().remove(grid.getChildren().size() - 1);
-        grid.add(newBody, 1, 1);
-        
-        
     }
-    */
+
+    @Override
+    public void onExit() {
+        if(currentCommandController != null) {
+            currentCommandController.onExit();
+        } 
+    }
     
 }

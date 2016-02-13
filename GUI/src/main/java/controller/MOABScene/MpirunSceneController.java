@@ -19,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import model.MySession;
 import model.NodeAccessPolicy;
 import model.commands.MPI.MpiRun;
 import org.controlsfx.control.ToggleSwitch;
@@ -70,7 +71,7 @@ public class MpirunSceneController implements Initializable, CommandController {
     }
 
     @Override
-    public FXMLLoader onExecuteClicked() {
+    public void onExecuteClicked() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -101,6 +102,16 @@ public class MpirunSceneController implements Initializable, CommandController {
            mpirun.setStrategy(MpiRun.SchedulingStrategy.getDesignFromName(strategy));
        }
        return mpirun;
+    }
+
+    @Override
+    public void onEntry() {
+       // nothing until now
+    }
+
+    @Override
+    public void onExit() {
+        // nothing until now
     }
 
     

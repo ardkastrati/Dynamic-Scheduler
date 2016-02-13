@@ -8,9 +8,13 @@ package controller.mainScene;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.Session;
+import controller.Controller;
+import controller.MOABScene.MOABSceneController;
+import controller.SSHConnectionScene.SSHConnectionController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,31 +28,46 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.util.Duration;
+import model.MySession;
 
 /**
  * FXML Controller class
  *
  * @author ardkastrati
  */
-public class MainSceneController implements Initializable {
+public class MainSceneController implements Initializable, Controller {
     
     
     private static Popup popUp;
     private static Label popUpMessage;
     
+    
+    @FXML
+    private Label status;
+    
+    
+    
+    @FXML 
+    private SSHConnectionController sshConnectionController;
+    /*@FXML
+    private CompileJobSceneController compileJobController*/
+     @FXML
+    private MOABSceneController moabController;
+    /*@FXML
+    private VisualizerSceneController visualizerController;*/
+    
+    
     @FXML
     private BorderPane border;
-    
-    private Session ard;
-    
-    @FXML
-    private ScrollPane body;
-  
     @FXML
     private TabPane mainTabPane;
     
-    public static Session session;
     
+    
+    
+    /*private MainSceneController() {
+        // intentionally left Blank;
+    }*/
     
     /**
      * Initializes the controller class.
@@ -74,8 +93,63 @@ public class MainSceneController implements Initializable {
         popUp.getContent().add(popUpMessage);
         
         mainTabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-            System.err.println("changed");
+            System.out.println("TAB: " +  newTab);
+            switch(oldTab.getId()) {
+                case "sshConnection" :
+                    sshConnectionController.onExit();
+                    break;
+                case "compileJob" :
+                    //compileJobController.onExit();
+                    break;
+                case "moab" :
+                    moabController.onExit();
+                    break;
+                case "jobs" :
+                    //jobsControler.onExit();
+                    break;
+                case "visualizer" :
+                    //visualizerController.onExit();
+                    break;
+                default :
+                    assert false : this;
+                    break;
+            } 
+            
+            switch(newTab.getId()) {
+                case "sshConnection" :
+                    sshConnectionController.onEntry();
+                    break;
+                case "compileJob" :
+                    //compileJobController.onEntry();
+                    break;
+                case "moab" :
+                    moabController.onEntry();
+                    break;
+                case "jobs" :
+                    //jobsController.onExit();
+                    break;
+                case "visualizer" :
+                    //visualizerController.onExit();
+                    break;
+                default :
+                    assert false : this;
+                    break;
+            }
         });
+        
+        ChangeListener<MySession.SessionStatus> listener = (obs, oldStatus, newStatus) -> {
+                if (newStatus == MySession.SessionStatus.DISCONNECTED) {
+                    status.setText("Disconnected");
+                } else if ( newStatus == MySession.SessionStatus.READY) {
+                    status.setText("Ready");
+                } else {
+                    status.setText("Online");
+                }
+            };
+        
+        MySession.getInstant().sessionStatusProperty().addListener(listener);
+        
+        
             
     }    
     
@@ -104,23 +178,21 @@ public class MainSceneController implements Initializable {
        fadeTransition.play();
         
     }
-    public static Session getSession() throws Exception {
-        try {
-            ChannelExec testChannel = (ChannelExec) session.openChannel("exec");
-            testChannel.setCommand("true");
-            testChannel.connect();
-            
-            System.out.println("Session erfolgreich getestet, verwende sie erneut");
-            testChannel.disconnect();
-           
-        } catch (Throwable t) {
-            System.out.println("Session kaputt. Baue neue.");
-            /*session = jsch.getSession(user, host, port);
-            session.setConfig(config);
-            session.connect();*/
-        }
-    return session;
-}
+   
+    /*public void setTab(int tabNumber) {
+       mainTabPane.getSelectionModel().select(tabNumber);
+    }*/
+
+    @Override
+    public void onEntry() {
+        //TODO: load saved usernames, or preferences ...
+    }
+
+    @Override
+    public void onExit() {
+        MySession.getInstant().removeConnection();
+    }
+    
     
     
 }

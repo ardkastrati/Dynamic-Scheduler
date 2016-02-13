@@ -20,7 +20,7 @@ import javafx.concurrent.Task;
  *
  * @author ardkastrati
  */
-public class LoadSftpTreeService extends Service<ArrayList<SftpTreeItem>> {
+/*public class LoadSftpTreeService extends Service<ArrayList<SftpTreeItem>> {
 
     private String currentPath;
     private ChannelSftp sftp;
@@ -32,9 +32,10 @@ public class LoadSftpTreeService extends Service<ArrayList<SftpTreeItem>> {
      *
      * @return A task
      */
-    @Override
+    /*@Override
+    
     protected Task<ArrayList<SftpTreeItem>> createTask() {
-        return new LoadSftpTreeTask(sftp, currentPath);
+       // return new LoadSftpTreeTask(sftp, currentPath);
     }
     
     
@@ -46,4 +47,4 @@ public class LoadSftpTreeService extends Service<ArrayList<SftpTreeItem>> {
         this.sftp = sftp;
     }
     
-}
+}*/

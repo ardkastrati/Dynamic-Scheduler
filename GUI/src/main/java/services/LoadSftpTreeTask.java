@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.control.TreeItem;
+import model.MySession;
 
 /**
  *
@@ -23,7 +24,6 @@ import javafx.scene.control.TreeItem;
 
 public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
     
-    private ChannelSftp sftp;
     private String path;
    
 
@@ -31,8 +31,8 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
      *
      * @param sftp
      */
-    public LoadSftpTreeTask(ChannelSftp sftp, String path) {
-        this.sftp = sftp;
+    public LoadSftpTreeTask(String path) {
+        
         this.path = path;
     }
 
@@ -40,17 +40,25 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
     @Override
     protected ArrayList<SftpTreeItem> call() throws Exception {
         
-      
+       ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
        
         ArrayList<SftpTreeItem> treeChildrens = null;
            
-               
-                Vector childrens = sftp.ls(path);
+                 System.out.println("path:" + path);
+                 System.out.println(sftp);
+                 Vector childrens = null;
+                 try {
+                     childrens = sftp.ls(path);
+                 } catch(Exception e) {
+                        System.out.println(e.getCause()); 
+                  }
+                System.out.println("Childrens " + childrens);
                 if(childrens != null){
                     SftpATTRS stat = null;
                     treeChildrens = new ArrayList<>(childrens.size());
 
                     for(int i = 0; i < childrens.size(); i++) {
+                        
                         Object obj= childrens.elementAt(i);
                        
                         if(obj instanceof com.jcraft.jsch.ChannelSftp.LsEntry){
@@ -67,7 +75,7 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
                             SftpTreeItem child = new SftpTreeItem(builder.toString());  
                             treeChildrens.add(child);
                            }
-                           //System.out.println("added: " + builder.toString());
+                           System.out.println("added: " + builder.toString());
                         }
                         updateProgress(i, childrens.size());
                        

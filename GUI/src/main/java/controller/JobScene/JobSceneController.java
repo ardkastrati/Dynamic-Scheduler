@@ -4,6 +4,7 @@
  */
 package controller.JobScene;
 
+import controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -13,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author ardkastrati
  */
-public class JobSceneController implements Initializable {
+public class JobSceneController implements Initializable, Controller {
 
     /**
      * Initializes the controller class.
@@ -22,5 +23,15 @@ public class JobSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @Override
+    public void onEntry() {
+      
+    }
+
+    @Override
+    public void onExit() {
+      
+    }
     
 }

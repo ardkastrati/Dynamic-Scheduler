@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import components.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -13,7 +14,7 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="740.0">
          <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="740.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="540.0" prefWidth="740.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label alignment="CENTER_RIGHT" text="Username:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <padding>
@@ -39,7 +40,7 @@
                      </padding>
                   </Label>
                   <TextField fx:id="usernameField" maxHeight="30.0" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Button fx:id="connect" mnemonicParsing="false" onAction="#connect" prefHeight="27.0" prefWidth="95.0" text="Connect" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Button fx:id="connect" mnemonicParsing="false" onAction="#onConnect" prefHeight="27.0" prefWidth="95.0" text="Connect" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <NumericTextField fx:id="portField" maxHeight="30.0" maxWidth="50.0" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label text="Port number:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <padding>
@@ -72,6 +73,17 @@
                   <Insets />
                </opaqueInsets>
             </GridPane>
+            <Label fx:id="onConnectedLabel" layoutX="268.0" layoutY="368.0" pickOnBounds="false" prefHeight="40.0" prefWidth="204.0" text="Successfully connected" textAlignment="CENTER" visible="false">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </Label>
+            <Button fx:id="disconnect" layoutX="331.0" layoutY="421.0" mnemonicParsing="false" onAction="#onDisconnect" pickOnBounds="false" prefHeight="27.0" prefWidth="94.0" text="Disconnect" visible="false" />
+            <ImageView fx:id="imageOnConnected" fitHeight="199.0" fitWidth="199.0" layoutX="286.0" layoutY="47.0" visible="false">
+               <image>
+                  <Image url="@../images/successfullyConnected.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </content>

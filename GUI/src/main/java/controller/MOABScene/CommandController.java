@@ -4,18 +4,17 @@
  */
 package controller.MOABScene;
 
+import controller.Controller;
 import javafx.fxml.FXMLLoader;
 
 /**
  *
  * @author ardkastrati
  */
-public interface CommandController {
+public interface CommandController extends Controller {
     
-    public FXMLLoader onExecuteClicked();   
+    public void onExecuteClicked();   
     public void onCancelClicked();
-    
-    
     
     public String getOnExecuteText();
     

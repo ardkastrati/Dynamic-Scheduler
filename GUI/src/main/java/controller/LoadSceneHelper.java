@@ -22,7 +22,6 @@ public class LoadSceneHelper {
         FXMLLoader loader = null;
          switch(command) {
                 case "CREATE SCRIPT":
-                    
                     loader = new FXMLLoader(getClass().getResource("/fxml/JobScriptCreatorScene.fxml"));
                     break;
                 case "MSUB" :

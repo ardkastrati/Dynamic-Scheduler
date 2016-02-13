@@ -31,8 +31,8 @@ public class JobScriptSceneController implements Initializable, CommandControlle
     }    
 
     @Override
-    public FXMLLoader onExecuteClicked() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onExecuteClicked() {
+       
     }
 
     @Override
@@ -44,6 +44,16 @@ public class JobScriptSceneController implements Initializable, CommandControlle
     @Override
     public String getOnExecuteText() {
          return "Save";
+    }
+
+    @Override
+    public void onEntry() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onExit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

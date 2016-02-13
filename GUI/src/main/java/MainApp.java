@@ -6,6 +6,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
+import controller.Controller;
 import controller.MOABScene.DirectoryChooserSceneController;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -34,57 +35,18 @@ public class MainApp extends Application {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
         
         Parent root = loader.load();
-        
-       // DirectoryChooserSceneController controller = (DirectoryChooserSceneController) loader.getController();
+        Controller controller = loader.getController();
        
-        
-        /*
-        
-        // SFTP ---------------------------------------------------------
-            JSch jsch=new JSch();
-
-            //String host=null;
-            // host=JOptionPane.showInputDialog("Enter username@hostname",
-             //                            System.getProperty("user.name")+
-              //                           "@localhost"); 
-            
-      
-            String user= "";
-            String host= "";
-            int port=22;
-
-            Session session=jsch.getSession(user, host, port);
-
-            // username and password will be given via UserInfo interface.
-            //UserInfo ui=new Sftp.MyUserInfo();
-            session.setPassword("");
-            //session.setHost(host);
-            //sessio
-            java.util.Properties config = new java.util.Properties(); 
-            config.put("StrictHostKeyChecking", "no");
-            session.setConfig(config);
-            session.connect();
-
-            Channel channel=session.openChannel("sftp");
-            channel.connect();
-            ChannelSftp c=(ChannelSftp)channel;
-        
-        // End SFTP ------------------------------------------------------
-            
-         
-         
-         controller.init(c);
-      
-      */
-      
-        
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
         stage.setTitle("Dynamic scheduler for scientific simulations");
         stage.setScene(scene);
+        controller.onEntry();
         
-       
+        stage.setOnCloseRequest(event -> {
+            controller.onExit();
+        });
        
         stage.show();
       

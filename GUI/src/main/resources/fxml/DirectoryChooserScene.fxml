@@ -8,9 +8,12 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MOABScene.DirectoryChooserSceneController">
    <children>
-      <TreeView fx:id="sftpTree" layoutX="162.0" layoutY="74.0" prefHeight="316.0" prefWidth="373.0" />
+      <TreeView fx:id="sftpTree" disable="true" layoutX="162.0" layoutY="74.0" prefHeight="316.0" prefWidth="373.0" />
       <Label layoutX="162.0" layoutY="23.0" prefHeight="40.0" prefWidth="373.0" text="Please choose the directory where the file should be saved:" wrapText="true" />
       <Label layoutX="49.0" layoutY="413.0" prefHeight="17.0" prefWidth="64.0" text="Diretory:" />
       <TextField fx:id="sftpPath" disable="true" layoutX="120.0" layoutY="408.0" prefHeight="27.0" prefWidth="455.0" promptText="." />
+      <ProgressIndicator fx:id="connectingIndicator" layoutX="322.0" layoutY="186.0" prefHeight="84.0" prefWidth="64.0" progress="0.0" visible="false" />
+      <Button fx:id="tryNewConnection" layoutX="252.0" layoutY="338.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" text="Try a new connection" />
+      <Label fx:id="noConnectionLabel" layoutX="172.0" layoutY="251.0" prefHeight="60.0" prefWidth="363.0" text="There cannot be established a connection to the server. Please try to connect again." textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>
