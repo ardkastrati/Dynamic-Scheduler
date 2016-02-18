@@ -3,6 +3,8 @@
  */
 package main;
 
+import visualiser.TaskFlowVisualiser;
+import visualiser.VisualisationSceneController;
 import visualiser.Visualiser;
 
 /**
@@ -19,8 +21,9 @@ public class Main {
 //		// TODO Automatisch generierter Methodenstub
 //		Visualiser v = new Visualiser();
 //		System.out.println("Debug");
-		Visualiser.mai(args);
-		DiagramScene.mai(args);
+		Visualiser v = new TaskFlowVisualiser();
+		VisualisationSceneController.mai(args, v);
+//		DiagramScene.mai(args);
 	}
 
 }

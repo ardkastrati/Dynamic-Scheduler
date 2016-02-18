@@ -176,3 +176,7 @@ pythontex-files-*/
 code/bin/*
 code/lib/*
 code/build
+
+#eclipse metadata
+code/src/visualiser/.metadata
+*.class
