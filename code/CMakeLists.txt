@@ -46,6 +46,6 @@ set(SOURCE_FILES
     src/ScientificCode.cpp
     src/ScientificCode.h
     src/Types.h
-    Makefile src/scheduler/MpiWinSchedulingStrategy.h src/worker/WorkerExecutor.cpp src/worker/WorkerExecutor.h src/worker/TaskStealingWorker.cpp src/worker/TaskStealingWorker.h src/worker/WorkerForwarder.h src/worker/WorkerForwarder.cpp src/datamining/DummyDataMining.cpp src/datamining/DummyDataMining.h src/util/CommandLineParser.cpp src/util/CommandLineParser.h src/scheduler/DesignEnum.h src/scheduler/SchedulingStrategyEnum.h src/util/TimeUtility.cpp src/util/TimeUtility.h src/scheduler/StrategyEnum.h src/UserConfiguration.h)
+    Makefile src/scheduler/MpiWinSchedulingStrategy.h src/worker/WorkerExecutor.cpp src/worker/WorkerExecutor.h src/worker/TaskStealingWorker.cpp src/worker/TaskStealingWorker.h src/worker/WorkerForwarder.h src/worker/WorkerForwarder.cpp src/datamining/DummyDataMining.cpp src/datamining/DummyDataMining.h src/util/CommandLineParser.cpp src/util/CommandLineParser.h src/scheduler/DesignEnum.h src/scheduler/SchedulingStrategyEnum.h src/util/TimeUtility.cpp src/util/TimeUtility.h src/scheduler/StrategyEnum.h src/UserConfiguration.h src/scheduler/MpiWinFIFO.cpp src/scheduler/MpiWinFIFO.h)
 
 add_executable(code ${SOURCE_FILES})

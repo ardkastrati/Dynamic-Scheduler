@@ -1,60 +1,47 @@
 #define NDEBUG
 
-#include <stddef.h>
-#include <iostream>
-#include "MpiWinLIFO.h"
+#include "MpiWinFIFO.h"
 #include "../../lib/easylogging++.h"
-#include "../Const.h"
 
-#define ASSERT 0
-
-
-MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
+MpiWinFIFO::MpiWinFIFO(int size, int rank, int number_of_processors) :
     rank(rank),
-    number_of_processors(number_of_processors)
+    number_of_processors(number_of_processors),
+    size(size)
 {
-    init(max_size);
+    init(size);
 }
 
-MpiWinLIFO::~MpiWinLIFO()
+MpiWinFIFO::~MpiWinFIFO()
 {
-    LOG(DEBUG) << "MPIWINLIFO destructor!";
-    MPI_Win_free(&win_queue);
     MPI_Win_free(&win_offset);
-    //MPI_Win_free(&win_size);
+    MPI_Win_free(&win_queue);
 
     MPI_Free_mem(queue);
-    //MPI_Free_mem(size);
     MPI_Free_mem(offset);
 }
 
-void MpiWinLIFO::init(int max_size)
+void MpiWinFIFO::init(int max_size)
 {
     int queue_size = sizeof(Task) * max_size;
 
     MPI_Alloc_mem(queue_size, MPI_INFO_NULL, &queue);
-    MPI_Alloc_mem(sizeof(int), MPI_INFO_NULL, &offset);
+    MPI_Alloc_mem(sizeof(int) * 2, MPI_INFO_NULL, &offset);
 
-    *offset = 0;
+    offset[HEAD] = 0;
+    offset[TAIL] = 0;
 
     int disp_unit = sizeof(Task);
 
     MPI_Win_create(queue, queue_size, disp_unit, MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_queue);
-    MPI_Win_create(offset, sizeof(int), sizeof(int), MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_offset);
-
-}
-Task MpiWinLIFO::get_next_task() {
-    //TODO: implement get_next_task()
-    throw 1;
-    //return steal_next_task(rank);
+    MPI_Win_create(offset, sizeof(int) * 2, sizeof(int), MPI_INFO_NULL, MY_MPI_COMM_TASKSTEALING, &win_offset);
 }
 
-int MpiWinLIFO::get_task_count() {
-    return get_task_count(rank);
+Task MpiWinFIFO::get_next_task()
+{
+    throw "Not implemented yet";
 }
 
-
-Task MpiWinLIFO::pop_next_task() {
+Task MpiWinFIFO::pop_next_task() {
     Task task;
     bool task_found = false;
     //TODO: hard coded DATABASE
@@ -65,22 +52,24 @@ Task MpiWinLIFO::pop_next_task() {
             task_found = true;
         }
     }
-
     return task;
 }
 
-
-void MpiWinLIFO::push_new_task(Task task, long runtime)
+void MpiWinFIFO::push_new_task(Task task, long runtime)
 {
 
-    int current_offset;
+    LOG(INFO) << "push: " << task.parameters[0];
+
+    int current_offset[2];
+
     bool already_locked = true;
     while(already_locked) {
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
-        current_offset = offset[0];
-        *offset = lock;
+        current_offset[HEAD] = offset[HEAD];
+        current_offset[TAIL] = offset[TAIL];
+        offset[HEAD] = lock;
         MPI_Win_unlock(rank, win_offset);
-        if (current_offset != lock) {
+        if (current_offset[HEAD] != lock) {
             already_locked = false;
         }
     }
@@ -89,26 +78,48 @@ void MpiWinLIFO::push_new_task(Task task, long runtime)
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
 
-    queue[current_offset] = task;
+    queue[current_offset[TAIL]] = task;
 
     MPI_Win_unlock(rank, win_queue);
 
-    current_offset++;
+    current_offset[TAIL] = (current_offset[TAIL] + 1) % size;
+
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
-    *offset = current_offset;
+    offset[HEAD] = current_offset[HEAD];
+    offset[TAIL] = current_offset[TAIL];
     MPI_Win_unlock(rank, win_offset);
 
-    //LOG(INFO) << "pushed: " << task.parameters[0];
+
 }
 
-
-SchedulingStrategy* MpiWinLIFO::change_strategy(SchedulingStrategy* new_strategy)
+SchedulingStrategy* MpiWinFIFO::change_strategy(SchedulingStrategy* new_strategy)
 {
     throw "Not supported operation";
 }
-Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
+int MpiWinFIFO::get_task_count()
+{
+    return get_task_count(rank);
+}
+
+int MpiWinFIFO::get_task_count(int target_rank) {
+
+    int offset[2];
+
+    MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_offset);
+    MPI_Get(&offset, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);
+    MPI_Win_unlock(target_rank, win_offset);
+
+    return (offset[TAIL] - offset[HEAD] + size) % size;
+}
+
+bool MpiWinFIFO::is_statistic_based()
+{
+    return false;
+}
+
+Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
     //LOG(INFO) << "try to steal task from: " <<target_rank;
-    int current_offset;
+    int current_offset[2];
     bool already_locked = true;
     int tries = 0;
     //TODO:Documentation for number_of_tries parameter
@@ -116,10 +127,10 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     {
         tries++;
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
-        MPI_Get(&current_offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
+        MPI_Get(&current_offset, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);
         MPI_Put(&lock, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
         MPI_Win_unlock(target_rank, win_offset);
-        if (current_offset != lock) {
+        if (current_offset[HEAD] != lock) {
             already_locked = false;
         }
     }
@@ -138,11 +149,11 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     }
     else
     {
-        current_offset--;
 
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
-        MPI_Get(&task, 1, MY_MPI_TASK_TYPE, target_rank, current_offset, 1, MY_MPI_TASK_TYPE, win_queue);
+        MPI_Get(&task, 1, MY_MPI_TASK_TYPE, target_rank, current_offset[0], 1, MY_MPI_TASK_TYPE, win_queue);
         MPI_Win_unlock(target_rank, win_queue);
+        current_offset[HEAD] = (current_offset[HEAD] + 1) % size;
     }
     //LOG(INFO) << current_offset;
 
@@ -151,20 +162,4 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     MPI_Win_unlock(target_rank, win_offset);
 
     return task;
-}
-
-int MpiWinLIFO::get_task_count(int target_rank) {
-
-    int offset;
-
-    MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_offset);
-    MPI_Get(&offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
-    MPI_Win_unlock(target_rank, win_offset);
-
-    return offset;
-}
-
-bool MpiWinLIFO::is_statistic_based()
-{
-    return false;
 }
