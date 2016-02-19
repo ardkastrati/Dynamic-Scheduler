@@ -24,12 +24,16 @@ BookkeepingDatabase::BookkeepingDatabase()
 
 void BookkeepingDatabase::initNewFile()
 {
-
+	int size;
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 	std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
 	bkfile.open ("Bookkeeping.txt", std::fstream::out | std::fstream::ate);
 	bkfile << "Bookkeeping: File created on: ";
 	bkfile << std::ctime(&now_c) << std::endl;
+	bkfile << "####DATA_SECTION####" << std::endl;
+	bkfile << "Processor number: " << size << std::endl;
+	bkfile << "####DATA_START####" << std::endl;
 	bkfile.close();
 }
 
@@ -37,7 +41,6 @@ void BookkeepingDatabase::createFile()
 {
 	initNewFile();
 }
-
 
 void BookkeepingDatabase::insertTaskData(string data)
 {

@@ -18,19 +18,27 @@
 
 using namespace std;
 
-
 DatabaseHandler::DatabaseHandler()
 {
 	data_bookkeeping = new BookkeepingDatabase();
 	data_statistic = new StatisticDatabase();
+	stInq = new StatisticInquiry;
+	size = 0;
 }
 
-/*
- *
- */
+void DatabaseHandler::storeLocalStatistic(TaskData* data, long runtime)
+{
+	//should be already known
+	stInq->parameter_size = data->parameter_size;
+	stInq->runtime.push_back(runtime);
+
+	//
+	stInq->para.insert(stInq->para.end(), &data->parameters[0], &data->parameters[data->parameter_size]);
+
+}
+
 void DatabaseHandler::storeData(TaskData *data)
 {
-
 	string bookkeeping_package = dataParserBookkeeping(data);
 	if(data->event == 2)
 	{
@@ -40,10 +48,6 @@ void DatabaseHandler::storeData(TaskData *data)
 	data_bookkeeping->insertTaskData(bookkeeping_package);
 }
 
-//pass by value or reference? server has struct
-/*
- *
- */
 string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 {
 
@@ -130,15 +134,12 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 	return package;
 }
 
-/*
- *
- */
 string DatabaseHandler::dataParserStatistic(TaskData *data)
 {
 	string package;
 	string part_of_task;
 
-	int task_runtime = data->time_ended - data->time_started;
+	long task_runtime = data->time_ended - data->time_started;
 
 	part_of_task = to_string(static_cast<long long>(task_runtime));
 	package.append(part_of_task);
@@ -155,6 +156,15 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 
 	package.append("#");
 
+	//store in local
+	storeLocalStatistic(data, task_runtime);
+
 	return package;
 }
+
+void readTaskData()
+{
+
+}
+
 

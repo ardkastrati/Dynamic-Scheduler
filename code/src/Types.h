@@ -15,6 +15,12 @@
     //sum from i = 0 to c (a+b*i)
 } TaskType;*/
 
+typedef struct _StatisticInquiry {
+	int parameter_size;
+	std::vector<long> runtime;
+	std::vector<double> para;
+} StatisticInquiry;
+
 typedef struct _Task {
     long time_appeared;
     int parent;

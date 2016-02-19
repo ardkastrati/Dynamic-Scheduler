@@ -17,16 +17,22 @@ using namespace std;
 class Database
 {
 public:
-	//darf nur einmal initialisiert werden
+	/*
+	 * The constructor of the abstract class Database.
+	 */
 	Database();
-	//virtual ~Database() =0;
-	virtual void insertTaskData(string data) = 0;
-	//virtual void getDataPackage() = 0; //nur statistic, gibt noch zurück, virtual?
-	void deleteLastEntry();
-	void exportDatabase();
-	//virtual void createFile() = 0;
-	//virtual void deleteFile() = 0;
 
+	/*
+	 * The deconstructor of the abstract class Database.
+	 */
+	~Database();
+
+	/*
+	 * The insertTaskData writes the datastring in the file.
+	 * The function need to be inherited.
+	 * @param data string which contains one data package of a task
+	 */
+	virtual void insertTaskData(string data) = 0;
 
 private:
 };

@@ -9,7 +9,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-//database initialisieren bzw laden
 
 Database::Database()
 {

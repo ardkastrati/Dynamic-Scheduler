@@ -38,6 +38,8 @@ void StatisticDatabase::initNewFile()
 	stfile.open ("Statistic.txt", std::fstream::out | std::fstream::ate);
 	stfile << "Statistic: File created on: ";
 	stfile << std::ctime(&now_c) << std::endl;
+	stfile << "####DATA_SECTION####" << std::endl;
+	stfile << "####DATA_START####" << std::endl;
 	stfile.close();
 }
 
