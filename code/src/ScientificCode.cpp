@@ -41,7 +41,7 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
         place_task_forwarder(context, newTask);
 
     }
-    for (int i = 0; i < task.parameters[0] * 1000000; i++) {
+    for (int i = 0; i < task.parameters[0] * 100000; i++) {
         log(i);
 
     }
