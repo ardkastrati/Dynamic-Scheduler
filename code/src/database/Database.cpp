@@ -10,10 +10,6 @@
 #include <fstream>
 #include <string>
 
-Database::Database()
-{
-
-}
 
 void insertTaskData(string data)
 {

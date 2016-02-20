@@ -23,7 +23,6 @@ public:
 	 * In that case two objects for: bookkeeping, statistic.
 	 */
 	DatabaseHandler();
-	void initDatabase();
 
 	/*
 	 * The dataParserBookkeeping is parsing all information that are relevant for the bookkeeping

@@ -22,6 +22,11 @@ BookkeepingDatabase::BookkeepingDatabase()
 	createFile();
 }
 
+BookkeepingDatabase::~BookkeepingDatabase()
+{
+
+}
+
 void BookkeepingDatabase::initNewFile()
 {
 	int size;

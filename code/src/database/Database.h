@@ -17,15 +17,6 @@ using namespace std;
 class Database
 {
 public:
-	/*
-	 * The constructor of the abstract class Database.
-	 */
-	Database();
-
-	/*
-	 * The deconstructor of the abstract class Database.
-	 */
-	~Database();
 
 	/*
 	 * The insertTaskData writes the datastring in the file.
