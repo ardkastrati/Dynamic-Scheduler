@@ -84,7 +84,7 @@ void FIFOTestCase::test_get_next_task() {
     task2.parameter_size = 2;
     fifo_queue->push_new_task(task, 0);
     fifo_queue->push_new_task(task2, 0);
-    CPPUNIT_ASSERT(fifo_queue->get_task_count() == 2);
+    CPPUNIT_ASSERT(fifo_queue->get_task_count() == 1);
     CPPUNIT_ASSERT(fifo_queue->get_next_task().parameter_size == 1);
     CPPUNIT_ASSERT(fifo_queue->get_task_count() == 2);
     CPPUNIT_ASSERT(fifo_queue->get_next_task().parameter_size == 1);
