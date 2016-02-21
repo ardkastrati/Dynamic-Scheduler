@@ -5,7 +5,7 @@
 #include <cstring>
 #include "../ScientificCode.h"
 #include "../Const.h"
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 #include "../util/TimeUtility.h"
 
 
@@ -69,13 +69,13 @@ void WorkerExecutor::run_task(Task task)
 
     //TODO: Send task data to database
     MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
-    LOG(INFO) << rank << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
+    //LOG(INFO) << rank << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD);
 }
 
 void WorkerExecutor::place_task(Task task)
 {
-    LOG(DEBUG) << "place_task: " << task.parameters[0];
+    //LOG(DEBUG) << "place_task: " << task.parameters[0];
     task.time_appeared = get_time_in_mirco();
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, REQUEST, MPI_COMM_WORLD);
 

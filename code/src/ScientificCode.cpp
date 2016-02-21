@@ -1,23 +1,23 @@
 #define NDEBUG
 
 #include "ScientificCode.h"
-#include "../lib/easylogging++.h"
+//#include "../lib/easylogging++.h"
 #include <cmath>
 #include "worker/Worker.h"
 
 void code_postprocessing_master()
 {
-    LOG(DEBUG) << "code postprocessing master";
+    //LOG(DEBUG) << "code postprocessing master";
 }
 
 void code_postprocessing_slave()
 {
-    LOG(DEBUG) << "code postprocessing slave";
+    //LOG(DEBUG) << "code postprocessing slave";
 }
 
 void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initial_tasks_number)
 {
-    LOG(DEBUG) << "code preprocessing master";
+    //LOG(DEBUG) << "code preprocessing master";
     *initial_tasks_number = 100;
     for (int i = 0; i < 100; i++)
     {
@@ -30,7 +30,7 @@ void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initia
 
 void code_preprocessing_slave(int argc, char* argv[])
 {
-    LOG(DEBUG) << "code preprocessing slave";
+    //LOG(DEBUG) << "code preprocessing slave";
 }
 
 void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* context) {
@@ -45,5 +45,5 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
         log(i);
 
     }
-    LOG(DEBUG) << "task done:" << task.parameters[0];
+    //LOG(DEBUG) << "task done:" << task.parameters[0];
 }

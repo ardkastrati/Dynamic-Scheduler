@@ -186,3 +186,5 @@ pythontex-files-*/
 /Test/nbproject/private/
 /Test/dist/
 /Test/build/
+/code/test/build/
+/code/test/dist/

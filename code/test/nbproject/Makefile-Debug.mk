@@ -1,0 +1,100 @@
+#
+# Generated Makefile - do not edit!
+#
+# Edit the Makefile in the project folder instead (../Makefile). Each target
+# has a -pre and a -post target defined where you can add customized code.
+#
+# This makefile implements configuration specific macros and targets.
+
+
+# Environment
+MKDIR=mkdir
+CP=cp
+GREP=grep
+NM=nm
+CCADMIN=CCadmin
+RANLIB=ranlib
+CC=icc
+CCC=mpic++
+CXX=mpic++
+FC=ifort
+AS=as
+
+# Macros
+CND_PLATFORM=Intel-Linux
+CND_DLIB_EXT=so
+CND_CONF=Debug
+CND_DISTDIR=dist
+CND_BUILDDIR=build
+
+# Include project Makefile
+include test-Makefile.mk
+
+# Object Directory
+OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
+
+# Object Files
+OBJECTFILES= \
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/scheduler/FIFOTestCase.o \
+	${OBJECTDIR}/scheduler/SchedulerTestSuite.o
+
+
+# C Compiler Flags
+CFLAGS=
+
+# CC Compiler Flags
+CCFLAGS=
+CXXFLAGS=
+
+# Fortran Compiler Flags
+FFLAGS=
+
+# Assembler Flags
+ASFLAGS=
+
+# Link Libraries and Options
+LDLIBSOPTIONS=/usr/lib/x86_64-linux-gnu/libcppunit.a ../bin/libscheduler.a
+
+# Build Targets
+.build-conf: ${BUILD_SUBPROJECTS}
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: /usr/lib/x86_64-linux-gnu/libcppunit.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ../bin/libscheduler.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
+	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/main.o: main.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/scheduler/FIFOTestCase.o: scheduler/FIFOTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/scheduler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
+
+${OBJECTDIR}/scheduler/SchedulerTestSuite.o: scheduler/SchedulerTestSuite.cpp 
+	${MKDIR} -p ${OBJECTDIR}/scheduler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SchedulerTestSuite.o scheduler/SchedulerTestSuite.cpp
+
+# Subprojects
+.build-subprojects:
+
+# Clean Targets
+.clean-conf: ${CLEAN_SUBPROJECTS}
+	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test
+
+# Subprojects
+.clean-subprojects:
+
+# Enable dependency checking
+.dep.inc: .depcheck-impl
+
+include .dep.inc

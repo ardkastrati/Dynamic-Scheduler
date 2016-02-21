@@ -13,7 +13,7 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 #include <mpi.h>
 
 using namespace std;

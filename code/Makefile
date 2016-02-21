@@ -15,6 +15,8 @@ $(TARGET): $(OBJECTS)
 	@mkdir -p bin
 	@echo " Linking..."
 	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
+	@echo " ar rcs bin/libscheduler.a $(filter-out build/Main.o,$^)"; ar rcs bin/libscheduler.a $(filter-out build/Main.o,$^)
+	
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
@@ -29,7 +31,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 
 clean:
 	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET) bin/libscheduler.a"; $(RM) -r $(BUILDDIR) $(TARGET) bin/libscheduler.a
 
 # Tests
 tester:

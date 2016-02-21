@@ -1,7 +1,7 @@
 #define NDEBUG
 
 #include "DatabaseServer.h"
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 #include <mpi.h>
 #include "../Const.h"
 #include "../TypesExtern.h"
@@ -14,13 +14,13 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 }
 DatabaseServer::~DatabaseServer()
 {
-    LOG(DEBUG) << "Destructor DatabaseServer";
+    //LOG(DEBUG) << "Destructor DatabaseServer";
     delete database_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
 {
-    LOG(DEBUG) << "Ich bin ein Datenbankserver";
+    //LOG(DEBUG) << "Ich bin ein Datenbankserver";
     run();
 }
 
@@ -43,7 +43,7 @@ void DatabaseServer::run()
         else if (status.MPI_TAG == DATAENTRY)
         {
             database_handler->storeData(&task_data);
-            LOG(DEBUG) << "Stored: " << task_data.parameters[0];
+            //LOG(DEBUG) << "Stored: " << task_data.parameters[0];
         }
     }
 }

@@ -1,5 +1,5 @@
 #include "GridDataMining.h"
-#include "../../../lib/easylogging++.h"
+//#include "../../../lib/easylogging++.h"
 /**
  * GridDataMinig implementation
  */

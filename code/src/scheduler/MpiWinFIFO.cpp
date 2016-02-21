@@ -1,7 +1,7 @@
 #define NDEBUG
 
 #include "MpiWinFIFO.h"
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 
 MpiWinFIFO::MpiWinFIFO(int size, int rank, int number_of_processors) :
     rank(rank),
@@ -58,7 +58,7 @@ Task MpiWinFIFO::pop_next_task() {
 void MpiWinFIFO::push_new_task(Task task, long runtime)
 {
 
-    LOG(INFO) << "push: " << task.parameters[0];
+    //LOG(INFO) << "push: " << task.parameters[0];
 
     int current_offset[2];
 

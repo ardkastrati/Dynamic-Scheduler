@@ -2,7 +2,7 @@
 
 #include "AbstractScheduler.h"
 #include "../ScientificCode.h"
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 #include <assert.h>
 
 AbstractScheduler::AbstractScheduler(SchedulingStrategy* scheduling_strategy,
@@ -17,7 +17,7 @@ AbstractScheduler::~AbstractScheduler()
 {
     delete scheduling_strategy;
     delete data_miner;
-    LOG(DEBUG) << "Destructor AbstractScheduler";
+    //LOG(DEBUG) << "Destructor AbstractScheduler";
 }
 
 void AbstractScheduler::preprocessing(int argc, char* argv[], Task* buffer, int *initial_tasks_number) {

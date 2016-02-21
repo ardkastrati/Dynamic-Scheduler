@@ -2,7 +2,7 @@
 
 #include <mpi.h>
 #include "Master.h"
-#include "../../lib/easylogging++.h"
+//#include "../../lib/easylogging++.h"
 #include "../Const.h"
 
 
@@ -13,7 +13,7 @@ free_worker(new std::queue<int>())
 }
 
 Master::~Master(){
-    LOG(DEBUG) << "Destructor master";
+    //LOG(DEBUG) << "Destructor master";
     delete free_worker;
 }
 
@@ -47,9 +47,9 @@ void Master::run()
             free_worker->push(worker);
 
         }else if (status.MPI_TAG == REQUEST) {
-            LOG(DEBUG) << "palce task funktion: " << task.parameters[0];
+            //LOG(DEBUG) << "palce task funktion: " << task.parameters[0];
             place_task(task);
-            LOG(DEBUG) << "added task: " << task.parameters[0];
+            //LOG(DEBUG) << "added task: " << task.parameters[0];
         }
         if (free_worker->size() > 0 && scheduling_strategy->get_task_count() > 0) {
             int worker = free_worker->front();
@@ -68,7 +68,7 @@ bool Master::is_finish()
 }
 
 void Master::execute(int argc, char* argv[]){
-    LOG(DEBUG) << "I'am a master";
+    //LOG(DEBUG) << "I'am a master";
 
     Task init_tasks[100];
     int init_tasks_number;

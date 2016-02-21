@@ -4,6 +4,7 @@
 #define PARAMTER_LENGTH 100
 
 #include <mpi.h>
+#include <vector>
 
 //typedef int TaskType;
 /*struct _TaskType {
