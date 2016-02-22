@@ -7,6 +7,9 @@
 #include "../Const.h"
 //#include "../../lib/easylogging++.h"
 #include "../util/TimeUtility.h"
+#include <iostream>
+
+using namespace std;
 
 
 WorkerExecutor::WorkerExecutor(int rank, int number_of_processors) : Executor(rank, number_of_processors) {}
@@ -69,7 +72,7 @@ void WorkerExecutor::run_task(Task task)
 
     //TODO: Send task data to database
     MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
-    //LOG(INFO) << rank << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
+    cout << "rank: " << rank << ", task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds" << endl;
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, FINISH, MPI_COMM_WORLD);
 }
 

@@ -5,6 +5,9 @@
 #include "../util/TimeUtility.h"
 //#include "../../lib/easylogging++.h"
 #include "../Const.h"
+#include <iostream>
+
+using namespace std;
 
 
 
@@ -80,5 +83,5 @@ void TaskStealingWorker::run_task(Task task)
 
     //TODO: Send task data to database
     MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
-    //LOG(INFO) << scheduler->get_rank() << " task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds";
+    cout << "rank: " << scheduler->get_rank() << ", task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds" << endl;
 }

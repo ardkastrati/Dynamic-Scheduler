@@ -13,8 +13,11 @@
 #include "Types.h"
 #include "util/TimeUtility.h"
 #include "util/CommandLineParser.h"
+#include <iostream>
 
 //INITIALIZE_EASYLOGGINGPP
+
+using namespace std;
 
 void create_mpi_task_types();
 
@@ -30,12 +33,12 @@ void create_mpi_task_types();
 int main(int argc, char* argv[])
 {
     long time_started = get_time_in_mirco();
-    //LOG(INFO) << "Scheduler started";
+    cout << "Scheduler started" << endl;
     int mpierr;
     mpierr = MPI_Init(&argc, &argv);
     if (mpierr != MPI_SUCCESS)
     {
-        //LOG(ERROR) << "ERROR: ERROR INITIATING THE MPI ENVIRONMENT, THE PROGRAM WILL ABORT" << std::endl;
+        cout << "ERROR: ERROR INITIATING THE MPI ENVIRONMENT, THE PROGRAM WILL ABORT" << std::endl;
         MPI_Abort(MPI_COMM_WORLD, mpierr);
     }
 
@@ -47,14 +50,14 @@ int main(int argc, char* argv[])
 
     create_mpi_task_types();
 
-    //LOG(DEBUG) << "Rank / Number of processors: " << rank << " / " << number_of_processors;
+    cout << "Rank / Number of processors: " << rank << " / " << number_of_processors << endl;
 
     CommandLineParser parser;
     try {
         parser.parse(argc, argv);
     } catch (const char* msg)
     {
-        //LOG(ERROR) << msg;
+        cout << msg;
         MPI_Abort(MPI_COMM_WORLD, -1);
     }
     StrategyEnum strategy = parser.get_strategy();
@@ -64,19 +67,19 @@ int main(int argc, char* argv[])
 
     if (design == TASK_STEALING)
     {
-        //LOG(INFO) << "Run in task-stealing design";
+        cout << "Run in task-stealing design" << endl;
         if (number_of_processors < 2) {
 
-            //LOG(INFO) << "You need at least 2 processes for task stealing!";
+            cout << "You need at least 2 processes for task stealing!" << endl;
             MPI_Abort(MPI_COMM_WORLD, -1);
         }
     }
     else if (design == MASTER_WORKER)
     {
-        //LOG(INFO) << "Run in Master-Worker design";
+        cout << "Run in Master-Worker design" << endl;
         if (number_of_processors < 3) {
 
-            //LOG(INFO) << "You need at least 3 processes for master worker!";
+            cout << "You need at least 3 processes for master worker!" << endl;
             MPI_Abort(MPI_COMM_WORLD, -1);
         }
     }
@@ -91,8 +94,8 @@ int main(int argc, char* argv[])
     long time_end = get_time_in_mirco();
     long time_delta = time_end - time_started;
     double time_delta_sec = ((double) time_delta) / 1000000;
-    //LOG(DEBUG) << rank << " finalized";
-    //LOG(INFO) << "Finish! Total runtime: " << time_delta_sec << " seconds";
+    cout << rank << " finalized" << endl;
+    cout << "Finish! Total runtime: " << time_delta_sec << " seconds" << endl;
     return 0;
 }
 
