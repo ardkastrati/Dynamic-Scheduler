@@ -74,32 +74,32 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/scheduler/FIFOTestCase.o: scheduler/FIFOTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
 
 ${OBJECTDIR}/scheduler/LIFOTestCase.o: scheduler/LIFOTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
 
 ${OBJECTDIR}/scheduler/LJFTestCase.o: scheduler/LJFTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LJFTestCase.o scheduler/LJFTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LJFTestCase.o scheduler/LJFTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SJFTestCase.o: scheduler/SJFTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SJFTestCase.o scheduler/SJFTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SJFTestCase.o scheduler/SJFTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SchedulerTestSuite.o: scheduler/SchedulerTestSuite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/cppunit -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SchedulerTestSuite.o scheduler/SchedulerTestSuite.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SchedulerTestSuite.o scheduler/SchedulerTestSuite.cpp
 
 # Subprojects
 .build-subprojects:

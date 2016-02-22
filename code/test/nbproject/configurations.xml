@@ -45,7 +45,12 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <standard>10</standard>
+        </cTool>
         <ccTool>
+          <stripSymbols>true</stripSymbols>
+          <standard>8</standard>
           <incDir>
             <pElem>/usr/include/cppunit</pElem>
           </incDir>

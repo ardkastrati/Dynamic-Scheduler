@@ -17,6 +17,7 @@
 #include "TestFixture.h"
 
 #include "../../src/scheduler/LIFO.h"
+#include "../../src/scheduler/SchedulingStrategy.h"
 
 using namespace CppUnit;
 
@@ -31,7 +32,7 @@ public:
     void test_get_count();
     void test_get_next_task();
 private:
-    LIFO* lifo_queue;
+    SchedulingStrategy* lifo_queue;
 
 };
 
