@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/scheduler/FIFOTestCase.o \
+	${OBJECTDIR}/scheduler/LIFOTestCase.o \
 	${OBJECTDIR}/scheduler/SchedulerTestSuite.o
 
 
@@ -73,6 +74,11 @@ ${OBJECTDIR}/scheduler/FIFOTestCase.o: scheduler/FIFOTestCase.cpp
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
+
+${OBJECTDIR}/scheduler/LIFOTestCase.o: scheduler/LIFOTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/scheduler
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SchedulerTestSuite.o: scheduler/SchedulerTestSuite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler

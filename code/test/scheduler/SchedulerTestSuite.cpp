@@ -13,10 +13,12 @@
 
 #include "SchedulerTestSuite.h"
 #include "FIFOTestCase.h"
+#include "LIFOTestCase.h"
 
 TestSuite* SchedulerTestSuite::suite() {
     TestSuite* suite = new TestSuite("Scheduler test suite");
     suite->addTest(FIFOTestCase::suite());
+    suite->addTest(LIFOTestCase::suite());
     return suite;
 }
 
