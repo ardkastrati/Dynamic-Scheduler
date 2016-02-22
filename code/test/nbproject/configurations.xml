@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>scheduler/FIFOTestCase.h</itemPath>
       <itemPath>scheduler/LIFOTestCase.h</itemPath>
+      <itemPath>scheduler/SJFTestCase.h</itemPath>
       <itemPath>scheduler/SchedulerTestSuite.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -17,6 +18,7 @@
                    projectFiles="true">
       <itemPath>scheduler/FIFOTestCase.cpp</itemPath>
       <itemPath>scheduler/LIFOTestCase.cpp</itemPath>
+      <itemPath>scheduler/SJFTestCase.cpp</itemPath>
       <itemPath>scheduler/SchedulerTestSuite.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -63,6 +65,10 @@
       </item>
       <item path="scheduler/LIFOTestCase.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="scheduler/SJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="scheduler/SchedulerTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="scheduler/SchedulerTestSuite.h" ex="false" tool="3" flavor2="0">
@@ -97,6 +103,10 @@
       <item path="scheduler/LIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="scheduler/LIFOTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="scheduler/SchedulerTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>

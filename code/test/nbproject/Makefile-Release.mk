@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/scheduler/FIFOTestCase.o \
 	${OBJECTDIR}/scheduler/LIFOTestCase.o \
+	${OBJECTDIR}/scheduler/SJFTestCase.o \
 	${OBJECTDIR}/scheduler/SchedulerTestSuite.o
 
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/scheduler/LIFOTestCase.o: scheduler/LIFOTestCase.cpp
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
+
+${OBJECTDIR}/scheduler/SJFTestCase.o: scheduler/SJFTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/scheduler
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SJFTestCase.o scheduler/SJFTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SchedulerTestSuite.o: scheduler/SchedulerTestSuite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
