@@ -36,7 +36,7 @@ void SJFTestCase::tearDown() {
 }
 
 void SJFTestCase::test_is_statistic_based() {
-    CPPUNIT_ASSERT(sjf_queue->is_statistic_based() == false);
+    CPPUNIT_ASSERT(sjf_queue->is_statistic_based() == true);
 }
 
 void SJFTestCase::test_get_count() {
