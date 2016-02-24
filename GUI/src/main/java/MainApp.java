@@ -34,7 +34,7 @@ public class MainApp extends Application {
         
        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
         
-        Parent root = loader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainScene.fxml"));
         Controller controller = loader.getController();
        
         Scene scene = new Scene(root);

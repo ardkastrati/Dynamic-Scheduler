@@ -7,7 +7,7 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
-import components.NumericTextField;
+import GUIcomponents.NumericTextField;
 import controller.Controller;
 import controller.mainScene.MainSceneController;
 import java.net.URL;

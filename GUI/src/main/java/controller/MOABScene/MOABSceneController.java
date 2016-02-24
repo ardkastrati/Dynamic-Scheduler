@@ -94,7 +94,7 @@ public class MOABSceneController implements Initializable, Controller {
         FXMLLoader loader  = loaderHelper.loadScene(command);
         try {
             System.out.println(loader);
-            parent = loader.load();
+            parent = (Node)loader.load();
             currentCommandController = loader.getController();
             System.out.println(currentCommandController);
             execute.setText(currentCommandController.getOnExecuteText());

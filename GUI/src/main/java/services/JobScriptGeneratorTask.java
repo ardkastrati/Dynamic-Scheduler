@@ -8,7 +8,7 @@ import controller.MOABScene.DirectoryChooserSceneController;
 import controller.MOABScene.MpirunSceneController;
 import controller.MOABScene.MsubController;
 import java.util.ArrayList;
-import javafx.concurrent.Task;;
+import javafx.concurrent.Task;
 import model.commands.MOAB.Msub;
 import model.commands.MPI.MpiRun;
 

@@ -51,7 +51,7 @@ public class JobScriptCreatorSceneController implements Initializable, CommandCo
             FXMLLoader loader = loaderHelper.loadScene("JobScript");
             Node newBody = null;
             try {
-                newBody = loader.load();
+                newBody = (Node)loader.load();
                 scriptController = loader.getController();
             } catch (IOException ex) {
                 Logger.getLogger(JobScriptCreatorSceneController.class.getName()).log(Level.SEVERE, null, ex);

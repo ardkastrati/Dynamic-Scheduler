@@ -84,7 +84,7 @@ public class JobScriptWizardSceneController implements Initializable, CommandCon
                 case 0: 
                     if(firstNode == null) {
                       loader = loaderHelper.loadScene("MSUB");
-                      node = loader.load();
+                      node = (Node)loader.load();
                       firstNode = node;
                       msubController = loader.getController();
                     } else {
@@ -96,7 +96,7 @@ public class JobScriptWizardSceneController implements Initializable, CommandCon
                 case 1:
                     if(secondNode == null) {
                         loader = loaderHelper.loadScene("DirectoryChooser");
-                        node = loader.load();
+                        node = (Node)loader.load();
                         secondNode = node;
                         directoryChooserController = loader.getController();
                     //MySession.getInstant().sessionStatusProperty().addListener(listener);
@@ -109,7 +109,7 @@ public class JobScriptWizardSceneController implements Initializable, CommandCon
                 case 2:
                     if(thirdNode == null) {
                      loader = loaderHelper.loadScene("MPIRUN");
-                     node = loader.load();
+                     node = (Node)loader.load();
                      thirdNode = node;
                      mpirunController = loader.getController();
                     } else {
