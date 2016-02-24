@@ -8,14 +8,36 @@ import model.NodeAccessPolicy;
 public enum MoabResources {
         
         
+       /* NODES ("nodes"){
+            private int numOfNodes;
+            @Override
+            public String getParameter() {
+                assert numOfNodes >= 0;
+                StringBuilder resourceCommand = new StringBuilder();
+                resourceCommand.append("nodes=");
+                resourceCommand.append(Integer.toString(numOfNodes));
+                return resourceCommand.toString();
+            }
+
+            @Override
+            public void setParameter(Object... parameters) throws CommandException {
+                checkNumOfParameters(1, parameters);
+                if (parameters[0] instanceof Integer) {
+                    numOfNodes = (Integer) parameters[0];
+                } else {
+                     throw new CommandException("Parameter \"nodes\" needs an integer as a parameter!");
+                }
+            }
+            
+        },*/
+    
         NODES_AND_PROCESSES_PER_NODE("nodes") {
             private int numOfNodes;
             private int numOfProcessesPerNode;
             
             @Override
             public String getParameter() {
-                assert numOfNodes >= 0 && numOfProcessesPerNode >= 0;
-                
+               assert numOfProcessesPerNode >= 0;
                 StringBuilder resourceCommand = new StringBuilder();
                 resourceCommand.append("nodes=");
                 resourceCommand.append(Integer.toString(numOfNodes));
@@ -30,9 +52,9 @@ public enum MoabResources {
                 
                 if (parameters[0] instanceof Integer && parameters[1] instanceof Integer ) {
                      numOfNodes = (Integer) parameters[0];
-               
+                     numOfProcessesPerNode = (Integer) parameters[1];
                 } else {
-                     throw new CommandException("Parameter \"nodes\" and \"processes per node\" need an integer as a parameter!");
+                     throw new CommandException("Parameter \"processes per node\" need an integer as a parameter!");
                 }
             }
 
@@ -79,7 +101,7 @@ public enum MoabResources {
          */
         PROCESSOR_MEMORY("pmem"){
             private int processMemory;
-            private MemoryUnit unit;
+           
 
             @Override
             public String getParameter() {
@@ -87,20 +109,39 @@ public enum MoabResources {
                 StringBuilder resourceCommand = new StringBuilder();
                 resourceCommand.append("pmem=");
                 resourceCommand.append(processMemory);
-                resourceCommand.append(unit.toString());
                 
                 return resourceCommand.toString();
             }
 
             @Override
             public void setParameter(Object... parameters) throws CommandException {
-                checkNumOfParameters(2, parameters);
+                checkNumOfParameters(1, parameters);
                 
                 if (parameters[0] instanceof Integer && parameters[1] instanceof MemoryUnit ) {
                      processMemory = (Integer) parameters[0];
-                     unit = (MemoryUnit) parameters[1];  //TODO:  nicht so sicher hier 
+                    
                 } else {
                      throw new CommandException("Parameter \"pmem\" needs an integer as a parameter!");
+                }
+            }
+            
+        },
+        
+        MOAB_PROCESSOR_MEMORY_UNIT("memoryUnit") {
+            private MemoryUnit unit;
+            @Override
+            public String getParameter() {
+                return unit.name();
+            }
+
+            @Override
+            public void setParameter(Object... parameters) throws CommandException {
+                 checkNumOfParameters(1, parameters);
+                
+                if (parameters[0] instanceof MemoryUnit ) {
+                     unit = (MemoryUnit) parameters[0];  
+                } else {
+                     throw new CommandException("Parameter has no memory unit !");
                 }
             }
             

@@ -35,11 +35,11 @@ public class JobScriptGeneratorTask extends Task<ArrayList<String>> {
         
         System.out.println(moabCommands);
         lines.add(moabCommands);
-        updateProgress(1, 6);
+        //updateProgress(1, 6);
         
         lines.add("");
-        System.out.println("msub");
-        System.out.println(msubController);
+        System.out.println("msub in Task: ");
+        
         Msub msubCommand = msubController.createMsubFromDataInGUI();
         updateMessage("Msub command successfully parsed");
         

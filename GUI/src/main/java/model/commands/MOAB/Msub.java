@@ -5,8 +5,11 @@
 package model.commands.MOAB;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import model.MemoryUnit;
 import model.NodeAccessPolicy;
+import model.commands.CommandException;
 import model.commands.ICommand;
 
 /**
@@ -21,29 +24,36 @@ public class Msub implements ICommand {
 
         
         private QueueType queueType;
-        List<MoabResources> resourceParameters;
+        
+        //MoabResources nodes = MoabResources.NODES;
+        /*MoabResources processesPerNode = MoabResources.NODES_AND_PROCESSES_PER_NODE;
+        MoabResources nodeAccessPolicy  = MoabResources.NODE_ACCESSPOLICY;
+        MoabResources processorMemory = MoabResources.PROCESSOR_MEMORY;
+        MoabResources walltime = MoabResources.WALLTIME;
+        MoabResources reservationName = MoabResources.RESERVATION_NAME;
+        MoabResources memoryUnit = MoabResources.MOAB_PROCESSOR_MEMORY_UNIT;*/
+        
+        List<MoabResources> resourceParameters = new LinkedList<>();
+        
         private String jobName;
         private String outputFileName;
         private String shell;
         private char[] sendEmail;
         private String email;
-        private NodeAccessPolicy nodeAccessPolicy;
-            
+        
+        
+        // SETTERS 
+        
         public void setJobName() {
             this.jobName = jobName;
         }
         public void setQueueType(QueueType queueType) {
             this.queueType = queueType;
         }
-        
-        public void addResourceParameter(MoabResources resource) {
-            resourceParameters.add(resource);
-        }
-
         public void setFileName(String outPutFileName) {
             this.outputFileName = outPutFileName;
         }
-       /**
+        /**
          * Send email when job begins (b), ends (e) or aborts (a).
          * @param sendEmail 
          */ 
@@ -55,10 +65,31 @@ public class Msub implements ICommand {
         public void setShell(String shell) {
             this.shell = shell;
         }
-        public void setNodeAccessPolicy(NodeAccessPolicy nodeAccessPolicy) {
-            this.nodeAccessPolicy = nodeAccessPolicy;
+       
+        public void addRessourceParameter(MoabResources resource) {
+            this.resourceParameters.add(resource);
         }
+        
+        /*
+        public void setNodeAccessPolicy(NodeAccessPolicy nodeAccessPolicyType) throws CommandException {
+            this.nodeAccessPolicy.setParameter(nodeAccessPolicyType);
+        }
+        
+        /*public void setNumOfNodes(int numOfNodes) throws CommandException {
+            this.nodes.setParameter(numOfNodes);
+        }*/
 
+        /*public void setProcessesPerNode(int processesPerNode) throws CommandException {
+            this.processesPerNode.setParameter(processesPerNode);
+        }
+        
+        public void setProcessorMemory(int memory) throws CommandException {
+            this.processorMemory.setParameter(memory);
+        }
+        
+        public void setMemoryUnit(MemoryUnit unitType) throws CommandException {
+            this.memoryUnit.setParameter(unitType);
+        }*/
 
         public ArrayList<String> getScriptCommands() {
 
@@ -67,6 +98,9 @@ public class Msub implements ICommand {
             String queue = new String(" -q " + queueType.toString());
             scriptLines.add(queue);
 
+            
+            //TODO: Resources parsen.
+            
             for(MoabResources resource : resourceParameters) {
                 StringBuilder scriptLine = new StringBuilder();
                 scriptLine.append(" -l ");
@@ -75,7 +109,7 @@ public class Msub implements ICommand {
              }
             String fileName = new String(" N " + jobName);
             scriptLines.add(fileName);
-
+            
             if(outputFileName != null) {
                 String scriptLine = new String(" -o " + outputFileName);
                 scriptLines.add(scriptLine);
@@ -95,6 +129,10 @@ public class Msub implements ICommand {
 
             return scriptLines;
 
+        }
+        
+        public void setJobName(String jobname) {
+            this.jobName = jobname;
         }
 
         @Override
@@ -147,9 +185,7 @@ public class Msub implements ICommand {
        return command.toString().equalsIgnoreCase(this.toString());        
     }
 
-    public void setJobName(String jobname) {
-      this.jobName = jobname;
-    }
+    
    
     
 

@@ -73,7 +73,7 @@ public enum QueueType {
                     defaultResource1 = MoabResources.WALLTIME;
                     defaultResource1.setParameter(600);
                     defaultResource2 = MoabResources.NODES_AND_PROCESSES_PER_NODE;
-                    defaultResource2.setParameter(1, 1);
+                    defaultResource2.setParameter(1,1);
                     defaultResource3 = MoabResources.PROCESSOR_MEMORY;
                     defaultResource3.setParameter(4000, MemoryUnit.MEGABYTE);
                     
@@ -92,7 +92,7 @@ public enum QueueType {
                     defaultResource1 = MoabResources.WALLTIME;
                     defaultResource1.setParameter(600);
                     defaultResource2 = MoabResources.NODES_AND_PROCESSES_PER_NODE;
-                    defaultResource2.setParameter(1, 2);
+                    defaultResource2.setParameter(1, 1);
                     defaultResource3 = MoabResources.PROCESSOR_MEMORY;
                     defaultResource3.setParameter(4000, MemoryUnit.MEGABYTE);
                     break;
