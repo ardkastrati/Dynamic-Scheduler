@@ -188,5 +188,7 @@ code/lib/*
 code/build
 
 #eclipse metadata
-code/src/visualiser/.metadata
+code/src/visualiser/.metadata/
 *.class
+
+GUI/src/.metadata/
