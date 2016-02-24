@@ -84,7 +84,7 @@
                   </Tab>
                   <Tab id="visualizer" fx:id="visualizer">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <fx:include fx:id="visualizer" source="DiagramScene.fxml"/>
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />

@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class VisualisationSceneController {
+public class VisualisationSceneController extends Application{
 
 	Parent scene;
 	@FXML
@@ -39,7 +39,7 @@ public class VisualisationSceneController {
 		
 	}
 	
-}
+//}
 //		SwingNode node = new SwingNode();
 //		v.visualise(node);
 //		StackPane pane = new StackPane();
@@ -49,8 +49,8 @@ public class VisualisationSceneController {
 //		stage.show();
 //	}
 //	
-//	public static void mai(String[] args, Visualiser vis) {
-//		v = vis;
-//		launch(args);
-//	}
-//}
+	public static void mai(String[] args, Visualiser vis) {
+		Visualiser v = vis;
+		launch(args);
+	}
+}
