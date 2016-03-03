@@ -7,13 +7,13 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=Intel-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/Intel-Linux
+CND_PLATFORM_Debug=GNU-Linux
+CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
 CND_ARTIFACT_NAME_Debug=test
-CND_ARTIFACT_PATH_Debug=dist/Debug/Intel-Linux/test
-CND_PACKAGE_DIR_Debug=dist/Debug/Intel-Linux/package
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/test
+CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
 CND_PACKAGE_NAME_Debug=test.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Intel-Linux/package/test.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/test.tar
 # Release configuration
 CND_PLATFORM_Release=Intel-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/Intel-Linux

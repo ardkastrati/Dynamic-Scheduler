@@ -14,14 +14,14 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=icc
+CC=gcc
 CCC=mpic++
 CXX=mpic++
-FC=ifort
+FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=Intel-Linux
+CND_PLATFORM=GNU-Linux
 CND_DLIB_EXT=so
 CND_CONF=Debug
 CND_DISTDIR=dist
