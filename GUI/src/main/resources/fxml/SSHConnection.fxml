@@ -41,7 +41,7 @@
                   </Label>
                   <TextField fx:id="usernameField" maxHeight="30.0" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Button fx:id="connect" mnemonicParsing="false" onAction="#onConnect" prefHeight="27.0" prefWidth="95.0" text="Connect" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <NumericTextField fx:id="portField" maxHeight="30.0" maxWidth="50.0" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField fx:id="portField" maxHeight="30.0" maxWidth="50.0" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label text="Port number:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <padding>
                         <Insets right="10.0" />
