@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,6 +91,8 @@ public class MsubController  implements Initializable, CommandController {
             for(QueueType queueType : QueueType.values()) {
                 commands.add(queueType);
             }
+            
+        
         
         queueTypes.itemsProperty().bind(listProperty);
         listProperty.set(FXCollections.observableArrayList(commands));
@@ -109,6 +113,7 @@ public class MsubController  implements Initializable, CommandController {
         
         memoryUnits.itemsProperty().bind(memoryUnitProperty);
         memoryUnitProperty.set(FXCollections.observableArrayList(units));
+        
         
     }
     
@@ -155,17 +160,51 @@ public class MsubController  implements Initializable, CommandController {
     public Msub createMsubFromDataInGUI() throws ParserException, CommandException {
         
         Msub msub = new Msub();
-        
-        System.out.println("QueueTypes parsed:" + queueTypes);
+        System.out.println("CREATE_MSUB_FROM_DATA_IN_GUI : " + queueTypes);
         if(queueTypes.getSelectionModel().getSelectedItem() == null) {
             throw new ParserException("Please select a queue type!");
         } else {
            msub.setQueueType((QueueType) queueTypes.getSelectionModel().getSelectedItem());  // ?
         }
-         System.out.println("QueueTypes parsed:" + queueTypes);
         
-        if(jobName.getText() == null || jobName.getText().equals("")) {
-           
+        
+         msub.setJobName(jobName.getText());
+         msub.setFileName(outputFileName.getText());
+         msub.setShell((shell.getText().equals("")) ? shell.getPromptText() : shell.getText());
+         
+         if(!nodes.getText().equals("") && !processesPerNode.equals("")) {
+            MoabResources nodesAndProcessesPerNode = MoabResources.NODES_AND_PROCESSES_PER_NODE;
+            nodesAndProcessesPerNode.setParameter(Integer.parseInt(nodes.getText()), Integer.parseInt(processesPerNode.getText()));
+            msub.addRessourceParameter(MoabResources.NODES_AND_PROCESSES_PER_NODE) ;
+         }
+         
+        if(getEmailMeCode() != null ) { 
+            msub.sendEmail(getEmailMeCode(), email.getText());
+        }
+        
+        if(walltime.getText() != null && !walltime.getText().equals("")) {
+            MoabResources walltimeResource = MoabResources.WALLTIME;
+            walltimeResource.setParameter(Integer.parseInt(walltime.getText()));
+            msub.addRessourceParameter(walltimeResource);
+        }
+        if(memory.getText() != null && !memory.getText().equals("")) {
+            MoabResources memoryResource = MoabResources.PROCESSOR_MEMORY;
+            memoryResource.setParameter(Integer.parseInt(memory.getText()));
+            msub.addRessourceParameter(memoryResource);
+        }
+        if(reservationName.getText() != null && !reservationName.getText().equals("")) {
+            MoabResources reservationNameResource = MoabResources.RESERVATION_NAME;
+            reservationNameResource.setParameter(Integer.parseInt(reservationName.getText()));
+            msub.addRessourceParameter(reservationNameResource);
+        }
+        
+        if(nodeAccessPolicy.getSelectionModel().getSelectedItem() != null) {
+            MoabResources naccessPolicy = MoabResources.NODE_ACCESSPOLICY;
+            naccessPolicy.setParameter(nodeAccessPolicy.getSelectionModel().getSelectedItem());
+        }
+        System.out.println("u ba qekjo");
+        
+        /*if(jobName.getText().equals("")) {
             throw new ParserException("Please write a name for the job!");
         } else {
              msub.setJobName(jobName.getText());
@@ -182,9 +221,9 @@ public class MsubController  implements Initializable, CommandController {
          System.out.println("Shell parsed " + queueTypes);
         if(getEmailMeCode() != null ) { 
             msub.sendEmail(getEmailMeCode(), email.getText());
-        }
+        }*/
         
-        if(nodes.getText() != null && !nodes.getText().equals("") && 
+       /* if(nodes.getText() != null && !nodes.getText().equals("") && 
            processesPerNode.getText() != null && !processesPerNode.getText().equals("") ) { 
             
             MoabResources nodesAndProcessesPerNode = MoabResources.NODES_AND_PROCESSES_PER_NODE;
@@ -212,8 +251,8 @@ public class MsubController  implements Initializable, CommandController {
            NodeAccessPolicy policy = nodeAccessPolicy.getSelectionModel().getSelectedItem();
            msub.setNodeAccessPolicy(policy);
         }
-        
-        return this.msub;
+        */
+        return msub;
     }
     
     public String getJobName() {
@@ -250,5 +289,45 @@ public class MsubController  implements Initializable, CommandController {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    
+    /*
+    private void addListenersToMsub() {
+        ChangeListener<QueueType> queueTypeListener = (obs, oldStatus, newStatus) -> {
+            System.out.println("Reset queue Type : " + " to " + newStatus.name());
+            msub.setQueueType(newStatus);
+        };
+        queueTypes.getSelectionModel().selectedItemProperty().addListener(queueTypeListener);
+        
+        ChangeListener<MemoryUnit> memoryUnitListener = (obs, oldStatus, newStatus) -> {
+            
+            try {
+                msub.setMemoryUnit(newStatus);
+            } catch (CommandException ex) {
+                Logger.getLogger(MsubController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        };
+        memoryUnits.getSelectionModel().selectedItemProperty().addListener(memoryUnitListener);
+        
+        ChangeListener<Boolean> nodeListener = new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                try {
+                    if(!newValue) {
+                        // out of Focus
+                        if(!nodes.getText().equals("")) { msub.setNumOfNodes(Integer.parseInt(nodes.getText())); }
+                        else { msub.setNumOfNodes(-1);}
+                    }
+                } catch (CommandException ex) {
+                    Logger.getLogger(MsubController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        nodes.focusedProperty().addListener(nodeListener);
+        
+        
+    }*/
+    
    
 }
