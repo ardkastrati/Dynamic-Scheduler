@@ -44,6 +44,7 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
         code_preprocessing_master(argc, argv, tasks, &number_of_tasks);
         for (int i = 0; i < number_of_tasks; i++) {
             scheduling_strategy->push_new_task(tasks[i], 0);
+            //place_task(tasks[i]);
         }
 
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
@@ -78,7 +79,7 @@ void TaskStealingScheduler::run() {
 
     bool is_running = true;
     while (is_running) {
-
+        //std::cout << "Run loop" << std::endl;
         Task task = scheduling_strategy->pop_next_task();
 
         if (task.parameter_size > 0) {

@@ -8,6 +8,8 @@
 
 #define ASSERT 0
 
+using namespace std;
+
 
 MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
     rank(rank),
@@ -30,6 +32,7 @@ MpiWinLIFO::~MpiWinLIFO()
 
 void MpiWinLIFO::init(int max_size)
 {
+    //cout << "init" << endl;
     int queue_size = sizeof(Task) * max_size;
 
     MPI_Alloc_mem(queue_size, MPI_INFO_NULL, &queue);
@@ -70,7 +73,7 @@ Task MpiWinLIFO::pop_next_task() {
 
 void MpiWinLIFO::push_new_task(Task task, long runtime)
 {
-
+    //cout << "insert: " << task.parameters[0] << endl;
     int current_offset;
     bool already_locked = true;
     while(already_locked) {
@@ -101,13 +104,17 @@ void MpiWinLIFO::push_new_task(Task task, long runtime)
 
 
 Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
-    //LOG(INFO) << "try to steal task from: " <<target_rank;
+    //cout << "try to steal task from: " <<target_rank << endl;
     int current_offset;
     bool already_locked = true;
     int tries = 0;
     //TODO:Documentation for number_of_tries parameter
     while (already_locked && (number_of_tries == 0 || tries < number_of_tries))
     {
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
+        MPI_Get(&current_offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
+        MPI_Put(&lock, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
+        MPI_Win_unlock(target_rank, win_offset);
         tries++;
         if (current_offset != lock) {
             already_locked = false;
