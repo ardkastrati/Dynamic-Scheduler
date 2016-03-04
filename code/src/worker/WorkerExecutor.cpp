@@ -90,6 +90,7 @@ void WorkerExecutor::place_task(Task task)
     task_data.event = 0;
     task_data.mode = 0;
     task_data.parameter_size = task.parameter_size;
+    task_data.parent = task.parent;
     memcpy(task_data.parameters, task.parameters, sizeof(double) * task.parameter_size);
 
     MPI_Request request;

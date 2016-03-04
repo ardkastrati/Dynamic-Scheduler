@@ -76,7 +76,8 @@ void Master::execute(int argc, char* argv[]){
     preprocessing(argc, argv, init_tasks, &init_tasks_number);
 
     for (int i = 0; i < init_tasks_number; i++) {
-        scheduling_strategy->push_new_task(init_tasks[i], scheduling_strategy->DEFAULT_RUNTIME);
+        //scheduling_strategy->push_new_task(init_tasks[i], scheduling_strategy->DEFAULT_RUNTIME);
+        place_task(init_tasks[i]);
     }
 
     run();
