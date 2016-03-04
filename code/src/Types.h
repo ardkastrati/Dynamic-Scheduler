@@ -24,6 +24,7 @@ typedef struct _StatisticInquiry {
 
 typedef struct _Task {
     long time_appeared;
+	long runtime;
     int parent;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
@@ -62,14 +63,14 @@ MPI_Aint mpi_task_data_type_offset[11];
 
 
 
-const int mpi_task_type_field_count = 4;
+const int mpi_task_type_field_count = 5;
 
-int mpi_task_type_blocklength[4] = {1, 1, 1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_type_type[4] = {MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
+int mpi_task_type_blocklength[5] = {1, 1, 1, 1, PARAMTER_LENGTH};
+MPI_Datatype mpi_task_type_type[5] = {MPI_LONG, MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
 
 MPI_Datatype MY_MPI_TASK_TYPE;
 
-MPI_Aint mpi_task_type_offsets[4];
+MPI_Aint mpi_task_type_offsets[5];
 
 
 MPI_Comm MY_MPI_COMM_TASKSTEALING;

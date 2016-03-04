@@ -110,9 +110,10 @@ void create_mpi_task_types()
 
     //Create MY_MPI_TASK_TYPE datatype for communication
     mpi_task_type_offsets[0] = offsetof(Task, time_appeared);
-    mpi_task_type_offsets[1] = offsetof(Task, parent);
-    mpi_task_type_offsets[2] = offsetof(Task, parameter_size);
-    mpi_task_type_offsets[3] = offsetof(Task, parameters);
+    mpi_task_type_offsets[1] = offsetof(Task, runtime);
+    mpi_task_type_offsets[2] = offsetof(Task, parent);
+    mpi_task_type_offsets[3] = offsetof(Task, parameter_size);
+    mpi_task_type_offsets[4] = offsetof(Task, parameters);
 
     MPI_Type_create_struct(mpi_task_type_field_count,
                            mpi_task_type_blocklength,

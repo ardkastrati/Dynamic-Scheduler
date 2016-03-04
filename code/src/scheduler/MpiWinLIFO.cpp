@@ -44,9 +44,7 @@ void MpiWinLIFO::init(int max_size)
 
 }
 Task MpiWinLIFO::get_next_task() {
-    //TODO: implement get_next_task()
-    throw 1;
-    //return steal_next_task(rank);
+    throw "Unsupported operation";
 }
 
 int MpiWinLIFO::get_task_count() {
@@ -102,10 +100,6 @@ void MpiWinLIFO::push_new_task(Task task, long runtime)
 }
 
 
-SchedulingStrategy* MpiWinLIFO::change_strategy(SchedulingStrategy* new_strategy)
-{
-    throw "Not supported operation";
-}
 Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     //LOG(INFO) << "try to steal task from: " <<target_rank;
     int current_offset;
@@ -115,10 +109,6 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     while (already_locked && (number_of_tries == 0 || tries < number_of_tries))
     {
         tries++;
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
-        MPI_Get(&current_offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
-        MPI_Put(&lock, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
-        MPI_Win_unlock(target_rank, win_offset);
         if (current_offset != lock) {
             already_locked = false;
         }
@@ -167,4 +157,8 @@ int MpiWinLIFO::get_task_count(int target_rank) {
 bool MpiWinLIFO::is_statistic_based()
 {
     return false;
+}
+
+SchedulingStrategy* MpiWinLIFO::change_strategy(SchedulingStrategy *new_strategy) {
+    throw "Unsupported operation";
 }

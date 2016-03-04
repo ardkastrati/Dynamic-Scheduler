@@ -15,8 +15,8 @@ NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
 CC=icc
-CCC=icpc
-CXX=icpc
+CCC=mpic++
+CXX=mpic++
 FC=ifort
 AS=as
 

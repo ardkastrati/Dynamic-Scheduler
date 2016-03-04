@@ -1,6 +1,7 @@
 #include "Executor.h"
 #include "scheduler/TaskStealingScheduler.h"
 #include "scheduler/MpiWinFIFO.h"
+#include "scheduler/MpiWinBinaryHeap.h"
 //#include "../lib/easylogging++.h"
 #include "scheduler/Master.h"
 #include "scheduler/SJF.h"
@@ -89,7 +90,7 @@ Executor* Executor::get_new_executor_for_taskstealing(int rank, int number_of_pr
         MPI_Comm_rank(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_rank);
         MPI_Comm_size(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_number_of_processors);
 
-        MpiWinSchedulingStrategy* scheduling_strategy = new MpiWinFIFO(200, taskstealing_world_rank,
+        MpiWinSchedulingStrategy* scheduling_strategy = new MpiWinBinaryHeap(200, taskstealing_world_rank,
                                                                        taskstealing_world_number_of_processors);
         executor = new TaskStealingScheduler(scheduling_strategy, NULL, taskstealing_world_rank,
                                              taskstealing_world_number_of_processors);

@@ -2,6 +2,7 @@
 
 #include "MpiWinFIFO.h"
 //#include "../../lib/easylogging++.h"
+#include <iostream>
 
 MpiWinFIFO::MpiWinFIFO(int size, int rank, int number_of_processors) :
     rank(rank),
@@ -9,6 +10,7 @@ MpiWinFIFO::MpiWinFIFO(int size, int rank, int number_of_processors) :
     size(size)
 {
     init(size);
+    std::cout << "size: " << size << std::endl;
 }
 
 MpiWinFIFO::~MpiWinFIFO()
@@ -44,6 +46,7 @@ Task MpiWinFIFO::get_next_task()
 Task MpiWinFIFO::pop_next_task() {
     Task task;
     bool task_found = false;
+    std::cout << "pop:" << task.parameters[0] << std::endl;
     //TODO: hard coded DATABASE
     for (int i = 0; i < number_of_processors && !task_found; i++) {
         int target_rank = (rank + i) % number_of_processors;
@@ -52,14 +55,12 @@ Task MpiWinFIFO::pop_next_task() {
             task_found = true;
         }
     }
+    std::cout << "pop:" << task.parameters[0] << std::endl;
     return task;
 }
 
 void MpiWinFIFO::push_new_task(Task task, long runtime)
 {
-
-    //LOG(INFO) << "push: " << task.parameters[0];
-
     int current_offset[2];
 
     bool already_locked = true;
@@ -67,13 +68,14 @@ void MpiWinFIFO::push_new_task(Task task, long runtime)
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
         current_offset[HEAD] = offset[HEAD];
         current_offset[TAIL] = offset[TAIL];
-        offset[HEAD] = lock;
+        offset[HEAD] = lock[HEAD];
+        offset[TAIL] = lock[TAIL];
         MPI_Win_unlock(rank, win_offset);
-        if (current_offset[HEAD] != lock) {
+        if (current_offset[HEAD] != lock[HEAD]) {
             already_locked = false;
         }
     }
-
+    std::cout << "current task: " << task.parameters[0] << ", current head: " << current_offset[HEAD] << ", current tail: " << current_offset[TAIL] << std::endl;
     //now the offset is locked by me
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
@@ -89,7 +91,14 @@ void MpiWinFIFO::push_new_task(Task task, long runtime)
     offset[TAIL] = current_offset[TAIL];
     MPI_Win_unlock(rank, win_offset);
 
-
+/*
+    MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
+    MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
+    queue[offset[TAIL]] = task;
+    offset[TAIL] = (offset[TAIL] + 1) % size;
+    MPI_Win_unlock(rank, win_queue);
+    MPI_Win_unlock(rank, win_offset);
+*/
 }
 
 SchedulingStrategy* MpiWinFIFO::change_strategy(SchedulingStrategy* new_strategy)
@@ -128,9 +137,9 @@ Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
         tries++;
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
         MPI_Get(&current_offset, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);
-        MPI_Put(&lock, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
+        MPI_Put(&lock, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);
         MPI_Win_unlock(target_rank, win_offset);
-        if (current_offset[HEAD] != lock) {
+        if (current_offset[HEAD] != -1) {
             already_locked = false;
         }
     }
@@ -143,7 +152,7 @@ Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
     //now the offset is locked by me
 
     //TODO: Documentation of return values
-    if (current_offset <= 0)
+    if ((offset[TAIL] - offset[HEAD] + size) % size <= 0)
     {
         task.parameter_size = -2;
     }
@@ -158,8 +167,8 @@ Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
     //LOG(INFO) << current_offset;
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
-    MPI_Put(&current_offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);
+    MPI_Put(&current_offset, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);
     MPI_Win_unlock(target_rank, win_offset);
-
+    std::cout << "steal:" << task.parameters[0] << std::endl;
     return task;
 }

@@ -1,55 +1,45 @@
-#ifndef CODE_MPIWINFIFO_H
-#define CODE_MPIWINFIFO_H
+//
+// Created by fabio on 04.03.16.
+//
+
+#ifndef CODE_MPIWINBINARYHEAP_H
+#define CODE_MPIWINBINARYHEAP_H
 
 #include "MpiWinSchedulingStrategy.h"
 
-/**
- * This class implements the MpiWinSchedulingStrategy and realize a FIFO queue.
- * The FIFO queue is represented as cyclic array. (See https://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150427.pdf page 125)
- * The queue itself and the offset are inside several MPI window to give other processes access to the data.
- *
- * @author Fabio Broghammer
- * @version 1.0
- */
-class MpiWinFIFO : public MpiWinSchedulingStrategy {
+class MpiWinBinaryHeap : public MpiWinSchedulingStrategy {
 
 private:
-    static const int HEAD = 0;
-    static const int TAIL = 1;
-
     MPI_Win win_queue;
-    MPI_Win win_offset;
-    int* offset;
-
-    /**
-     * size[0] is head
-     * size[1] is tail
-     */
-    int size;
-    Task* queue;
-
-    const int lock[2] = {-1, -1};
+    MPI_Win win_n;
+    int *n;
+    Task *queue;
 
     int rank;
+
     int number_of_processors;
+    const int lock = -100;
     void init(int max_size);
+
+    void sift_up(int i);
+    void sift_down(int i, int target_rank, int current_n);
 public:
     /**
-     * Constructs a new LIFO scheduling queue
-     *
-     * @param size of the queue
-     * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
-     * @param number_of_processors inside the MY_MPI_COMM_TASKSTEALING communicator
-     */
-    MpiWinFIFO(int size, int rank, int number_of_processors);
+ * Constructs a new binary heap scheduling queue
+ *
+ * @param size of the queue
+ * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
+ * @param number_of_processors inside the MY_MPI_COMM_TASKSTEALING communicator
+ */
+    MpiWinBinaryHeap(int size, int rank, int number_of_processors);
 
     /**
-     * Destructs a new LIFO scheduling queue
+     * Destructs the binary heap scheduling queue
      */
-    ~MpiWinFIFO();
+    ~MpiWinBinaryHeap();
 
     /**
-     * Returns the last-in task, or NULL if the queue is empty
+     * Returns the first task, or NULL if the queue is empty
      *
      * @return the last-in task
      */
@@ -103,8 +93,7 @@ public:
     int get_task_count(int target_rank);
 
     bool is_statistic_based();
-
 };
 
 
-#endif //CODE_MPIWINFIFO_H
+#endif //CODE_MPIWINBINARYHEAP_H
