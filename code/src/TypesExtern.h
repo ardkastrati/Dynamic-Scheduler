@@ -24,7 +24,7 @@ typedef struct _Task {
 	long id;
     long time_appeared;
 	long runtime;
-    int parent;
+    long parent;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
 } Task;
@@ -36,7 +36,7 @@ typedef struct _TaskData {
     long time_ended;
     int event;
     int mode;
-    int parent;
+    long parent;
     int time_intercommunication_start;
     int time_intercommunication_end;
     int rank;

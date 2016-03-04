@@ -45,6 +45,7 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
         Task newTask;
         newTask.parameter_size = 1;
         newTask.parameters[0] = task.parameters[0] + 100;
+        newTask.parent = task.id;
         place_task_forwarder(context, newTask);
 
     }

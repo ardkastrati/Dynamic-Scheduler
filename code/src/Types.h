@@ -33,7 +33,7 @@ typedef struct _Task {
 	long id;
     long time_appeared;
 	long runtime;
-    int parent;
+    long parent;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
 } Task;
@@ -45,7 +45,7 @@ typedef struct _TaskData {
     long time_ended;
     int event;
     int mode;
-    int parent;
+    long parent;
     int time_intercommunication_start;
     int time_intercommunication_end;
     int rank;
@@ -61,7 +61,7 @@ MPI_Datatype mpi_task_data_type_type[12] = {MPI_LONG,
                                             MPI_LONG,
                                             MPI_INT,
                                             MPI_INT,
-                                            MPI_INT,
+                                            MPI_LONG,
                                             MPI_INT,
                                             MPI_INT,
                                             MPI_INT,
@@ -76,7 +76,7 @@ MPI_Aint mpi_task_data_type_offset[12];
 const int mpi_task_type_field_count = 6;
 
 int mpi_task_type_blocklength[6] = {1, 1, 1, 1, 1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_type_type[6] = {MPI_LONG, MPI_LONG, MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
+MPI_Datatype mpi_task_type_type[6] = {MPI_LONG, MPI_LONG, MPI_LONG,MPI_LONG, MPI_INT, MPI_DOUBLE};
 
 MPI_Datatype MY_MPI_TASK_TYPE;
 
