@@ -40,7 +40,7 @@ void AbstractScheduler::place_task(Task task)
 {
     task.id = get_id_by_rank_and_number(rank, task_number);
     task_number++;
-    std::cout << task.id << std::endl;
+    //std::cout << task.id << std::endl;
     long runtime = 1;//scheduling_strategy->DEFAULT_RUNTIME;
     if (scheduling_strategy->is_statistic_based()) {
         short temp;
