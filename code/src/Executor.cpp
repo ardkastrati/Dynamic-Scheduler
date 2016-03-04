@@ -2,7 +2,6 @@
 #include "scheduler/TaskStealingScheduler.h"
 #include "scheduler/MpiWinFIFO.h"
 #include "scheduler/MpiWinBinaryHeap.h"
-//#include "../lib/easylogging++.h"
 #include "scheduler/Master.h"
 #include "scheduler/SJF.h"
 #include "scheduler/FIFO.h"

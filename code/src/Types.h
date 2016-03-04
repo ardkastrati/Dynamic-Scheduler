@@ -1,3 +1,10 @@
+/**
+ * This header defines the own data types, that are used in the project
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
+
 #ifndef TYPES
 #define TYPES
 

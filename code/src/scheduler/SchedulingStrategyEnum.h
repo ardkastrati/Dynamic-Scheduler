@@ -2,7 +2,7 @@
 #define CODE_SCHEDULINGSTRATEGYENUM_H
 
 /**
- * This Enum contains all provided scheduling strategies
+ * This enum enumerates all provided scheduling strategies
  *
  * @author Fabio Broghammer
  * @version 1.0

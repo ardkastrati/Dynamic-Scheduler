@@ -1,5 +1,5 @@
 /**
- * This header contains all functions that works with time
+ * This header contains all functions that works with time.
  *
  * @author Fabio Broghammer
  * @version 1.0
@@ -22,8 +22,7 @@ inline long convert_to_micro_seconds(double time_in_seconds)
 }
 
 /**
- * Returns the time in micro seconds
- * TODO: time since when?
+ * Returns the time in micro seconds between yet and clock's epoch (1970)
  * @return time in micro second
  */
 inline long get_time_in_mirco()

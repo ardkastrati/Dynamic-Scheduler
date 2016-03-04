@@ -5,7 +5,6 @@
 #include <cstring>
 #include "../ScientificCode.h"
 #include "../Const.h"
-//#include "../../lib/easylogging++.h"
 #include "../util/TimeUtility.h"
 #include <iostream>
 

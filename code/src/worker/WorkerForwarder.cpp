@@ -1,8 +1,3 @@
-//
-// Created by fabio on 29.01.16.
-//
-
-
 #include "WorkerForwarder.h"
 #include "WorkerExecutor.h"
 #include "TaskStealingWorker.h"

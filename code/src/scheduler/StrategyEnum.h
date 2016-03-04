@@ -1,6 +1,9 @@
-//
-// Created by fabio on 10.02.16.
-//
+/**
+ * This enum enumerates all possible Scheduling strategies
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
 
 #ifndef CODE_STRATEGYENUM_H
 #define CODE_STRATEGYENUM_H

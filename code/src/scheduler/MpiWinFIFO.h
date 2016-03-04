@@ -14,24 +14,57 @@
 class MpiWinFIFO : public MpiWinSchedulingStrategy {
 
 private:
+    /**
+     * The offset of the head in the offset array.
+     */
     static const int HEAD = 0;
+    /**
+     * The offset of the tail in the offset array.
+     */
     static const int TAIL = 1;
 
+    /**
+     * The MPI window for the queue.
+     */
     MPI_Win win_queue;
+    /**
+     * The MPI window for the offset.
+     */
     MPI_Win win_offset;
+
+    /**
+     * The offset.
+     * offset[0] is head
+     * offset[1] is tail
+     */
     int* offset;
 
     /**
-     * size[0] is head
-     * size[1] is tail
+     * The size of the queue.
      */
     int size;
+    /**
+     * The task queue.
+     */
     Task* queue;
 
+    /**
+     * A constant, that represent the lock.
+     */
     const int lock[2] = {-1, -1};
 
+    /**
+     * The rank of this process. Relative to the task stealing communicator.
+     */
     int rank;
+    /**
+     * The number of processes in the task stealing communicator.
+     */
     int number_of_processors;
+    /**
+     * Creates the queue, offset and the MPI windows.
+     * @param max_size the maximum size of the queue
+     */
     void init(int max_size);
 public:
     /**

@@ -3,7 +3,6 @@
 #include "TaskStealingWorker.h"
 #include "../ScientificCode.h"
 #include "../util/TimeUtility.h"
-//#include "../../lib/easylogging++.h"
 #include "../Const.h"
 #include <iostream>
 
@@ -23,7 +22,6 @@ void TaskStealingWorker::place_task(Task task)
 {
     task.time_appeared = get_time_in_mirco();
     scheduler->place_task(task);
-    //LOG(DEBUG) << "task added: " << task.parameters[0];
 
 
     TaskData task_data;
@@ -81,7 +79,6 @@ void TaskStealingWorker::run_task(Task task)
     task_data.time_ended = time_end;
     task_data.event = 2;
 
-    //TODO: Send task data to database
     MPI_Isend(&task_data, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAENTRY, MPI_COMM_WORLD, &request);
     cout << "rank: " << scheduler->get_rank() << ", task: " << task.parameters[0] << " took " << time_end - time_begin << " mircoseconds" << endl;
 }

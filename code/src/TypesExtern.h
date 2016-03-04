@@ -1,3 +1,10 @@
+/**
+ * This header defines extern the own data types, that are used in the project
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
+
 #ifndef TYPES_EXTERN
 #define TYPES_EXTERN
 
@@ -6,15 +13,6 @@
 #include <vector>
 #include <mpi.h>
 
-//typedef int TaskType;
-/*struct _TaskType {
-    int parameter_size;
-    double parameters[MAX_PARAMTER_LENGTH];
-    int important_parameters_size;
-    int index_important_parameters[int important_parameters_size][abc]
-
-    //sum from i = 0 to c (a+b*i)
-} TaskType;*/
 
 typedef struct _StatisticInquiry {
 	int parameter_size;
@@ -58,7 +56,8 @@ extern MPI_Datatype mpi_task_type_type[5];
 
 extern MPI_Datatype MY_MPI_TASK_TYPE;
 
-extern MPI_Aint mpi_task_type_offsets[5];
+extern MPI_Aint mpi_task_type_offsets[5
+];
 
 extern MPI_Comm MY_MPI_COMM_TASKSTEALING;
 

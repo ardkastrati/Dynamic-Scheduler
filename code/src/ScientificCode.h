@@ -1,5 +1,9 @@
 /**
- * Project Dynamic Scheduler for Scientific Simulations
+ * This header defines the interface between the scheduler and the scientific code.
+ * These function must be provided by the scientific code
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
  */
 
 #ifndef SCIENTIFIC_CODE

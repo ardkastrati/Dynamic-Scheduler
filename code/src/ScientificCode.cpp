@@ -1,10 +1,17 @@
+/**
+ * This is a dummy implementation of the Scientific code interface.
+ * This implementation is used for testing.
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
+
 #define NDEBUG
 
 #include "ScientificCode.h"
 //#include "../lib/easylogging++.h"
 #include <cmath>
 #include "worker/Worker.h"
-
 void code_postprocessing_master()
 {
     //LOG(DEBUG) << "code postprocessing master";

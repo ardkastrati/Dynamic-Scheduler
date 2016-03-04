@@ -1,5 +1,6 @@
 /**
  * The Executor class is the base class for all objects that are mpi processes and have a one mpi rank.
+ * Objects from type Executor run in a independent Process.
  *
  * @author Fabio Broghammer
  * @version 1.0
@@ -16,10 +17,12 @@ class Executor {
 protected:
         /**
          * The MPI rank of the processor, that runs the executor code
+         * The rank is relative to the communicator that is used.
          */
         const int rank;
         /**
          * The total number of processors of the MPI world
+         * The number of processors is relative to the communicator that is used.
          */
         const int number_of_processors;
 public:
@@ -66,7 +69,7 @@ private:
         static Executor *get_new_executor_for_master_worker(int rank, int number_of_processors, StrategyEnum strategy);
 
         /**
-         * Returns a executer instance for task-stealing design depending on rank and strategy.
+         * Returns a executor instance for task-stealing design depending on rank and strategy.
          * This function splits the MPI world in to parts:
          *      - Color 0: Database server
          *      - Color 1: Task-stealing scheduler

@@ -1,7 +1,3 @@
-//
-// Created by fabio on 05.02.16.
-//
-
 #include "CommandLineParser.h"
 #include <string>
 

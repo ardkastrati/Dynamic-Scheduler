@@ -1,5 +1,6 @@
 /**
  * The main function of the program. This is the entry point.
+ * The MPI data types are also initialized in this file.
  *
  * @author Fabio Broghammer
  * @version 1.0

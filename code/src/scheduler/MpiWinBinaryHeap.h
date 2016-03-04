@@ -1,6 +1,11 @@
-//
-// Created by fabio on 04.03.16.
-//
+/**
+ * The class is a binary heap, that uses a MPI shared memory area (MPI Window) to store the data.
+ * The algorithm details can be found here http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150520.pdf
+ * and here: http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150518.pdf.
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
 
 #ifndef CODE_MPIWINBINARYHEAP_H
 #define CODE_MPIWINBINARYHEAP_H
@@ -10,18 +15,54 @@
 class MpiWinBinaryHeap : public MpiWinSchedulingStrategy {
 
 private:
+    /**
+     * The MPI window for the queue.
+     */
     MPI_Win win_queue;
+    /**
+     * The MPI window for the current last element.
+     */
     MPI_Win win_n;
+    /**
+     * The current last element.
+     */
     int *n;
+    /**
+     * The task queue.
+     */
     Task *queue;
 
+    /**
+     * The rank of this process. Relative to the task stealing communicator
+     */
     int rank;
-
+    /**
+     * The number of processes in the task stealing communicator
+     */
     int number_of_processors;
+    /**
+     * A constant, that represent a lock for the win_n window
+     */
     const int lock = -100;
+
+    /**
+     * Creates the n, queue and the MPI windows
+     */
     void init(int max_size);
 
+    /**
+     * Uses to reestablish the heap invariant, when a new task was inserted.
+     *
+     * @param i the current level in the heap
+     */
     void sift_up(int i);
+    /**
+     * Uses to reestablish the heap invariant, when the next task was poped.
+     *
+     * @param i the current level in the heap
+     * @param target_rank rank of the target. Relative to the task stealing communicator
+     * @param current_n current last element in the heap
+     */
     void sift_down(int i, int target_rank, int current_n);
 public:
     /**

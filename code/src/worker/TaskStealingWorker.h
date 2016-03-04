@@ -5,7 +5,7 @@
 #include "../scheduler/AbstractScheduler.h"
 
 /**
- * This class is a worker vor task-stealing. The worker sends non-blocking information to the Database Server.
+ * This class is a worker vor task-stealing. The worker sends non-blocking information to the Database server.
  *
  * @author Fabio Broghammer
  * @version 1.0
