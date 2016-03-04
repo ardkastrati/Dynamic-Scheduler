@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This test suite collects all test for the scheduler module.
+ * 
+ * @author Fabio Broghammer
+ * @version 1.0
  */
-
-/* 
- * File:   SchedulerTestSuite.h
- * Author: fabio
- *
- * Created on February 21, 2016, 7:43 PM
- */
-
 #ifndef SCHEDULERTESTSUITE_H
 #define SCHEDULERTESTSUITE_H
 
@@ -20,6 +13,10 @@ using namespace CppUnit;
 
 class SchedulerTestSuite {
 public:
+    /**
+     * Returns a test suite instance that contains all tests for the scheduler module.
+     * @return a test suite instance
+     */
     static TestSuite* suite();
 private:
 

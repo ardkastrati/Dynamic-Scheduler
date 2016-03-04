@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.cpp
- * Author: fabio
- *
- * Created on February 19, 2016, 7:21 PM
+/** 
+ * This file includes the main function of the tester for the dynamic scientific scheduler.
+ * The tester uses the cppunit port of junit.
+ * The implementation of the dynamic scheduler is linked statically to the tester.
+ * 
+ * @author Fabio Broghammer
+ * @version 1.0
  */
 
 #include <stdlib.h>
@@ -23,10 +19,11 @@
 using namespace std;
 using namespace CppUnit;
 
-/*
- * 
+/**
+ * The main function, that initializes the framework and start the tests.
+ * @param argc command line parameter count
+ * @param argv command line parameters
  */
-
 int main(int argc, char** argv) {
     TextUi::TestRunner runner;
     TestFactoryRegistry &registry = TestFactoryRegistry::getRegistry();
