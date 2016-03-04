@@ -50,7 +50,7 @@ public:
 	 * @param NumberOfParameters number of parameter dimension
 	 * @return struct data* returns pointer to data
 	 */
-	struct data* dataMiningInquiry(int NumberOfParameters);
+	StatisticInquiry* dataMiningInquiry();
 
 	/*
 	 * Hold the information of the task in memory for DataMiner inquiry.
@@ -65,11 +65,26 @@ public:
 	 */
 	void readTaskData();
 
+	/*
+	 * Dataobject for the DataMiner.
+	 */
 	StatisticInquiry* stInq;
 
 private:
+
+	/*
+	 * The bookkeeping partition of the database.
+	 */
 	Database* data_bookkeeping;
+
+	/*
+	 * The statistic partition of the database.
+	 */
 	Database* data_statistic;
+
+	/*
+	 * Number of Dimension.
+	 */
 	int size;
 
 };

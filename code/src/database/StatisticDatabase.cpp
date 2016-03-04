@@ -18,9 +18,6 @@ using namespace std;
 
 std::fstream stfile;
 
-/*
- *
- */
 StatisticDatabase::StatisticDatabase()
 {
 	createFile();

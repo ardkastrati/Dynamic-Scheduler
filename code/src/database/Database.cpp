@@ -16,15 +16,5 @@ void insertTaskData(string data)
 
 }
 
-void deleteLastEntry()
-{
-
-}
-
-void exportDatabase()
-{
-
-}
-
 
 

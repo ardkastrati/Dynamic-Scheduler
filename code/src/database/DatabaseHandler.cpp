@@ -13,7 +13,6 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
-//#include "../../lib/easylogging++.h"
 #include <mpi.h>
 
 using namespace std;
@@ -32,9 +31,15 @@ void DatabaseHandler::storeLocalStatistic(TaskData* data, long runtime)
 	stInq->parameter_size = data->parameter_size;
 	stInq->runtime.push_back(runtime);
 
+
 	//
 	stInq->para.insert(stInq->para.end(), &data->parameters[0], &data->parameters[data->parameter_size]);
 
+}
+
+StatisticInquiry* DatabaseHandler::dataMiningInquiry()
+{
+	return stInq;
 }
 
 void DatabaseHandler::storeData(TaskData *data)
