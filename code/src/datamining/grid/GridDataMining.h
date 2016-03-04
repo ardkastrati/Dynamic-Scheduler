@@ -11,6 +11,8 @@
 #include "MpiProxy.h"
 #include "ArrayHandler.h"
 
+#include "../../database/DatabaseHandler.h"
+
 class GridDataMining : public DataMining {
 private:
 	DatabaseHandler* database;

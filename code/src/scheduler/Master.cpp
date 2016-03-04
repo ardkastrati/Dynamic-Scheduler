@@ -55,6 +55,13 @@ void Master::run()
             int worker = free_worker->front();
             free_worker->pop();
             task = scheduling_strategy->pop_next_task();
+            if (scheduling_strategy->is_statistic_based()) {
+                short temp;
+                MPI_Status status;
+                long runtime;
+                MPI_Sendrecv(&temp, 1, MPI_SHORT, DATABASE, DATAMINING,
+                &runtime, 1, MPI_LONG, DATABASE, DATAMINING, MPI_COMM_WORLD, &status);
+            }
             MPI_Send(&task, 1, MY_MPI_TASK_TYPE, worker, START, MPI_COMM_WORLD);
         }
 

@@ -4,7 +4,7 @@
 #include "../Executor.h"
 #include "DatabaseHandler.h"
 #include "../datamining/grid/GridDataMining.h"
-#include "../datamining/grid/DataMining.h"
+#include "../datamining/DataMining.h"
 
 class DatabaseServer: public Executor
 {

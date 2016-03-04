@@ -1,7 +1,6 @@
 #define NDEBUG
 
 #include "DatabaseServer.h"
-#include "../../lib/easylogging++.h"
 #include <mpi.h>
 #include "../Const.h"
 #include "../TypesExtern.h"
@@ -45,6 +44,11 @@ void DatabaseServer::run()
             //insert(&task_data);
             //clear data
             //LOG(DEBUG) << "Stored: " << task_data.parameters[0];
+        }
+        else if (status.MPI_TAG == DATAMINING) {
+            int target_rank = status.MPI_SOURCE;
+            long runtime = 10;
+            MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
         }
     }
 }

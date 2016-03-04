@@ -7,8 +7,8 @@
 #define _DATAMINING_H
 
 #include "../TypesExtern.h"
-#include "../database/DatabaseServer.h"
-#include "../database/DatabaseHandler.h"
+//#include "../database/DatabaseServer.h"
+//#include "../database/DatabaseHandler.h"
 
 class DataMining {
 public:

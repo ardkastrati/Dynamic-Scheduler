@@ -34,3 +34,7 @@
  * Rank of the database server
  */
 #define DATABASE 1
+/**
+ * Tag to indicate a data mining request
+ */
+#define DATAMINING 192
