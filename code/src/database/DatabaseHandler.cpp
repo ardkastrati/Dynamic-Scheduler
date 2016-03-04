@@ -60,6 +60,10 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 	string package;
 	string part_of_task;
 
+	part_of_task = to_string(static_cast<long long>(data->id));
+	package.append(part_of_task);
+	package.append(";");
+	part_of_task.clear();
 
 	if(data->event == 0)
 	{

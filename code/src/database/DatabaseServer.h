@@ -30,6 +30,11 @@ public:
 
 private:
 
+    /**
+     * A flag to show if an instance of the DataMining modul exist yet.
+     */
+    bool DataMining_instance_flag;
+
     /*
      * Instance of a DatabaseHandler
      */

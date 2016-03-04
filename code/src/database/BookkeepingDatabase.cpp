@@ -37,7 +37,7 @@ void BookkeepingDatabase::initNewFile()
 	bkfile << "Bookkeeping: File created on: ";
 	bkfile << std::ctime(&now_c) << std::endl;
 	bkfile << "####DATA_SECTION####" << std::endl;
-	bkfile << "Processor number: " << size << std::endl;
+	bkfile << "Processor_number: " << size << std::endl;
 	bkfile << "####DATA_START####" << std::endl;
 	bkfile.close();
 }
