@@ -4,6 +4,8 @@
 #include "../ScientificCode.h"
 //#include "../../lib/easylogging++.h"
 #include <assert.h>
+#include "../util/IdUtility.h"
+#include "../Const.h"
 
 AbstractScheduler::AbstractScheduler(SchedulingStrategy* scheduling_strategy,
     DataMining* data_miner, int rank, int number_of_processors) :
@@ -35,10 +37,15 @@ void AbstractScheduler::postprocessing() {
 
 void AbstractScheduler::place_task(Task task)
 {
+    task.id = get_id_by_rank_and_number(rank, task_number);
+    task_number++;
     long runtime = 1;//scheduling_strategy->DEFAULT_RUNTIME;
     if (scheduling_strategy->is_statistic_based()) {
-        //TODO: Uncomment line
-        //runtime = data_miner->predict(task.parameters);
+        short temp;
+        MPI_Status status;
+        long runtime;
+        MPI_Sendrecv(&temp, 1, MPI_SHORT, DATABASE, DATAMINING,
+                     &runtime, 1, MPI_LONG, DATABASE, DATAMINING, MPI_COMM_WORLD, &status);
     }
     scheduling_strategy->push_new_task(task, runtime);
 }

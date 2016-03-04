@@ -21,6 +21,7 @@ typedef struct _StatisticInquiry {
 } StatisticInquiry;
 
 typedef struct _Task {
+	long id;
     long time_appeared;
 	long runtime;
     int parent;
@@ -29,6 +30,7 @@ typedef struct _Task {
 } Task;
 
 typedef struct _TaskData {
+	long id;
     long time_appeared;
     long time_started;
     long time_ended;
@@ -43,21 +45,20 @@ typedef struct _TaskData {
 } TaskData;
 
 extern const int mpi_task_data_type_field_count;
-extern int mpi_task_data_type_blocklength[11];
-extern MPI_Datatype mpi_task_data_type_type[11];
+extern int mpi_task_data_type_blocklength[12];
+extern MPI_Datatype mpi_task_data_type_type[12];
 extern MPI_Datatype MY_MPI_TASK_DATA_TYPE;
 
-extern MPI_Aint mpi_task_data_type_offset[11];
+extern MPI_Aint mpi_task_data_type_offset[12];
 
 extern const int mpi_task_type_field_count;
 
-extern int mpi_task_type_blocklength[5];
-extern MPI_Datatype mpi_task_type_type[5];
+extern int mpi_task_type_blocklength[6];
+extern MPI_Datatype mpi_task_type_type[6];
 
 extern MPI_Datatype MY_MPI_TASK_TYPE;
 
-extern MPI_Aint mpi_task_type_offsets[5
-];
+extern MPI_Aint mpi_task_type_offsets[6];
 
 extern MPI_Comm MY_MPI_COMM_TASKSTEALING;
 

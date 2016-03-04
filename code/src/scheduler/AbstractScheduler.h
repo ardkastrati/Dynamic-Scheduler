@@ -18,6 +18,10 @@
 class AbstractScheduler: public Executor {
 protected:
     /**
+     * Will be incremented when a new task appears
+     */
+    int task_number = 0;
+    /**
      * The current scheduling strategy of the scheduler
      */
     SchedulingStrategy* scheduling_strategy;

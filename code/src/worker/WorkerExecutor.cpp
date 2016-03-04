@@ -41,6 +41,7 @@ void WorkerExecutor::run_task(Task task)
     time_begin = get_time_in_mirco();
 
     TaskData task_data;
+    task_data.id = task.id;
     task_data.time_intercommunication_end = -1;
     task_data.time_intercommunication_start = -1;
     task_data.rank = rank;
@@ -82,6 +83,7 @@ void WorkerExecutor::place_task(Task task)
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, REQUEST, MPI_COMM_WORLD);
 
     TaskData task_data;
+    task_data.id = task.id;
     task_data.rank = rank;
     task_data.time_appeared = task.time_appeared;
     task_data.parent  = task.parent;

@@ -25,6 +25,7 @@ void TaskStealingWorker::place_task(Task task)
 
 
     TaskData task_data;
+    task_data.id = task.id;
     task_data.rank = scheduler->get_rank();
     task_data.time_appeared = task.time_appeared;
     task_data.parent  = task.parent;
@@ -55,6 +56,7 @@ void TaskStealingWorker::run_task(Task task)
     time_begin = get_time_in_mirco();
 
     TaskData task_data;
+    task_data.id = task.id;
     task_data.time_intercommunication_end = -1;
     task_data.time_intercommunication_start = -1;
     task_data.rank = scheduler->get_rank();

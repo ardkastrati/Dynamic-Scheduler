@@ -110,11 +110,12 @@ void create_mpi_task_types()
 {
 
     //Create MY_MPI_TASK_TYPE datatype for communication
-    mpi_task_type_offsets[0] = offsetof(Task, time_appeared);
-    mpi_task_type_offsets[1] = offsetof(Task, runtime);
-    mpi_task_type_offsets[2] = offsetof(Task, parent);
-    mpi_task_type_offsets[3] = offsetof(Task, parameter_size);
-    mpi_task_type_offsets[4] = offsetof(Task, parameters);
+    mpi_task_type_offsets[0] = offsetof(Task, id);
+    mpi_task_type_offsets[1] = offsetof(Task, time_appeared);
+    mpi_task_type_offsets[2] = offsetof(Task, runtime);
+    mpi_task_type_offsets[3] = offsetof(Task, parent);
+    mpi_task_type_offsets[4] = offsetof(Task, parameter_size);
+    mpi_task_type_offsets[5] = offsetof(Task, parameters);
 
     MPI_Type_create_struct(mpi_task_type_field_count,
                            mpi_task_type_blocklength,
@@ -124,17 +125,18 @@ void create_mpi_task_types()
 
     MPI_Type_commit(&MY_MPI_TASK_TYPE);
 
-    mpi_task_data_type_offset[0] = offsetof(TaskData, time_appeared);
-    mpi_task_data_type_offset[1] = offsetof(TaskData, time_started);
-    mpi_task_data_type_offset[2] = offsetof(TaskData, time_ended);
-    mpi_task_data_type_offset[3] = offsetof(TaskData, event);
-    mpi_task_data_type_offset[4] = offsetof(TaskData, mode);
-    mpi_task_data_type_offset[5] = offsetof(TaskData, parent);
-    mpi_task_data_type_offset[6] = offsetof(TaskData, time_intercommunication_start);
-    mpi_task_data_type_offset[7] = offsetof(TaskData, time_intercommunication_end);
-    mpi_task_data_type_offset[8] = offsetof(TaskData, rank);
-    mpi_task_data_type_offset[9] = offsetof(TaskData, parameter_size);
-    mpi_task_data_type_offset[10] = offsetof(TaskData, parameters);
+    mpi_task_data_type_offset[0] = offsetof(TaskData, id);
+    mpi_task_data_type_offset[1] = offsetof(TaskData, time_appeared);
+    mpi_task_data_type_offset[2] = offsetof(TaskData, time_started);
+    mpi_task_data_type_offset[3] = offsetof(TaskData, time_ended);
+    mpi_task_data_type_offset[4] = offsetof(TaskData, event);
+    mpi_task_data_type_offset[5] = offsetof(TaskData, mode);
+    mpi_task_data_type_offset[6] = offsetof(TaskData, parent);
+    mpi_task_data_type_offset[7] = offsetof(TaskData, time_intercommunication_start);
+    mpi_task_data_type_offset[8] = offsetof(TaskData, time_intercommunication_end);
+    mpi_task_data_type_offset[9] = offsetof(TaskData, rank);
+    mpi_task_data_type_offset[10] = offsetof(TaskData, parameter_size);
+    mpi_task_data_type_offset[11] = offsetof(TaskData, parameters);
 
     MPI_Type_create_struct (mpi_task_data_type_field_count,
                             mpi_task_data_type_blocklength,

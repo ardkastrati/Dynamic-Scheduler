@@ -28,12 +28,6 @@ class Master: public AbstractScheduler {
         std::queue<int>* free_worker;
 
         /**
-         * The total count of workers
-         */
-         //TODO: use worker_count
-        int worker_count;
-
-        /**
          * The main loop of the master - worker algorithm.
          * the function returns when all scientific tasks are completed
          */

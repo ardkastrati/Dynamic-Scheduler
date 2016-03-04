@@ -30,6 +30,7 @@ typedef struct _StatisticInquiry {
 } StatisticInquiry;
 
 typedef struct _Task {
+	long id;
     long time_appeared;
 	long runtime;
     int parent;
@@ -38,6 +39,7 @@ typedef struct _Task {
 } Task;
 
 typedef struct _TaskData {
+	long id;
     long time_appeared;
     long time_started;
     long time_ended;
@@ -51,9 +53,10 @@ typedef struct _TaskData {
     double parameters[PARAMTER_LENGTH];
 } TaskData;
 
-const int mpi_task_data_type_field_count = 11;
-int mpi_task_data_type_blocklength[11] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_data_type_type[11] = {MPI_LONG,
+const int mpi_task_data_type_field_count = 12;
+int mpi_task_data_type_blocklength[12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, PARAMTER_LENGTH};
+MPI_Datatype mpi_task_data_type_type[12] = {MPI_LONG,
+											MPI_LONG,
                                             MPI_LONG,
                                             MPI_LONG,
                                             MPI_INT,
@@ -66,18 +69,18 @@ MPI_Datatype mpi_task_data_type_type[11] = {MPI_LONG,
                                             MPI_DOUBLE};
 MPI_Datatype MY_MPI_TASK_DATA_TYPE;
 
-MPI_Aint mpi_task_data_type_offset[11];
+MPI_Aint mpi_task_data_type_offset[12];
 
 
 
-const int mpi_task_type_field_count = 5;
+const int mpi_task_type_field_count = 6;
 
-int mpi_task_type_blocklength[5] = {1, 1, 1, 1, PARAMTER_LENGTH};
-MPI_Datatype mpi_task_type_type[5] = {MPI_LONG, MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
+int mpi_task_type_blocklength[6] = {1, 1, 1, 1, 1, PARAMTER_LENGTH};
+MPI_Datatype mpi_task_type_type[6] = {MPI_LONG, MPI_LONG, MPI_LONG,MPI_INT, MPI_INT, MPI_DOUBLE};
 
 MPI_Datatype MY_MPI_TASK_TYPE;
 
-MPI_Aint mpi_task_type_offsets[5];
+MPI_Aint mpi_task_type_offsets[6];
 
 
 MPI_Comm MY_MPI_COMM_TASKSTEALING;
