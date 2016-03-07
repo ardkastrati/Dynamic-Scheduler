@@ -2,41 +2,41 @@ package model.visualiser.dataholding;
 
 public class Task {
 	
-	private int appered;
+	private long appered;
 	
-	private int started;
+	private long started;
 	
-	private int ended;
+	private long ended;
 	
 	private int rank;
 	
 	private int id;
 
-	public int getAppered() {
+	public long getAppered() {
 		return appered;
 	}
 
-	public void setAppered(int appered) {
+	public void setAppered(long appered) {
 		this.appered = appered;
 	}
 
-	public int getStarted() {
+	public long getStarted() {
 		return started;
 	}
 
-	public void setStarted(int started) {
+	public void setStarted(long started) {
 		this.started = started;
 	}
 
-	public int getEnded() {
+	public long getEnded() {
 		return ended;
 	}
 
-	public void setEnded(int ended) {
+	public void setEnded(long ended) {
 		this.ended = ended;
 	}
 
-	public int getRank() {
+	public long getRank() {
 		return rank;
 	}
 
@@ -44,7 +44,7 @@ public class Task {
 		this.rank = rank;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
