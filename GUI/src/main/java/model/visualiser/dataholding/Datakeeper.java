@@ -28,16 +28,16 @@ public class Datakeeper {
         try {
             this.taskMap = parser.parseBookkeeping(basePath + "/Bookkeeping.txt");
         } catch (FileNotFoundException ex) {
-            MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 150, true, true);
+            //MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 150, true, true);
         } catch (ParserException ex) {
-            MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 150, true, true);
+            //MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 150, true, true);
         }
         try {
             this.eventList = parser.parseStatistic(basePath + "/Statistic.txt");
         } catch (FileNotFoundException ex) {
-            MainSceneController.showPopupMessage("Statistic file not found", diagramPane, 100, 150, true, true);
+            //MainSceneController.showPopupMessage("Statistic file not found", diagramPane, 100, 150, true, true);
         } catch (ParserException ex) {
-            MainSceneController.showPopupMessage("Statistic file has wrong format", diagramPane, 100, 150, true, true);
+            //MainSceneController.showPopupMessage("Statistic file has wrong format", diagramPane, 100, 150, true, true);
         } 
     }
     
