@@ -16,30 +16,30 @@
 class LIFO: public SchedulingStrategy {
 private:
     /**
-     * Last In - First Out (LIFO) stack of TaskTypes. The stack keeps the scientific tasks
+     * Last In - First Out (LIFO) stack of TaskTypes. The stack keeps the scientific tasks.
      */
     std::stack<Task>* stack;
 
 public:
     /**
-     * Constructs a new LIFO scheduling queue
+     * Creates a new LIFO scheduling queue.
      */
     LIFO();
 
     /**
-     * Destructs a new LIFO scheduling queue
+     * Destructs a LIFO scheduling queue.
      */
     ~LIFO();
 
     /**
-     * Returns the last-in task, or NULL if the queue is empty
+     * Returns the last-in task, or NULL if the queue is empty.
      *
      * @return the last-in task
      */
     Task get_next_task();
 
     /**
-     * Return the count of  tasks in the scheduling queue
+     * Return the count of  tasks in the scheduling queue.
      *
      * @retrun the count of tasks
      */
@@ -51,7 +51,7 @@ public:
     Task pop_next_task();
 
     /**
-     * Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
+     * Inserts a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime.
      * @param task
      * @param runtime
      */
@@ -60,9 +60,9 @@ public:
     /**
      * Changes the scheduling strategy. Returns the new schdeuling strategy with all tasks, or NULL if there was an error.
      *
-     * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will be kept.
+     * Estimated runtime of tasks will get lost when changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will not change.
      *
-     * All tasks will get a default rumtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue perhaps won't be kept
+     * All tasks get a default rumtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue might change.
      * @param new_strategy
      */
     SchedulingStrategy* change_strategy(SchedulingStrategy* new_strategy);

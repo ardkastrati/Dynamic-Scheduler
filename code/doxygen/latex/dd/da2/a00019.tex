@@ -1,0 +1,106 @@
+\hypertarget{a00019}{}\subsection{Grid\+Data\+Mining Class Reference}
+\label{a00019}\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+
+
+{\ttfamily \#include $<$Grid\+Data\+Mining.\+h$>$}
+
+
+
+Inheritance diagram for Grid\+Data\+Mining\+:
+% FIG 0
+
+
+Collaboration diagram for Grid\+Data\+Mining\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00019_aa27e608733c28e133633813924f39d7b}{Grid\+Data\+Mining} (int rank, int target\+\_\+rank, \hyperlink{a00011}{Database\+Handler} $\ast$database, int parameter\+\_\+count, double $\ast$initial\+\_\+tasks\+\_\+parameter, long $\ast$initial\+\_\+task\+\_\+runtime, int initial\+\_\+task\+\_\+count)
+\item 
+\hyperlink{a00019_a9cfa6df12c31316f2e978e76aab1c63d}{$\sim$\+Grid\+Data\+Mining} ()
+\item 
+long \hyperlink{a00019_a8aef1fbc6d1f034660efee2878f2efe2}{predict} (double $\ast$parameters)
+\item 
+void \hyperlink{a00019_a864374110fb8c1673c057f524776ff97}{insert} (double $\ast$parameters, long runtime)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Project Dynamic Scheduler for Scientific Simulations 
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00019_aa27e608733c28e133633813924f39d7b}{}\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}!Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}!Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+\paragraph[{Grid\+Data\+Mining}]{\setlength{\rightskip}{0pt plus 5cm}Grid\+Data\+Mining\+::\+Grid\+Data\+Mining (
+\begin{DoxyParamCaption}
+\item[{int}]{rank, }
+\item[{int}]{target\+\_\+rank, }
+\item[{{\bf Database\+Handler} $\ast$}]{database, }
+\item[{int}]{parameter\+\_\+count, }
+\item[{double $\ast$}]{initial\+\_\+tasks\+\_\+parameter, }
+\item[{long $\ast$}]{initial\+\_\+task\+\_\+runtime, }
+\item[{int}]{initial\+\_\+task\+\_\+count}
+\end{DoxyParamCaption}
+)}\label{a00019_aa27e608733c28e133633813924f39d7b}
+Grid Konstruktor create a \hyperlink{a00005}{Array\+Handler} and a \hyperlink{a00027}{Mpi\+Proxy} 
+\begin{DoxyParams}{Parameters}
+{\em rank} & in the M\+P\+I World \\
+\hline
+{\em target\+\_\+rank} & the M\+P\+I rank of the Grid\+Data\+Mininer that holds the M\+P\+I Shared\+Memory \\
+\hline
+{\em database} & holds all task that ever ran \\
+\hline
+{\em nr\+\_\+of\+\_\+dimensions} & the nr of dimensions of the virtal mulitdimenisonal array \\
+\hline
+{\em initial\+\_\+tasks\+\_\+parameter} & a array with the parameter of the initial task musst be initial\+\_\+task\+\_\+count $\ast$ nr\+\_\+of\+\_\+dimensions long \\
+\hline
+{\em initial\+\_\+task\+\_\+runtime} & a array with the runtime of the initial task musst be initial\+\_\+task\+\_\+count long \\
+\hline
+{\em initial\+\_\+task\+\_\+count} & the number of initial task musst be bigger than zero\\
+\hline
+\end{DoxyParams}
+\hyperlink{a00019}{Grid\+Data\+Mining} implementation \hypertarget{a00019_a9cfa6df12c31316f2e978e76aab1c63d}{}\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}!````~Grid\+Data\+Mining@{$\sim$\+Grid\+Data\+Mining}}
+\index{````~Grid\+Data\+Mining@{$\sim$\+Grid\+Data\+Mining}!Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+\paragraph[{$\sim$\+Grid\+Data\+Mining}]{\setlength{\rightskip}{0pt plus 5cm}Grid\+Data\+Mining\+::$\sim$\+Grid\+Data\+Mining (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00019_a9cfa6df12c31316f2e978e76aab1c63d}
+Deconstructor 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00019_a864374110fb8c1673c057f524776ff97}{}\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}!insert@{insert}}
+\index{insert@{insert}!Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+\paragraph[{insert}]{\setlength{\rightskip}{0pt plus 5cm}void Grid\+Data\+Mining\+::insert (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{parameters, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00019_a864374110fb8c1673c057f524776ff97}
+insert a ran task into the grid 
+\begin{DoxyParams}{Parameters}
+{\em parameter} & the parameter of the task musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+{\em time} & the new time of the task musst not be negativ \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00013}{Data\+Mining}.
+
+\hypertarget{a00019_a8aef1fbc6d1f034660efee2878f2efe2}{}\index{Grid\+Data\+Mining@{Grid\+Data\+Mining}!predict@{predict}}
+\index{predict@{predict}!Grid\+Data\+Mining@{Grid\+Data\+Mining}}
+\paragraph[{predict}]{\setlength{\rightskip}{0pt plus 5cm}long Grid\+Data\+Mining\+::predict (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{parameters}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00019_a8aef1fbc6d1f034660efee2878f2efe2}
+predict a given task 
+\begin{DoxyParams}{Parameters}
+{\em parameter} & the parameter of the task musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00013}{Data\+Mining}.
+

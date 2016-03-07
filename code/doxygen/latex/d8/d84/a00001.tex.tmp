@@ -1,0 +1,18 @@
+\hypertarget{a00001}{}\subsection{\+\_\+\+Statistic\+Inquiry Struct Reference}
+\label{a00001}\index{\+\_\+\+Statistic\+Inquiry@{\+\_\+\+Statistic\+Inquiry}}
+
+
+Collaboration diagram for \+\_\+\+Statistic\+Inquiry\+:
+% FIG 0
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00001_a3934f5fbc4dfd91f51203ce53648a9e1}{}int {\bfseries parameter\+\_\+size}\label{a00001_a3934f5fbc4dfd91f51203ce53648a9e1}
+
+\item 
+\hypertarget{a00001_a90d5c25e5f7b26fd17e95d06c51a8758}{}std\+::vector$<$ long $>$ {\bfseries runtime}\label{a00001_a90d5c25e5f7b26fd17e95d06c51a8758}
+
+\item 
+\hypertarget{a00001_ac310959ba057c4348ba74bae050d2c68}{}std\+::vector$<$ double $>$ {\bfseries para}\label{a00001_ac310959ba057c4348ba74bae050d2c68}
+
+\end{DoxyCompactItemize}

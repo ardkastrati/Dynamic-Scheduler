@@ -1,0 +1,148 @@
+\hypertarget{a00076}{}\subsection{Scheduling\+Strategy Class Reference}
+\label{a00076}\index{Scheduling\+Strategy@{Scheduling\+Strategy}}
+
+
+Inheritance diagram for Scheduling\+Strategy\+:
+% FIG 0
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{a00002}{Task} \hyperlink{a00076_adce3619801460ad67d6c8f9bdffcd36b}{get\+\_\+next\+\_\+task} ()=0
+\item 
+virtual int \hyperlink{a00076_a0a3355ffe9c03236692ad00e4f94f5c5}{get\+\_\+task\+\_\+count} ()=0
+\item 
+virtual \hyperlink{a00002}{Task} \hyperlink{a00076_ac2ba483287c91fd4318f337da144a9c5}{pop\+\_\+next\+\_\+task} ()=0
+\item 
+virtual void \hyperlink{a00076_a62ffa0426528c14fdd0b0853f04a851f}{push\+\_\+new\+\_\+task} (\hyperlink{a00002}{Task} task, long runtime)=0
+\item 
+virtual \hyperlink{a00076}{Scheduling\+Strategy} $\ast$ \hyperlink{a00076_a4874d194c1bb185480339360fe907d83}{change\+\_\+strategy} (\hyperlink{a00076}{Scheduling\+Strategy} $\ast$new\+\_\+strategy)=0
+\item 
+virtual bool \hyperlink{a00076_a5962845ca5af53bbdc014c19a6bdef99}{is\+\_\+statistic\+\_\+based} ()=0
+\item 
+virtual \hyperlink{a00076_a896eb08aa462cd1ecaa59ca02c7c0c58}{$\sim$\+Scheduling\+Strategy} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const long \hyperlink{a00076_acc0ddb05e5c6f21bd0e82a9e89a23ccb}{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E} = 1
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00076_a896eb08aa462cd1ecaa59ca02c7c0c58}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!````~Scheduling\+Strategy@{$\sim$\+Scheduling\+Strategy}}
+\index{````~Scheduling\+Strategy@{$\sim$\+Scheduling\+Strategy}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{$\sim$\+Scheduling\+Strategy}]{\setlength{\rightskip}{0pt plus 5cm}Scheduling\+Strategy\+::$\sim$\+Scheduling\+Strategy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00076_a896eb08aa462cd1ecaa59ca02c7c0c58}
+Frees dynamic allocated memory 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00076_a4874d194c1bb185480339360fe907d83}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!change\+\_\+strategy@{change\+\_\+strategy}}
+\index{change\+\_\+strategy@{change\+\_\+strategy}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{change\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Scheduling\+Strategy}$\ast$ Scheduling\+Strategy\+::change\+\_\+strategy (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{new\+\_\+strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_a4874d194c1bb185480339360fe907d83}
+Changes the scheduling strategy. Returns the new schdeuling strategy with all tasks, or N\+U\+L\+L if there was an error.
+
+Estimated runtime of tasks will get lost by changing from statistically based strategies (L\+S\+F, \hyperlink{a00080}{S\+J\+F}) to non-\/statistically based strategies. The order of the old queue will be kept.
+
+All tasks will get a default rumtime value (defined in D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E) by changing from non-\/statistically based strategies (\hyperlink{a00028}{F\+I\+F\+O}, \hyperlink{a00038}{L\+I\+F\+O}) to statistically based strategies. The order of the old queue perhaps won\textquotesingle{}t be kept 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+strategy} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{a00056_ae5620542c597abff58986506d595c29e}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_aff536070d82c0a220436a1c19e07b584}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00040_aaf5029dba4a8200d49f9b6bd47e71acd}{L\+J\+F}, \hyperlink{a00080_aa1816e24350bf8ee69641e79bc4354e1}{S\+J\+F}, \hyperlink{a00057_aa33f53bcf71ee26ff20039916cb321cd}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00028_a1f94031b462c35718f2d3ebe16acfa9c}{F\+I\+F\+O}, and \hyperlink{a00038_a6e3553527c29e2c90bf86d4a4e5cd570}{L\+I\+F\+O}.
+
+\hypertarget{a00076_adce3619801460ad67d6c8f9bdffcd36b}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}}
+\index{get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{get\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Task} Scheduling\+Strategy\+::get\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_adce3619801460ad67d6c8f9bdffcd36b}
+Returns the next task depending on the scheduling strategy.
+
+\begin{DoxyReturn}{Returns}
+the next task of the queue, or N\+U\+L\+L if the queue is empty 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00056_aeffee53a08818badfafed7642a41b955}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_a380cd524e7944a34b62e1f24e9e177dc}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00040_a24a4c6bfba65ef98753242c1f068b9fd}{L\+J\+F}, \hyperlink{a00080_ae4b4643d0ab5399d9ead911324316f8b}{S\+J\+F}, \hyperlink{a00057_a6de2bf8f36458582ebc800f2beda94c6}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00028_a4f1234aa7afcd3017a7e0470a63a28c7}{F\+I\+F\+O}, and \hyperlink{a00038_a53eb12a8a25f0fb4f57679206bf314dc}{L\+I\+F\+O}.
+
+\hypertarget{a00076_a0a3355ffe9c03236692ad00e4f94f5c5}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Scheduling\+Strategy\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_a0a3355ffe9c03236692ad00e4f94f5c5}
+Return the count of tasks in the scheduling queue
+
+the count of tasks 
+
+Implemented in \hyperlink{a00056_a609d1de2a9afc8d82dfab9746fe7c885}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_a5b1e74e642f812a39a5aa6a780767361}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00040_a329055147464eb68940c0541aba5946e}{L\+J\+F}, \hyperlink{a00080_a52050fbf818f6ce0e7de4d206d768af7}{S\+J\+F}, \hyperlink{a00057_aeb679863632de7367029fded90eb4e5f}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00028_a4a03d69c49827b555a4968733195fd01}{F\+I\+F\+O}, and \hyperlink{a00038_a6368d6fe156688f38d06a0ee75d57ef6}{L\+I\+F\+O}.
+
+\hypertarget{a00076_a5962845ca5af53bbdc014c19a6bdef99}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}}
+\index{is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{is\+\_\+statistic\+\_\+based}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Scheduling\+Strategy\+::is\+\_\+statistic\+\_\+based (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_a5962845ca5af53bbdc014c19a6bdef99}
+Returns true, if the current scheduling strategy statistic based.
+
+\begin{DoxyReturn}{Returns}
+true, if the current scheduling strategy statistic based 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00056_ab568b8ec6f8eb9baabaae8552a938204}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_a72e6b555d122e42f1dd72ea72f626975}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00057_ae65b1f7b9a7e5c8a2feaceafca0dd129}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00040_a9292614934e9dc35f7c4ea568bcdcd4c}{L\+J\+F}, \hyperlink{a00080_a113a0c4ba9bf1ede8e3189c882a7b8c7}{S\+J\+F}, \hyperlink{a00028_aff0f1a994e551ccfad05e7338652a16d}{F\+I\+F\+O}, and \hyperlink{a00038_a8a8a3203290cda8521b74acde5fc334d}{L\+I\+F\+O}.
+
+\hypertarget{a00076_ac2ba483287c91fd4318f337da144a9c5}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}}
+\index{pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{pop\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Task} Scheduling\+Strategy\+::pop\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_ac2ba483287c91fd4318f337da144a9c5}
+Returns the next task of the queue depending on the scheduling strategy and removes the task. Effectively reducing its size by one.
+
+\begin{DoxyReturn}{Returns}
+the next task of the queue, or N\+U\+L\+L, if the queue is empty 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00056_a1ceb2f48f1ae2fbbf14ab9227ba8df9e}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_a7320931203f8f33f3bc22bd7d91106f7}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00040_af12a29f8a65fea1de0a2f436fd2b8b2b}{L\+J\+F}, \hyperlink{a00080_aa9c95d30d23d76c6738c9b4076574d68}{S\+J\+F}, \hyperlink{a00057_a93c2fdd8d75ce1264329edfa48d8864a}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00028_aa96d491319ffa72dbb923693a692ed40}{F\+I\+F\+O}, and \hyperlink{a00038_a1593c380d2f3f0e8f2247a2b61c9607c}{L\+I\+F\+O}.
+
+\hypertarget{a00076_a62ffa0426528c14fdd0b0853f04a851f}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}}
+\index{push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{push\+\_\+new\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Scheduling\+Strategy\+::push\+\_\+new\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00076_a62ffa0426528c14fdd0b0853f04a851f}
+Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+{\em runtime} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{a00056_ab250777bda97e37530c354683a87e8b4}{Mpi\+Win\+F\+I\+F\+O}, \hyperlink{a00055_a96148127c5d44c8b884a90c204ee8368}{Mpi\+Win\+Binary\+Heap}, \hyperlink{a00040_a4661c55d31322bc7755227890ca8679c}{L\+J\+F}, \hyperlink{a00080_acf85a4d139f386a2a82578b32a1b3989}{S\+J\+F}, \hyperlink{a00057_a1336e4abb196dc1f3eba6e7e29f969aa}{Mpi\+Win\+L\+I\+F\+O}, \hyperlink{a00028_aa91a84fbe7f8755b4fd7dab27dfd3b72}{F\+I\+F\+O}, and \hyperlink{a00038_a422ac5b308521b23e97c25f7fc80ee7c}{L\+I\+F\+O}.
+
+
+
+\subsubsection{Field Documentation}
+\hypertarget{a00076_acc0ddb05e5c6f21bd0e82a9e89a23ccb}{}\index{Scheduling\+Strategy@{Scheduling\+Strategy}!D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E@{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E@{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E}!Scheduling\+Strategy@{Scheduling\+Strategy}}
+\paragraph[{D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}const long Scheduling\+Strategy\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E = 1\hspace{0.3cm}{\ttfamily [static]}}\label{a00076_acc0ddb05e5c6f21bd0e82a9e89a23ccb}
+Default runtime of tasks in milli seconds 

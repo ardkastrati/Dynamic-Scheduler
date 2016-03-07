@@ -1,0 +1,237 @@
+\hypertarget{namespaceel_1_1base}{}\section{el\+:\+:base Namespace Reference}
+\label{namespaceel_1_1base}\index{el\+::base@{el\+::base}}
+
+
+Namespace containing base/internal functionality used by Easylogging++.  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceel_1_1base_1_1consts}{consts}
+\begin{DoxyCompactList}\small\item\em Namespace containing constants used internally. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceel_1_1base_1_1debug}{debug}
+\begin{DoxyCompactList}\small\item\em Contains some internal debugging tools like crash handler and stack tracer. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceel_1_1base_1_1threading}{threading}
+\item 
+ \hyperlink{namespaceel_1_1base_1_1type}{type}
+\begin{DoxyCompactList}\small\item\em Data types used by Easylogging++. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceel_1_1base_1_1utils}{utils}
+\begin{DoxyCompactList}\small\item\em Namespace containing utility functions/static classes used internally. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1_default_log_builder}{Default\+Log\+Builder}
+\item 
+class \hyperlink{classel_1_1base_1_1_default_log_dispatch_callback}{Default\+Log\+Dispatch\+Callback}
+\item 
+class \hyperlink{classel_1_1base_1_1_default_performance_tracking_callback}{Default\+Performance\+Tracking\+Callback}
+\item 
+class \hyperlink{classel_1_1base_1_1_hit_counter}{Hit\+Counter}
+\begin{DoxyCompactList}\small\item\em Class that keeps record of current line hit for occasional logging. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_log_dispatcher}{Log\+Dispatcher}
+\begin{DoxyCompactList}\small\item\em Dispatches log messages. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_log_format}{Log\+Format}
+\begin{DoxyCompactList}\small\item\em Represents log format containing flags and date format. This is used internally to start initial log. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_message_builder}{Message\+Builder}
+\item 
+class \hyperlink{classel_1_1base_1_1_milliseconds_width}{Milliseconds\+Width}
+\begin{DoxyCompactList}\small\item\em A milliseconds width class containing actual width and offset for date/time. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_no_copy}{No\+Copy}
+\begin{DoxyCompactList}\small\item\em Internal helper class that prevent copy constructor for class. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_null_writer}{Null\+Writer}
+\begin{DoxyCompactList}\small\item\em Writes nothing -\/ Used when certain log is disabled. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_performance_tracker}{Performance\+Tracker}
+\begin{DoxyCompactList}\small\item\em Represents performance\+Tracker block of code that conditionally adds performance status to log either when goes outside the scope of when \hyperlink{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}{checkpoint()} is called. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_p_error_writer}{P\+Error\+Writer}
+\item 
+class \hyperlink{classel_1_1base_1_1_registered_hit_counters}{Registered\+Hit\+Counters}
+\begin{DoxyCompactList}\small\item\em Repository for hit counters used across the application. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_registered_loggers}{Registered\+Loggers}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classel_1_1_loggers}{Loggers} repository. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_static_class}{Static\+Class}
+\begin{DoxyCompactList}\small\item\em Internal helper class that makes all default constructors private. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_storage}{Storage}
+\begin{DoxyCompactList}\small\item\em Easylogging++ management storage. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_typed_configurations}{Typed\+Configurations}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classel_1_1_configurations}{Configurations} with data types. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_v_registry}{V\+Registry}
+\begin{DoxyCompactList}\small\item\em Represents registries for verbose logging. \end{DoxyCompactList}\item 
+class \hyperlink{classel_1_1base_1_1_writer}{Writer}
+\begin{DoxyCompactList}\small\item\em Main entry point of each logging. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \hyperlink{namespaceel_1_1base_1_1type_a620c830ead75d26b45c060c211ee2685}{base\+::type\+::fstream\+\_\+t} $>$ \hyperlink{namespaceel_1_1base_a8b10bcfd674533f8340cd8c39fbf5233}{File\+Stream\+Ptr}
+\item 
+typedef std\+::map$<$ std\+::string, \hyperlink{namespaceel_1_1base_a8b10bcfd674533f8340cd8c39fbf5233}{File\+Stream\+Ptr} $>$ \hyperlink{namespaceel_1_1base_af7602da9fe1d6c75985184fb0e39fd11}{Log\+Streams\+Reference\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39}{Timestamp\+Unit} \+: base\+::type\+::\+Enum\+Type \{ \\*
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a1f14b3811ca5de688daa740d8471249e}{Timestamp\+Unit\+::\+Microsecond} = 0, 
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a988bbeeb80e7e0a6b4651aab5a76b413}{Timestamp\+Unit\+::\+Millisecond} = 1, 
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ac22cf8376b1893dcfcef0649fe1a7d87}{Timestamp\+Unit\+::\+Second} = 2, 
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a62902641c38f3a4a8eb3212454360e24}{Timestamp\+Unit\+::\+Minute} = 3, 
+\\*
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ab55e509c697e4cca0e1d160a7806698f}{Timestamp\+Unit\+::\+Hour} = 4, 
+\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a03727ac48595a24daed975559c944a44}{Timestamp\+Unit\+::\+Day} = 5
+ \}
+\begin{DoxyCompactList}\small\item\em Enum to represent timestamp unit. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00}{Format\+Flags} \+: base\+::type\+::\+Enum\+Type \{ \\*
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8cf10d2341ed01492506085688270c1e}{Format\+Flags\+::\+Date\+Time} = 1$<$$<$1, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a1bfb431e0c673464b7a57c135e5fe861}{Format\+Flags\+::\+Logger\+Id} = 1$<$$<$2, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a0b27918290ff5323bea1e3b78a9cf04e}{Format\+Flags\+::\+File} = 1$<$$<$3, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a4803e6b9e63dabf04de980788d6a13c4}{Format\+Flags\+::\+Line} = 1$<$$<$4, 
+\\*
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ace5bf551379459c1c61d2a204061c455}{Format\+Flags\+::\+Location} = 1$<$$<$5, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a86408593c34af77fdd90df932f8b5261}{Format\+Flags\+::\+Function} = 1$<$$<$6, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8f9bfe9d1345237cb3b2b205864da075}{Format\+Flags\+::\+User} = 1$<$$<$7, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ac2ca16d048ec66e04bca283eab048ec2}{Format\+Flags\+::\+Host} = 1$<$$<$8, 
+\\*
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a80672412fb77a287c9c90cbacf039fc7}{Format\+Flags\+::\+Log\+Message} = 1$<$$<$9, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a52e9b703699c35fb5be3d84511bc86b8}{Format\+Flags\+::\+Verbose\+Level} = 1$<$$<$10, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa6d1acde6e20d49a9d81f90622732227}{Format\+Flags\+::\+App\+Name} = 1$<$$<$11, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a693e7589872f7acd3e69d831d022d6ea}{Format\+Flags\+::\+Thread\+Id} = 1$<$$<$12, 
+\\*
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa0db49ba470c1c9ae2128c3470339153}{Format\+Flags\+::\+Level} = 1$<$$<$13, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a363d6c255447a7ca6ef9c06b73a8a87d}{Format\+Flags\+::\+File\+Base} = 1$<$$<$14, 
+\hyperlink{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a9d8794d3178b4df3b87654adbed5c846}{Format\+Flags\+::\+Level\+Short} = 1$<$$<$15
+ \}
+\begin{DoxyCompactList}\small\item\em Format flags used to determine specifiers that are active for performance improvements. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839}{Dispatch\+Action} \+: base\+::type\+::\+Enum\+Type \{ \hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a6adf97f83acf6453d4a6a4b1070f3754}{Dispatch\+Action\+::\+None} = 1, 
+\hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a44d8ee68145a7d9849eeaa634c443602}{Dispatch\+Action\+::\+Normal\+Log} = 2, 
+\hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839aa0861ec9150978a150dcefab74fad51b}{Dispatch\+Action\+::\+Sys\+Log} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em Action to be taken for dispatching. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{easylogging_09_09_8h_a5155fe064b7cf0e577152f0468c85c7a}{E\+L\+P\+P\+\_\+\+E\+X\+P\+O\+R\+T} \hyperlink{namespaceel_1_1base_1_1type_a3c34822c3825018aca1526f2289b7976}{base\+::type\+::\+Storage\+Pointer} \hyperlink{namespaceel_1_1base_a0ec6b7a1bd89ad58dadc10f190142018}{el\+Storage}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Namespace containing base/internal functionality used by Easylogging++. 
+
+\subsection{Typedef Documentation}
+\hypertarget{namespaceel_1_1base_a8b10bcfd674533f8340cd8c39fbf5233}{}\index{el\+::base@{el\+::base}!File\+Stream\+Ptr@{File\+Stream\+Ptr}}
+\index{File\+Stream\+Ptr@{File\+Stream\+Ptr}!el\+::base@{el\+::base}}
+\subsubsection[{File\+Stream\+Ptr}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::shared\+\_\+ptr$<${\bf base\+::type\+::fstream\+\_\+t}$>$ {\bf el\+::base\+::\+File\+Stream\+Ptr}}\label{namespaceel_1_1base_a8b10bcfd674533f8340cd8c39fbf5233}
+
+
+Definition at line 2852 of file easylogging++.\+h.
+
+\hypertarget{namespaceel_1_1base_af7602da9fe1d6c75985184fb0e39fd11}{}\index{el\+::base@{el\+::base}!Log\+Streams\+Reference\+Map@{Log\+Streams\+Reference\+Map}}
+\index{Log\+Streams\+Reference\+Map@{Log\+Streams\+Reference\+Map}!el\+::base@{el\+::base}}
+\subsubsection[{Log\+Streams\+Reference\+Map}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::map$<$std\+::string, {\bf File\+Stream\+Ptr}$>$ {\bf el\+::base\+::\+Log\+Streams\+Reference\+Map}}\label{namespaceel_1_1base_af7602da9fe1d6c75985184fb0e39fd11}
+
+
+Definition at line 2853 of file easylogging++.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839}{}\index{el\+::base@{el\+::base}!Dispatch\+Action@{Dispatch\+Action}}
+\index{Dispatch\+Action@{Dispatch\+Action}!el\+::base@{el\+::base}}
+\subsubsection[{Dispatch\+Action}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf el\+::base\+::\+Dispatch\+Action} \+: {\bf base\+::type\+::\+Enum\+Type}\hspace{0.3cm}{\ttfamily [strong]}}\label{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839}
+
+
+Action to be taken for dispatching. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{None@{None}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!None@{None}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a6adf97f83acf6453d4a6a4b1070f3754}{}None\label{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a6adf97f83acf6453d4a6a4b1070f3754}
+}]\index{Normal\+Log@{Normal\+Log}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Normal\+Log@{Normal\+Log}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a44d8ee68145a7d9849eeaa634c443602}{}Normal\+Log\label{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a44d8ee68145a7d9849eeaa634c443602}
+}]\index{Sys\+Log@{Sys\+Log}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Sys\+Log@{Sys\+Log}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839aa0861ec9150978a150dcefab74fad51b}{}Sys\+Log\label{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839aa0861ec9150978a150dcefab74fad51b}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 3316 of file easylogging++.\+h.
+
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00}{}\index{el\+::base@{el\+::base}!Format\+Flags@{Format\+Flags}}
+\index{Format\+Flags@{Format\+Flags}!el\+::base@{el\+::base}}
+\subsubsection[{Format\+Flags}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf el\+::base\+::\+Format\+Flags} \+: {\bf base\+::type\+::\+Enum\+Type}\hspace{0.3cm}{\ttfamily [strong]}}\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00}
+
+
+Format flags used to determine specifiers that are active for performance improvements. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Date\+Time@{Date\+Time}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Date\+Time@{Date\+Time}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8cf10d2341ed01492506085688270c1e}{}Date\+Time\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8cf10d2341ed01492506085688270c1e}
+}]\index{Logger\+Id@{Logger\+Id}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Logger\+Id@{Logger\+Id}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a1bfb431e0c673464b7a57c135e5fe861}{}Logger\+Id\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a1bfb431e0c673464b7a57c135e5fe861}
+}]\index{File@{File}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!File@{File}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a0b27918290ff5323bea1e3b78a9cf04e}{}File\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a0b27918290ff5323bea1e3b78a9cf04e}
+}]\index{Line@{Line}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Line@{Line}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a4803e6b9e63dabf04de980788d6a13c4}{}Line\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a4803e6b9e63dabf04de980788d6a13c4}
+}]\index{Location@{Location}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Location@{Location}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ace5bf551379459c1c61d2a204061c455}{}Location\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ace5bf551379459c1c61d2a204061c455}
+}]\index{Function@{Function}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Function@{Function}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a86408593c34af77fdd90df932f8b5261}{}Function\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a86408593c34af77fdd90df932f8b5261}
+}]\index{User@{User}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!User@{User}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8f9bfe9d1345237cb3b2b205864da075}{}User\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a8f9bfe9d1345237cb3b2b205864da075}
+}]\index{Host@{Host}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Host@{Host}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ac2ca16d048ec66e04bca283eab048ec2}{}Host\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00ac2ca16d048ec66e04bca283eab048ec2}
+}]\index{Log\+Message@{Log\+Message}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Log\+Message@{Log\+Message}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a80672412fb77a287c9c90cbacf039fc7}{}Log\+Message\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a80672412fb77a287c9c90cbacf039fc7}
+}]\index{Verbose\+Level@{Verbose\+Level}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Verbose\+Level@{Verbose\+Level}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a52e9b703699c35fb5be3d84511bc86b8}{}Verbose\+Level\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a52e9b703699c35fb5be3d84511bc86b8}
+}]\index{App\+Name@{App\+Name}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!App\+Name@{App\+Name}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa6d1acde6e20d49a9d81f90622732227}{}App\+Name\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa6d1acde6e20d49a9d81f90622732227}
+}]\index{Thread\+Id@{Thread\+Id}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Thread\+Id@{Thread\+Id}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a693e7589872f7acd3e69d831d022d6ea}{}Thread\+Id\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a693e7589872f7acd3e69d831d022d6ea}
+}]\index{Level@{Level}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Level@{Level}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa0db49ba470c1c9ae2128c3470339153}{}Level\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00aa0db49ba470c1c9ae2128c3470339153}
+}]\index{File\+Base@{File\+Base}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!File\+Base@{File\+Base}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a363d6c255447a7ca6ef9c06b73a8a87d}{}File\+Base\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a363d6c255447a7ca6ef9c06b73a8a87d}
+}]\index{Level\+Short@{Level\+Short}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Level\+Short@{Level\+Short}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a9d8794d3178b4df3b87654adbed5c846}{}Level\+Short\label{namespaceel_1_1base_a28939c5a884e67fcf12259f4b8848e00a9d8794d3178b4df3b87654adbed5c846}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 854 of file easylogging++.\+h.
+
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39}{}\index{el\+::base@{el\+::base}!Timestamp\+Unit@{Timestamp\+Unit}}
+\index{Timestamp\+Unit@{Timestamp\+Unit}!el\+::base@{el\+::base}}
+\subsubsection[{Timestamp\+Unit}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf el\+::base\+::\+Timestamp\+Unit} \+: {\bf base\+::type\+::\+Enum\+Type}\hspace{0.3cm}{\ttfamily [strong]}}\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39}
+
+
+Enum to represent timestamp unit. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Microsecond@{Microsecond}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Microsecond@{Microsecond}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a1f14b3811ca5de688daa740d8471249e}{}Microsecond\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a1f14b3811ca5de688daa740d8471249e}
+}]\index{Millisecond@{Millisecond}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Millisecond@{Millisecond}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a988bbeeb80e7e0a6b4651aab5a76b413}{}Millisecond\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a988bbeeb80e7e0a6b4651aab5a76b413}
+}]\index{Second@{Second}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Second@{Second}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ac22cf8376b1893dcfcef0649fe1a7d87}{}Second\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ac22cf8376b1893dcfcef0649fe1a7d87}
+}]\index{Minute@{Minute}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Minute@{Minute}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a62902641c38f3a4a8eb3212454360e24}{}Minute\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a62902641c38f3a4a8eb3212454360e24}
+}]\index{Hour@{Hour}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Hour@{Hour}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ab55e509c697e4cca0e1d160a7806698f}{}Hour\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39ab55e509c697e4cca0e1d160a7806698f}
+}]\index{Day@{Day}!el\+::base@{el\+::base}}\index{el\+::base@{el\+::base}!Day@{Day}}\item[{\em 
+\hypertarget{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a03727ac48595a24daed975559c944a44}{}Day\label{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a03727ac48595a24daed975559c944a44}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 850 of file easylogging++.\+h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceel_1_1base_a0ec6b7a1bd89ad58dadc10f190142018}{}\index{el\+::base@{el\+::base}!el\+Storage@{el\+Storage}}
+\index{el\+Storage@{el\+Storage}!el\+::base@{el\+::base}}
+\subsubsection[{el\+Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+L\+P\+P\+\_\+\+E\+X\+P\+O\+R\+T} {\bf base\+::type\+::\+Storage\+Pointer} el\+::base\+::el\+Storage}\label{namespaceel_1_1base_a0ec6b7a1bd89ad58dadc10f190142018}

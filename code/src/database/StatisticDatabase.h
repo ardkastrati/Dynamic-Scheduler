@@ -16,18 +16,18 @@ class StatisticDatabase : public Database
 public:
 	/*
 	 * The constructor of statistic class.
-	 * Start to create a new file.
+	 * Start process to create a new file.
 	 */
 	StatisticDatabase();
 
 	/*
-	 * The deconstructor of statistic class.
+	 * The Destructor of statistic class.
 	 */
 	~StatisticDatabase();
 
 	/*
 	 * The insertTaskData writes the datastring in the file.
-	 * @param data string which contains one data package of a task
+	 * @param data string containing one data package of a task
 	 */
 	void insertTaskData(string data);
 
@@ -38,7 +38,7 @@ public:
 private:
 
 	/*
-	 * Creates the actual new file.
+	 * Actually creates a new file.
 	 */
 	void initNewFile();
 };

@@ -22,12 +22,12 @@ private:
 
 public:
     /**
-     * Constructs a new FIFO scheduling queue
+     * Creates a new FIFO scheduling queue
      */
     FIFO();
 
     /**
-     * Destructs a new FIFO scheduling queue
+     * Destructs the FIFO scheduling queue
      */
     ~FIFO();
 
@@ -39,9 +39,9 @@ public:
     Task get_next_task();
 
     /**
-     * Return the count of  tasks in the scheduling queue
+     * Return the number of  tasks in the scheduling queue
      *
-     * @retrun the count of tasks
+     * @retrun the number of tasks
      */
     int get_task_count();
 
@@ -62,7 +62,7 @@ public:
      *
      * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will be kept.
      *
-     * All tasks will get a default rumtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue perhaps won't be kept
+     * All tasks will get a default rumtime value (defined in DEFAULT_RUNTIME) when changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue might get changed.
      * @param new_strategy
      */
     SchedulingStrategy* change_strategy(SchedulingStrategy* new_strategy);

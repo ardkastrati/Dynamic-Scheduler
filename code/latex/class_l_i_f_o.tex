@@ -1,0 +1,200 @@
+\hypertarget{class_l_i_f_o}{}\section{L\+I\+F\+O Class Reference}
+\label{class_l_i_f_o}\index{L\+I\+F\+O@{L\+I\+F\+O}}
+
+
+{\ttfamily \#include $<$L\+I\+F\+O.\+h$>$}
+
+Inheritance diagram for L\+I\+F\+O\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_l_i_f_o}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_l_i_f_o_a594555175f097e6cf98db278d695dd6f}{L\+I\+F\+O} ()
+\item 
+\hyperlink{class_l_i_f_o_af8722c4d9d050eddf9e17714d5d90594}{$\sim$\+L\+I\+F\+O} ()
+\item 
+\hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} \hyperlink{class_l_i_f_o_a53eb12a8a25f0fb4f57679206bf314dc}{get\+\_\+next\+\_\+task} ()
+\item 
+int \hyperlink{class_l_i_f_o_a6368d6fe156688f38d06a0ee75d57ef6}{get\+\_\+task\+\_\+count} ()
+\item 
+\hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} \hyperlink{class_l_i_f_o_a1593c380d2f3f0e8f2247a2b61c9607c}{pop\+\_\+next\+\_\+task} ()
+\item 
+void \hyperlink{class_l_i_f_o_a422ac5b308521b23e97c25f7fc80ee7c}{push\+\_\+new\+\_\+task} (\hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} task, long runtime)
+\item 
+\hyperlink{class_scheduling_strategy}{Scheduling\+Strategy} $\ast$ \hyperlink{class_l_i_f_o_a6e3553527c29e2c90bf86d4a4e5cd570}{change\+\_\+strategy} (\hyperlink{class_scheduling_strategy}{Scheduling\+Strategy} $\ast$new\+\_\+strategy)
+\item 
+bool \hyperlink{class_l_i_f_o_a8a8a3203290cda8521b74acde5fc334d}{is\+\_\+statistic\+\_\+based} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+This class realize the last in-\/first out (\hyperlink{class_l_i_f_o}{L\+I\+F\+O}) scheduling strategy. The \hyperlink{class_l_i_f_o}{L\+I\+F\+O} class uses the std\+::stack as fifo queue.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+Definition at line 16 of file L\+I\+F\+O.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_l_i_f_o_a594555175f097e6cf98db278d695dd6f}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!L\+I\+F\+O@{L\+I\+F\+O}}
+\index{L\+I\+F\+O@{L\+I\+F\+O}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{L\+I\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}L\+I\+F\+O\+::\+L\+I\+F\+O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_l_i_f_o_a594555175f097e6cf98db278d695dd6f}
+Constructs a new \hyperlink{class_l_i_f_o}{L\+I\+F\+O} scheduling queue 
+
+Definition at line 6 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_af8722c4d9d050eddf9e17714d5d90594}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!````~L\+I\+F\+O@{$\sim$\+L\+I\+F\+O}}
+\index{````~L\+I\+F\+O@{$\sim$\+L\+I\+F\+O}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{$\sim$\+L\+I\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}L\+I\+F\+O\+::$\sim$\+L\+I\+F\+O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_l_i_f_o_af8722c4d9d050eddf9e17714d5d90594}
+Destructs a new \hyperlink{class_l_i_f_o}{L\+I\+F\+O} scheduling queue 
+
+Definition at line 11 of file L\+I\+F\+O.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_l_i_f_o_a6e3553527c29e2c90bf86d4a4e5cd570}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!change\+\_\+strategy@{change\+\_\+strategy}}
+\index{change\+\_\+strategy@{change\+\_\+strategy}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{change\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy} $\ast$ L\+I\+F\+O\+::change\+\_\+strategy (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{new\+\_\+strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a6e3553527c29e2c90bf86d4a4e5cd570}
+Changes the scheduling strategy. Returns the new schdeuling strategy with all tasks, or N\+U\+L\+L if there was an error.
+
+Estimated runtime of tasks will get lost by changing from statistically based strategies (L\+S\+F, \hyperlink{class_s_j_f}{S\+J\+F}) to non-\/statistically based strategies. The order of the old queue will be kept.
+
+All tasks will get a default rumtime value (defined in D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E) by changing from non-\/statistically based strategies (\hyperlink{class_f_i_f_o}{F\+I\+F\+O}, \hyperlink{class_l_i_f_o}{L\+I\+F\+O}) to statistically based strategies. The order of the old queue perhaps won\textquotesingle{}t be kept 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+strategy} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_scheduling_strategy_a4874d194c1bb185480339360fe907d83}{Scheduling\+Strategy}.
+
+
+
+Definition at line 40 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_a53eb12a8a25f0fb4f57679206bf314dc}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}}
+\index{get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{get\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} L\+I\+F\+O\+::get\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a53eb12a8a25f0fb4f57679206bf314dc}
+Returns the last-\/in task, or N\+U\+L\+L if the queue is empty
+
+\begin{DoxyReturn}{Returns}
+the last-\/in task 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_scheduling_strategy_adce3619801460ad67d6c8f9bdffcd36b}{Scheduling\+Strategy}.
+
+
+
+Definition at line 17 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_a6368d6fe156688f38d06a0ee75d57ef6}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int L\+I\+F\+O\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a6368d6fe156688f38d06a0ee75d57ef6}
+Return the count of tasks in the scheduling queue
+
+the count of tasks 
+
+Implements \hyperlink{class_scheduling_strategy_a0a3355ffe9c03236692ad00e4f94f5c5}{Scheduling\+Strategy}.
+
+
+
+Definition at line 22 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_a8a8a3203290cda8521b74acde5fc334d}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}}
+\index{is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{is\+\_\+statistic\+\_\+based}]{\setlength{\rightskip}{0pt plus 5cm}bool L\+I\+F\+O\+::is\+\_\+statistic\+\_\+based (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a8a8a3203290cda8521b74acde5fc334d}
+Returns true, if the current scheduling strategy statistic based.
+
+\begin{DoxyReturn}{Returns}
+true, if the current scheduling strategy statistic based 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_scheduling_strategy_a5962845ca5af53bbdc014c19a6bdef99}{Scheduling\+Strategy}.
+
+
+
+Definition at line 50 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_a1593c380d2f3f0e8f2247a2b61c9607c}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}}
+\index{pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{pop\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} L\+I\+F\+O\+::pop\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a1593c380d2f3f0e8f2247a2b61c9607c}
+Removes the next task in the queue, effectively reducing its size by one. 
+
+Implements \hyperlink{class_scheduling_strategy_ac2ba483287c91fd4318f337da144a9c5}{Scheduling\+Strategy}.
+
+
+
+Definition at line 27 of file L\+I\+F\+O.\+cpp.
+
+\hypertarget{class_l_i_f_o_a422ac5b308521b23e97c25f7fc80ee7c}{}\index{L\+I\+F\+O@{L\+I\+F\+O}!push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}}
+\index{push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}!L\+I\+F\+O@{L\+I\+F\+O}}
+\subsubsection[{push\+\_\+new\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}void L\+I\+F\+O\+::push\+\_\+new\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_l_i_f_o_a422ac5b308521b23e97c25f7fc80ee7c}
+Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+{\em runtime} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_scheduling_strategy_a62ffa0426528c14fdd0b0853f04a851f}{Scheduling\+Strategy}.
+
+
+
+Definition at line 35 of file L\+I\+F\+O.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/scheduler/\hyperlink{_l_i_f_o_8h}{L\+I\+F\+O.\+h}\item 
+src/scheduler/\hyperlink{_l_i_f_o_8cpp}{L\+I\+F\+O.\+cpp}\end{DoxyCompactItemize}

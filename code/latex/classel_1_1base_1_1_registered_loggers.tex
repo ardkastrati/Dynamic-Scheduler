@@ -1,0 +1,185 @@
+\hypertarget{classel_1_1base_1_1_registered_loggers}{}\section{el\+:\+:base\+:\+:Registered\+Loggers Class Reference}
+\label{classel_1_1base_1_1_registered_loggers}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+
+
+\hyperlink{classel_1_1_loggers}{Loggers} repository.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:Registered\+Loggers\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classel_1_1base_1_1_registered_loggers}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1_registered_loggers_ae52ec336770d33fef86f234e4e68dce5}{Registered\+Loggers} (const \hyperlink{namespaceel_ad4c4b2f7d70a4b02568a9f70724a6b39}{Log\+Builder\+Ptr} \&default\+Log\+Builder)
+\item 
+virtual \hyperlink{classel_1_1base_1_1_registered_loggers_ac87ee24f4d1bb36757f6ce1e1f5a8362}{$\sim$\+Registered\+Loggers} (void)
+\item 
+void \hyperlink{classel_1_1base_1_1_registered_loggers_a28e1f955ad55d89a4ae91fa74545ee4f}{set\+Default\+Configurations} (const \hyperlink{classel_1_1_configurations}{Configurations} \&configurations)
+\item 
+\hyperlink{classel_1_1_configurations}{Configurations} $\ast$ \hyperlink{classel_1_1base_1_1_registered_loggers_acb38f67cf5e297f4be3efa5312e09914}{default\+Configurations} (void)
+\item 
+\hyperlink{classel_1_1_logger}{Logger} $\ast$ \hyperlink{classel_1_1base_1_1_registered_loggers_a8e554505cd7f66d31e91933b61d74144}{get} (const std\+::string \&id, bool force\+Creation=true)
+\item 
+bool \hyperlink{classel_1_1base_1_1_registered_loggers_a4d17dc9673f6aa6216571e182097400a}{remove} (const std\+::string \&id)
+\item 
+bool \hyperlink{classel_1_1base_1_1_registered_loggers_a85916925e2c53d1ebf9865625132a0be}{has} (const std\+::string \&id)
+\item 
+void \hyperlink{classel_1_1base_1_1_registered_loggers_ad8fa8f829fdb6a03e6f5a38704811e7b}{unregister} (\hyperlink{classel_1_1_logger}{Logger} $\ast$\&logger)
+\item 
+\hyperlink{namespaceel_1_1base_af7602da9fe1d6c75985184fb0e39fd11}{base\+::\+Log\+Streams\+Reference\+Map} $\ast$ \hyperlink{classel_1_1base_1_1_registered_loggers_a11eb24bac74b7ae2d85b324fed707819}{log\+Streams\+Reference} (void)
+\item 
+void \hyperlink{classel_1_1base_1_1_registered_loggers_abe6fdac67d9d4c35fb48c9fd88a49c2e}{flush\+All} (void)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1_registered_loggers_acc1efd1b8a3fc5e0028dab98b02e550a}{el\+::base\+::\+Storage}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classel_1_1_loggers}{Loggers} repository. 
+
+Definition at line 3603 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1_registered_loggers_ae52ec336770d33fef86f234e4e68dce5}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!Registered\+Loggers@{Registered\+Loggers}}
+\index{Registered\+Loggers@{Registered\+Loggers}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{Registered\+Loggers}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Registered\+Loggers\+::\+Registered\+Loggers (
+\begin{DoxyParamCaption}
+\item[{const {\bf Log\+Builder\+Ptr} \&}]{default\+Log\+Builder}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}\label{classel_1_1base_1_1_registered_loggers_ae52ec336770d33fef86f234e4e68dce5}
+
+
+Definition at line 3605 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_ac87ee24f4d1bb36757f6ce1e1f5a8362}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!````~Registered\+Loggers@{$\sim$\+Registered\+Loggers}}
+\index{````~Registered\+Loggers@{$\sim$\+Registered\+Loggers}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{$\sim$\+Registered\+Loggers}]{\setlength{\rightskip}{0pt plus 5cm}virtual el\+::base\+::\+Registered\+Loggers\+::$\sim$\+Registered\+Loggers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1_registered_loggers_ac87ee24f4d1bb36757f6ce1e1f5a8362}
+
+
+Definition at line 3610 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1_registered_loggers_acb38f67cf5e297f4be3efa5312e09914}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!default\+Configurations@{default\+Configurations}}
+\index{default\+Configurations@{default\+Configurations}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{default\+Configurations}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Configurations}$\ast$ el\+::base\+::\+Registered\+Loggers\+::default\+Configurations (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_acb38f67cf5e297f4be3efa5312e09914}
+
+
+Definition at line 3619 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_abe6fdac67d9d4c35fb48c9fd88a49c2e}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!flush\+All@{flush\+All}}
+\index{flush\+All@{flush\+All}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{flush\+All}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Registered\+Loggers\+::flush\+All (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_abe6fdac67d9d4c35fb48c9fd88a49c2e}
+
+
+Definition at line 3663 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_a8e554505cd7f66d31e91933b61d74144}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!get@{get}}
+\index{get@{get}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Logger}$\ast$ el\+::base\+::\+Registered\+Loggers\+::get (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id, }
+\item[{bool}]{force\+Creation = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_a8e554505cd7f66d31e91933b61d74144}
+
+
+Definition at line 3623 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_a85916925e2c53d1ebf9865625132a0be}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!has@{has}}
+\index{has@{has}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{has}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Registered\+Loggers\+::has (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_a85916925e2c53d1ebf9865625132a0be}
+
+
+Definition at line 3650 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_a11eb24bac74b7ae2d85b324fed707819}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!log\+Streams\+Reference@{log\+Streams\+Reference}}
+\index{log\+Streams\+Reference@{log\+Streams\+Reference}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{log\+Streams\+Reference}]{\setlength{\rightskip}{0pt plus 5cm}{\bf base\+::\+Log\+Streams\+Reference\+Map}$\ast$ el\+::base\+::\+Registered\+Loggers\+::log\+Streams\+Reference (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_a11eb24bac74b7ae2d85b324fed707819}
+
+
+Definition at line 3659 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_a4d17dc9673f6aa6216571e182097400a}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!remove@{remove}}
+\index{remove@{remove}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Registered\+Loggers\+::remove (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_a4d17dc9673f6aa6216571e182097400a}
+
+
+Definition at line 3639 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_a28e1f955ad55d89a4ae91fa74545ee4f}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!set\+Default\+Configurations@{set\+Default\+Configurations}}
+\index{set\+Default\+Configurations@{set\+Default\+Configurations}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{set\+Default\+Configurations}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Registered\+Loggers\+::set\+Default\+Configurations (
+\begin{DoxyParamCaption}
+\item[{const {\bf Configurations} \&}]{configurations}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_a28e1f955ad55d89a4ae91fa74545ee4f}
+
+
+Definition at line 3614 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_registered_loggers_ad8fa8f829fdb6a03e6f5a38704811e7b}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!unregister@{unregister}}
+\index{unregister@{unregister}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{unregister}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Registered\+Loggers\+::unregister (
+\begin{DoxyParamCaption}
+\item[{{\bf Logger} $\ast$\&}]{logger}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_registered_loggers_ad8fa8f829fdb6a03e6f5a38704811e7b}
+
+
+Definition at line 3654 of file easylogging++.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classel_1_1base_1_1_registered_loggers_acc1efd1b8a3fc5e0028dab98b02e550a}{}\index{el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}!el\+::base\+::\+Storage@{el\+::base\+::\+Storage}}
+\index{el\+::base\+::\+Storage@{el\+::base\+::\+Storage}!el\+::base\+::\+Registered\+Loggers@{el\+::base\+::\+Registered\+Loggers}}
+\subsubsection[{el\+::base\+::\+Storage}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf el\+::base\+::\+Storage}\hspace{0.3cm}{\ttfamily [friend]}}\label{classel_1_1base_1_1_registered_loggers_acc1efd1b8a3fc5e0028dab98b02e550a}
+
+
+Definition at line 3677 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\hypertarget{_scientific_code_8cpp}{}\section{src/\+Scientific\+Code.cpp File Reference}
+\label{_scientific_code_8cpp}\index{src/\+Scientific\+Code.\+cpp@{src/\+Scientific\+Code.\+cpp}}
+{\ttfamily \#include \char`\"{}Scientific\+Code.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include \char`\"{}worker/\+Worker.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_scientific_code_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}{N\+D\+E\+B\+U\+G}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_scientific_code_8cpp_a2dfc976aa95c961d1f76ce3f7c56f243}{code\+\_\+postprocessing\+\_\+master} ()
+\item 
+void \hyperlink{_scientific_code_8cpp_a527f8c8a5bbfb4601f4df56f6421796b}{code\+\_\+postprocessing\+\_\+slave} ()
+\item 
+void \hyperlink{_scientific_code_8cpp_a599d871765793c160a75ae799c983c81}{code\+\_\+preprocessing\+\_\+master} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, \hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} $\ast$buffer, int $\ast$initial\+\_\+tasks\+\_\+number)
+\item 
+void \hyperlink{_scientific_code_8cpp_a17925bb72d9abc80a7ff3679e263baa3}{code\+\_\+preprocessing\+\_\+slave} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{_scientific_code_8cpp_a4014ee7f4c01fdd17351cfee36a4dede}{code\+\_\+run\+\_\+task} (\hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} task, void($\ast$place\+\_\+task\+\_\+forwarder)(void $\ast$, \hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task}), void $\ast$context)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_scientific_code_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!N\+D\+E\+B\+U\+G@{N\+D\+E\+B\+U\+G}}
+\index{N\+D\+E\+B\+U\+G@{N\+D\+E\+B\+U\+G}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{N\+D\+E\+B\+U\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+D\+E\+B\+U\+G}\label{_scientific_code_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}
+
+
+Definition at line 1 of file Scientific\+Code.\+cpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_scientific_code_8cpp_a2dfc976aa95c961d1f76ce3f7c56f243}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!code\+\_\+postprocessing\+\_\+master@{code\+\_\+postprocessing\+\_\+master}}
+\index{code\+\_\+postprocessing\+\_\+master@{code\+\_\+postprocessing\+\_\+master}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{code\+\_\+postprocessing\+\_\+master}]{\setlength{\rightskip}{0pt plus 5cm}void code\+\_\+postprocessing\+\_\+master (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{_scientific_code_8cpp_a2dfc976aa95c961d1f76ce3f7c56f243}
+Project Dynamic Scheduler for Scientific Simulations 
+
+Definition at line 8 of file Scientific\+Code.\+cpp.
+
+\hypertarget{_scientific_code_8cpp_a527f8c8a5bbfb4601f4df56f6421796b}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!code\+\_\+postprocessing\+\_\+slave@{code\+\_\+postprocessing\+\_\+slave}}
+\index{code\+\_\+postprocessing\+\_\+slave@{code\+\_\+postprocessing\+\_\+slave}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{code\+\_\+postprocessing\+\_\+slave}]{\setlength{\rightskip}{0pt plus 5cm}void code\+\_\+postprocessing\+\_\+slave (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{_scientific_code_8cpp_a527f8c8a5bbfb4601f4df56f6421796b}
+
+
+Definition at line 13 of file Scientific\+Code.\+cpp.
+
+\hypertarget{_scientific_code_8cpp_a599d871765793c160a75ae799c983c81}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!code\+\_\+preprocessing\+\_\+master@{code\+\_\+preprocessing\+\_\+master}}
+\index{code\+\_\+preprocessing\+\_\+master@{code\+\_\+preprocessing\+\_\+master}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{code\+\_\+preprocessing\+\_\+master}]{\setlength{\rightskip}{0pt plus 5cm}void code\+\_\+preprocessing\+\_\+master (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf Task} $\ast$}]{buffer, }
+\item[{int $\ast$}]{initial\+\_\+tasks\+\_\+number}
+\end{DoxyParamCaption}
+)}\label{_scientific_code_8cpp_a599d871765793c160a75ae799c983c81}
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file Scientific\+Code.\+cpp.
+
+\hypertarget{_scientific_code_8cpp_a17925bb72d9abc80a7ff3679e263baa3}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!code\+\_\+preprocessing\+\_\+slave@{code\+\_\+preprocessing\+\_\+slave}}
+\index{code\+\_\+preprocessing\+\_\+slave@{code\+\_\+preprocessing\+\_\+slave}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{code\+\_\+preprocessing\+\_\+slave}]{\setlength{\rightskip}{0pt plus 5cm}void code\+\_\+preprocessing\+\_\+slave (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{_scientific_code_8cpp_a17925bb72d9abc80a7ff3679e263baa3}
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file Scientific\+Code.\+cpp.
+
+\hypertarget{_scientific_code_8cpp_a4014ee7f4c01fdd17351cfee36a4dede}{}\index{Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}!code\+\_\+run\+\_\+task@{code\+\_\+run\+\_\+task}}
+\index{code\+\_\+run\+\_\+task@{code\+\_\+run\+\_\+task}!Scientific\+Code.\+cpp@{Scientific\+Code.\+cpp}}
+\subsubsection[{code\+\_\+run\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}void code\+\_\+run\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{void($\ast$)(void $\ast$, {\bf Task})}]{place\+\_\+tast\+\_\+forwarder, }
+\item[{void $\ast$}]{context}
+\end{DoxyParamCaption}
+)}\label{_scientific_code_8cpp_a4014ee7f4c01fdd17351cfee36a4dede}
+
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file Scientific\+Code.\+cpp.
+

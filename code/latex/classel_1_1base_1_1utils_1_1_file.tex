@@ -1,0 +1,164 @@
+\hypertarget{classel_1_1base_1_1utils_1_1_file}{}\section{el\+:\+:base\+:\+:utils\+:\+:File Class Reference}
+\label{classel_1_1base_1_1utils_1_1_file}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:utils\+:\+:File\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classel_1_1base_1_1utils_1_1_file}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceel_1_1base_1_1type_a620c830ead75d26b45c060c211ee2685}{base\+::type\+::fstream\+\_\+t} $\ast$ \hyperlink{classel_1_1base_1_1utils_1_1_file_aa4bef1f2e00269d75c1c1eabb0ce4563}{new\+File\+Stream} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Creates new out file stream for specified filename. \end{DoxyCompactList}\item 
+static std\+::size\+\_\+t \hyperlink{classel_1_1base_1_1utils_1_1_file_a54415ba02f698ba978795265f7f4b86c}{get\+Size\+Of\+File} (\hyperlink{namespaceel_1_1base_1_1type_a620c830ead75d26b45c060c211ee2685}{base\+::type\+::fstream\+\_\+t} $\ast$fs)
+\begin{DoxyCompactList}\small\item\em Gets size of file provided in stream. \end{DoxyCompactList}\item 
+static bool \hyperlink{classel_1_1base_1_1utils_1_1_file_a4fc9e36b814f1aeaa4931e35d58e5b45}{path\+Exists} (const char $\ast$path, bool consider\+File=false)
+\begin{DoxyCompactList}\small\item\em Determines whether or not provided path exist in current file system. \end{DoxyCompactList}\item 
+static bool \hyperlink{classel_1_1base_1_1utils_1_1_file_a34fbb5b06201c7e3db71db80e017fb96}{create\+Path} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Creates specified path on file system. \end{DoxyCompactList}\item 
+static std\+::string \hyperlink{classel_1_1base_1_1utils_1_1_file_af541c62ed408de7e368d339f96c0c6cf}{extract\+Path\+From\+Filename} (const std\+::string \&full\+Path, const char $\ast$seperator=base\+::consts\+::k\+File\+Path\+Seperator)
+\begin{DoxyCompactList}\small\item\em Extracts path of filename with leading slash. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1base_1_1utils_1_1_file_a38e3b3c72f73de47563b289eff13ae2d}{build\+Stripped\+Filename} (const char $\ast$filename, char buff\mbox{[}$\,$\mbox{]}, std\+::size\+\_\+t limit=base\+::consts\+::k\+Source\+Filename\+Max\+Length)
+\begin{DoxyCompactList}\small\item\em builds stripped filename and puts it in buff \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1base_1_1utils_1_1_file_ad6c3703c16b95bd4992f501380d503b4}{build\+Base\+Filename} (const std\+::string \&full\+Path, char buff\mbox{[}$\,$\mbox{]}, std\+::size\+\_\+t limit=base\+::consts\+::k\+Source\+Filename\+Max\+Length, const char $\ast$seperator=base\+::consts\+::k\+File\+Path\+Seperator)
+\begin{DoxyCompactList}\small\item\em builds base filename and puts it in buff \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 1083 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1utils_1_1_file_ad6c3703c16b95bd4992f501380d503b4}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!build\+Base\+Filename@{build\+Base\+Filename}}
+\index{build\+Base\+Filename@{build\+Base\+Filename}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{build\+Base\+Filename}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::base\+::utils\+::\+File\+::build\+Base\+Filename (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{full\+Path, }
+\item[{char}]{buff\mbox{[}$\,$\mbox{]}, }
+\item[{std\+::size\+\_\+t}]{limit = {\ttfamily base\+:\+:consts\+:\+:kSourceFilenameMaxLength}, }
+\item[{const char $\ast$}]{seperator = {\ttfamily base\+:\+:consts\+:\+:kFilePathSeperator}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_ad6c3703c16b95bd4992f501380d503b4}
+
+
+builds base filename and puts it in buff 
+
+
+
+Definition at line 1204 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_a38e3b3c72f73de47563b289eff13ae2d}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!build\+Stripped\+Filename@{build\+Stripped\+Filename}}
+\index{build\+Stripped\+Filename@{build\+Stripped\+Filename}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{build\+Stripped\+Filename}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::base\+::utils\+::\+File\+::build\+Stripped\+Filename (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{char}]{buff\mbox{[}$\,$\mbox{]}, }
+\item[{std\+::size\+\_\+t}]{limit = {\ttfamily base\+:\+:consts\+:\+:kSourceFilenameMaxLength}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_a38e3b3c72f73de47563b289eff13ae2d}
+
+
+builds stripped filename and puts it in buff 
+
+
+
+Definition at line 1191 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_a34fbb5b06201c7e3db71db80e017fb96}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!create\+Path@{create\+Path}}
+\index{create\+Path@{create\+Path}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{create\+Path}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::base\+::utils\+::\+File\+::create\+Path (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_a34fbb5b06201c7e3db71db80e017fb96}
+
+
+Creates specified path on file system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to create. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1139 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_af541c62ed408de7e368d339f96c0c6cf}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!extract\+Path\+From\+Filename@{extract\+Path\+From\+Filename}}
+\index{extract\+Path\+From\+Filename@{extract\+Path\+From\+Filename}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{extract\+Path\+From\+Filename}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string el\+::base\+::utils\+::\+File\+::extract\+Path\+From\+Filename (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{full\+Path, }
+\item[{const char $\ast$}]{seperator = {\ttfamily base\+:\+:consts\+:\+:kFilePathSeperator}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_af541c62ed408de7e368d339f96c0c6cf}
+
+
+Extracts path of filename with leading slash. 
+
+
+
+Definition at line 1179 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_a54415ba02f698ba978795265f7f4b86c}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!get\+Size\+Of\+File@{get\+Size\+Of\+File}}
+\index{get\+Size\+Of\+File@{get\+Size\+Of\+File}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{get\+Size\+Of\+File}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::size\+\_\+t el\+::base\+::utils\+::\+File\+::get\+Size\+Of\+File (
+\begin{DoxyParamCaption}
+\item[{{\bf base\+::type\+::fstream\+\_\+t} $\ast$}]{fs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_a54415ba02f698ba978795265f7f4b86c}
+
+
+Gets size of file provided in stream. 
+
+
+
+Definition at line 1108 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_aa4bef1f2e00269d75c1c1eabb0ce4563}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!new\+File\+Stream@{new\+File\+Stream}}
+\index{new\+File\+Stream@{new\+File\+Stream}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{new\+File\+Stream}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf base\+::type\+::fstream\+\_\+t}$\ast$ el\+::base\+::utils\+::\+File\+::new\+File\+Stream (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_aa4bef1f2e00269d75c1c1eabb0ce4563}
+
+
+Creates new out file stream for specified filename. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to newly created fstream or nullptr 
+\end{DoxyReturn}
+
+
+Definition at line 1087 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_file_a4fc9e36b814f1aeaa4931e35d58e5b45}{}\index{el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}!path\+Exists@{path\+Exists}}
+\index{path\+Exists@{path\+Exists}!el\+::base\+::utils\+::\+File@{el\+::base\+::utils\+::\+File}}
+\subsubsection[{path\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::base\+::utils\+::\+File\+::path\+Exists (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path, }
+\item[{bool}]{consider\+File = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1base_1_1utils_1_1_file_a4fc9e36b814f1aeaa4931e35d58e5b45}
+
+
+Determines whether or not provided path exist in current file system. 
+
+
+
+Definition at line 1120 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

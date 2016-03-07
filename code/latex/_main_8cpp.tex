@@ -1,0 +1,76 @@
+\hypertarget{_main_8cpp}{}\section{src/\+Main.cpp File Reference}
+\label{_main_8cpp}\index{src/\+Main.\+cpp@{src/\+Main.\+cpp}}
+{\ttfamily \#include $<$mpi.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Executor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}util/\+Time\+Utility.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}util/\+Command\+Line\+Parser.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_main_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}{N\+D\+E\+B\+U\+G}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_main_8cpp_a0eaa1aee2b99c8702f6fbaa7e41b2b4c}{create\+\_\+mpi\+\_\+task\+\_\+types} ()
+\item 
+int \hyperlink{_main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_main_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}{}\index{Main.\+cpp@{Main.\+cpp}!N\+D\+E\+B\+U\+G@{N\+D\+E\+B\+U\+G}}
+\index{N\+D\+E\+B\+U\+G@{N\+D\+E\+B\+U\+G}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection[{N\+D\+E\+B\+U\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+D\+E\+B\+U\+G}\label{_main_8cpp_a8de3ed741dadc9c979a4ff17c0a9116e}
+The main function of the program. This is the entry point.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+Definition at line 8 of file Main.\+cpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_main_8cpp_a0eaa1aee2b99c8702f6fbaa7e41b2b4c}{}\index{Main.\+cpp@{Main.\+cpp}!create\+\_\+mpi\+\_\+task\+\_\+types@{create\+\_\+mpi\+\_\+task\+\_\+types}}
+\index{create\+\_\+mpi\+\_\+task\+\_\+types@{create\+\_\+mpi\+\_\+task\+\_\+types}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection[{create\+\_\+mpi\+\_\+task\+\_\+types}]{\setlength{\rightskip}{0pt plus 5cm}void create\+\_\+mpi\+\_\+task\+\_\+types (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{_main_8cpp_a0eaa1aee2b99c8702f6fbaa7e41b2b4c}
+Creates own M\+P\+I datatypes for communication. Creates M\+Y\+\_\+\+M\+P\+I\+\_\+\+T\+A\+S\+K\+\_\+\+T\+Y\+P\+E for sending Task structures and creates M\+Y\+\_\+\+M\+P\+I\+\_\+\+T\+A\+S\+K\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E for sending Task\+Data structures. 
+
+Definition at line 108 of file Main.\+cpp.
+
+\hypertarget{_main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{}\index{Main.\+cpp@{Main.\+cpp}!main@{main}}
+\index{main@{main}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{_main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+The main function of the dynamic scheduler
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & command line argument count \\
+\hline
+{\em argv} & command line arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file Main.\+cpp.
+

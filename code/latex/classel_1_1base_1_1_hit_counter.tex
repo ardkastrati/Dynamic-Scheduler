@@ -1,0 +1,190 @@
+\hypertarget{classel_1_1base_1_1_hit_counter}{}\section{el\+:\+:base\+:\+:Hit\+Counter Class Reference}
+\label{classel_1_1base_1_1_hit_counter}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+
+
+Class that keeps record of current line hit for occasional logging.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1_hit_counter_1_1_predicate}{Predicate}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1_hit_counter_a2d32056aa55d080c2a2c534713b9a9a7}{Hit\+Counter} (void)
+\item 
+\hyperlink{classel_1_1base_1_1_hit_counter_a1fe641f45123641012673f8bc29aefd8}{Hit\+Counter} (const char $\ast$\hyperlink{classel_1_1base_1_1_hit_counter_ad04433d214c175775ed61453ead374fc}{filename}, unsigned long int \hyperlink{classel_1_1base_1_1_hit_counter_ab43602346f499854b1764b1c2dcb70dc}{line\+Number})
+\item 
+\hyperlink{classel_1_1base_1_1_hit_counter_abae187cf5ea0f94e812223ee4be7061f}{Hit\+Counter} (const \hyperlink{classel_1_1base_1_1_hit_counter}{Hit\+Counter} \&hit\+Counter)
+\item 
+\hyperlink{classel_1_1base_1_1_hit_counter}{Hit\+Counter} \& \hyperlink{classel_1_1base_1_1_hit_counter_ad32a5e5c2a63ff30fa9d298613d746d1}{operator=} (const \hyperlink{classel_1_1base_1_1_hit_counter}{Hit\+Counter} \&hit\+Counter)
+\item 
+virtual \hyperlink{classel_1_1base_1_1_hit_counter_a8ff49793a4baef0a9ed0320f7d7db513}{$\sim$\+Hit\+Counter} (void)
+\item 
+void \hyperlink{classel_1_1base_1_1_hit_counter_af58479cb66b71a76a3f8fd26193bfde1}{reset\+Location} (const char $\ast$\hyperlink{classel_1_1base_1_1_hit_counter_ad04433d214c175775ed61453ead374fc}{filename}, unsigned long int \hyperlink{classel_1_1base_1_1_hit_counter_ab43602346f499854b1764b1c2dcb70dc}{line\+Number})
+\begin{DoxyCompactList}\small\item\em Resets location of current hit counter. \end{DoxyCompactList}\item 
+void \hyperlink{classel_1_1base_1_1_hit_counter_a04dcca0a3f1b1f9a0ef8d812f00cecf0}{validate\+Hit\+Counts} (std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Validates hit counts and resets it if necessary. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{classel_1_1base_1_1_hit_counter_ad04433d214c175775ed61453ead374fc}{filename} (void) const 
+\item 
+unsigned long int \hyperlink{classel_1_1base_1_1_hit_counter_ab43602346f499854b1764b1c2dcb70dc}{line\+Number} (void) const 
+\item 
+std\+::size\+\_\+t \hyperlink{classel_1_1base_1_1_hit_counter_a3df3a285c91b5eb690be48893d677e94}{hit\+Counts} (void) const 
+\item 
+void \hyperlink{classel_1_1base_1_1_hit_counter_ae2d7709a89362019195761416d510911}{increment} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that keeps record of current line hit for occasional logging. 
+
+Definition at line 3179 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1_hit_counter_a2d32056aa55d080c2a2c534713b9a9a7}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!Hit\+Counter@{Hit\+Counter}}
+\index{Hit\+Counter@{Hit\+Counter}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{Hit\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Hit\+Counter\+::\+Hit\+Counter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_a2d32056aa55d080c2a2c534713b9a9a7}
+
+
+Definition at line 3181 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_a1fe641f45123641012673f8bc29aefd8}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!Hit\+Counter@{Hit\+Counter}}
+\index{Hit\+Counter@{Hit\+Counter}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{Hit\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Hit\+Counter\+::\+Hit\+Counter (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{unsigned long int}]{line\+Number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_a1fe641f45123641012673f8bc29aefd8}
+
+
+Definition at line 3187 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_abae187cf5ea0f94e812223ee4be7061f}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!Hit\+Counter@{Hit\+Counter}}
+\index{Hit\+Counter@{Hit\+Counter}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{Hit\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Hit\+Counter\+::\+Hit\+Counter (
+\begin{DoxyParamCaption}
+\item[{const {\bf Hit\+Counter} \&}]{hit\+Counter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_abae187cf5ea0f94e812223ee4be7061f}
+
+
+Definition at line 3193 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_a8ff49793a4baef0a9ed0320f7d7db513}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!````~Hit\+Counter@{$\sim$\+Hit\+Counter}}
+\index{````~Hit\+Counter@{$\sim$\+Hit\+Counter}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{$\sim$\+Hit\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}virtual el\+::base\+::\+Hit\+Counter\+::$\sim$\+Hit\+Counter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1_hit_counter_a8ff49793a4baef0a9ed0320f7d7db513}
+
+
+Definition at line 3206 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1_hit_counter_ad04433d214c175775ed61453ead374fc}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!filename@{filename}}
+\index{filename@{filename}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ el\+::base\+::\+Hit\+Counter\+::filename (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_ad04433d214c175775ed61453ead374fc}
+
+
+Definition at line 3223 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_a3df3a285c91b5eb690be48893d677e94}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!hit\+Counts@{hit\+Counts}}
+\index{hit\+Counts@{hit\+Counts}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{hit\+Counts}]{\setlength{\rightskip}{0pt plus 5cm}std\+::size\+\_\+t el\+::base\+::\+Hit\+Counter\+::hit\+Counts (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_a3df3a285c91b5eb690be48893d677e94}
+
+
+Definition at line 3231 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_ae2d7709a89362019195761416d510911}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!increment@{increment}}
+\index{increment@{increment}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{increment}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Hit\+Counter\+::increment (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_ae2d7709a89362019195761416d510911}
+
+
+Definition at line 3235 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_ab43602346f499854b1764b1c2dcb70dc}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!line\+Number@{line\+Number}}
+\index{line\+Number@{line\+Number}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{line\+Number}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long int el\+::base\+::\+Hit\+Counter\+::line\+Number (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_ab43602346f499854b1764b1c2dcb70dc}
+
+
+Definition at line 3227 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_ad32a5e5c2a63ff30fa9d298613d746d1}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!operator=@{operator=}}
+\index{operator=@{operator=}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hit\+Counter}\& el\+::base\+::\+Hit\+Counter\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Hit\+Counter} \&}]{hit\+Counter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_ad32a5e5c2a63ff30fa9d298613d746d1}
+
+
+Definition at line 3199 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_af58479cb66b71a76a3f8fd26193bfde1}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!reset\+Location@{reset\+Location}}
+\index{reset\+Location@{reset\+Location}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{reset\+Location}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Hit\+Counter\+::reset\+Location (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{unsigned long int}]{line\+Number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_af58479cb66b71a76a3f8fd26193bfde1}
+
+
+Resets location of current hit counter. 
+
+
+
+Definition at line 3210 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_hit_counter_a04dcca0a3f1b1f9a0ef8d812f00cecf0}{}\index{el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}!validate\+Hit\+Counts@{validate\+Hit\+Counts}}
+\index{validate\+Hit\+Counts@{validate\+Hit\+Counts}!el\+::base\+::\+Hit\+Counter@{el\+::base\+::\+Hit\+Counter}}
+\subsubsection[{validate\+Hit\+Counts}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Hit\+Counter\+::validate\+Hit\+Counts (
+\begin{DoxyParamCaption}
+\item[{std\+::size\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_hit_counter_a04dcca0a3f1b1f9a0ef8d812f00cecf0}
+
+
+Validates hit counts and resets it if necessary. 
+
+
+
+Definition at line 3216 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

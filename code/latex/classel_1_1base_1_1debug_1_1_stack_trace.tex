@@ -1,0 +1,121 @@
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace}{}\section{el\+:\+:base\+:\+:debug\+:\+:Stack\+Trace Class Reference}
+\label{classel_1_1base_1_1debug_1_1_stack_trace}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:debug\+:\+:Stack\+Trace\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classel_1_1base_1_1debug_1_1_stack_trace}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_1_1_stack_trace_entry}{Stack\+Trace\+Entry}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_a6921f2bb2ecf1830c371e554d8e5b587}{Stack\+Trace} (void)
+\item 
+virtual \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_afd779a4600e05db6398dc6f19d71f66a}{$\sim$\+Stack\+Trace} (void)
+\item 
+std\+::vector$<$ \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_1_1_stack_trace_entry}{Stack\+Trace\+Entry} $>$ \& \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_a8b6a4f154b59d597b73fe8a515df3240}{get\+Latest\+Stack} (void)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::size\+\_\+t \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_a6e3db7fdc258a7d653f00fc5aade55c2}{k\+Max\+Stack} = 64
+\item 
+static const std\+::size\+\_\+t \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_ab8a89fe5c4f779d3e685a5e61f1136e2}{k\+Stack\+Start} = 2
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace_a3b8e978df331fbe725e2a39d031355cc}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classel_1_1base_1_1debug_1_1_stack_trace}{Stack\+Trace} \&st)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 5444 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_a6921f2bb2ecf1830c371e554d8e5b587}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!Stack\+Trace@{Stack\+Trace}}
+\index{Stack\+Trace@{Stack\+Trace}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{Stack\+Trace}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::debug\+::\+Stack\+Trace\+::\+Stack\+Trace (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_a6921f2bb2ecf1830c371e554d8e5b587}
+
+
+Definition at line 5476 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_afd779a4600e05db6398dc6f19d71f66a}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!````~Stack\+Trace@{$\sim$\+Stack\+Trace}}
+\index{````~Stack\+Trace@{$\sim$\+Stack\+Trace}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{$\sim$\+Stack\+Trace}]{\setlength{\rightskip}{0pt plus 5cm}virtual el\+::base\+::debug\+::\+Stack\+Trace\+::$\sim$\+Stack\+Trace (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_afd779a4600e05db6398dc6f19d71f66a}
+
+
+Definition at line 5480 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_a8b6a4f154b59d597b73fe8a515df3240}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!get\+Latest\+Stack@{get\+Latest\+Stack}}
+\index{get\+Latest\+Stack@{get\+Latest\+Stack}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{get\+Latest\+Stack}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Stack\+Trace\+Entry}$>$\& el\+::base\+::debug\+::\+Stack\+Trace\+::get\+Latest\+Stack (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_a8b6a4f154b59d597b73fe8a515df3240}
+
+
+Definition at line 5483 of file easylogging++.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_a3b8e978df331fbe725e2a39d031355cc}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf Stack\+Trace} \&}]{st}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_a3b8e978df331fbe725e2a39d031355cc}
+
+
+Definition at line 5487 of file easylogging++.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_a6e3db7fdc258a7d653f00fc5aade55c2}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!k\+Max\+Stack@{k\+Max\+Stack}}
+\index{k\+Max\+Stack@{k\+Max\+Stack}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{k\+Max\+Stack}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::size\+\_\+t el\+::base\+::debug\+::\+Stack\+Trace\+::k\+Max\+Stack = 64\hspace{0.3cm}{\ttfamily [static]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_a6e3db7fdc258a7d653f00fc5aade55c2}
+
+
+Definition at line 5446 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1debug_1_1_stack_trace_ab8a89fe5c4f779d3e685a5e61f1136e2}{}\index{el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}!k\+Stack\+Start@{k\+Stack\+Start}}
+\index{k\+Stack\+Start@{k\+Stack\+Start}!el\+::base\+::debug\+::\+Stack\+Trace@{el\+::base\+::debug\+::\+Stack\+Trace}}
+\subsubsection[{k\+Stack\+Start}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::size\+\_\+t el\+::base\+::debug\+::\+Stack\+Trace\+::k\+Stack\+Start = 2\hspace{0.3cm}{\ttfamily [static]}}\label{classel_1_1base_1_1debug_1_1_stack_trace_ab8a89fe5c4f779d3e685a5e61f1136e2}
+
+
+Definition at line 5447 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}
