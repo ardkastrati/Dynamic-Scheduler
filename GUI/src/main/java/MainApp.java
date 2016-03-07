@@ -8,6 +8,7 @@ import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
 import controller.Controller;
 import controller.MOABScene.DirectoryChooserSceneController;
+import controller.mainScene.MainSceneController;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -35,18 +36,18 @@ public class MainApp extends Application {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
         
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainScene.fxml"));
-        Controller controller = loader.getController();
+        MainSceneController controller = loader.getController();
        
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
         stage.setTitle("Dynamic scheduler for scientific simulations");
         stage.setScene(scene);
-        controller.onEntry();
+        //controller.onEntry();
         
-        stage.setOnCloseRequest(event -> {
-            controller.onExit();
-        });
+        //stage.setOnCloseRequest(event -> {
+        //    controller.onExit();
+        //});
        
         stage.show();
       
