@@ -4,7 +4,6 @@
  *  Created on: 21.01.2016
  *      Author: david
  */
-
 #include "DatabaseHandler.h"
 #include "Database.h"
 #include "BookkeepingDatabase.h"

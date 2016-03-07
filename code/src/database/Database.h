@@ -18,7 +18,7 @@ class Database
 {
 public:
 
-	/*
+	/**
 	 * The insertTaskData writes the datastring in the file.
 	 * The function need to be inherited.
 	 * @param data string which contains one data package of a task
