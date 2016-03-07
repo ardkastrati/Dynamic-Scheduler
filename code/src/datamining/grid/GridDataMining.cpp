@@ -1,8 +1,8 @@
 /**
  * Project Dynamic Scheduler for Scientific Simulations
  */
- #define GRID_DATA_MINING_DEBUG 0
- #define PRINTGRID 1
+ #define GRID_DATA_MINING_DEBUG 1
+ #define PRINTGRID 0
  #define GRID_LIBARY_DEBUG 0
  #define MPI_PROXY_DEBUG 0
  #define ARRAY_HANDLER_DEBUG 0
@@ -264,7 +264,6 @@ void GridDataMining::make_new_grid()
   }
   memory -> set_new_array(new_dimensions, new_increment, min_parameter);
   nr_of_tasks = 0; //reset nr of tasks
-
   StatisticInquiry *data = database -> dataMiningInquiry();
   int former_task_count = data->runtime.size();
   long runtime;

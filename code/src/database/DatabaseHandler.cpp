@@ -27,12 +27,10 @@ DatabaseHandler::DatabaseHandler()
 
 void DatabaseHandler::storeLocalStatistic(TaskData* data, long runtime)
 {
-	//should be already known
 	stInq->parameter_size = data->parameter_size;
 	stInq->runtime.push_back(runtime);
 
-
-	//
+	//insert data in memory
 	stInq->para.insert(stInq->para.end(), &data->parameters[0], &data->parameters[data->parameter_size]);
 
 }
@@ -55,16 +53,16 @@ void DatabaseHandler::storeData(TaskData *data)
 
 string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 {
-
-	//timestamp abfrage
 	string package;
 	string part_of_task;
 
+	//ID of task
 	part_of_task = to_string(static_cast<long long>(data->id));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
+	//1. timestamp; 2. event
 	if(data->event == 0)
 	{
 		part_of_task = to_string(static_cast<long long>(data->time_appeared));
@@ -100,6 +98,7 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 		part_of_task.clear();
 	}
 
+	//scheduling mode
 	if(data->mode == 0)
 	{
 		package.append("Master/Worker");
@@ -112,26 +111,31 @@ string DatabaseHandler::dataParserBookkeeping(TaskData *data)
 		part_of_task.clear();
 	}
 
+	//parent
 	part_of_task = to_string(static_cast<long long>(data->parent));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
+	//intercommunication start timestamp
 	part_of_task = to_string(static_cast<long long>(data->time_intercommunication_start));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
+	//intercommunication end timestamp
 	part_of_task = to_string(static_cast<long long>(data->time_intercommunication_end));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
+	//rank
 	part_of_task = to_string(static_cast<long long>(data->rank));
 	package.append(part_of_task);
 	package.append(";");
 	part_of_task.clear();
 
+	//number of parameters
 	part_of_task = to_string(static_cast<long long>(data->parameter_size));
 	package.append(part_of_task);
 	package.append(";");
@@ -148,6 +152,7 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 	string package;
 	string part_of_task;
 
+	//calculate runtime out of start and end timestamp
 	long task_runtime = data->time_ended - data->time_started;
 
 	part_of_task = to_string(static_cast<long long>(task_runtime));
@@ -155,6 +160,7 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 	package.append(";");
 	part_of_task.clear();
 
+	//get parameters of a task
 	for(int i = 0; i < data->parameter_size; i++)
 	{
 		part_of_task = to_string(static_cast<long double>(data->parameters[i]));
