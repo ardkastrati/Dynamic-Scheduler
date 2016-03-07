@@ -17,13 +17,13 @@ public class TaskFlowVisualiser implements Visualiser {
 
 	@Override
 	public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
-		final NumberAxis xAxis = new NumberAxis();
-	    final NumberAxis yAxis = new NumberAxis();
-		final StackedBarChart<Number, Number> sbc = new StackedBarChart<Number, Number>(xAxis, yAxis);
-		final XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
+		final NumberAxis yAxis = new NumberAxis();
+	    final CategoryAxis xAxis = new CategoryAxis();
+		final StackedBarChart<String, Number> sbc = new StackedBarChart<String, Number>(xAxis, yAxis);
+		final XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 		
 		for(Event event: eventList) {
-			series.getData().add(new XYChart.Data<Number,Number>(event.getRank(),event.getTime()));
+			series.getData().add(new XYChart.Data<String,Number>(String.valueOf(event.getRank()),event.getTime()));
 		}
 		sbc.getData().addAll(series);
 		
