@@ -25,6 +25,17 @@ DatabaseHandler::DatabaseHandler()
 	size = 0;
 }
 
+DatabaseHandler::~DatabaseHandler()
+{
+        stInq->para.clear();
+	stInq->runtime.clear();
+	delete &stInq->para[0];
+	delete &stInq->runtime[0];
+	delete stInq;
+	delete data_bookkeeping;
+	delete data_statistic;
+}
+
 void DatabaseHandler::storeLocalStatistic(TaskData* data, long runtime)
 {
 	stInq->parameter_size = data->parameter_size;
