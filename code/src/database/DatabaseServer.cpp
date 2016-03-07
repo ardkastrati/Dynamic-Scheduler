@@ -17,7 +17,7 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 DatabaseServer::~DatabaseServer()
 {
     //LOG(DEBUG) << "Destructor DatabaseServer";
-    database_handler->~DatabaseHandler();
+    //database_handler->~DatabaseHandler();
     delete database_handler;
     delete datamining_handler;
     //destruct rest
@@ -60,14 +60,14 @@ void DatabaseServer::run()
             		datamining_handler = new GridDataMining(0, 0, database_handler, task_data.parameter_size, initial_parameters, &runtime, 1);
             		DataMining_instance_flag = true;
             	}
-            	
+
 
             } else {
             	//ended task = runtime exist, insert in datamining
             	if(task_data.event == 2)
             	{
             		long runtime = task_data.time_ended - task_data.time_started;
-            		datamining_handler->insert(task_data.parameters, runtime);
+            		//datamining_handler->insert(task_data.parameters, runtime);
             	}
             }
         }
@@ -84,7 +84,7 @@ void DatabaseServer::run()
             	}
             //predict
             long runtime = datamining_handler->predict(task_data.parameters);
-	    
+
             //send prediction
             int target_rank = status.MPI_SOURCE;
             MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
