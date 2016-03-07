@@ -123,7 +123,7 @@ GridDataMining::~GridDataMining()
     GridLibary::print_name("GridDataMining Dekonstuktor");
   #endif
   delete proxy;
-  delete memory;
+  //delete memory;
   delete max_parameter;
   delete min_parameter;
 }

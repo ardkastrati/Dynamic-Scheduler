@@ -27,10 +27,10 @@ DatabaseHandler::DatabaseHandler()
 
 DatabaseHandler::~DatabaseHandler()
 {
-        stInq->para.clear();
+  stInq->para.clear();
 	stInq->runtime.clear();
-	delete &stInq->para[0];
-	delete &stInq->runtime[0];
+	//delete &stInq->para[0];
+	//stInq->runtime->;
 	delete stInq;
 	delete data_bookkeeping;
 	delete data_statistic;
@@ -192,5 +192,3 @@ void readTaskData()
 {
 
 }
-
-
