@@ -16,7 +16,7 @@
 class LIFO: public SchedulingStrategy {
 private:
     /**
-     * Last In - First Out (LIFO) stack of TaskTypes. The stack keeps the scientific tasks.
+     * Last In - First Out (LIFO) (stack like) queue of TaskTypes. The stack keeps the scientific tasks.
      */
     std::stack<Task>* stack;
 
@@ -32,16 +32,16 @@ public:
     ~LIFO();
 
     /**
-     * Returns the last-in task, or NULL if the queue is empty.
+     * Returns the last inserted task, or NULL if the queue is empty.
      *
      * @return the last-in task
      */
     Task get_next_task();
 
     /**
-     * Return the count of  tasks in the scheduling queue.
+     * Return the number of  tasks in the scheduling queue.
      *
-     * @retrun the count of tasks
+     * @return the count of tasks
      */
     int get_task_count();
 

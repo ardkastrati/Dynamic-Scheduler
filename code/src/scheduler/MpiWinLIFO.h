@@ -30,7 +30,7 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
         void init(int max_size);
     public:
         /**
-         * Constructs a new LIFO scheduling queue
+         * Creates a new LIFO scheduling queue.
          *
          * @param size of the queue
          * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
@@ -44,14 +44,14 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
         ~MpiWinLIFO();
 
         /**
-         * Returns the last-in task, or NULL if the queue is empty
+         * Returns the last-in task, or NULL if the queue is empty.
          *
          * @return the last-in task
          */
         Task get_next_task();
 
         /**
-         * Return the count of  tasks in the scheduling queue
+         * Returns the count of  tasks in the scheduling queue.
          *
          * @return the count of tasks
          */
@@ -63,7 +63,7 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
         Task pop_next_task();
 
         /**
-         * Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
+         * Inserts a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime.
          * @param task
          * @param runtime
          */
@@ -72,15 +72,15 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
         /**
          * Changes the scheduling strategy. Returns the new scheduling strategy with all tasks, or NULL if there was an error.
          *
-         * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will be kept.
+         * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will not change.
          *
-         * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue perhaps won't be kept
+         * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue might change.
          * @param new_strategy
          */
         SchedulingStrategy* change_strategy(SchedulingStrategy* new_strategy);
 
         /**
-         * Steals the next task from the given rank if the queue of the given rank is not empty
+         * Steals the next task from the given rank if the queue of the given rank is not empty.
          *
          * @param rank the rank of the remote queue
          *
@@ -89,7 +89,7 @@ class MpiWinLIFO : public MpiWinSchedulingStrategy {
         Task steal_next_task(int target_rank, int number_of_tries);
 
         /**
-         * Returns the task count of the remote queue of the given rank
+         * Returns the task count of the remote queue of the given rank.
          *
          * @param rank the rank of the remote queue
          *

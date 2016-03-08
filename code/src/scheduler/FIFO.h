@@ -16,32 +16,32 @@
 class FIFO: public SchedulingStrategy {
 private:
     /**
-     * First In - First Out (FIFO) queue of TaskTypes. The queue keeps the scientific tasks
+     * First In - First Out (FIFO) queue of TaskTypes. The queue stores  the scientific tasks.
      */
     std::queue<Task>* queue;
 
 public:
     /**
-     * Creates a new FIFO scheduling queue
+     * Creates a new FIFO scheduling queue.
      */
     FIFO();
 
     /**
-     * Destructs the FIFO scheduling queue
+     * Destructs the FIFO scheduling queue.
      */
     ~FIFO();
 
     /**
-     * Returns the first-in task depending, or NULL if the queue is empty
+     * Returns the first task to be executed, or NULL if the queue is empty.
      *
      * @return the first-in task
      */
     Task get_next_task();
 
     /**
-     * Return the number of  tasks in the scheduling queue
+     * Returns the number of  tasks in the scheduling queue.
      *
-     * @retrun the number of tasks
+     * @return the number of tasks
      */
     int get_task_count();
 
@@ -51,7 +51,7 @@ public:
     Task pop_next_task();
 
     /**
-     * Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
+     * Inserts a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime.
      * @param task
      * @param runtime
      */

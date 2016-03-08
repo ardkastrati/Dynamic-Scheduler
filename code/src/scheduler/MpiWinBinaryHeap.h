@@ -1,5 +1,5 @@
 /**
- * The class is a binary heap, that uses a MPI shared memory area (MPI Window) to store the data.
+ * This class is a binary heap, using a MPI shared memory area (MPI Window) to store data.
  * The algorithm details can be found here http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150520.pdf
  * and here: http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150518.pdf.
  *
@@ -33,31 +33,31 @@ private:
     Task *queue;
 
     /**
-     * The rank of this process. Relative to the task stealing communicator
+     * The rank of this process. Relative to the task stealing communicator.
      */
     int rank;
     /**
-     * The number of processes in the task stealing communicator
+     * The number of processes in the task stealing communicator.
      */
     int number_of_processors;
     /**
-     * A constant, that represent a lock for the win_n window
+     * A constant, representing a lock for the win_n window.
      */
     const int lock = -100;
 
     /**
-     * Creates the n, queue and the MPI windows
+     * Creates the n, queue and the MPI windows.
      */
     void init(int max_size);
 
     /**
-     * Uses to reestablish the heap invariant, when a new task was inserted.
+     * Used to reestablish the heap invariant, after a new task was inserted.
      *
      * @param i the current level in the heap
      */
     void sift_up(int i);
     /**
-     * Uses to reestablish the heap invariant, when the next task was poped.
+     * Used to reestablish the heap invariant, after the first task was poped.
      *
      * @param i the current level in the heap
      * @param target_rank rank of the target. Relative to the task stealing communicator
@@ -66,7 +66,7 @@ private:
     void sift_down(int i, int target_rank, int current_n);
 public:
     /**
- * Constructs a new binary heap scheduling queue
+ * Creates a new binary heap scheduling queue.
  *
  * @param size of the queue
  * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
@@ -75,7 +75,7 @@ public:
     MpiWinBinaryHeap(int size, int rank, int number_of_processors);
 
     /**
-     * Destructs the binary heap scheduling queue
+     * Destructs the binary heap scheduling queue.
      */
     ~MpiWinBinaryHeap();
 
@@ -87,7 +87,7 @@ public:
     Task get_next_task();
 
     /**
-     * Return the count of  tasks in the scheduling queue
+     * Returns the number of  tasks in the scheduling queue
      *
      * @return the count of tasks
      */
@@ -99,7 +99,7 @@ public:
     Task pop_next_task();
 
     /**
-     * Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
+     * Inserts a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
      * @param task
      * @param runtime
      */
@@ -108,19 +108,19 @@ public:
     /**
      * Changes the scheduling strategy. Returns the new scheduling strategy with all tasks, or NULL if there was an error.
      *
-     * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will be kept.
+     * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will not change.
      *
-     * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue perhaps won't be kept
+     * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue might change.
      * @param new_strategy
      */
     SchedulingStrategy* change_strategy(SchedulingStrategy* new_strategy);
 
     /**
-     * Steals the next task from the given rank if the queue of the given rank is not empty
+     * Steals the next task from the given rank in case the queue of the given rank is not empty.
      *
      * @param rank the rank of the remote queue
      *
-     * @return the next task from the given rank or NULL if the queue is empty
+     * @return the next task from the given rank or NULL in case the queue is empty
      */
     Task steal_next_task(int target_rank, int number_of_tries);
 
