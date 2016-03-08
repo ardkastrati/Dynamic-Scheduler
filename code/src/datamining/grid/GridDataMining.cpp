@@ -1,7 +1,7 @@
 /**
  * Project Dynamic Scheduler for Scientific Simulations
  */
- #define GRID_DATA_MINING_DEBUG 1
+ #define GRID_DATA_MINING_DEBUG 0
  #define PRINTGRID 0
  #define GRID_LIBARY_DEBUG 0
  #define MPI_PROXY_DEBUG 0
