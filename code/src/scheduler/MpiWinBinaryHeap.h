@@ -15,6 +15,7 @@
 class MpiWinBinaryHeap : public MpiWinSchedulingStrategy {
 
 private:
+    bool is_min_heap;
     /**
      * The MPI window for the queue.
      */
@@ -134,6 +135,8 @@ public:
     int get_task_count(int target_rank);
 
     bool is_statistic_based();
+
+    bool comparator(long runtime1, long runtime2);
 };
 
 
