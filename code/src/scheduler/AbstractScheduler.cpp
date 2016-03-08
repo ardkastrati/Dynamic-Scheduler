@@ -41,15 +41,15 @@ void AbstractScheduler::place_task(Task task)
     task.id = get_id_by_rank_and_number(rank, task_number);
     task_number++;
     //std::cout << task.id << std::endl;
-    long runtime = 1;//scheduling_strategy->DEFAULT_RUNTIME;
+    //scheduling_strategy->DEFAULT_RUNTIME;
+    long runtime;
     if (scheduling_strategy->is_statistic_based()) {
         short temp;
         MPI_Status status;
-        long runtime;
         MPI_Sendrecv(&temp, 1, MPI_SHORT, DATABASE, DATAMINING,
                      &runtime, 1, MPI_LONG, DATABASE, DATAMINING, MPI_COMM_WORLD, &status);
     }
-    scheduling_strategy->push_new_task(task, runtime);
+    scheduling_strategy->push_new_task(task, task.runtime);
 }
 
 int AbstractScheduler::get_rank()
