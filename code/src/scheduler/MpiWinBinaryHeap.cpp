@@ -64,6 +64,10 @@ void MpiWinBinaryHeap::push_new_task(Task task, long runtime)
     queue[current_n] = task;
     sift_up(current_n);
 
+    /*for (int i = 0; i < current_n + 1; i++) {
+      cout << ";" << queue[i].parameters[0];
+    }
+    cout << endl;*/
 
     MPI_Win_unlock(rank, win_queue);
 
