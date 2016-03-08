@@ -1,0 +1,279 @@
+\hypertarget{classel_1_1base_1_1_writer}{}\section{el\+:\+:base\+:\+:Writer Class Reference}
+\label{classel_1_1base_1_1_writer}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+
+
+Main entry point of each logging.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classel_1_1base_1_1_writer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1_writer_ac2a835925f37fd2ca3da00998d8a533c}{Writer} (\hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level, const char $\ast$file, unsigned long int line, const char $\ast$func, \hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839}{base\+::\+Dispatch\+Action} dispatch\+Action=\hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839a44d8ee68145a7d9849eeaa634c443602}{base\+::\+Dispatch\+Action\+::\+Normal\+Log}, \hyperlink{namespaceel_1_1base_1_1type_a3f79fa74639a13c32f794ba074fe7fb4}{base\+::type\+::\+Verbose\+Level} verbose\+Level=0)
+\item 
+virtual \hyperlink{classel_1_1base_1_1_writer_a6db9eafd05eed680d93c7f29b786a41d}{$\sim$\+Writer} (void)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{classel_1_1base_1_1_writer}{Writer} \& \hyperlink{classel_1_1base_1_1_writer_ab94f0d920c6465a57937e893aa9f5ada}{operator$<$$<$} (const T \&log)
+\item 
+\hyperlink{classel_1_1base_1_1_writer}{Writer} \& \hyperlink{classel_1_1base_1_1_writer_aea6d7f996ff92e9485a76ad3955f0a29}{operator$<$$<$} (std\+::ostream \&($\ast$log)(std\+::ostream \&))
+\item 
+\hyperlink{classel_1_1base_1_1_writer}{Writer} \& \hyperlink{classel_1_1base_1_1_writer_a282d82f392a3e6fef9eda47ce53e87dc}{construct} (\hyperlink{classel_1_1_logger}{Logger} $\ast$logger, bool need\+Lock=true)
+\item 
+\hyperlink{classel_1_1base_1_1_writer}{Writer} \& \hyperlink{classel_1_1base_1_1_writer_ab2bc960787eb3c9b01569629dcbeb246}{construct} (int count, const char $\ast$logger\+Ids,...)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classel_1_1base_1_1_writer_ae687ebbee62b086f318ee4c8d1a655c4}{initialize\+Logger} (const std\+::string \&logger\+Id, bool lookup=true, bool need\+Lock=true)
+\item 
+void \hyperlink{classel_1_1base_1_1_writer_a692d05d209840d6ae8c2c8e0bea21d29}{process\+Dispatch} ()
+\item 
+void \hyperlink{classel_1_1base_1_1_writer_a1c7d90bd4e00af4e7307f5936e1b6507}{trigger\+Dispatch} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} \hyperlink{classel_1_1base_1_1_writer_a28522bf9b05b4edcc0baf5196645d317}{m\+\_\+level}
+\item 
+const char $\ast$ \hyperlink{classel_1_1base_1_1_writer_a1eada1175721ba11b4eb6c9515d8e2dc}{m\+\_\+file}
+\item 
+const unsigned long int \hyperlink{classel_1_1base_1_1_writer_ac71f81d43f58b80ea31ae248e9fe6a23}{m\+\_\+line}
+\item 
+const char $\ast$ \hyperlink{classel_1_1base_1_1_writer_a57291e0751fe93547d9d5551fb3e8415}{m\+\_\+func}
+\item 
+\hyperlink{namespaceel_1_1base_1_1type_a3f79fa74639a13c32f794ba074fe7fb4}{base\+::type\+::\+Verbose\+Level} \hyperlink{classel_1_1base_1_1_writer_a335803052b6878c058a4a888279df04d}{m\+\_\+verbose\+Level}
+\item 
+\hyperlink{classel_1_1_logger}{Logger} $\ast$ \hyperlink{classel_1_1base_1_1_writer_a0fab2e9a168b7973bcca4574d05490d2}{m\+\_\+logger}
+\item 
+bool \hyperlink{classel_1_1base_1_1_writer_a238593eda90cf32645c4541e738bea9a}{m\+\_\+proceed}
+\item 
+\hyperlink{classel_1_1base_1_1_message_builder}{base\+::\+Message\+Builder} \hyperlink{classel_1_1base_1_1_writer_a63763a047d595271cb14f9a80430306b}{m\+\_\+message\+Builder}
+\item 
+\hyperlink{namespaceel_1_1base_a3aa2563d38e47388ba242a1694fc2839}{base\+::\+Dispatch\+Action} \hyperlink{classel_1_1base_1_1_writer_acbea5b77953cf6e39baab015e83a4100}{m\+\_\+dispatch\+Action}
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classel_1_1base_1_1_writer_a9137860437510e1a26e8b0c1814c7ae7}{m\+\_\+logger\+Ids}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1_writer_a2fb8a2c02cbf86247f093c118bed877a}{el\+::\+Helpers}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main entry point of each logging. 
+
+Definition at line 4907 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1_writer_ac2a835925f37fd2ca3da00998d8a533c}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!Writer@{Writer}}
+\index{Writer@{Writer}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{Writer}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Writer\+::\+Writer (
+\begin{DoxyParamCaption}
+\item[{{\bf Level}}]{level, }
+\item[{const char $\ast$}]{file, }
+\item[{unsigned long int}]{line, }
+\item[{const char $\ast$}]{func, }
+\item[{{\bf base\+::\+Dispatch\+Action}}]{dispatch\+Action = {\ttfamily {\bf base\+::\+Dispatch\+Action\+::\+Normal\+Log}}, }
+\item[{{\bf base\+::type\+::\+Verbose\+Level}}]{verbose\+Level = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_writer_ac2a835925f37fd2ca3da00998d8a533c}
+
+
+Definition at line 4909 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a6db9eafd05eed680d93c7f29b786a41d}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!````~Writer@{$\sim$\+Writer}}
+\index{````~Writer@{$\sim$\+Writer}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{$\sim$\+Writer}]{\setlength{\rightskip}{0pt plus 5cm}virtual el\+::base\+::\+Writer\+::$\sim$\+Writer (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1_writer_a6db9eafd05eed680d93c7f29b786a41d}
+
+
+Definition at line 4916 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1_writer_a282d82f392a3e6fef9eda47ce53e87dc}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!construct@{construct}}
+\index{construct@{construct}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{construct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Writer}\& el\+::base\+::\+Writer\+::construct (
+\begin{DoxyParamCaption}
+\item[{{\bf Logger} $\ast$}]{logger, }
+\item[{bool}]{need\+Lock = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_writer_a282d82f392a3e6fef9eda47ce53e87dc}
+
+
+Definition at line 4939 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_ab2bc960787eb3c9b01569629dcbeb246}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!construct@{construct}}
+\index{construct@{construct}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{construct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Writer}\& el\+::base\+::\+Writer\+::construct (
+\begin{DoxyParamCaption}
+\item[{int}]{count, }
+\item[{const char $\ast$}]{logger\+Ids, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_writer_ab2bc960787eb3c9b01569629dcbeb246}
+
+
+Definition at line 4946 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_ae687ebbee62b086f318ee4c8d1a655c4}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!initialize\+Logger@{initialize\+Logger}}
+\index{initialize\+Logger@{initialize\+Logger}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{initialize\+Logger}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Writer\+::initialize\+Logger (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{logger\+Id, }
+\item[{bool}]{lookup = {\ttfamily true}, }
+\item[{bool}]{need\+Lock = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_ae687ebbee62b086f318ee4c8d1a655c4}
+
+
+Definition at line 4976 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_ab94f0d920c6465a57937e893aa9f5ada}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf Writer}\& el\+::base\+::\+Writer\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{log}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_writer_ab94f0d920c6465a57937e893aa9f5ada}
+
+
+Definition at line 4921 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_aea6d7f996ff92e9485a76ad3955f0a29}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Writer}\& el\+::base\+::\+Writer\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&($\ast$)(std\+::ostream \&)}]{log}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_writer_aea6d7f996ff92e9485a76ad3955f0a29}
+
+
+Definition at line 4930 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a692d05d209840d6ae8c2c8e0bea21d29}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!process\+Dispatch@{process\+Dispatch}}
+\index{process\+Dispatch@{process\+Dispatch}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{process\+Dispatch}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Writer\+::process\+Dispatch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a692d05d209840d6ae8c2c8e0bea21d29}
+
+
+Definition at line 5004 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a1c7d90bd4e00af4e7307f5936e1b6507}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!trigger\+Dispatch@{trigger\+Dispatch}}
+\index{trigger\+Dispatch@{trigger\+Dispatch}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{trigger\+Dispatch}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Writer\+::trigger\+Dispatch (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a1c7d90bd4e00af4e7307f5936e1b6507}
+
+
+Definition at line 5045 of file easylogging++.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classel_1_1base_1_1_writer_a2fb8a2c02cbf86247f093c118bed877a}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!el\+::\+Helpers@{el\+::\+Helpers}}
+\index{el\+::\+Helpers@{el\+::\+Helpers}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{el\+::\+Helpers}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf el\+::\+Helpers}\hspace{0.3cm}{\ttfamily [friend]}}\label{classel_1_1base_1_1_writer_a2fb8a2c02cbf86247f093c118bed877a}
+
+
+Definition at line 4974 of file easylogging++.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classel_1_1base_1_1_writer_acbea5b77953cf6e39baab015e83a4100}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+dispatch\+Action@{m\+\_\+dispatch\+Action}}
+\index{m\+\_\+dispatch\+Action@{m\+\_\+dispatch\+Action}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+dispatch\+Action}]{\setlength{\rightskip}{0pt plus 5cm}{\bf base\+::\+Dispatch\+Action} el\+::base\+::\+Writer\+::m\+\_\+dispatch\+Action\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_acbea5b77953cf6e39baab015e83a4100}
+
+
+Definition at line 4972 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a1eada1175721ba11b4eb6c9515d8e2dc}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+file@{m\+\_\+file}}
+\index{m\+\_\+file@{m\+\_\+file}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ el\+::base\+::\+Writer\+::m\+\_\+file\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a1eada1175721ba11b4eb6c9515d8e2dc}
+
+
+Definition at line 4965 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a57291e0751fe93547d9d5551fb3e8415}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+func@{m\+\_\+func}}
+\index{m\+\_\+func@{m\+\_\+func}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+func}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ el\+::base\+::\+Writer\+::m\+\_\+func\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a57291e0751fe93547d9d5551fb3e8415}
+
+
+Definition at line 4967 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a28522bf9b05b4edcc0baf5196645d317}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+level@{m\+\_\+level}}
+\index{m\+\_\+level@{m\+\_\+level}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Level} el\+::base\+::\+Writer\+::m\+\_\+level\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a28522bf9b05b4edcc0baf5196645d317}
+
+
+Definition at line 4964 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_ac71f81d43f58b80ea31ae248e9fe6a23}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+line@{m\+\_\+line}}
+\index{m\+\_\+line@{m\+\_\+line}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long int el\+::base\+::\+Writer\+::m\+\_\+line\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_ac71f81d43f58b80ea31ae248e9fe6a23}
+
+
+Definition at line 4966 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a0fab2e9a168b7973bcca4574d05490d2}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+logger@{m\+\_\+logger}}
+\index{m\+\_\+logger@{m\+\_\+logger}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Logger}$\ast$ el\+::base\+::\+Writer\+::m\+\_\+logger\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a0fab2e9a168b7973bcca4574d05490d2}
+
+
+Definition at line 4969 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a9137860437510e1a26e8b0c1814c7ae7}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+logger\+Ids@{m\+\_\+logger\+Ids}}
+\index{m\+\_\+logger\+Ids@{m\+\_\+logger\+Ids}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+logger\+Ids}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ el\+::base\+::\+Writer\+::m\+\_\+logger\+Ids\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a9137860437510e1a26e8b0c1814c7ae7}
+
+
+Definition at line 4973 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a63763a047d595271cb14f9a80430306b}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+message\+Builder@{m\+\_\+message\+Builder}}
+\index{m\+\_\+message\+Builder@{m\+\_\+message\+Builder}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+message\+Builder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf base\+::\+Message\+Builder} el\+::base\+::\+Writer\+::m\+\_\+message\+Builder\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a63763a047d595271cb14f9a80430306b}
+
+
+Definition at line 4971 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a238593eda90cf32645c4541e738bea9a}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+proceed@{m\+\_\+proceed}}
+\index{m\+\_\+proceed@{m\+\_\+proceed}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+proceed}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Writer\+::m\+\_\+proceed\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a238593eda90cf32645c4541e738bea9a}
+
+
+Definition at line 4970 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_writer_a335803052b6878c058a4a888279df04d}{}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}!m\+\_\+verbose\+Level@{m\+\_\+verbose\+Level}}
+\index{m\+\_\+verbose\+Level@{m\+\_\+verbose\+Level}!el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+\subsubsection[{m\+\_\+verbose\+Level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf base\+::type\+::\+Verbose\+Level} el\+::base\+::\+Writer\+::m\+\_\+verbose\+Level\hspace{0.3cm}{\ttfamily [protected]}}\label{classel_1_1base_1_1_writer_a335803052b6878c058a4a888279df04d}
+
+
+Definition at line 4968 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

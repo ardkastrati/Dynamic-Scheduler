@@ -1,0 +1,207 @@
+\hypertarget{classel_1_1base_1_1utils_1_1_registry}{}\section{el\+:\+:base\+:\+:utils\+:\+:Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$ Class Template Reference}
+\label{classel_1_1base_1_1utils_1_1_registry}\index{el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$@{el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$}}
+
+
+A pointer registry mechanism to manage memory and provide search functionalities. (non-\/predicate version)  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:utils\+:\+:Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classel_1_1base_1_1utils_1_1_registry}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classel_1_1base_1_1utils_1_1_registry}{Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::\hyperlink{classel_1_1base_1_1utils_1_1_registry_a31f3d725285e6b65f1f9e990066f96ed}{iterator} \hyperlink{classel_1_1base_1_1utils_1_1_registry_a31f3d725285e6b65f1f9e990066f96ed}{iterator}
+\item 
+typedef \hyperlink{classel_1_1base_1_1utils_1_1_registry}{Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::\hyperlink{classel_1_1base_1_1utils_1_1_registry_a955e62adc74c60d0205b52a3fc430cef}{const\+\_\+iterator} \hyperlink{classel_1_1base_1_1utils_1_1_registry_a955e62adc74c60d0205b52a3fc430cef}{const\+\_\+iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1utils_1_1_registry_aa4bb56a1aff481cc6cf8979b2f2c6eca}{Registry} (void)
+\item 
+\hyperlink{classel_1_1base_1_1utils_1_1_registry_adf5e97aa801be3b93e116ad645304759}{Registry} (const \hyperlink{classel_1_1base_1_1utils_1_1_registry}{Registry} \&sr)
+\begin{DoxyCompactList}\small\item\em Copy constructor that is useful for base classes. Try to avoid this constructor, use move constructor. \end{DoxyCompactList}\item 
+\hyperlink{classel_1_1base_1_1utils_1_1_registry}{Registry} \& \hyperlink{classel_1_1base_1_1utils_1_1_registry_a80e0ce12b7d0c24462b385fc7b3149e0}{operator=} (const \hyperlink{classel_1_1base_1_1utils_1_1_registry}{Registry} \&sr)
+\begin{DoxyCompactList}\small\item\em Assignment operator that unregisters all the existing registeries and deeply copies each of repo element. \end{DoxyCompactList}\item 
+virtual \hyperlink{classel_1_1base_1_1utils_1_1_registry_a79aa9dfa385e233bf619d44422f4992c}{$\sim$\+Registry} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classel_1_1base_1_1utils_1_1_registry_ac40e62ddf5017beb91c28b472c9628c2}{unregister\+All} (void) \hyperlink{easylogging_09_09_8h_a2f812449f8d3355cf5b03ceb2ee5021b}{E\+L\+P\+P\+\_\+\+F\+I\+N\+A\+L}
+\begin{DoxyCompactList}\small\item\em Unregisters all the pointers from current repository. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classel_1_1base_1_1utils_1_1_registry_ab10b3dd25ff0df036e7a015635a15dee}{register\+New} (const T\+\_\+\+Key \&uniq\+Key, T\+\_\+\+Ptr $\ast$ptr) \hyperlink{easylogging_09_09_8h_a2f812449f8d3355cf5b03ceb2ee5021b}{E\+L\+P\+P\+\_\+\+F\+I\+N\+A\+L}
+\begin{DoxyCompactList}\small\item\em Registers new registry to repository. \end{DoxyCompactList}\item 
+void \hyperlink{classel_1_1base_1_1utils_1_1_registry_aab6f0ce3a99feff11add0bd8b869fcb8}{unregister} (const T\+\_\+\+Key \&uniq\+Key)
+\begin{DoxyCompactList}\small\item\em Unregisters single entry mapped to specified unique key. \end{DoxyCompactList}\item 
+T\+\_\+\+Ptr $\ast$ \hyperlink{classel_1_1base_1_1utils_1_1_registry_a18c332267f2acbe78c97a611dec2e5c2}{get} (const T\+\_\+\+Key \&uniq\+Key)
+\begin{DoxyCompactList}\small\item\em Gets pointer from repository. If none found, nullptr is returned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$class el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$}
+
+A pointer registry mechanism to manage memory and provide search functionalities. (non-\/predicate version) 
+
+N\+O\+T\+E\+: This is thread-\/unsafe implementation (although it contains lock function, it does not use these functions) of Abstract\+Registry$<$\+T\+\_\+\+Ptr, Container$>$. Any implementation of this class should be explicitly (by using lock functions) 
+
+Definition at line 1929 of file easylogging++.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_a955e62adc74c60d0205b52a3fc430cef}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!const\+\_\+iterator@{const\+\_\+iterator}}
+\index{const\+\_\+iterator@{const\+\_\+iterator}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{const\+\_\+iterator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ typedef {\bf Registry}$<$T\+\_\+\+Ptr, T\+\_\+\+Key$>$\+::{\bf const\+\_\+iterator} {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::{\bf const\+\_\+iterator}}\label{classel_1_1base_1_1utils_1_1_registry_a955e62adc74c60d0205b52a3fc430cef}
+
+
+Definition at line 1932 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_a31f3d725285e6b65f1f9e990066f96ed}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!iterator@{iterator}}
+\index{iterator@{iterator}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{iterator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ typedef {\bf Registry}$<$T\+\_\+\+Ptr, T\+\_\+\+Key$>$\+::{\bf iterator} {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::{\bf iterator}}\label{classel_1_1base_1_1utils_1_1_registry_a31f3d725285e6b65f1f9e990066f96ed}
+
+
+Definition at line 1931 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_aa4bb56a1aff481cc6cf8979b2f2c6eca}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!Registry@{Registry}}
+\index{Registry@{Registry}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{Registry}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::{\bf Registry} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1utils_1_1_registry_aa4bb56a1aff481cc6cf8979b2f2c6eca}
+
+
+Definition at line 1934 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_adf5e97aa801be3b93e116ad645304759}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!Registry@{Registry}}
+\index{Registry@{Registry}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{Registry}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::{\bf Registry} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$ \&}]{sr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1utils_1_1_registry_adf5e97aa801be3b93e116ad645304759}
+
+
+Copy constructor that is useful for base classes. Try to avoid this constructor, use move constructor. 
+
+
+
+Definition at line 1937 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_a79aa9dfa385e233bf619d44422f4992c}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!````~Registry@{$\sim$\+Registry}}
+\index{````~Registry@{$\sim$\+Registry}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{$\sim$\+Registry}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ virtual {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::$\sim${\bf Registry} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1utils_1_1_registry_a79aa9dfa385e233bf619d44422f4992c}
+
+
+Definition at line 1955 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_a18c332267f2acbe78c97a611dec2e5c2}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!get@{get}}
+\index{get@{get}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ T\+\_\+\+Ptr$\ast$ {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::get (
+\begin{DoxyParamCaption}
+\item[{const T\+\_\+\+Key \&}]{uniq\+Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classel_1_1base_1_1utils_1_1_registry_a18c332267f2acbe78c97a611dec2e5c2}
+
+
+Gets pointer from repository. If none found, nullptr is returned. 
+
+
+
+Definition at line 1985 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_a80e0ce12b7d0c24462b385fc7b3149e0}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!operator=@{operator=}}
+\index{operator=@{operator=}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ {\bf Registry}\& {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$ \&}]{sr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1utils_1_1_registry_a80e0ce12b7d0c24462b385fc7b3149e0}
+
+
+Assignment operator that unregisters all the existing registeries and deeply copies each of repo element. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classel_1_1base_1_1utils_1_1_registry_ac40e62ddf5017beb91c28b472c9628c2}{unregister\+All()} 
+
+deep\+Copy(const Abstract\+Registry\&) 
+\end{DoxySeeAlso}
+
+
+Definition at line 1947 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_ab10b3dd25ff0df036e7a015635a15dee}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!register\+New@{register\+New}}
+\index{register\+New@{register\+New}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{register\+New}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ virtual void {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::register\+New (
+\begin{DoxyParamCaption}
+\item[{const T\+\_\+\+Key \&}]{uniq\+Key, }
+\item[{T\+\_\+\+Ptr $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1utils_1_1_registry_ab10b3dd25ff0df036e7a015635a15dee}
+
+
+Registers new registry to repository. 
+
+
+
+Definition at line 1970 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_aab6f0ce3a99feff11add0bd8b869fcb8}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!unregister@{unregister}}
+\index{unregister@{unregister}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{unregister}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ void {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::unregister (
+\begin{DoxyParamCaption}
+\item[{const T\+\_\+\+Key \&}]{uniq\+Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classel_1_1base_1_1utils_1_1_registry_aab6f0ce3a99feff11add0bd8b869fcb8}
+
+
+Unregisters single entry mapped to specified unique key. 
+
+
+
+Definition at line 1976 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1utils_1_1_registry_ac40e62ddf5017beb91c28b472c9628c2}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!unregister\+All@{unregister\+All}}
+\index{unregister\+All@{unregister\+All}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\subsubsection[{unregister\+All}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ virtual void {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::unregister\+All (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1utils_1_1_registry_ac40e62ddf5017beb91c28b472c9628c2}
+
+
+Unregisters all the pointers from current repository. 
+
+
+
+Implements \hyperlink{classel_1_1base_1_1utils_1_1_abstract_registry_a19223bc1fea48dbe6b47b4879aa4672f}{el\+::base\+::utils\+::\+Abstract\+Registry$<$ T\+\_\+\+Ptr, std\+::map$<$ T\+\_\+\+Key, T\+\_\+\+Ptr $\ast$ $>$ $>$}.
+
+
+
+Definition at line 1960 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

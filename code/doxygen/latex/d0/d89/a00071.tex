@@ -1,0 +1,71 @@
+\hypertarget{a00071}{}\subsection{el\+:\+:base\+:\+:Registered\+Hit\+Counters Class Reference}
+\label{a00071}\index{el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}}
+
+
+Repository for hit counters used across the application.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:base\+:\+:Registered\+Hit\+Counters\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:base\+:\+:Registered\+Hit\+Counters\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00071_a18fecedc6be778cfd63e30cc42fb9c82}{validate\+Every\+N} (const char $\ast$filename, unsigned long int line\+Number, std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Validates counter for every N, i.\+e, registers new if does not exist otherwise updates original one. \end{DoxyCompactList}\item 
+bool \hyperlink{a00071_af6fa32ffd76776863d8bd2f0e9b341fc}{validate\+After\+N} (const char $\ast$filename, unsigned long int line\+Number, std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Validates counter for hits $>$= N, i.\+e, registers new if does not exist otherwise updates original one. \end{DoxyCompactList}\item 
+bool \hyperlink{a00071_aa270c1b9a8cc3a4d12cea45e07560d98}{validate\+N\+Times} (const char $\ast$filename, unsigned long int line\+Number, std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Validates counter for hits are $<$= n, i.\+e, registers new if does not exist otherwise updates original one. \end{DoxyCompactList}\item 
+\hypertarget{a00071_a0ca8cd04da5686048644e8cc1533b561}{}const \hyperlink{a00036}{base\+::\+Hit\+Counter} $\ast$ \hyperlink{a00071_a0ca8cd04da5686048644e8cc1533b561}{get\+Counter} (const char $\ast$filename, unsigned long int line\+Number)\label{a00071_a0ca8cd04da5686048644e8cc1533b561}
+
+\begin{DoxyCompactList}\small\item\em Gets hit counter registered at specified position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00071_af6fa32ffd76776863d8bd2f0e9b341fc}{}\index{el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}!validate\+After\+N@{validate\+After\+N}}
+\index{validate\+After\+N@{validate\+After\+N}!el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}}
+\paragraph[{validate\+After\+N}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Registered\+Hit\+Counters\+::validate\+After\+N (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{unsigned long int}]{line\+Number, }
+\item[{std\+::size\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00071_af6fa32ffd76776863d8bd2f0e9b341fc}
+\begin{DoxyReturn}{Returns}
+True if validation resulted in triggering hit. Meaning logs should be written everytime true is returned 
+\end{DoxyReturn}
+\hypertarget{a00071_a18fecedc6be778cfd63e30cc42fb9c82}{}\index{el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}!validate\+Every\+N@{validate\+Every\+N}}
+\index{validate\+Every\+N@{validate\+Every\+N}!el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}}
+\paragraph[{validate\+Every\+N}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Registered\+Hit\+Counters\+::validate\+Every\+N (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{unsigned long int}]{line\+Number, }
+\item[{std\+::size\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00071_a18fecedc6be778cfd63e30cc42fb9c82}
+\begin{DoxyReturn}{Returns}
+True if validation resulted in triggering hit. Meaning logs should be written everytime true is returned 
+\end{DoxyReturn}
+\hypertarget{a00071_aa270c1b9a8cc3a4d12cea45e07560d98}{}\index{el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}!validate\+N\+Times@{validate\+N\+Times}}
+\index{validate\+N\+Times@{validate\+N\+Times}!el\+::base\+::\+Registered\+Hit\+Counters@{el\+::base\+::\+Registered\+Hit\+Counters}}
+\paragraph[{validate\+N\+Times}]{\setlength{\rightskip}{0pt plus 5cm}bool el\+::base\+::\+Registered\+Hit\+Counters\+::validate\+N\+Times (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{unsigned long int}]{line\+Number, }
+\item[{std\+::size\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00071_aa270c1b9a8cc3a4d12cea45e07560d98}
+\begin{DoxyReturn}{Returns}
+True if validation resulted in triggering hit. Meaning logs should be written everytime true is returned 
+\end{DoxyReturn}

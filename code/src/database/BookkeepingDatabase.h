@@ -14,30 +14,30 @@ using namespace std;
 class BookkeepingDatabase : public Database
 {
 public:
-	/**
-	 * The constructor of bookkeeping class.
-	 * Start to create a new file.
+	/*
+	 * Constructor of the bookkeeping class.
+	 * Start process to create a new file.
 	 */
 	BookkeepingDatabase();
 
-	/**
-	 * The deconstructor of bookkeeping class.
+	/*
+	 * Destructor of the bookkeeping class.
 	 */
 	~BookkeepingDatabase();
 
-	/**
+	/*
 	 * The insertTaskData writes the datastring in the file.
-	 * @param data string which contains one data package of a task
+	 * @param data string containing one data package of a task
 	 */
 	void insertTaskData(string data);
 
-	/**
+	/*
 	 * Starts to create new file.
 	 */
 	void createFile();
 private:
-	/**
-	 * Creates the actual new file.
+	/*
+	 * Actually creates a new file.
 	 */
 	void initNewFile();
 	int size;

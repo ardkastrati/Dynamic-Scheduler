@@ -1,0 +1,143 @@
+\hypertarget{classel_1_1base_1_1_performance_tracker}{}\section{el\+:\+:base\+:\+:Performance\+Tracker Class Reference}
+\label{classel_1_1base_1_1_performance_tracker}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+
+
+Represents performance\+Tracker block of code that conditionally adds performance status to log either when goes outside the scope of when \hyperlink{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}{checkpoint()} is called.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:base\+:\+:Performance\+Tracker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classel_1_1base_1_1_performance_tracker}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classel_1_1base_1_1_performance_tracker_a46ac6a851c6d1cde6742a7ebfeedd1b6}{Performance\+Tracker} (const std\+::string \&block\+Name, \hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39}{base\+::\+Timestamp\+Unit} timestamp\+Unit=\hyperlink{namespaceel_1_1base_a1b886858c6409097395b24b1bdf03c39a988bbeeb80e7e0a6b4651aab5a76b413}{base\+::\+Timestamp\+Unit\+::\+Millisecond}, const std\+::string \&logger\+Id=std\+::string(\hyperlink{easylogging_09_09_8h_a2ed89aa4136d3c3217697afe1e28fa87}{E\+L\+P\+P\+\_\+\+C\+U\+R\+R\+\_\+\+F\+I\+L\+E\+\_\+\+P\+E\+R\+F\+O\+R\+M\+A\+N\+C\+E\+\_\+\+L\+O\+G\+G\+E\+R}), bool scoped\+Log=true, \hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} \hyperlink{classel_1_1base_1_1_performance_tracker_a3e0ebd666cc7416dc9b818418266161b}{level}=base\+::consts\+::k\+Performance\+Tracker\+Default\+Level)
+\item 
+\hyperlink{classel_1_1base_1_1_performance_tracker_a49e655c1f414f904b2d6a9abb0d344f4}{Performance\+Tracker} (const \hyperlink{classel_1_1base_1_1_performance_tracker}{Performance\+Tracker} \&t)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classel_1_1base_1_1_performance_tracker_a19be0aa65c8623273459185277b52b0c}{$\sim$\+Performance\+Tracker} (void)
+\item 
+void \hyperlink{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}{checkpoint} (const std\+::string \&id=std\+::string(), const char $\ast$file=\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, unsigned long int line=\+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, const char $\ast$func=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em A checkpoint for current performance\+Tracker block. \end{DoxyCompactList}\item 
+\hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} \hyperlink{classel_1_1base_1_1_performance_tracker_a3e0ebd666cc7416dc9b818418266161b}{level} (void) const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classel_1_1base_1_1_performance_tracker_a7a4da7334b79856c37538484584207a6}{el\+::\+Performance\+Tracking\+Data}
+\item 
+class \hyperlink{classel_1_1base_1_1_performance_tracker_ad346c4097e3db22a7434e7da5aa9c5e3}{base\+::\+Default\+Performance\+Tracking\+Callback}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents performance\+Tracker block of code that conditionally adds performance status to log either when goes outside the scope of when \hyperlink{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}{checkpoint()} is called. 
+
+Definition at line 5279 of file easylogging++.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classel_1_1base_1_1_performance_tracker_a46ac6a851c6d1cde6742a7ebfeedd1b6}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!Performance\+Tracker@{Performance\+Tracker}}
+\index{Performance\+Tracker@{Performance\+Tracker}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{Performance\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Performance\+Tracker\+::\+Performance\+Tracker (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{block\+Name, }
+\item[{{\bf base\+::\+Timestamp\+Unit}}]{timestamp\+Unit = {\ttfamily {\bf base\+::\+Timestamp\+Unit\+::\+Millisecond}}, }
+\item[{const std\+::string \&}]{logger\+Id = {\ttfamily std\+:\+:string({\bf E\+L\+P\+P\+\_\+\+C\+U\+R\+R\+\_\+\+F\+I\+L\+E\+\_\+\+P\+E\+R\+F\+O\+R\+M\+A\+N\+C\+E\+\_\+\+L\+O\+G\+G\+E\+R})}, }
+\item[{bool}]{scoped\+Log = {\ttfamily true}, }
+\item[{{\bf Level}}]{level = {\ttfamily base\+:\+:consts\+:\+:kPerformanceTrackerDefaultLevel}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_performance_tracker_a46ac6a851c6d1cde6742a7ebfeedd1b6}
+
+
+Definition at line 5281 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_performance_tracker_a49e655c1f414f904b2d6a9abb0d344f4}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!Performance\+Tracker@{Performance\+Tracker}}
+\index{Performance\+Tracker@{Performance\+Tracker}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{Performance\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Performance\+Tracker\+::\+Performance\+Tracker (
+\begin{DoxyParamCaption}
+\item[{const {\bf Performance\+Tracker} \&}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_performance_tracker_a49e655c1f414f904b2d6a9abb0d344f4}
+
+
+Copy constructor. 
+
+
+
+Definition at line 5298 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_performance_tracker_a19be0aa65c8623273459185277b52b0c}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!````~Performance\+Tracker@{$\sim$\+Performance\+Tracker}}
+\index{````~Performance\+Tracker@{$\sim$\+Performance\+Tracker}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{$\sim$\+Performance\+Tracker}]{\setlength{\rightskip}{0pt plus 5cm}virtual el\+::base\+::\+Performance\+Tracker\+::$\sim$\+Performance\+Tracker (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classel_1_1base_1_1_performance_tracker_a19be0aa65c8623273459185277b52b0c}
+
+
+Definition at line 5303 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!checkpoint@{checkpoint}}
+\index{checkpoint@{checkpoint}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{checkpoint}]{\setlength{\rightskip}{0pt plus 5cm}void el\+::base\+::\+Performance\+Tracker\+::checkpoint (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id = {\ttfamily std\+:\+:string()}, }
+\item[{const char $\ast$}]{file = {\ttfamily \+\_\+\+\_\+FILE\+\_\+\+\_\+}, }
+\item[{unsigned long int}]{line = {\ttfamily \+\_\+\+\_\+LINE\+\_\+\+\_\+}, }
+\item[{const char $\ast$}]{func = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_performance_tracker_aec9a6e149674c5782cc855e49aeb0aaf}
+
+
+A checkpoint for current performance\+Tracker block. 
+
+
+
+Definition at line 5328 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_performance_tracker_a3e0ebd666cc7416dc9b818418266161b}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!level@{level}}
+\index{level@{level}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Level} el\+::base\+::\+Performance\+Tracker\+::level (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classel_1_1base_1_1_performance_tracker_a3e0ebd666cc7416dc9b818418266161b}
+
+
+Definition at line 5361 of file easylogging++.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classel_1_1base_1_1_performance_tracker_ad346c4097e3db22a7434e7da5aa9c5e3}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!base\+::\+Default\+Performance\+Tracking\+Callback@{base\+::\+Default\+Performance\+Tracking\+Callback}}
+\index{base\+::\+Default\+Performance\+Tracking\+Callback@{base\+::\+Default\+Performance\+Tracking\+Callback}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{base\+::\+Default\+Performance\+Tracking\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf base\+::\+Default\+Performance\+Tracking\+Callback}\hspace{0.3cm}{\ttfamily [friend]}}\label{classel_1_1base_1_1_performance_tracker_ad346c4097e3db22a7434e7da5aa9c5e3}
+
+
+Definition at line 5376 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1base_1_1_performance_tracker_a7a4da7334b79856c37538484584207a6}{}\index{el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}!el\+::\+Performance\+Tracking\+Data@{el\+::\+Performance\+Tracking\+Data}}
+\index{el\+::\+Performance\+Tracking\+Data@{el\+::\+Performance\+Tracking\+Data}!el\+::base\+::\+Performance\+Tracker@{el\+::base\+::\+Performance\+Tracker}}
+\subsubsection[{el\+::\+Performance\+Tracking\+Data}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf el\+::\+Performance\+Tracking\+Data}\hspace{0.3cm}{\ttfamily [friend]}}\label{classel_1_1base_1_1_performance_tracker_a7a4da7334b79856c37538484584207a6}
+
+
+Definition at line 5375 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

@@ -9,7 +9,7 @@
 /**
  * The abstract AbstractScheduler class is the base class for all types of scheduler objects like master-worker scheduler
  * or task stealing scheduler and inherits from the Executor class. Subclasses have to override the run() and the is_finish() function.
- * The preprocessing and the postprocessing function call the code_proprocessing_master() and the code_postprocessing_master()
+ * The preprocessing and the postprocessing functions call the code_preprocessing_master() and the code_postprocessing_master()
  * functions on the code interface.
  *
  * @author Fabio Broghammer
@@ -49,19 +49,19 @@ protected:
 
     /**
      * This function is called after all scientific tasks are completed.
-     * This function runs the calls the scientific code_postprocessing_master() code
+     * This function calls the scientific code_postprocessing_master() code
      */
     virtual void postprocessing();
 
     /**
     * The main loop of the master - worker algorithm.
-    * the function returns when all scientific tasks are completed
+    * The function returns after all scientific tasks are completed
     */
     virtual void run() = 0;
 
     /**
      * Checks if all scientific tasks are completed.
-     * All tasks completed <=> free_worker = worker_count and tasksqueue is empty
+     * All tasks completed <=> free_worker == worker_count && tasksqueue is empty
      *
      * @return TRUE if all scientific tasks are completed
      */
@@ -69,7 +69,7 @@ protected:
 
 public:
     /**
-     * Initialize the fields from abstract scheduler.
+     * Initializes the fields of the abstract scheduler.
      * This constructor is called from the subclass constructors
      *
      * @param scheduling_strategy the scheduling strategy to be set

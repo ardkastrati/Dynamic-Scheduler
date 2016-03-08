@@ -1,0 +1,61 @@
+\hypertarget{_worker_forwarder_8h}{}\section{src/worker/\+Worker\+Forwarder.h File Reference}
+\label{_worker_forwarder_8h}\index{src/worker/\+Worker\+Forwarder.\+h@{src/worker/\+Worker\+Forwarder.\+h}}
+{\ttfamily \#include \char`\"{}../\+Types\+Extern.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_worker_forwarder_8h_a8d1cfab65acaebc72cdffef223ff3fdf}{place\+\_\+task\+\_\+forwarder\+\_\+master} (void $\ast$context, \hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} task)
+\item 
+void \hyperlink{_worker_forwarder_8h_adc63f9de6c46ea58619415cab1617b79}{place\+\_\+task\+\_\+forwarder\+\_\+taskstealing} (void $\ast$context, \hyperlink{_types_8h_a0c77930ab3818a1680c59353f627fba8}{Task} task)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_worker_forwarder_8h_a8d1cfab65acaebc72cdffef223ff3fdf}{}\index{Worker\+Forwarder.\+h@{Worker\+Forwarder.\+h}!place\+\_\+task\+\_\+forwarder\+\_\+master@{place\+\_\+task\+\_\+forwarder\+\_\+master}}
+\index{place\+\_\+task\+\_\+forwarder\+\_\+master@{place\+\_\+task\+\_\+forwarder\+\_\+master}!Worker\+Forwarder.\+h@{Worker\+Forwarder.\+h}}
+\subsubsection[{place\+\_\+task\+\_\+forwarder\+\_\+master}]{\setlength{\rightskip}{0pt plus 5cm}void place\+\_\+task\+\_\+forwarder\+\_\+master (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{context, }
+\item[{{\bf Task}}]{task}
+\end{DoxyParamCaption}
+)}\label{_worker_forwarder_8h_a8d1cfab65acaebc72cdffef223ff3fdf}
+This function are used to call c++ member function from the scientific c code.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 This function is called from the scientific c code and calls the member function from context (\hyperlink{class_worker_executor}{Worker\+Executor}) and pass the task.
+\end{DoxyVersion}
+
+\begin{DoxyParams}{Parameters}
+{\em context} & pointer of the object with the function to be called \\
+\hline
+{\em task} & to be passed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 10 of file Worker\+Forwarder.\+cpp.
+
+\hypertarget{_worker_forwarder_8h_adc63f9de6c46ea58619415cab1617b79}{}\index{Worker\+Forwarder.\+h@{Worker\+Forwarder.\+h}!place\+\_\+task\+\_\+forwarder\+\_\+taskstealing@{place\+\_\+task\+\_\+forwarder\+\_\+taskstealing}}
+\index{place\+\_\+task\+\_\+forwarder\+\_\+taskstealing@{place\+\_\+task\+\_\+forwarder\+\_\+taskstealing}!Worker\+Forwarder.\+h@{Worker\+Forwarder.\+h}}
+\subsubsection[{place\+\_\+task\+\_\+forwarder\+\_\+taskstealing}]{\setlength{\rightskip}{0pt plus 5cm}void place\+\_\+task\+\_\+forwarder\+\_\+taskstealing (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{context, }
+\item[{{\bf Task}}]{task}
+\end{DoxyParamCaption}
+)}\label{_worker_forwarder_8h_adc63f9de6c46ea58619415cab1617b79}
+This function is called from the scientific c code and calls the member function from context (\hyperlink{class_task_stealing_worker}{Task\+Stealing\+Worker}) and pass the task.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & pointer of the object with the function to be called \\
+\hline
+{\em task} & to be passed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file Worker\+Forwarder.\+cpp.
+

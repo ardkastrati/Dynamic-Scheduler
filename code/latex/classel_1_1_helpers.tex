@@ -1,0 +1,408 @@
+\hypertarget{classel_1_1_helpers}{}\section{el\+:\+:Helpers Class Reference}
+\label{classel_1_1_helpers}\index{el\+::\+Helpers@{el\+::\+Helpers}}
+
+
+Static helpers for developers.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+Inheritance diagram for el\+:\+:Helpers\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classel_1_1_helpers}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classel_1_1_helpers_af78fd39725281e3dddd7c0fbdc14f11f}{set\+Storage} (\hyperlink{namespaceel_1_1base_1_1type_a3c34822c3825018aca1526f2289b7976}{base\+::type\+::\+Storage\+Pointer} \hyperlink{classel_1_1_helpers_a13a5365de36b3af27660cf9b358829d3}{storage})
+\begin{DoxyCompactList}\small\item\em Shares logging repository (\hyperlink{classel_1_1base_1_1_storage}{base\+::\+Storage}) \end{DoxyCompactList}\item 
+static \hyperlink{namespaceel_1_1base_1_1type_a3c34822c3825018aca1526f2289b7976}{base\+::type\+::\+Storage\+Pointer} \hyperlink{classel_1_1_helpers_a13a5365de36b3af27660cf9b358829d3}{storage} ()
+\item 
+static void \hyperlink{classel_1_1_helpers_a68748f618a0c2840b96dc12532b09bf0}{set\+Args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Sets application arguments and figures out whats active for logging and whats not. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_afac7a023e2c13a62d0295cf0239eb848}{set\+Args} (int argc, const char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Sets application arguments and figures out whats active for logging and whats not. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_a4155f6fff0074ad93aa56fd7fe064097}{set\+Crash\+Handler} (const \hyperlink{classel_1_1base_1_1debug_1_1_crash_handler_aebf80d2fd5180d9c56db5a7e9abc7ad9}{el\+::base\+::debug\+::\+Crash\+Handler\+::\+Handler} \&crash\+Handler)
+\begin{DoxyCompactList}\small\item\em Overrides default crash handler and installs custom handler. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_a6e16f0e07ce40e0659fcfec4ea5b6fe1}{crash\+Abort} (int sig, const char $\ast$source\+File=\char`\"{}\char`\"{}, unsigned int long line=0)
+\begin{DoxyCompactList}\small\item\em Abort due to crash with signal in parameter. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_abf1ae61428740e1e6c5d5f0c36500faa}{log\+Crash\+Reason} (int sig, bool stack\+Trace\+If\+Available=false, \hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level=\hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36a882384ec38ce8d9582b57e70861730e4}{Level\+::\+Fatal}, const char $\ast$logger=base\+::consts\+::k\+Default\+Logger\+Id)
+\begin{DoxyCompactList}\small\item\em Logs reason of crash as per sig. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_a5fd7ad6d636c28d2e706203d0c43cf8c}{install\+Pre\+Roll\+Out\+Callback} (const \hyperlink{namespaceel_aeb764b890a6f3cd41d2726bcd4e9c0cf}{Pre\+Roll\+Out\+Callback} \&callback)
+\begin{DoxyCompactList}\small\item\em Installs pre rollout callback, this callback is triggered when log file is about to be rolled out (can be useful for backing up) \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_ab829e5ed1b43bf965f5c288bc0280376}{uninstall\+Pre\+Roll\+Out\+Callback} (void)
+\begin{DoxyCompactList}\small\item\em Uninstalls pre rollout callback. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static bool \hyperlink{classel_1_1_helpers_a3f3e84057567a8ac568a35899318544a}{install\+Log\+Dispatch\+Callback} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Installs post log dispatch callback, this callback is triggered when log is dispatched. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{classel_1_1_helpers_ac94b44cc8d399a5842703126478300d7}{uninstall\+Log\+Dispatch\+Callback} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Uninstalls log dispatch callback. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static T $\ast$ \hyperlink{classel_1_1_helpers_aa01d59ca141bc75c4fdd78a34234611b}{log\+Dispatch\+Callback} (const std\+::string \&id)
+\item 
+{\footnotesize template$<$typename T $>$ }\\static bool \hyperlink{classel_1_1_helpers_a93e2727d3a7a5c06ccc41a2ae7fe1835}{install\+Performance\+Tracking\+Callback} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Installs post performance tracking callback, this callback is triggered when performance tracking is finished. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{classel_1_1_helpers_af1c5a4951991179dca4879ba05fb67a6}{uninstall\+Performance\+Tracking\+Callback} (const std\+::string \&id)
+\begin{DoxyCompactList}\small\item\em Uninstalls post performance tracking handler. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static T $\ast$ \hyperlink{classel_1_1_helpers_a007844d35095b26301c9218b29d74049}{performance\+Tracking\+Callback} (const std\+::string \&id)
+\item 
+{\footnotesize template$<$typename T $>$ }\\static std\+::string \hyperlink{classel_1_1_helpers_a8b032e32cd042ddc4fef4e814bad1082}{convert\+Template\+To\+Std\+String} (const T \&templ)
+\begin{DoxyCompactList}\small\item\em Converts template to std\+::string -\/ useful for loggable classes to log containers within log(std\+::ostream\&) const. \end{DoxyCompactList}\item 
+static const \hyperlink{classel_1_1base_1_1utils_1_1_command_line_args}{el\+::base\+::utils\+::\+Command\+Line\+Args} $\ast$ \hyperlink{classel_1_1_helpers_a83bab44f77a4961f8f5231e7ce9917bb}{command\+Line\+Args} (void)
+\begin{DoxyCompactList}\small\item\em Returns command line arguments (pointer) provided to easylogging++. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_aa6de15a09db4f2a6763a6652c0ea12b1}{install\+Custom\+Format\+Specifier} (const \hyperlink{classel_1_1_custom_format_specifier}{Custom\+Format\+Specifier} \&custom\+Format\+Specifier)
+\begin{DoxyCompactList}\small\item\em Installs user defined format specifier and handler. \end{DoxyCompactList}\item 
+static bool \hyperlink{classel_1_1_helpers_a23ec73819c25758d604d149ad0c6b73f}{uninstall\+Custom\+Format\+Specifier} (const char $\ast$format\+Specifier)
+\begin{DoxyCompactList}\small\item\em Uninstalls user defined format specifier and handler. \end{DoxyCompactList}\item 
+static bool \hyperlink{classel_1_1_helpers_a154ce041890564d1ae5f87184e24f13d}{has\+Custom\+Format\+Specifier} (const char $\ast$format\+Specifier)
+\begin{DoxyCompactList}\small\item\em Returns true if custom format specifier is installed. \end{DoxyCompactList}\item 
+static void \hyperlink{classel_1_1_helpers_aea3fcde8a07e6f7278574e9563d8ab6b}{validate\+File\+Rolling} (\hyperlink{classel_1_1_logger}{Logger} $\ast$logger, \hyperlink{namespaceel_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Static helpers for developers. 
+
+Definition at line 5648 of file easylogging++.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classel_1_1_helpers_a83bab44f77a4961f8f5231e7ce9917bb}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!command\+Line\+Args@{command\+Line\+Args}}
+\index{command\+Line\+Args@{command\+Line\+Args}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{command\+Line\+Args}]{\setlength{\rightskip}{0pt plus 5cm}static const {\bf el\+::base\+::utils\+::\+Command\+Line\+Args}$\ast$ el\+::\+Helpers\+::command\+Line\+Args (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a83bab44f77a4961f8f5231e7ce9917bb}
+
+
+Returns command line arguments (pointer) provided to easylogging++. 
+
+
+
+Definition at line 5755 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a8b032e32cd042ddc4fef4e814bad1082}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!convert\+Template\+To\+Std\+String@{convert\+Template\+To\+Std\+String}}
+\index{convert\+Template\+To\+Std\+String@{convert\+Template\+To\+Std\+String}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{convert\+Template\+To\+Std\+String}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static std\+::string el\+::\+Helpers\+::convert\+Template\+To\+Std\+String (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{templ}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a8b032e32cd042ddc4fef4e814bad1082}
+
+
+Converts template to std\+::string -\/ useful for loggable classes to log containers within log(std\+::ostream\&) const. 
+
+
+
+Definition at line 5735 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a6e16f0e07ce40e0659fcfec4ea5b6fe1}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!crash\+Abort@{crash\+Abort}}
+\index{crash\+Abort@{crash\+Abort}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{crash\+Abort}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::crash\+Abort (
+\begin{DoxyParamCaption}
+\item[{int}]{sig, }
+\item[{const char $\ast$}]{source\+File = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{unsigned int long}]{line = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a6e16f0e07ce40e0659fcfec4ea5b6fe1}
+
+
+Abort due to crash with signal in parameter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & Crash signal \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5674 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a154ce041890564d1ae5f87184e24f13d}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!has\+Custom\+Format\+Specifier@{has\+Custom\+Format\+Specifier}}
+\index{has\+Custom\+Format\+Specifier@{has\+Custom\+Format\+Specifier}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{has\+Custom\+Format\+Specifier}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::\+Helpers\+::has\+Custom\+Format\+Specifier (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format\+Specifier}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a154ce041890564d1ae5f87184e24f13d}
+
+
+Returns true if custom format specifier is installed. 
+
+
+
+Definition at line 5767 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_aa6de15a09db4f2a6763a6652c0ea12b1}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!install\+Custom\+Format\+Specifier@{install\+Custom\+Format\+Specifier}}
+\index{install\+Custom\+Format\+Specifier@{install\+Custom\+Format\+Specifier}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{install\+Custom\+Format\+Specifier}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::install\+Custom\+Format\+Specifier (
+\begin{DoxyParamCaption}
+\item[{const {\bf Custom\+Format\+Specifier} \&}]{custom\+Format\+Specifier}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_aa6de15a09db4f2a6763a6652c0ea12b1}
+
+
+Installs user defined format specifier and handler. 
+
+
+
+Definition at line 5759 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a3f3e84057567a8ac568a35899318544a}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!install\+Log\+Dispatch\+Callback@{install\+Log\+Dispatch\+Callback}}
+\index{install\+Log\+Dispatch\+Callback@{install\+Log\+Dispatch\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{install\+Log\+Dispatch\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static bool el\+::\+Helpers\+::install\+Log\+Dispatch\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a3f3e84057567a8ac568a35899318544a}
+
+
+Installs post log dispatch callback, this callback is triggered when log is dispatched. 
+
+
+
+Definition at line 5707 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a93e2727d3a7a5c06ccc41a2ae7fe1835}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!install\+Performance\+Tracking\+Callback@{install\+Performance\+Tracking\+Callback}}
+\index{install\+Performance\+Tracking\+Callback@{install\+Performance\+Tracking\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{install\+Performance\+Tracking\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static bool el\+::\+Helpers\+::install\+Performance\+Tracking\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a93e2727d3a7a5c06ccc41a2ae7fe1835}
+
+
+Installs post performance tracking callback, this callback is triggered when performance tracking is finished. 
+
+
+
+Definition at line 5721 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a5fd7ad6d636c28d2e706203d0c43cf8c}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!install\+Pre\+Roll\+Out\+Callback@{install\+Pre\+Roll\+Out\+Callback}}
+\index{install\+Pre\+Roll\+Out\+Callback@{install\+Pre\+Roll\+Out\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{install\+Pre\+Roll\+Out\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::install\+Pre\+Roll\+Out\+Callback (
+\begin{DoxyParamCaption}
+\item[{const {\bf Pre\+Roll\+Out\+Callback} \&}]{callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a5fd7ad6d636c28d2e706203d0c43cf8c}
+
+
+Installs pre rollout callback, this callback is triggered when log file is about to be rolled out (can be useful for backing up) 
+
+
+
+Definition at line 5698 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_abf1ae61428740e1e6c5d5f0c36500faa}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!log\+Crash\+Reason@{log\+Crash\+Reason}}
+\index{log\+Crash\+Reason@{log\+Crash\+Reason}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{log\+Crash\+Reason}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::log\+Crash\+Reason (
+\begin{DoxyParamCaption}
+\item[{int}]{sig, }
+\item[{bool}]{stack\+Trace\+If\+Available = {\ttfamily false}, }
+\item[{{\bf Level}}]{level = {\ttfamily {\bf Level\+::\+Fatal}}, }
+\item[{const char $\ast$}]{logger = {\ttfamily base\+:\+:consts\+:\+:kDefaultLoggerId}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_abf1ae61428740e1e6c5d5f0c36500faa}
+
+
+Logs reason of crash as per sig. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & Crash signal \\
+\hline
+{\em stack\+Trace\+If\+Available} & Includes stack trace if available \\
+\hline
+{\em level} & Logging level \\
+\hline
+{\em logger} & \hyperlink{classel_1_1_logger}{Logger} to use for logging \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5692 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_aa01d59ca141bc75c4fdd78a34234611b}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!log\+Dispatch\+Callback@{log\+Dispatch\+Callback}}
+\index{log\+Dispatch\+Callback@{log\+Dispatch\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{log\+Dispatch\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static T$\ast$ el\+::\+Helpers\+::log\+Dispatch\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_aa01d59ca141bc75c4fdd78a34234611b}
+
+
+Definition at line 5716 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a007844d35095b26301c9218b29d74049}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!performance\+Tracking\+Callback@{performance\+Tracking\+Callback}}
+\index{performance\+Tracking\+Callback@{performance\+Tracking\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{performance\+Tracking\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static T$\ast$ el\+::\+Helpers\+::performance\+Tracking\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a007844d35095b26301c9218b29d74049}
+
+
+Definition at line 5730 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a68748f618a0c2840b96dc12532b09bf0}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!set\+Args@{set\+Args}}
+\index{set\+Args@{set\+Args}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{set\+Args}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::set\+Args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a68748f618a0c2840b96dc12532b09bf0}
+
+
+Sets application arguments and figures out whats active for logging and whats not. 
+
+
+
+Definition at line 5659 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_afac7a023e2c13a62d0295cf0239eb848}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!set\+Args@{set\+Args}}
+\index{set\+Args@{set\+Args}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{set\+Args}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::set\+Args (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_afac7a023e2c13a62d0295cf0239eb848}
+
+
+Sets application arguments and figures out whats active for logging and whats not. 
+
+
+
+Definition at line 5663 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a4155f6fff0074ad93aa56fd7fe064097}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!set\+Crash\+Handler@{set\+Crash\+Handler}}
+\index{set\+Crash\+Handler@{set\+Crash\+Handler}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{set\+Crash\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::set\+Crash\+Handler (
+\begin{DoxyParamCaption}
+\item[{const {\bf el\+::base\+::debug\+::\+Crash\+Handler\+::\+Handler} \&}]{crash\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a4155f6fff0074ad93aa56fd7fe064097}
+
+
+Overrides default crash handler and installs custom handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em crash\+Handler} & A functor with no return type that takes single int argument. Handler is a typedef with specification\+: void ($\ast$\+Handler)(int) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5669 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_af78fd39725281e3dddd7c0fbdc14f11f}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!set\+Storage@{set\+Storage}}
+\index{set\+Storage@{set\+Storage}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{set\+Storage}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::set\+Storage (
+\begin{DoxyParamCaption}
+\item[{{\bf base\+::type\+::\+Storage\+Pointer}}]{storage}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_af78fd39725281e3dddd7c0fbdc14f11f}
+
+
+Shares logging repository (\hyperlink{classel_1_1base_1_1_storage}{base\+::\+Storage}) 
+
+
+
+Definition at line 5651 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a13a5365de36b3af27660cf9b358829d3}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!storage@{storage}}
+\index{storage@{storage}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{storage}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf base\+::type\+::\+Storage\+Pointer} el\+::\+Helpers\+::storage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a13a5365de36b3af27660cf9b358829d3}
+\begin{DoxyReturn}{Returns}
+Main storage repository 
+\end{DoxyReturn}
+
+
+Definition at line 5655 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_a23ec73819c25758d604d149ad0c6b73f}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!uninstall\+Custom\+Format\+Specifier@{uninstall\+Custom\+Format\+Specifier}}
+\index{uninstall\+Custom\+Format\+Specifier@{uninstall\+Custom\+Format\+Specifier}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{uninstall\+Custom\+Format\+Specifier}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::\+Helpers\+::uninstall\+Custom\+Format\+Specifier (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format\+Specifier}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_a23ec73819c25758d604d149ad0c6b73f}
+
+
+Uninstalls user defined format specifier and handler. 
+
+
+
+Definition at line 5763 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_ac94b44cc8d399a5842703126478300d7}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!uninstall\+Log\+Dispatch\+Callback@{uninstall\+Log\+Dispatch\+Callback}}
+\index{uninstall\+Log\+Dispatch\+Callback@{uninstall\+Log\+Dispatch\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{uninstall\+Log\+Dispatch\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static void el\+::\+Helpers\+::uninstall\+Log\+Dispatch\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_ac94b44cc8d399a5842703126478300d7}
+
+
+Uninstalls log dispatch callback. 
+
+
+
+Definition at line 5712 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_af1c5a4951991179dca4879ba05fb67a6}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!uninstall\+Performance\+Tracking\+Callback@{uninstall\+Performance\+Tracking\+Callback}}
+\index{uninstall\+Performance\+Tracking\+Callback@{uninstall\+Performance\+Tracking\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{uninstall\+Performance\+Tracking\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ static void el\+::\+Helpers\+::uninstall\+Performance\+Tracking\+Callback (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_af1c5a4951991179dca4879ba05fb67a6}
+
+
+Uninstalls post performance tracking handler. 
+
+
+
+Definition at line 5726 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_ab829e5ed1b43bf965f5c288bc0280376}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!uninstall\+Pre\+Roll\+Out\+Callback@{uninstall\+Pre\+Roll\+Out\+Callback}}
+\index{uninstall\+Pre\+Roll\+Out\+Callback@{uninstall\+Pre\+Roll\+Out\+Callback}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{uninstall\+Pre\+Roll\+Out\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::uninstall\+Pre\+Roll\+Out\+Callback (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_ab829e5ed1b43bf965f5c288bc0280376}
+
+
+Uninstalls pre rollout callback. 
+
+
+
+Definition at line 5702 of file easylogging++.\+h.
+
+\hypertarget{classel_1_1_helpers_aea3fcde8a07e6f7278574e9563d8ab6b}{}\index{el\+::\+Helpers@{el\+::\+Helpers}!validate\+File\+Rolling@{validate\+File\+Rolling}}
+\index{validate\+File\+Rolling@{validate\+File\+Rolling}!el\+::\+Helpers@{el\+::\+Helpers}}
+\subsubsection[{validate\+File\+Rolling}]{\setlength{\rightskip}{0pt plus 5cm}static void el\+::\+Helpers\+::validate\+File\+Rolling (
+\begin{DoxyParamCaption}
+\item[{{\bf Logger} $\ast$}]{logger, }
+\item[{{\bf Level}}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{classel_1_1_helpers_aea3fcde8a07e6f7278574e9563d8ab6b}
+
+
+Definition at line 5770 of file easylogging++.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{easylogging_09_09_8h}{easylogging++.\+h}\end{DoxyCompactItemize}

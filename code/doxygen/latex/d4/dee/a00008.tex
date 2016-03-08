@@ -1,0 +1,45 @@
+\hypertarget{a00008}{}\subsection{Comparison\+Class\+L\+J\+F Class Reference}
+\label{a00008}\index{Comparison\+Class\+L\+J\+F@{Comparison\+Class\+L\+J\+F}}
+
+
+{\ttfamily \#include $<$L\+J\+F.\+h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00008_a0e49bbee2ff869b1b2b31ad9e9a863d0}{operator()} (Task\+Time\+Type task\+\_\+time\+\_\+1, Task\+Time\+Type task\+\_\+time\+\_\+2)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is a custom comparison class for the std\+::priority\+\_\+queue. This class is used to order the priority queue. This class is used from the \hyperlink{a00024}{L\+J\+F} class.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00008_a0e49bbee2ff869b1b2b31ad9e9a863d0}{}\index{Comparison\+Class\+L\+J\+F@{Comparison\+Class\+L\+J\+F}!operator()@{operator()}}
+\index{operator()@{operator()}!Comparison\+Class\+L\+J\+F@{Comparison\+Class\+L\+J\+F}}
+\paragraph[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}bool Comparison\+Class\+L\+J\+F\+::operator() (
+\begin{DoxyParamCaption}
+\item[{Task\+Time\+Type}]{task\+\_\+time\+\_\+1, }
+\item[{Task\+Time\+Type}]{task\+\_\+time\+\_\+2}
+\end{DoxyParamCaption}
+)}\label{a00008_a0e49bbee2ff869b1b2b31ad9e9a863d0}
+Returns true, if the runtime of the task\+\_\+time\+\_\+1 is shorter than the runtime of the task\+\_\+time\+\_\+2. This comparison function is used from the std\+::priority\+\_\+queue to order the tasks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+time\+\_\+1} & pair of task and runtime to be compared \\
+\hline
+{\em task\+\_\+time\+\_\+2} & pair of task and runtime to be compared\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true, if the runtime of the task1 is shorter than the runtime of the task2 
+\end{DoxyReturn}

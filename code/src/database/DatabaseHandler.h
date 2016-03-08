@@ -19,49 +19,49 @@ class DatabaseHandler
 {
 public:
 	/**
-	 * The constructor of the DatabaseHandler initialize an object for each database partition.
-	 * In that case two objects for: bookkeeping, statistic.
+	 * Constructor of the DatabaseHandler. Initializes an object for each database partition.
+	 * Currently two objects for: bookkeeping & statistics.
 	 */
 	DatabaseHandler();
 
 	/**
-	 * The destructor destroys his objects of database and cleans up the local task storage in the main memory.
+	 * The destructor destroys his database objects and cleans up the local task storage in the main memory.
 	 */
 	~DatabaseHandler();
 
 	/**
-	 * The dataParserBookkeeping is parsing all information that are relevant for the bookkeeping
-	 * of a task in a string which can be inserted for the bookkeeping.
-	 * @param data TaskData is a data struct with content of a task
+	 * The dataParserBookkeeping parses all information relevant for the bookkeeping
+	 * of a task in a string which can be inserted in the bookkeeping file.
+	 * @param data TaskData is a data struct with information about a task
 	 */
 	string dataParserBookkeeping(TaskData* data);
 
 	/**
-	 * The dataParserBookkeeping is parsing all information that are relevant for the statistic
-	 * of a task in a string which can be inserted for the statistic.
-	 * @param data TaskData is a data struct with content of a task
+	 * The dataParserStatistic parses all information relevant for the statistic
+	 * of a task in a string which can be inserted in the statistic file.
+	 * @param data TaskData is a data struct with information about a task
 	 */
 	string dataParserStatistic(TaskData* data);
 
 	/**
-	 * The storeData function stores the data for one task in all files.
+	 * The storeData function stores the data for one task in all database files.
 	 * @param data TaskData is a data struct with content of a task
 	 */
 	void storeData(TaskData* data);
 
 	/**
-	 * The dataMiningInquiry function is giving the dataMiner the statistic information
-	 * from the memory.
+	 * The dataMiningInquiry function provides the dataMiner with statistic information
+	 * from the main memory.
 	 * @param NumberOfParameters number of parameter dimension
 	 * @return struct data* returns pointer to data
 	 */
 	StatisticInquiry* dataMiningInquiry();
 
 	/**
-	 * Hold the information of the task in memory for DataMiner inquiry.
+	 * Stores the information about the task in the main memory for DataMiner inquiry.
 	 * Data is hold in a structure of vectors.
-	 * @param data TaskData is a data struct with content of a task
-	 * @param runtime runtime of a task
+	 * @param data TaskData is a data struct with information about a task
+	 * @param runtime runtime of the task
 	 */
 	void storeLocalStatistic(TaskData* data, long runtime);
 
@@ -88,7 +88,7 @@ private:
 	Database* data_statistic;
 
 	/**
-	 * Number of Dimension.
+	 * Number of Dimensions.
 	 */
 	int size;
 

@@ -10,44 +10,44 @@ class DatabaseServer: public Executor
 {
 public:
 
-	/**
-	 * The constructor of the DatabaseServer, initialize MPI communication and connection to the
+	/*
+	 * The constructor of the DatabaseServer. Initializes MPI communication and connection to the
 	 * Database through DatabaseHandler.
-	 * @param rank rank of
-	 * @param number_of_processor
+	 * @param rank rank of the MPI node
+	 * @param number_of_processors
 	 */
     DatabaseServer(int rank, int number_of_processors);
 
-    /**
-     * The destructor
+    /*
+     * Destructor of the DatabaseServer.
      */
     ~DatabaseServer();
 
-    /**
-     * The function starts the execution of the DatabaseServer.
+    /*
+     * Begins the execution of the DatabaseServer.
      */
     void execute(int argc, char* argv[]);
 
 private:
 
     /**
-     * A flag to show if an instance of the DataMining modul exist yet.
+     * A flag to show if an instance of the DataMining modul exists yet.
      */
     bool DataMining_instance_flag;
 
-    /**
+    /*
      * Instance of a DatabaseHandler
      */
     DatabaseHandler*  database_handler;
 
-    /**
-     * Instance of a DatabaseHandler
+    /*
+     * Instance of a DataminingHandler
      */
     GridDataMining*  datamining_handler;
 
-    /**
-     * The run function is running during the execution and contains the communication over MPI.
-     * It receives data asynchronous and insert the information of each task in the Database.
+    /*
+     * Runs during the execution and contains the communication over MPI.
+     * It receives data asynchronous and inserts the information of each task in the Database.
      *
      */
     void run();
