@@ -51,7 +51,7 @@ private:
     /**
      * A constant, that represents the lock.
      */
-    const int lock[2] = {-1, -1};
+    const int lock[2] = {-100, -100};
 
     /**
      * The rank of this process. Relative to the task stealing communicator.
