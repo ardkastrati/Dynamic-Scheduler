@@ -1,8 +1,8 @@
 /**
  * Project Dynamic Scheduler for Scientific Simulations
  */
- #define GRID_DATA_MINING_DEBUG 1
- #define PRINTGRID 1
+ #define GRID_DATA_MINING_DEBUG 0
+ #define PRINTGRID 0
  #define GRID_LIBARY_DEBUG 0
  #define MPI_PROXY_DEBUG 0
  #define ARRAY_HANDLER_DEBUG 0
@@ -83,6 +83,7 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
   this->database = database;
   proxy = new MpiProxy(parameter_count, rank, target_rank);
   memory = new ArrayHandler(parameter_count, proxy);
+  make_new_grid_running = false;
   nr_of_dimensions = parameter_count;
   nr_of_tasks = 0;
   average_differential = 0;

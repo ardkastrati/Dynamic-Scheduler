@@ -6,6 +6,9 @@
 #include "../ScientificCode.h"
 #include "../worker/TaskStealingWorker.h"
 #include "../Const.h"
+#include <iostream>
+
+using namespace std;
 
 #define WORKING 1
 #define IDLE 0
@@ -37,31 +40,32 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
         Task tasks[100];
         int number_of_tasks;
 
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+        /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = WORKING;
         MPI_Win_unlock(rank, win_status);
-
+        */
         code_preprocessing_master(argc, argv, tasks, &number_of_tasks);
         for (int i = 0; i < number_of_tasks; i++) {
-            scheduling_strategy->push_new_task(tasks[i], 0);
+            scheduling_strategy->push_new_task(tasks[i], tasks[i].runtime);
             //place_task(tasks[i]);
         }
 
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+        /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = IDLE;
-        MPI_Win_unlock(rank, win_status);
+        MPI_Win_unlock(rank, win_status);*/
     }
     else
     {
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+
+        /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = WORKING;
-        MPI_Win_unlock(rank, win_status);
+        MPI_Win_unlock(rank, win_status);*/
 
         worker->preprocessing(argc, argv);
 
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+        /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = IDLE;
-        MPI_Win_unlock(rank, win_status);
+        MPI_Win_unlock(rank, win_status);*/
 
     }
     run();
@@ -76,27 +80,35 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
 }
 
 void TaskStealingScheduler::run() {
-
     bool is_running = true;
     while (is_running) {
         //std::cout << "Run loop" << std::endl;
+        /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+        *status = WORKING;
+        MPI_Win_unlock(rank, win_status);*/
         Task task = scheduling_strategy->pop_next_task();
 
         if (task.parameter_size > 0) {
 
-            MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
-            *status = WORKING;
-            MPI_Win_unlock(rank, win_status);
-
+          MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+          *status = WORKING;
+          MPI_Win_unlock(rank, win_status);
+            //cout << task.parameters[0] << endl;
             worker->run_task(task);
 
+            /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
+            *status = IDLE;
+            MPI_Win_unlock(rank, win_status);*/
+
+
+        } else
+        {
             MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
             *status = IDLE;
             MPI_Win_unlock(rank, win_status);
-        } else
-        {
             is_running = !is_finish();
         }
+
 
     }
 }
@@ -110,6 +122,7 @@ bool TaskStealingScheduler::is_finish() {
         MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_status);
         MPI_Get(&status, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_status);
         MPI_Win_unlock(target_rank, win_status);
+        //cout << "status: " << status << endl;
         if (status == WORKING) {
             is_finish = false;
         }

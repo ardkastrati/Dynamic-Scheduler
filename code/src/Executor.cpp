@@ -1,6 +1,7 @@
 #include "Executor.h"
 #include "scheduler/TaskStealingScheduler.h"
 #include "scheduler/MpiWinLIFO.h"
+#include "scheduler/MpiWinFIFO.h"
 #include "scheduler/MpiWinBinaryHeap.h"
 #include "scheduler/Master.h"
 #include "scheduler/SJF.h"
@@ -12,6 +13,8 @@
 #include "database/DatabaseServer.h"
 #include <mpi.h>
 #include "TypesExtern.h"
+
+#define MAX_MPI_WIN_TASK_COUNT 200
 
 
 Executor::Executor(int rank, int number_of_processors) :
@@ -88,9 +91,23 @@ Executor* Executor::get_new_executor_for_taskstealing(int rank, int number_of_pr
 
         MPI_Comm_rank(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_rank);
         MPI_Comm_size(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_number_of_processors);
-
-        MpiWinSchedulingStrategy* scheduling_strategy = new MpiWinLIFO(200, taskstealing_world_rank,
-                                                                       taskstealing_world_number_of_processors);
+        MpiWinSchedulingStrategy* scheduling_strategy;
+        switch(strategy) {
+          case ENUM_LIFO:
+            scheduling_strategy = new MpiWinLIFO(MAX_MPI_WIN_TASK_COUNT, taskstealing_world_rank, taskstealing_world_number_of_processors);
+            break;
+          case ENUM_SJF:
+            scheduling_strategy = new MpiWinBinaryHeap(MAX_MPI_WIN_TASK_COUNT, taskstealing_world_rank, taskstealing_world_number_of_processors, true);
+            break;
+          case ENUM_LJF:
+            scheduling_strategy = new MpiWinBinaryHeap(MAX_MPI_WIN_TASK_COUNT, taskstealing_world_rank, taskstealing_world_number_of_processors, false);
+            break;
+          case ENUM_FIFO:
+            scheduling_strategy = new MpiWinFIFO(MAX_MPI_WIN_TASK_COUNT, taskstealing_world_rank, taskstealing_world_number_of_processors);
+            break;
+          default:
+            throw "Unreachable";
+        }
         executor = new TaskStealingScheduler(scheduling_strategy, NULL, taskstealing_world_rank,
                                              taskstealing_world_number_of_processors);
     }

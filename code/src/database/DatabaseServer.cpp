@@ -38,6 +38,7 @@ void DatabaseServer::run()
     MPI_Status status;
 
     while (true) {
+
         MPI_Recv(&task_data, 1, MY_MPI_TASK_DATA_TYPE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
 
         if (status.MPI_TAG == STOP) {
@@ -45,8 +46,9 @@ void DatabaseServer::run()
         }
         else if (status.MPI_TAG == DATAENTRY)
         {
-        	  //store the new task
+        	//store the new task
             database_handler->storeData(&task_data);
+
             //insert the new task in datamining
             if(!DataMining_instance_flag)
             {

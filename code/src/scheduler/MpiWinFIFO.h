@@ -6,7 +6,7 @@
 /**
  * This class implements the MpiWinSchedulingStrategy and realize a FIFO queue.
  * The FIFO queue is represented as cyclic array. (See https://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150427.pdf page 125)
- * The queue itself and the offset are inside several MPI window to give other processes access to the data.
+ * The queue itself and the offset are inside several MPI windows to give other processes access to the data.
  *
  * @author Fabio Broghammer
  * @version 1.0
@@ -49,9 +49,9 @@ private:
     Task* queue;
 
     /**
-     * A constant, that represent the lock.
+     * A constant, that represents the lock.
      */
-    const int lock[2] = {-1, -1};
+    const int lock[2] = {-100, -100};
 
     /**
      * The rank of this process. Relative to the task stealing communicator.
@@ -68,7 +68,7 @@ private:
     void init(int max_size);
 public:
     /**
-     * Constructs a new LIFO scheduling queue
+     * Constructs a new LIFO scheduling queue.
      *
      * @param size of the queue
      * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
@@ -77,19 +77,19 @@ public:
     MpiWinFIFO(int size, int rank, int number_of_processors);
 
     /**
-     * Destructs a new LIFO scheduling queue
+     * Destructs a new LIFO scheduling queue.
      */
     ~MpiWinFIFO();
 
     /**
-     * Returns the last-in task, or NULL if the queue is empty
+     * Returns the last-in task, or NULL if the queue is empty.
      *
      * @return the last-in task
      */
     Task get_next_task();
 
     /**
-     * Return the count of  tasks in the scheduling queue
+     * Return the count of  tasks in the scheduling queue.
      *
      * @return the count of tasks
      */
@@ -101,7 +101,7 @@ public:
     Task pop_next_task();
 
     /**
-     * Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime
+     * Inserts a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime.
      * @param task
      * @param runtime
      */
@@ -110,15 +110,15 @@ public:
     /**
      * Changes the scheduling strategy. Returns the new scheduling strategy with all tasks, or NULL if there was an error.
      *
-     * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will be kept.
+     * Estimated runtime of tasks will get lost by changing from statistically based strategies (LSF, SJF) to non-statistically based strategies. The order of the old queue will not change.
      *
-     * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue perhaps won't be kept
+     * All tasks will get a default runtime value (defined in DEFAULT_RUNTIME) by changing from non-statistically based strategies (FIFO, LIFO) to statistically based strategies. The order of the old queue might change.
      * @param new_strategy
      */
     SchedulingStrategy* change_strategy(SchedulingStrategy* new_strategy);
 
     /**
-     * Steals the next task from the given rank if the queue of the given rank is not empty
+     * Steals the next task from the given rank if the queue of the given rank is not empty.
      *
      * @param rank the rank of the remote queue
      *
@@ -127,7 +127,7 @@ public:
     Task steal_next_task(int target_rank, int number_of_tries);
 
     /**
-     * Returns the task count of the remote queue of the given rank
+     * Returns the task count of the remote queue of the given rank.
      *
      * @param rank the rank of the remote queue
      *

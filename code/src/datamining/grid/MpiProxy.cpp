@@ -19,8 +19,8 @@ MpiProxy::MpiProxy(int nr_of_dimensions, int rank, int traget_rank)
 		GridLibary::print_int("traget_rank", traget_rank);
 	#endif
 	assert (nr_of_dimensions > 0);
-	assert (target_rank >= 0);
-	assert (rank >= 0);
+	//assert (target_rank >= 0);
+	//assert (rank >= 0);
 	this -> nr_of_dimensions = nr_of_dimensions;
 	this -> rank = rank;
 	this -> target_rank = target_rank;

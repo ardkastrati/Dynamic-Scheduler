@@ -2,13 +2,16 @@
 // Created by fabio on 04.03.16.
 //
 #include <iostream>
+#include <assert.h>
 #include "MpiWinBinaryHeap.h"
 
 using namespace std;
 
-MpiWinBinaryHeap::MpiWinBinaryHeap(int max_size, int rank, int number_of_processors) :
+MpiWinBinaryHeap::MpiWinBinaryHeap(int max_size, int rank, int number_of_processors, bool isMinHeap) :
     rank(rank),
-    number_of_processors(number_of_processors)
+    number_of_processors(number_of_processors),
+    is_min_heap(isMinHeap),
+    max_size(max_size)
 {
     init(max_size);
 }
@@ -24,7 +27,6 @@ MpiWinBinaryHeap::~MpiWinBinaryHeap()
 
 void MpiWinBinaryHeap::init(int max_size)
 {
-    cout << "Binary heap" << endl;
     int queue_size = sizeof(Task) * max_size;
     MPI_Alloc_mem(queue_size, MPI_INFO_NULL, &queue);
     MPI_Alloc_mem(sizeof(int), MPI_INFO_NULL, &n);
@@ -44,10 +46,7 @@ Task MpiWinBinaryHeap::get_next_task()
 
 void MpiWinBinaryHeap::push_new_task(Task task, long runtime)
 {
-    static int i = 0;
-    //cout << "Push: " << task.parameters[0] << endl;
     task.runtime = runtime;
-    i++;
     int current_n;
     bool already_locked = true;
     while(already_locked) {
@@ -59,26 +58,28 @@ void MpiWinBinaryHeap::push_new_task(Task task, long runtime)
             already_locked = false;
         }
     }
-
-    //now the n window ist locked by me
     current_n++;
-
+    assert (current_n < max_size);
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
 
     queue[current_n] = task;
     sift_up(current_n);
+
+    /*for (int i = 0; i < current_n + 1; i++) {
+      cout << ";" << queue[i].parameters[0];
+    }
+    cout << endl;*/
+
     MPI_Win_unlock(rank, win_queue);
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_n);
     *n = current_n;
     MPI_Win_unlock(rank, win_n);
-    //cout << "Pushed" << endl;
 }
 
 void MpiWinBinaryHeap::sift_up(int i)
 {
-    //cout << "sift up " << i << endl;
-    if (i == 0 || queue[i/2].runtime < queue[i].runtime) {
+    if (i == 0 || comparator(queue[i/2].runtime, queue[i].runtime)) {
         return;
     }
     Task temp = queue[i];
@@ -120,52 +121,51 @@ Task MpiWinBinaryHeap::steal_next_task(int target_rank, int number_of_tries)
     if (current_n < 0) {
         task.parameter_size = -2;
     } else {
-
         Task lastTask;
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
         MPI_Get(&task, 1, MY_MPI_TASK_TYPE, target_rank, 0, 1, MY_MPI_TASK_TYPE, win_queue);
         MPI_Get(&lastTask, 1, MY_MPI_TASK_TYPE, target_rank, current_n, 1, MY_MPI_TASK_TYPE, win_queue);
-        MPI_Win_unlock(rank, win_queue);
-
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
+        MPI_Win_unlock(target_rank, win_queue);
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
         MPI_Put(&lastTask, 1, MY_MPI_TASK_TYPE, target_rank, 0, 1, MY_MPI_TASK_TYPE, win_queue);
-        MPI_Win_unlock(rank, win_queue);
+        MPI_Win_unlock(target_rank, win_queue);
         current_n--;
-        sift_down(0, target_rank, current_n);
+        if (current_n >= 0) {
+            sift_down(0, target_rank, current_n);
+        }
     }
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_n);
     MPI_Put(&current_n, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_n);
     MPI_Win_unlock(target_rank, win_n);
-
     return task;
 }
 
 void MpiWinBinaryHeap::sift_down(int i, int target_rank, int current_n)
 {
-    if (2 * i <= current_n) {
+    if (2 * i + 1 <= current_n) {
         Task iTask;
         Task leftTask;
         Task rightTask;
-        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
         MPI_Get(&iTask, 1, MY_MPI_TASK_TYPE, target_rank, i, 1, MY_MPI_TASK_TYPE, win_queue);
-        MPI_Get(&leftTask, 1, MY_MPI_TASK_TYPE, target_rank, 2 * i, 1, MY_MPI_TASK_TYPE, win_queue);
         MPI_Get(&leftTask, 1, MY_MPI_TASK_TYPE, target_rank, 2 * i + 1, 1, MY_MPI_TASK_TYPE, win_queue);
-        MPI_Win_unlock(rank, win_queue);
+        MPI_Get(&rightTask, 1, MY_MPI_TASK_TYPE, target_rank, 2 * i + 2, 1, MY_MPI_TASK_TYPE, win_queue);
+        MPI_Win_unlock(target_rank, win_queue);
 
         int m;
         Task mTask;
-        if (2 * i + 1 > current_n || leftTask.runtime < rightTask.runtime) {
-            m = 2*i;
+        if (2 * i + 2 > current_n || comparator(leftTask.runtime, rightTask.runtime)) {
+            m = 2*i + 1 ;
             mTask = leftTask;
         } else {
-            m = 2 * i + 1;
+            m = 2 * i + 2;
             mTask = rightTask;
         }
-        if (iTask.runtime > mTask.runtime) {
-            MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
+        if (comparator(mTask.runtime, iTask.runtime)) {
+            MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_queue);
             MPI_Put(&iTask, 1, MY_MPI_TASK_TYPE, target_rank, m, 1, MY_MPI_TASK_TYPE, win_queue);
             MPI_Put(&mTask, 1, MY_MPI_TASK_TYPE, target_rank, i, 1, MY_MPI_TASK_TYPE, win_queue);
-            MPI_Win_unlock(rank, win_queue);
+            MPI_Win_unlock(target_rank, win_queue);
             sift_down(m, target_rank, current_n);
         }
 
@@ -173,13 +173,10 @@ void MpiWinBinaryHeap::sift_down(int i, int target_rank, int current_n)
 }
 
 int MpiWinBinaryHeap::get_task_count(int target_rank) {
-
     int n;
-
     MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_n);
     MPI_Get(&n, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_n);
     MPI_Win_unlock(target_rank, win_n);
-
     return n + 1;
 }
 
@@ -198,11 +195,18 @@ Task MpiWinBinaryHeap::pop_next_task() {
     //TODO: hard coded DATABASE
     for (int i = 0; i < number_of_processors && !task_found; i++) {
         int target_rank = (rank + i) % number_of_processors;
-        task = steal_next_task(target_rank, 0);
+        task = steal_next_task(target_rank, 10);
         if (task.parameter_size > 0) {
             task_found = true;
         }
     }
-
     return task;
+}
+
+bool MpiWinBinaryHeap::comparator(long runtime1, long runtime2) {
+  if (is_min_heap) {
+    return runtime1 <  runtime2;
+  } else {
+    return runtime1 > runtime2;
+  }
 }

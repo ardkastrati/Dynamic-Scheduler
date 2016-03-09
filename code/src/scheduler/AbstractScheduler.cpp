@@ -49,8 +49,7 @@ void AbstractScheduler::place_task(Task task)
         MPI_Sendrecv(&temp, 1, MPI_SHORT, DATABASE, DATAMINING,
                      &runtime, 1, MPI_LONG, DATABASE, DATAMINING, MPI_COMM_WORLD, &status);
     }
-    //scheduling_strategy->push_new_task(task, runtime);
-    scheduling_strategy->push_new_task(task, runtime);
+    scheduling_strategy->push_new_task(task, task.runtime);
 }
 
 int AbstractScheduler::get_rank()
