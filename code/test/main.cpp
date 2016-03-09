@@ -12,7 +12,8 @@
 #include "extensions/HelperMacros.h"
 #include "ui/text/TestRunner.h"
 #include "scheduler/SchedulerTestSuite.h"
- #include <cppunit/TestResult.h>
+#include "database/DatabaseTestSuite.h"
+#include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
 
@@ -32,6 +33,7 @@ int main(int argc, char** argv) {
     controller.addListener(&result);
     runner.addTest(registry.makeTest());
     runner.addTest(SchedulerTestSuite::suite());
+    runner.addTest(DatabaseTestSuite::suite());
     runner.run(controller);
     CompilerOutputter outputter(&result, std::cout);
     outputter.write();

@@ -35,6 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/database/DatabaseHandler.o \
+	${OBJECTDIR}/database/DatabaseHandlerTestCase.o \
+	${OBJECTDIR}/database/DatabaseTestSuite.o \
+	${OBJECTDIR}/database/StatisticDatabase.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/scheduler/FIFOTestCase.o \
 	${OBJECTDIR}/scheduler/LIFOTestCase.o \
@@ -70,6 +74,26 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ../bin/libscheduler.a
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/database/DatabaseHandler.o: database/DatabaseHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/database
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandler.o database/DatabaseHandler.cpp
+
+${OBJECTDIR}/database/DatabaseHandlerTestCase.o: database/DatabaseHandlerTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/database
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandlerTestCase.o database/DatabaseHandlerTestCase.cpp
+
+${OBJECTDIR}/database/DatabaseTestSuite.o: database/DatabaseTestSuite.cpp 
+	${MKDIR} -p ${OBJECTDIR}/database
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseTestSuite.o database/DatabaseTestSuite.cpp
+
+${OBJECTDIR}/database/StatisticDatabase.o: database/StatisticDatabase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/database
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/StatisticDatabase.o database/StatisticDatabase.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -2,7 +2,7 @@
  * Project Dynamic Scheduler for Scientific Simulations
  */
  #define GRID_DATA_MINING_DEBUG 1
- #define PRINTGRID 0
+ #define PRINTGRID 1
  #define GRID_LIBARY_DEBUG 0
  #define MPI_PROXY_DEBUG 0
  #define ARRAY_HANDLER_DEBUG 0
@@ -83,11 +83,12 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
   this->database = database;
   proxy = new MpiProxy(parameter_count, rank, target_rank);
   memory = new ArrayHandler(parameter_count, proxy);
-  make_new_grid_running = false;
   nr_of_dimensions = parameter_count;
   nr_of_tasks = 0;
   average_differential = 0;
-  max_differential_time = 120000000; //2 minutes
+  //prediction_time_range
+  max_differential_time = 1000000; //1 second
+  //
   max_parameter = new double[nr_of_dimensions];
   min_parameter = new double[nr_of_dimensions];
   int start_dimenison[nr_of_dimensions];
@@ -139,6 +140,7 @@ long GridDataMining::predict(double* parameters)
   int* enviroment_index = memory -> get_enviroment_index(parameters);
   int array_lenght = nr_of_dimensions * nr_of_enviroment_grid_points;
   double* enviroment_distances = new double[nr_of_enviroment_grid_points];
+  //double enviroment_distances[nr_of_enviroment_grid_points];
   long* enviroment_times = new long[nr_of_enviroment_grid_points];
   for(int i = 0; i < array_lenght; i = i + nr_of_dimensions)
   {//for each vektor in enviroment_index
@@ -166,6 +168,7 @@ long GridDataMining::predict(double* parameters)
   delete summand;
   return (long) sum;
 }
+
 
 void GridDataMining::hard_insert(double* parameters, long runtime)
 {
@@ -274,6 +277,7 @@ void GridDataMining::make_new_grid()
     runtime = data -> runtime[i];
     for(int j = 0; j < nr_of_dimensions; j++)
     {
+      assert(j + i * nr_of_dimensions < data->para.size());
       parameter[j] = data -> para[j + i * nr_of_dimensions];
     }
     if(i == 0)
@@ -310,6 +314,7 @@ void GridDataMining::grid_bookkeping(double* parameters, long runtime)
   long sceduled_time = predict(parameters);//adapt average_differential
   long differenz_time = sceduled_time - runtime;
   average_differential = (average_differential * nr_of_tasks + differenz_time) / (nr_of_tasks + 1);
+  average_differential = (average_differential < 0) ? -average_differential : average_differential;
   nr_of_tasks++;//increase nr of task
 
   if(check_for_update())
@@ -322,17 +327,22 @@ bool GridDataMining::check_for_update()
 {
   #if GRID_DATA_MINING_DEBUG
     GridLibary::print_name("GridDataMining check_for_update");
+    GridLibary::print_double("max_differential_time", max_differential_time);
+    GridLibary::print_double("average_differential", average_differential);
   #endif
   if(make_new_grid_running)
   {
+    cout << "grid data mining check for updates return_0 " << false << "\n";
     return false;
   }
   else if (max_differential_time < average_differential)
   {
+    cout << "grid data mining check for updates return_1 " << true << "\n";
     return true;
   }
   else
   {
+    cout << "grid data mining check for updates return_2 " << false << "\n";
     return false;
   }
 }

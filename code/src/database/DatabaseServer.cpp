@@ -4,7 +4,9 @@
 #include <mpi.h>
 #include "../Const.h"
 #include "../TypesExtern.h"
+#include "../datamining/grid/GridLibary.h"
 
+using namespace std;
 
 DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(rank, number_of_processors)
 {
@@ -36,7 +38,6 @@ void DatabaseServer::run()
     MPI_Status status;
 
     while (true) {
-
         MPI_Recv(&task_data, 1, MY_MPI_TASK_DATA_TYPE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
 
         if (status.MPI_TAG == STOP) {
@@ -44,9 +45,8 @@ void DatabaseServer::run()
         }
         else if (status.MPI_TAG == DATAENTRY)
         {
-        	//store the new task
+        	  //store the new task
             database_handler->storeData(&task_data);
-
             //insert the new task in datamining
             if(!DataMining_instance_flag)
             {
@@ -67,7 +67,11 @@ void DatabaseServer::run()
             	if(task_data.event == 2)
             	{
             		long runtime = task_data.time_ended - task_data.time_started;
-            		//datamining_handler->insert(task_data.parameters, runtime);
+            		datamining_handler->insert(task_data.parameters, runtime);
+                /*
+                long runtimeo = datamining_handler->predict(task_data.parameters);
+                cout << "predict: " << runtimeo << std::endl;
+                */
             	}
             }
         }
@@ -84,7 +88,7 @@ void DatabaseServer::run()
             	}
             //predict
             long runtime = datamining_handler->predict(task_data.parameters);
-
+            //cout << "predict: " << runtime << std::endl;
             //send prediction
             int target_rank = status.MPI_SOURCE;
             MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);

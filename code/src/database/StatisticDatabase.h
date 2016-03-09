@@ -11,6 +11,7 @@
 #include <string>
 
 using namespace std;
+
 class StatisticDatabase : public Database
 {
 public:
@@ -31,10 +32,11 @@ public:
 	 */
 	void insertTaskData(string data);
 
-	/*
-	 * Starts to create new file.
+	/**
+	 *
 	 */
-	void createFile();
+	void readTaskData();
+
 private:
 
 	/*

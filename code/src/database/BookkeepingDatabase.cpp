@@ -19,12 +19,12 @@ std::fstream bkfile;
 //database initialisieren bzw laden
 BookkeepingDatabase::BookkeepingDatabase()
 {
-	createFile();
+	initNewFile();
 }
 
 BookkeepingDatabase::~BookkeepingDatabase()
 {
-
+	//bkfile.close();
 }
 
 void BookkeepingDatabase::initNewFile()
@@ -42,9 +42,9 @@ void BookkeepingDatabase::initNewFile()
 	bkfile.close();
 }
 
-void BookkeepingDatabase::createFile()
+void BookkeepingDatabase::readTaskData()
 {
-	initNewFile();
+
 }
 
 void BookkeepingDatabase::insertTaskData(string data)
@@ -59,4 +59,3 @@ void BookkeepingDatabase::insertTaskData(string data)
 	bkfile << data << std::endl;
 	bkfile.close();
 }
-

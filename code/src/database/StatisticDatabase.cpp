@@ -20,12 +20,14 @@ std::fstream stfile;
 
 StatisticDatabase::StatisticDatabase()
 {
-	createFile();
+	initNewFile();
 }
 
-/*
- *
- */
+StatisticDatabase::~StatisticDatabase()
+{
+	//stfile.close();
+}
+
 void StatisticDatabase::initNewFile()
 {
 
@@ -40,17 +42,18 @@ void StatisticDatabase::initNewFile()
 	stfile.close();
 }
 
-/*
- *
- */
-void StatisticDatabase::createFile()
+void StatisticDatabase::readTaskData()
 {
-	initNewFile();
+	string line;
+	stfile.open("Statistic.txt",std::fstream::in);
+	std::getline(stfile, line);
+	std::getline(stfile, line);
+	std::getline(stfile, line);
+	std::getline(stfile, line);
+	stfile.close();
+	//cout << line << "\n";
 }
 
-/*
- *
- */
 void StatisticDatabase::insertTaskData(string data)
 {
 	/*data[] is structed in ID;Timestamp_APP/START/END;Mode;Parent_Process of appearing task/

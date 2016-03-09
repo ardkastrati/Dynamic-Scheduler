@@ -64,7 +64,7 @@ int* ArrayHandler::get_enviroment_index(double* parameter)
 	assert (parameter != NULL);
 	int return_lenght = nr_of_dimensions * pow(2, nr_of_dimensions);
 	int* to_return = new int[return_lenght];
-	int* binar_counter = new int[nr_of_dimensions];
+	int binar_counter[nr_of_dimensions];
 	int* rounded_down = get_rounded_down(parameter);
 
 	for(int i = 0; i < nr_of_dimensions; i++)
@@ -93,7 +93,6 @@ int* ArrayHandler::get_enviroment_index(double* parameter)
 			}
 		}
 	}
-	delete binar_counter;
 	delete rounded_down;
 	return to_return;
 }

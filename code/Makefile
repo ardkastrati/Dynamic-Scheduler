@@ -7,7 +7,7 @@ TARGET := bin/scheduler
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -std=c++0x# -Wall
+CFLAGS := -std=c++0x# -g -Wall
 LIB := 
 INC := -I include
 

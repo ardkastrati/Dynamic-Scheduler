@@ -31,10 +31,8 @@ public:
 	 */
 	void insertTaskData(string data);
 
-	/*
-	 * Starts to create new file.
-	 */
-	void createFile();
+	void readTaskData();
+
 private:
 	/*
 	 * Actually creates a new file.

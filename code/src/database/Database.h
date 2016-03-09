@@ -25,6 +25,8 @@ public:
 	 */
 	virtual void insertTaskData(string data) = 0;
 
+	virtual void readTaskData() = 0;
+
 private:
 };
 

@@ -16,8 +16,8 @@
 
 typedef struct _StatisticInquiry {
 	int parameter_size;
-	std::vector<long> runtime;
-	std::vector<double> para;
+	std::vector<long> runtime = std::vector<long>(100);
+	std::vector<double> para = std::vector<double>(100);
 } StatisticInquiry;
 
 typedef struct _Task {
@@ -42,7 +42,7 @@ typedef struct _TaskData {
     int rank;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
-} TaskData;
+} TaskData, TaskData_copy;
 
 extern const int mpi_task_data_type_field_count;
 extern int mpi_task_data_type_blocklength[12];

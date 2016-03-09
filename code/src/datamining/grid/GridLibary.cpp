@@ -145,7 +145,7 @@ double* GridLibary::kastrati_value(double* lenght, int lenght_lenght)
 		}
 		to_return[i] = 1 / denominator;
 	}
-	delete lenght;
+	//delete lenght;
 	return to_return;
 }
 

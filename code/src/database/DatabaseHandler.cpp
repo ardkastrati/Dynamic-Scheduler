@@ -28,8 +28,6 @@ DatabaseHandler::~DatabaseHandler()
 {
   stInq->para.clear();
 	stInq->runtime.clear();
-	//delete &stInq->para[0];
-	//stInq->runtime->;
 	delete stInq;
 	delete data_bookkeeping;
 	delete data_statistic;
@@ -59,6 +57,8 @@ void DatabaseHandler::storeData(TaskData *data)
 		data_statistic->insertTaskData(statistic_package);
 	}
 	data_bookkeeping->insertTaskData(bookkeeping_package);
+
+	readStatistic();
 }
 
 string DatabaseHandler::dataParserBookkeeping(TaskData *data)
@@ -187,7 +187,7 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 	return package;
 }
 
-void readTaskData()
+void DatabaseHandler::readStatistic()
 {
-
+	data_statistic->readTaskData();
 }

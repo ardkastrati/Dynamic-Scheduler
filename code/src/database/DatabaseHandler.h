@@ -68,7 +68,7 @@ public:
 	/*
 	 * Read the whole statistic file new.
 	 */
-	void readTaskData();
+	void readStatistic();
 
 	/**
 	 * Dataobject for the DataMiner.
