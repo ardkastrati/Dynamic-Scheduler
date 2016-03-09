@@ -6,11 +6,11 @@
 
 using namespace std;
 
-MpiWinBinaryHeap::MpiWinBinaryHeap(int max_size, int rank, int number_of_processors) :
+MpiWinBinaryHeap::MpiWinBinaryHeap(int max_size, int rank, int number_of_processors, bool isMinHeap) :
     rank(rank),
-    number_of_processors(number_of_processors)
+    number_of_processors(number_of_processors),
+    is_min_heap(isMinHeap)
 {
-    is_min_heap = 0;
     init(max_size);
 }
 

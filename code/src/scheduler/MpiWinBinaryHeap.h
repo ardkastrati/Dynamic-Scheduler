@@ -73,7 +73,7 @@ public:
  * @param rank from the process inside the MY_MPI_COMM_TASKSTEALING communicator
  * @param number_of_processors inside the MY_MPI_COMM_TASKSTEALING communicator
  */
-    MpiWinBinaryHeap(int size, int rank, int number_of_processors);
+    MpiWinBinaryHeap(int size, int rank, int number_of_processors, bool isMinHeap);
 
     /**
      * Destructs the binary heap scheduling queue

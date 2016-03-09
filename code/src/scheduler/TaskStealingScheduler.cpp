@@ -122,7 +122,7 @@ bool TaskStealingScheduler::is_finish() {
         MPI_Win_lock(MPI_LOCK_SHARED, target_rank, 0, win_status);
         MPI_Get(&status, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_status);
         MPI_Win_unlock(target_rank, win_status);
-        cout << "status: " << status << endl;
+        //cout << "status: " << status << endl;
         if (status == WORKING) {
             is_finish = false;
         }

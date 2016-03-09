@@ -88,9 +88,23 @@ Executor* Executor::get_new_executor_for_taskstealing(int rank, int number_of_pr
 
         MPI_Comm_rank(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_rank);
         MPI_Comm_size(MY_MPI_COMM_TASKSTEALING, &taskstealing_world_number_of_processors);
-
-        MpiWinSchedulingStrategy* scheduling_strategy = new MpiWinLIFO(200, taskstealing_world_rank,
-                                                                       taskstealing_world_number_of_processors);
+        MpiWinSchedulingStrategy* scheduling_strategy;
+        switch(strategy) {
+          case ENUM_LIFO:
+            scheduling_strategy = new MpiWinLIFO(200, taskstealing_world_rank, taskstealing_world_number_of_processors);
+            break;
+          case ENUM_SJF:
+            scheduling_strategy = new MpiWinBinaryHeap(200, taskstealing_world_rank, taskstealing_world_number_of_processors, true);
+            break;
+          case ENUM_LJF:
+            scheduling_strategy = new MpiWinBinaryHeap(200, taskstealing_world_rank, taskstealing_world_number_of_processors, false);
+            break;
+          case ENUM_FIFO:
+            throw "Not implemented yet!";
+            break;
+          default:
+            throw "Unreachable";
+        }
         executor = new TaskStealingScheduler(scheduling_strategy, NULL, taskstealing_world_rank,
                                              taskstealing_world_number_of_processors);
     }
