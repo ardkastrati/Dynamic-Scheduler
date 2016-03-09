@@ -83,7 +83,7 @@ void DatabaseServer::run()
             		DataMining_instance_flag = true;
             	}
             //predict
-            long runtime = datamining_handler->predict(task_data.parameters);
+            long runtime = 0;//datamining_handler->predict(task_data.parameters);
 
             //send prediction
             int target_rank = status.MPI_SOURCE;

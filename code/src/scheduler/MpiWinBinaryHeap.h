@@ -52,6 +52,11 @@ private:
     void init(int max_size);
 
     /**
+     *  Maximum size of the heap
+     */
+     int max_size;
+
+    /**
      * Used to reestablish the heap invariant, after a new task was inserted.
      *
      * @param i the current level in the heap

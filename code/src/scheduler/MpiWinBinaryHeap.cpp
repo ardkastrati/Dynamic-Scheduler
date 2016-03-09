@@ -2,6 +2,7 @@
 // Created by fabio on 04.03.16.
 //
 #include <iostream>
+#include <assert.h>
 #include "MpiWinBinaryHeap.h"
 
 using namespace std;
@@ -9,7 +10,8 @@ using namespace std;
 MpiWinBinaryHeap::MpiWinBinaryHeap(int max_size, int rank, int number_of_processors, bool isMinHeap) :
     rank(rank),
     number_of_processors(number_of_processors),
-    is_min_heap(isMinHeap)
+    is_min_heap(isMinHeap),
+    max_size(max_size)
 {
     init(max_size);
 }
@@ -56,9 +58,8 @@ void MpiWinBinaryHeap::push_new_task(Task task, long runtime)
             already_locked = false;
         }
     }
-
     current_n++;
-
+    assert (current_n < max_size);
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_queue);
 
     queue[current_n] = task;

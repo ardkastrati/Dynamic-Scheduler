@@ -2,7 +2,7 @@
 
 #include "MpiWinFIFO.h"
 #include <iostream>
-
+#include <assert.h>
 using namespace std;
 
 
@@ -85,8 +85,8 @@ void MpiWinFIFO::push_new_task(Task task, long runtime)
     queue[current_offset[TAIL]] = task;
 
     MPI_Win_unlock(rank, win_queue);
-
     current_offset[TAIL] = (current_offset[TAIL] + 1) % size;
+    //cout << "size: " << (current_offset[TAIL] - current_offset[HEAD] + size) % size << endl;
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_offset);
     offset[HEAD] = current_offset[HEAD];
@@ -129,7 +129,7 @@ bool MpiWinFIFO::is_statistic_based()
 }
 
 Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
-    cout << "Rank " << rank << " trie to steal from: " << target_rank << endl;
+    //cout << "Rank " << rank << " trie to steal from: " << target_rank << endl;
     int current_offset[2];
     bool already_locked = true;
     int tries = 0;
