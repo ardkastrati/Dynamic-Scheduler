@@ -1,7 +1,7 @@
 /**
  * The Master class inherits from the AbstractScheduler class and implements the master-worker scheduling design.
- * The Master class collects scientific tasks and order them depending on the chosen scheduling strategy such as FIFO, LIFO, SJF and LJF.
- * The class adds worker executor in a queue and sends them scientific tasks using the MPI_Send() function and waits for receiving
+ * The Master class collects scientific tasks and orders them depending on the chosen scheduling strategy, currently FIFO, LIFO, SJF and LJF.
+ * The class adds worker executor in a queue and sends them scientific tasks using the MPI_Send() function and waits for response.
  * FINISH or REQUEST tags using the MPI_Recv() function. If the master receives a FINISH tag, the master will add the worker to the free_worker queue.
  * If the master receives a REQUEST tag with a scientific task, the master will add the scientific task to the scheduling queue.
  *
@@ -23,7 +23,7 @@
 class Master: public AbstractScheduler {
     private:
         /**
-         * The queue of free workers. The queue stores the rank of the workers that are free
+         * The queue of free workers. The queue stores the rank of the workers currently  idling.
          */
         std::queue<int>* free_worker;
 
@@ -34,8 +34,8 @@ class Master: public AbstractScheduler {
         void run();
 
         /**
-         * Checks if all scientific tasks are completed.
-         * All tasks completed <=> free_worker = worker_count and the task queue is empty
+         * Checks whether all scientific tasks are completed.
+         *All tasks completed <=> free_worker == worker_count && tasksqueue is empty
          *
          * @return TRUE if all scientific tasks are completed
          */
@@ -43,8 +43,8 @@ class Master: public AbstractScheduler {
 
     public:
         /**
-         * Constructs a new master for master - worker scheduling.
-         * The constructor only initialize the queue free_worker and calls the super constructor
+         * Creates a new master for master - worker scheduling.
+         * The constructor only initializes the queue free_worker and then calls the super constructor.
          *
          * @param scheduling_strategy the scheduling strategy to be set
          * @param data_mining the data miner to be set
@@ -59,7 +59,7 @@ class Master: public AbstractScheduler {
         ~Master();
 
         /**
-         * Override the execute function from executor. This function ist called to start the master
+         * Overrides the execute function from executor. This function is called to start the master.
          *
          * @param argc command line argument count
          * @param argv command line arguments
