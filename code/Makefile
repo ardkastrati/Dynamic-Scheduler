@@ -43,7 +43,7 @@ runbig:
 runsmall:
 	mpirun -n 2 bin/scheduler
 runtaskstealing:
-	mpirun -n 4 bin/scheduler --design taskstealing --strategy lifo
+	mpirun -n 4 bin/scheduler --design taskstealing
 runmaster:
 	mpirun -n 4 bin/scheduler --design master-worker
 .PHONY: clean
