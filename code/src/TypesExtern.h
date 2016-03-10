@@ -16,8 +16,8 @@
 
 typedef struct _dataInquiry {
 	int parameter_size;
-	std::vector<long> runtime = std::vector<long>(100);
-	std::vector<double> para = std::vector<double>(100);
+	std::vector<long> runtime = std::vector<long>();
+	std::vector<double> para = std::vector<double>();
 } dataInquiry;
 
 typedef struct _Task {

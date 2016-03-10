@@ -64,19 +64,15 @@ void Master::run()
 
 bool Master::is_finish()
 {
-    //TODO: -2 replace dynamische databaseserver count
     return scheduling_strategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 2;
 }
 
 void Master::execute(int argc, char* argv[]){
-    //LOG(DEBUG) << "I'am a master";
-
-    Task init_tasks[100];
+    Task init_tasks[MAX_INIT_TASK_COUNT];
     int init_tasks_number;
     preprocessing(argc, argv, init_tasks, &init_tasks_number);
 
     for (int i = 0; i < init_tasks_number; i++) {
-        //scheduling_strategy->push_new_task(init_tasks[i], scheduling_strategy->DEFAULT_RUNTIME);
         place_task(init_tasks[i]);
     }
 

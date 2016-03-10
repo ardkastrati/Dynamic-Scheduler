@@ -192,7 +192,6 @@ bool MpiWinBinaryHeap::is_statistic_based()
 Task MpiWinBinaryHeap::pop_next_task() {
     Task task;
     bool task_found = false;
-    //TODO: hard coded DATABASE
     for (int i = 0; i < number_of_processors && !task_found; i++) {
         int target_rank = (rank + i) % number_of_processors;
         task = steal_next_task(target_rank, 10);

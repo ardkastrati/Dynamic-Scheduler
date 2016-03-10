@@ -13,8 +13,7 @@
 #include "database/DatabaseServer.h"
 #include <mpi.h>
 #include "TypesExtern.h"
-
-#define MAX_MPI_WIN_TASK_COUNT 200
+#include "Const.h"
 
 
 Executor::Executor(int rank, int number_of_processors) :

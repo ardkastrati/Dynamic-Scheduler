@@ -33,22 +33,25 @@ TaskStealingScheduler::~TaskStealingScheduler()
 }
 void TaskStealingScheduler::execute(int argc, char* argv[])
 {
+    cout << "Hans" << endl;
     //LOG(DEBUG) << "Ich bin ein TaskStealingScheduler";
     if (rank == 0)
     {
-        //TODO: Change 100 to dynamic one
-        Task tasks[100];
+        cout << "Start" << endl;
+        Task tasks[MAX_INIT_TASK_COUNT];
         int number_of_tasks;
 
         /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = WORKING;
         MPI_Win_unlock(rank, win_status);
         */
+        cout << "Before" << endl;
         code_preprocessing_master(argc, argv, tasks, &number_of_tasks);
         for (int i = 0; i < number_of_tasks; i++) {
             scheduling_strategy->push_new_task(tasks[i], tasks[i].runtime);
             //place_task(tasks[i]);
         }
+        cout << "After" << endl;
 
         /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
         *status = IDLE;
@@ -115,7 +118,6 @@ void TaskStealingScheduler::run() {
 
 bool TaskStealingScheduler::is_finish() {
     bool is_finish = true;
-    //TODO: change vor datacore
     for (int target_rank = 0; target_rank < number_of_processors && is_finish; target_rank++) {
 
         int status;

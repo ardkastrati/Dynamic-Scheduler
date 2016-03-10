@@ -58,7 +58,6 @@ int MpiWinLIFO::get_task_count() {
 Task MpiWinLIFO::pop_next_task() {
     Task task;
     bool task_found = false;
-    //TODO: hard coded DATABASE
     for (int i = 0; i < number_of_processors && !task_found; i++) {
         int target_rank = (rank + i) % number_of_processors;
         task = steal_next_task(target_rank, 0);
@@ -108,7 +107,6 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
     int current_offset;
     bool already_locked = true;
     int tries = 0;
-    //TODO:Documentation for number_of_tries parameter
     while (already_locked && (number_of_tries == 0 || tries < number_of_tries))
     {
         MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
@@ -121,14 +119,12 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
         }
     }
     Task task;
-    //TODO: Documentation of return values
     if (already_locked) {
         task.parameter_size = -1;
         return task;
     }
     //now the offset is locked by me
 
-    //TODO: Documentation of return values
     if (current_offset <= 0)
     {
         task.parameter_size = -2;
