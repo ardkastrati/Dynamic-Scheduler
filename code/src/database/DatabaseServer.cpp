@@ -15,14 +15,12 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 }
 DatabaseServer::~DatabaseServer()
 {
-    //LOG(DEBUG) << "Destructor DatabaseServer";
     delete database_handler;
     delete datamining_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
 {
-    //LOG(DEBUG) << "Ich bin ein Datenbankserver";
     run();
 }
 

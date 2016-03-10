@@ -8,7 +8,6 @@
 
 #define NDEBUG
 
-//#include "../lib/easylogging++.h"
 #include <mpi.h>
 #include "Executor.h"
 #include "Types.h"
@@ -16,7 +15,6 @@
 #include "util/CommandLineParser.h"
 #include <iostream>
 
-//INITIALIZE_EASYLOGGINGPP
 
 using namespace std;
 

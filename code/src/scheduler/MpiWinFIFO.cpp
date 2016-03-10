@@ -166,7 +166,6 @@ Task MpiWinFIFO::steal_next_task(int target_rank, int number_of_tries) {
         //cout << "get task: " << task.parameters[0] << endl;
         current_offset[HEAD] = (current_offset[HEAD] + 1) % size;
     }
-    //LOG(INFO) << current_offset;
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
     MPI_Put(&current_offset, 2, MPI_INT, target_rank, 0, 2, MPI_INT, win_offset);

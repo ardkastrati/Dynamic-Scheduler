@@ -3,7 +3,6 @@
 #include <stddef.h>
 #include <iostream>
 #include "MpiWinLIFO.h"
-//#include "../../lib/easylogging++.h"
 #include "../Const.h"
 
 #define ASSERT 0
@@ -20,7 +19,6 @@ MpiWinLIFO::MpiWinLIFO(int max_size, int rank, int number_of_processors) :
 
 MpiWinLIFO::~MpiWinLIFO()
 {
-    //LOG(DEBUG) << "MPIWINLIFO destructor!";
     MPI_Win_free(&win_queue);
     MPI_Win_free(&win_offset);
     //MPI_Win_free(&win_size);
@@ -98,7 +96,6 @@ void MpiWinLIFO::push_new_task(Task task, long runtime)
     *offset = current_offset;
     MPI_Win_unlock(rank, win_offset);
 
-    //LOG(INFO) << "pushed: " << task.parameters[0];
 }
 
 
@@ -137,7 +134,6 @@ Task MpiWinLIFO::steal_next_task(int target_rank, int number_of_tries) {
         MPI_Get(&task, 1, MY_MPI_TASK_TYPE, target_rank, current_offset, 1, MY_MPI_TASK_TYPE, win_queue);
         MPI_Win_unlock(target_rank, win_queue);
     }
-    //LOG(INFO) << current_offset;
 
     MPI_Win_lock(MPI_LOCK_EXCLUSIVE, target_rank, 0, win_offset);
     MPI_Put(&current_offset, 1, MPI_INT, target_rank, 0, 1, MPI_INT, win_offset);

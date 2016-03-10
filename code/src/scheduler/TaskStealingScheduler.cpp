@@ -1,6 +1,5 @@
 #define NDEBUG
 
-//#include "../../lib/easylogging++.h"
 #include "TaskStealingScheduler.h"
 #include "MpiWinLIFO.h"
 #include "../ScientificCode.h"
@@ -26,7 +25,6 @@ TaskStealingScheduler::TaskStealingScheduler(MpiWinSchedulingStrategy* schedulin
 
 TaskStealingScheduler::~TaskStealingScheduler()
 {
-    //LOG(DEBUG) << "Destructor TaskStealingScheduler";
     MPI_Win_free(&win_status);
     MPI_Free_mem(status);
     delete worker;

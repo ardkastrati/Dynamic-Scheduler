@@ -26,7 +26,6 @@ void code_postprocessing_slave()
 
 void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initial_tasks_number)
 {
-    //LOG(DEBUG) << "code preprocessing master";
     *initial_tasks_number = MAX_INIT_TASK_COUNT;
     for (int i = 0; i < MAX_INIT_TASK_COUNT; i++)
     {
