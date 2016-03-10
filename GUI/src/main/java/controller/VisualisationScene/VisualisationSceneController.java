@@ -43,6 +43,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
     private String baseDir;
+    private boolean CurrentDirty;
     
     @FXML
     public void show(ActionEvent event) {
@@ -76,6 +77,11 @@ public class VisualisationSceneController  implements Initializable, Controller{
         diagramPane.getTabs().add(tab);
     }
 
+    @FXML
+    public void refresh(ActionEvent event) {
+      
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert diagramPane != null : "fx:id=\"diagramPane\" was not injected: check your FXML file 'DiagramScene.fxml'.";
