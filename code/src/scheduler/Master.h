@@ -47,11 +47,10 @@ class Master: public AbstractScheduler {
          * The constructor only initializes the queue free_worker and then calls the super constructor.
          *
          * @param scheduling_strategy the scheduling strategy to be set
-         * @param data_mining the data miner to be set
          * @param rank the MPI rank of the processors, that execute the scheduler
          * @param number_of_processors the total number of processors of the MPI world
          */
-        Master(SchedulingStrategy* scheduling_strategy, DataMining* data_miner, int rank, int number_of_processors);
+        Master(SchedulingStrategy* scheduling_strategy, int rank, int number_of_processors);
 
         /**
          * Deletes the queue free_worker object

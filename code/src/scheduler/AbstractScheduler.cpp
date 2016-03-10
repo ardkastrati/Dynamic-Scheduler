@@ -8,18 +8,15 @@
 #include "../Const.h"
 #include <iostream>
 
-AbstractScheduler::AbstractScheduler(SchedulingStrategy* scheduling_strategy,
-    DataMining* data_miner, int rank, int number_of_processors) :
+AbstractScheduler::AbstractScheduler(SchedulingStrategy* scheduling_strategy, int rank, int number_of_processors) :
     Executor(rank, number_of_processors),
-    scheduling_strategy(scheduling_strategy),
-    data_miner(data_miner)
+    scheduling_strategy(scheduling_strategy)
 {
 }
 
 AbstractScheduler::~AbstractScheduler()
 {
     delete scheduling_strategy;
-    delete data_miner;
     //LOG(DEBUG) << "Destructor AbstractScheduler";
 }
 

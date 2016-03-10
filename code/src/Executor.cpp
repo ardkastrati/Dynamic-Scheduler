@@ -63,7 +63,7 @@ Executor* Executor::get_new_executor_for_master_worker(int rank, int number_of_p
             default:
                 throw "Unreachable";
         }
-        executor = new Master(scheduling_strategy, NULL, rank, number_of_processors);
+        executor = new Master(scheduling_strategy, rank, number_of_processors);
     }
     else if (rank == 1)
     {
@@ -107,7 +107,7 @@ Executor* Executor::get_new_executor_for_taskstealing(int rank, int number_of_pr
           default:
             throw "Unreachable";
         }
-        executor = new TaskStealingScheduler(scheduling_strategy, NULL, taskstealing_world_rank,
+        executor = new TaskStealingScheduler(scheduling_strategy, taskstealing_world_rank,
                                              taskstealing_world_number_of_processors);
     }
 

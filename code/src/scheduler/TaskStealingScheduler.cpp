@@ -13,8 +13,8 @@ using namespace std;
 #define WORKING 1
 #define IDLE 0
 
-TaskStealingScheduler::TaskStealingScheduler(MpiWinSchedulingStrategy* scheduling_strategy, DataMining* data_miner, int rank, int number_of_processors) :
-    AbstractScheduler(scheduling_strategy , data_miner, rank, number_of_processors)
+TaskStealingScheduler::TaskStealingScheduler(MpiWinSchedulingStrategy* scheduling_strategy, int rank, int number_of_processors) :
+    AbstractScheduler(scheduling_strategy, rank, number_of_processors)
 {
 
     MPI_Alloc_mem(sizeof(int), MPI_INFO_NULL, &status);
