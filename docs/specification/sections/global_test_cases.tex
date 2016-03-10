@@ -16,7 +16,7 @@
 				
 					\begin{enumerate}
 						\item Description\newline
-In this test case the scheduler should be successfully started via MOAB Workload Manager with the "single-queue" option in the command line.
+In this test case the scheduler should be successfully started via MOAB Workload manager with the "single-queue" option in the command line.
 						\item Related requirements\newline
  							  /F10/		
 					\end{enumerate}					  
@@ -26,7 +26,7 @@ In this test case the scheduler should be successfully started via MOAB Workload
 				\item Start the scheduler managed with a multiple-queue task-stealing design
 				\begin{enumerate}
 						\item Description\newline
-In this test case the scheduler should be successfully started via MOAB Workload Manager with the "multiple-queue" option in the command line.
+In this test case the scheduler should be successfully started via MOAB Workload manager with the "multiple-queue" option in the command line.
 						\item Related requirements\newline
  							  /F20/		
 				\end{enumerate}	
@@ -51,7 +51,7 @@ In this test case the scheduler should be successfully started via MOAB Workload
 				\end{enumerate}	
 				
 				
-				%TODO documentation
+				
 				\item Change the strategy during the scheduling process
 				\begin{enumerate}
 						\item Description\newline
@@ -108,7 +108,7 @@ Test whether the scheduler, which is managed with a single-queue master-worker d
 				\item Execute worker functions
 				\begin{enumerate}
 						\item Description\newline
-Test whether the workers (slaves) are able to execute the following worker functions: 
+Test whether the workers(slaves) are able to execute the following worker functions: 
 					\begin{enumerate}
 						\item code\_preprocessing\_slave(:RunArguments)
 						\item code\_postprocessing\_slave(:RunArguments)
@@ -130,10 +130,10 @@ Test whether the scheduler is able to receive new tasks from the scientific code
 				
 				
 				%TEST
-				\item Query the Data Mining module, how much resources a specific task needs
+				\item Query Data Mining module, how much resources a specific task needs
 				\begin{enumerate}
 					\item Description\newline
-Test whether the scheduler is able to query the Data Mining module to estimate the weight of the task.
+Test whether the scheduler is able to ask the Data Mining module to estimate the weight of the task.
 					\item Related requirements\newline
 						/F170/
 				\end{enumerate}
@@ -183,10 +183,10 @@ Test whether a scheduler with an empty queue is able to steal tasks from other s
 			
 			
 			%TEST 
-				\item Use an already created statistical file
+				\item Use an already created statistic file
 				\begin{enumerate}
 					\item Description\newline
-Test whether the scheduler is able to use an already created statistical file.
+Test whether the scheduler is able to use an already created statistic file.
 					\item Related requirements\newline
 						/F400/
 				\end{enumerate}
@@ -211,7 +211,7 @@ Test whether the scheduler successfully creates and initializes the database.
 			\begin{itemize}
 			
 			%TEST 
-				\item Read data from statistics database
+				\item Read data from statistics
 				\begin{enumerate}
 					\item Description\newline
 Test whether data mining module is able to correctly and trouble-freely read data from statistics database
@@ -220,7 +220,7 @@ Test whether data mining module is able to correctly and trouble-freely read dat
 				\end{enumerate}
 				
 			%TEST
-				\item Write data into statistics database
+				\item Write data into statistics
 				\begin{enumerate}
 					\item Description\newline
 Test whether data mining module is able to correctly and trouble-freely write data from statistics database
@@ -231,10 +231,10 @@ Test whether data mining module is able to correctly and trouble-freely write da
 				
 				
 				%TEST 
-				\item Analyse the statistics to define resource requirements for a task
+				\item Analyses the statistics to define resource requirements for a task
 				\begin{enumerate}
 					\item Description\newline
-Test whether the data mining module is able to approximate the resource requirements for a task and improve its results as time passes and more data are stored into the database.
+Test whether the data mining module is able to approximate the resource requirements for a task and improve its results as time passes and more data are stored in database.
 					\item Related requirements\newline
 					/260/, /270/
 				\end{enumerate}
@@ -264,7 +264,6 @@ Test whether is possible to bookkeep the following data for a specific task:
 					\item Task appears
 					\item Task started
 					\item Task finished 
-					\item Interconnection between processes
 					\end{enumerate}
 					
 					\item Related requirements\newline
@@ -283,12 +282,12 @@ Test whether is possible to bookkeep the following data for a specific task:
 					\begin{enumerate}
 					
 					\item 
-Test whether the program is able to correcly read from the file.
+Test whether the program is able to correcly read in the file.
 					\item
-Test whether the program is able to correctly write new task informations into the statistics file.
+Test wheterh the program is able to write correctly new task informations into the statistic file.
 					\end{enumerate}
 					\item Related requirements\newline
-					/F320/
+					/F300/
 					
 				\end{enumerate}
 				
@@ -297,19 +296,19 @@ Test whether the program is able to correctly write new task informations into t
 				\item Search in statistics
 				\begin{enumerate}
 					\item Description\newline
-Test whether the program is able to efficiently search information from the statistics file. 
+Test whether the programm is able to efficiently search informations into the statistic file. 
 					\item Related requirements\newline
-					/F330/
+					/F310/
 				\end{enumerate}
 				
 				
 				%TEST 
-				\item Duplicate files on too high amount of requests
+				\item Duplicate files on too high amount of request
 				\begin{enumerate}
 					\item Description\newline
 Test whether the program is able to duplicate files when there are too many requests for the same file.
 					\item Related requirements\newline
-					/F340/
+					/F320/
 				\end{enumerate}
 				
 				
@@ -320,7 +319,7 @@ Test whether the program is able to duplicate files when there are too many requ
 					\item Description\newline
 Test whether the program is able to delete duplicated files when there are not many tasks left or the scientific code is finished.
 					\item Related requirements\newline
-					/F350/
+					/F330/
 				\end{enumerate}
 				
 				
@@ -329,24 +328,14 @@ Test whether the program is able to delete duplicated files when there are not m
 				\item Interpret information of the statistic file
 				\begin{enumerate}
 					\item Description\newline
-Test whether the program is able to read and correctly interpret the information from the statistics file, in order to collect to approximiate the runtime of a specific task.
+Test whether the program is able to read and correctly interpret the information of the statistic file, in order to collect to approximiate the runtime of a specific task.
 					\item Related requirements\newline
-					/F360/
+					/F340/
 				\end{enumerate}
 				
 		\end{itemize}		
-		\subsubsection{Visualisation tests}%TODO nice graph
+		\subsubsection{Visualisation tests}
 		\begin{itemize}
-		
-		%TEST 
-				\item Show graph in the graphical user interface
-				\begin{enumerate}
-					\item Description\newline
-Test whether the program correctly shows the graph with the current progress of the program and periodically updates it
-					\item Related requirements\newline
-					/F410/,/F420/,/F430/
-				\end{enumerate}
-				
 		
 		%TEST 
 				\item Export bookkeeping data to .vtk
@@ -354,7 +343,7 @@ Test whether the program correctly shows the graph with the current progress of 
 					\item Description\newline
 Test whether the program correctly exports the bookkeeping data to .vtk format
 					\item Related requirements\newline
-					/F390/
+					/F370/
 				\end{enumerate}
 				
 		
@@ -364,7 +353,7 @@ Test whether the program correctly exports the bookkeeping data to .vtk format
 					\item Description\newline
 Test whether the program correctly exports the statistics data to .vtk format
 					\item Related requirements\newline
-					/F400/
+					/F380/
 				\end{enumerate}
 				
 		\end{itemize}				
@@ -394,26 +383,7 @@ Test whether the program correctly exports the statistics data to .vtk format
 				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
 			\end{enumerate}
 			
-			\item Perform a simple scheduling managed with a multiple-queue task-stealing algorithm
-				\begin{enumerate}
-				
-				\item /T20/, /T60/ Start the scheduler with a multiple-queue master-worker design
-				\item /T70/ Initialize the MPI World
-				\item /T30/ Select a default strategy
-				\item /T80/ Execute master function (code\_preprocessing\_master)
-				\item /T140/ Send a tasks to available workers
-				\item /T90/ Execute worker functions (code\_preprocessing\_slave)
-				\item /T100/ Receive new tasks from scientific code
-				\item /T110/ Query Data Mining module, how muc resources the current task needs
-				\item /T240/ Read data from the statistics file
-				\item /T200/ Analyse data to define resource requirements for the task
-				\item /T150/ Steal a task from another queue
-				\item /T80/ Execute master function (code\_postprocessing\_master)
-				\item /T80/ Execute worker function (code\_postprocessing\_master)
-				\item /230/ Bookkeep data after the task is finished
-				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
-				
-				\end{enumerate}
+			
 			
 			\item Perform a dynamic scheduling with a (dummy) scientific code, that produces tasks, which can't be efficiently processed with the current strategy 
 				
@@ -444,7 +414,7 @@ Test whether the program correctly exports the statistics data to .vtk format
 			\end{enumerate}
 			
 			
-			\item Run twice the same scientific code
+			\item Run again the same scientific code
 				\begin{enumerate}
 					\item Use the first or second test scenario
 					\item /T160/ Use an already created statistic file.
@@ -452,6 +422,30 @@ Test whether the program correctly exports the statistics data to .vtk format
 		\end{enumerate}
 		
 		
+		\subsubsection{Advanced (Nice-to-have) test scenarios}
+			\begin{enumerate}
+							
+			\item Perform a simple scheduling managed with a multiple-queue task-stealing algorithm
+				\begin{enumerate}
+				
+				\item /T20/, /T60/ Start the scheduler with a multiple-queue master-worker design
+				\item /T70/ Initialize the MPI World
+				\item /T30/ Select a default strategy
+				\item /T80/ Execute master function (code\_preprocessing\_master)
+				\item /T140/ Send a tasks to available workers
+				\item /T90/ Execute worker functions (code\_preprocessing\_slave)
+				\item /T100/ Receive new tasks from scientific code
+				\item /T110/ Query Data Mining module, how muc resources the current task needs
+				\item /T240/ Read data from the statistics file
+				\item /T200/ Analyse data to define resource requirements for the task
+				\item /T150/ Steal a task from another queue
+				\item /T80/ Execute master function (code\_postprocessing\_master)
+				\item /T80/ Execute worker function (code\_postprocessing\_master)
+				\item /230/ Bookkeep data after the task is finished
+				\item /T290/, /T300/ Export bookkeeping and statistic data to .vkt file
+				
+				\end{enumerate}
+		     \end{enumerate}	
 		     
 		   \subsubsection{Stress testing scenarios}
 		   
@@ -459,19 +453,19 @@ Test whether the program correctly exports the statistics data to .vtk format
 		   	 \item Perform a scheduling with a code, which produces a lot of tasks that take very little time to complete
 		   	   \begin{enumerate}
 		   	   \item /T260/ Duplicate files on too high amount of request
-		   			\item Use first or second basic test scenario 
+		   			\item Use first basic test scenario 
 		   			\item /T270/ Delete duplacated files
 		   			
 		   	   \end{enumerate}
 		   	\item Perform a scheduling with a code, which produces a few of tasks that take a lot of time to complete
 		   	
 		   	   \begin{enumerate}
-		   			\item Use the first or second basic test scenario
+		   			\item Use the first basic test scenario
 		   	   \end{enumerate}
 		   	\item Perform a scheduling with a code, where the completion time of tasks differs a lot from task to task. Some tasks take a lot of time to complete compared to the other ones.
 		      	\begin{enumerate}
 		      		\item /T260/ Duplicate files on too high amount of request
-		   			\item Use the third basic test scenario  in order to dynamically change the strategy
+		   			\item Use the second basic test scenario  in order to dynamically change the strategy
 		   			\item /T270/ Delete duplacated files
 		      	\end{enumerate}
 		   \end{enumerate}	

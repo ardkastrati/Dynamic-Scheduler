@@ -1,13 +1,13 @@
 \section{Definition of goals}
 	\subsection{Must-have}
 		\begin{itemize}
-			\item The dynamic scheduler can be integrated into scientific code, which provides the following interface:
+			\item The dynamic scheduler can be integrated to scientific code which provides the following interface:
 				\subitem code\_preprocessing\_master(run arguments):set of initial tasks
 				\subitem code\_preprocessing\_slave(void):void
 				\subitem code\_postprocessing\_master(void):void
 				\subitem code\_postprocessing\_slave(void):void
 				\subitem run\_task(task):run result
-			\item The dynamic scheduler can be integrated into scientific code, which uses the following interfaces:
+			\item The dynamic scheduler can be integrated to scientific code which uses the following interface:
 				\subitem place\_task(task)
 			\item The program must be able to receive different task-structures (task data types). The task data type must provide the task\_params interface:
 				\subitem int task\_type\_length
@@ -19,8 +19,7 @@
 				\subitem type result\_type\_unit
 				\subitem type result\_type
 				
-			\item The program must be able to execute scientific code.%call or execute
-			\item Scheduler provides a task stealing algorithm in order to reduce the idle time of processes%must-have%
+			\item The program must be able to execute and call scientific code.
 			\item Must provide different scheduling strategies.
 			\item Must provide a strategy interface.
 			\item Must be able to dynamically choose between provided strategies.
@@ -31,8 +30,8 @@
 				\subitem interconnection between precesses
 			\item Must perform data mining on collected statistics
 			\item Collected data must be visualized
-			\item Estimate the runtime of each task
-			\item Must collect following statistical data for each task:
+			\item Estimate runtime each task will have
+			\item Must collect following statistic data for each task:
 				\subitem the runtime of the task depending on task parameters
 			\item Accumulate all results during the computation and store them
 			\item It must be possible to use variable numbers of parameters for statistics
@@ -42,8 +41,8 @@
 		\begin{itemize}
 			\item Provide a GUI to configure the program and generate a MOAB Workload Manager shell script
 			\item Several scheduler instances should be able to communicate
-			\item Scheduler should be able to dynamically change its MPI-world
-			
+			\item Scheduler should be able to dynamically change it's MPI-world
+			\item Scheduler provides a task stealing algorithm in order to reduce the amount of process migration between processors
 		\end{itemize}
 	\subsection{Demarcation criterion}
 		\begin{itemize}

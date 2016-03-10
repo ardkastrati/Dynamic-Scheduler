@@ -13,8 +13,8 @@
 	\subsubsection{Scheduler}
 	
 		\begin{itemize}
-			\item Provide Master-Worker scheduling design 
-			\item Provide Multiple-queue parallel scheduling design
+			\item Provides Master-Worker scheduling design 
+			\item Provides Multiple-queue parallel scheduling design
 			\item First in first out strategy
 			\item Last in first out strategy
 			\item Shortest job first strategy
@@ -27,30 +27,28 @@
 			\item Execute worker functions
 			\item Initialize scientific code
 			\item Receive new tasks from scientific code
-			\item Insert tasks into the scheduling queue
-			\item Remove tasks from the scheduling queue% Delete or remove 
+			\item Enqueue tasks in the scheduling queue
+			\item Dequeue task from the scheduling queue
 			\item Query weight estimation of each task at data mining
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
 			\item Send task via MPI to Worker
 			\item Receive 'finished task' message via MPI  
 			\item Save computation results
-			\item Task-stealing multiple-queues strategy
-			\item Possibility to import an already used statistic file
 		\end{itemize}
 	
 	\subsubsection{Database}
 	
 		\begin{itemize}
-			\item Initialize database
+			\item Initialie database
 			%\item Files will be placed after computation as usable files for plotting.
 		\end{itemize}
 		
 		\subsubsection{Data mining}
 	
 			\begin{itemize}
-				\item Read data from database module %TODO database????
-				\item Write data into database module%TODO database????
+				\item Read data from statistics database
+				\item Write data into statistics database
 				\item Process task queries from scheduler
 				\item Calculate weight estimation 
 				\item Create statistics from task computation
@@ -72,7 +70,6 @@
 					\item Task appears
 					\item Task started
 					\item Task finished 
-					\item Interconnection between processes
 				\end{enumerate}
 			\end{itemize}
 	
@@ -80,7 +77,7 @@
 	
 			%TODO WARNING
 			\begin{itemize}
-				\item Read/Write functions for the data mining module for the statistic file.
+				\item Read-/write-functions for the data mining module for the statistic file.
 				\item Search for similar and equal data in statistics
 				\item Duplication of files on too high amount of requests.
 				\item Delete duplicated files after finishing the scientific simulation
@@ -101,20 +98,17 @@
 		\begin{itemize}
 			\item Export bookkeeping to .vtk format
 			\item Export statistics to .vtk format
-			%TODO interconnection graph for master-slave / taskstealing
 		\end{itemize}
 		
 	\subsection{Functions required for optional features}
 	
 		\begin{itemize}
-			\item Provide a graphical user interface (GUI)
-			\item Create and show a graph in the graphical user interface, which describes the current progress of the program
-			\item Update the graph periodically
-					
-		
+			\item Task-stealing multiple-queues strategy%nice
+			\item Possibility to import an already used statistic file%nice
 						%\item Support of multiple-queues parallel scheduling strategy
 			%\item Rule-based multiple-queues strategy
-			%\item Random multiple-queues strategy strategy%nice
+			%\item Random multiple-queues strategy
+			%\item Task-stealing multiple-queues strategy%nice
 			%\item Statistics-based multiple-queues strategy
 		\end{itemize}
 		

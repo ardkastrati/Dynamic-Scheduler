@@ -11,7 +11,7 @@
 
 	\subsection{Scheduler}
 		\begin{itemize}
-			\item All tasks of the computation, where a task consists of:
+			\item All tasks of the computation. A Task is a set of two:
 				\begin{itemize}
 					\item \textbf{Data\_Type} (e.g. structure or array);
 					\item \textbf{Data} of this type
@@ -24,18 +24,15 @@
 	\subsection{Bookkeeping}
 		\begin{itemize}
 			\item Hosting process for each task
-			\item Timestamp when a task appears
-			\item Timestamp when a task is started
-			\item Timestamp when a task is finished
+			\item Time stamp when a task appears
+			\item Time stamp when a task is started
+			\item Time stamp when a task is finished
 			\item Task parameters when a task appears
 			\item Task parameters when a task is started
 			\item Task parameters when a task is finished
 			\item Parent process of the appearing task
 			\item Hosting process of the starting task
 			\item Hosting process of the finishing task
-			\item Timestamp when a intercommunication between processes started
-			\item Timestamp when a intercommunication between processes finished
-			\item Which CPUs (processors' ranks) communicated and the direction of the communication (e.g. from p1 to p2) 
 		\end{itemize}
 			
 			
