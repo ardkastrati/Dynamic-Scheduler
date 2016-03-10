@@ -1,11 +1,7 @@
 package controller.VisualisationScene;
 
 import controller.Controller;
-import controller.ParserException;
-import controller.mainScene.MainSceneController;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.net.URL;
 
 import java.util.HashMap;
@@ -13,8 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.ServiceLoader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +21,6 @@ import javafx.scene.layout.Pane;
 import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
-import model.visualiser.dataholding.Parser;
 import model.visualiser.dataholding.Task;
 
 public class VisualisationSceneController  implements Initializable, Controller{
@@ -48,28 +41,37 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private Tab addDiagramTab;
     
     private HashMap<String,Datakeeper> keeperMap;
-	
+    private HashMap<String,Visualiser> visualiserMap;
+    private String baseDir;
+    
     @FXML
     public void show(ActionEvent event) {
         Visualiser diagramType = diagramBox.getValue();
         String calculation = calculationBox.getValue();
         Tab tab = new Tab();
-        Parser parser = new Parser();
+        //Parser parser = new Parser();
         HashMap<Integer, Task> taskMap = null;
-        try {
-            taskMap = parser.parseBookkeeping("/home/kai/Dokumente/PSE/testdata/Bookkeeping.txt");
-        } catch (FileNotFoundException ex) {
-            MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 50, true, true);
-        } catch (ParserException ex) {
-            MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 50, true, true);
-        }
+        //try {
+        //    taskMap = parser.parseBookkeeping("/home/kai/Dokumente/PSE/testdata/Bookkeeping.txt");
+        //} catch (FileNotFoundException ex) {
+        //    MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 50, true, true);
+        //} catch (ParserException ex) {
+        //    MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 50, true, true);
+        //}
         List<Event> eventList = null;//parser.parseStatistic("/home/kai/Dokumente/PSE/testdata/Statisics.txt");
         Pane pane = new AnchorPane();
-        System.out.println(taskMap.toString());
-        if (keeperMap.containsKey(tab)) {
-            
+        //System.out.println(taskMap.toString());
+        if (keeperMap.containsKey(calculation)) {
+            taskMap = keeperMap.get(calculation).getTaskMap();
+            eventList = keeperMap.get(calculation).getEventList();
+        } else {
+            Datakeeper datakeeper = new Datakeeper(baseDir + calculation);
+            keeperMap.put(calculation, datakeeper);
+            taskMap = datakeeper.getTaskMap();
+            eventList = datakeeper.getEventList();
         }
         diagramType.getVisualisation(pane, taskMap, eventList);
+        tab.setText(calculation + " - " );
         tab.setContent(pane);
         diagramPane.getTabs().add(tab);
     }
@@ -81,25 +83,25 @@ public class VisualisationSceneController  implements Initializable, Controller{
         assert addDiagramTab != null : "fx:id=\"addDiagramTab\" was not injected: check your FXML file 'DiagramScene.fxml'.";
         assert calculationBox != null : "fx:id=\"calculationBox\" was not injected: check your FXML file 'DiagramScene.fxml'.";
         assert diagramBox != null : "fx:id=\"diagramBox\" was not injected: check your FXML file 'DiagramScene.fxml'.";
+        keeperMap = new HashMap<String,Datakeeper>();
+        visualiserMap = new HashMap<String,Visualiser>();
         
         ServiceLoader<Visualiser> visualiserServiceLoader = ServiceLoader.load(Visualiser.class);
         Iterator<Visualiser> visualiserService = visualiserServiceLoader.iterator();
         if (!visualiserService.hasNext()) {
             //TODO: show no visualisers load
         }
-        
         while(visualiserService.hasNext()) {
             Visualiser visualiser = visualiserService.next();
+            visualiserMap.put(visualiser.toString(), visualiser);
             diagramBox.getItems().add(visualiser);
         }
-        File baseDir = new File("~/Dokumente/PSE/testdata");
-        String[] directories = baseDir.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
-        calculationBox.getItems().addAll(directories);
+        
+        this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
+        File[] directories = new File(baseDir).listFiles(File::isDirectory);
+        for(int i = 0; i < directories.length; i++) {
+            calculationBox.getItems().add(directories[i].getName());
+        }
     }
 
     @Override
