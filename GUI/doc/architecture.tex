@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\title{Visualiser - Architecture description}
+
+\begin{document}
+
+\section{Introduction}
+To enable the user to discover relationships in his/her tasks and observe the performance the program is able to visualise certain calculation data. A plugin architecture is used to make the module extensible. Three Visualiser plugins are available at present: Usage - number of processors currently used, TaskFlow - which task is calculated on which cpu, statistic - what parameter combination leads to what execution time.
+
+\section{Architecture}
+
+\subsection{Model-View-Controller}
+The program makes use of model view controller. For the view fxml is used in form of a dynamically loaded Visualiser.fxml file. This file contains information about the tab pane and the "+-tab". The controller is represented by VisualisationSceneController.java. It handles the choosen diagram and displays it in a new tab. All the information is stored within a Datakeeper for each calculation. Task information like time of apperance, start and end is stored in the Task class. Event stores the time for a combination of parameter.
+
+\subsubsection{VisualisationSceneController}
+This class controls the visualisation part of the GUI. 
+There is a initialize() method defined by javafx.fxml.Initializable. It is called when ever the GUI is loaded. It will then load all visualisers found in model.view.Visualiser and make them available in the diagram choose box for the user to pick. Moreover the base directory for the bookkeeping and statistic file is set and all subdirectories loaded into the calculationBox.
+There are also empty onEntry and onExit methods defined by controller.Controller. These can be used for future extensions.
+The show method takes the inputs from the user and visualises them using the chosen Visualiser. If the calculation data has not been parsed it will be parsed and the result will be stored in a new datakeeper in the keepermap. 
+
+\subsubsection{Datakeeper}
+This class stores the information needed for Visualisation. This is done as a list of events  and a hashmap of Tasks. Each Datakeeper represents one calculation.
+
+\subsubsection{Event}
+This class stores a combination of calculation time and task parameters
+
+\subsubsection{Task}
+This class stores all information related with a Task.
+These are:
+\begin{itemize}
+\item rank - the rank of the processor this task has been calculated on
+\item appeared - the time when this task appeared
+\item started - the time when the calculation of this task started
+\item ended - the time when the calculation of this task ended
+\item id - an unique id for each task
+\end{itemize}
+
+
+\subsection{Plugins}
+The Visualiser classes are realised as plugins. Each Visualiser has to implement the Visualiser interface. Furthermore are new Visualiser have to be added to model.view.Visualiser file, which can be found in META-INF/services.
+
+\subsubsection{Visualiser interface}
+Every visualiser must implement this interface. The interface provides one method getVisualisation(). This method takes a pane to draw the diagram on, additionally a hashmap with tasks indexed by id and a list of events are given.
+
+\end{document}
