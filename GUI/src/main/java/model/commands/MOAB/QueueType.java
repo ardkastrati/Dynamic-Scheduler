@@ -1,21 +1,29 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package model.commands.MOAB;
 
 import java.util.ArrayList;
 import model.commands.CommandException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MemoryUnit;
-
-/**
- *
- * @author ardkastrati
- */
+ 
+    /**
+    * This enum represents the possible queue classes that can be used in MOAB Workload Manager.<br/>
+    * The following list specifies the allowed classes:
+    * <p>
+    *  <ul>
+    *   <li>DEVELOP</li>
+    *   <li>SINGLENODE</li>
+    *   <li>MULTINODE</li>
+    *   <li>VERYLONG</li>
+    *   <li>FAT</li>
+    *  </ul>
+    * </p>
+    * @author ardkastrati
+    * @version 1.0
+    *
+    */
 public enum QueueType {
     
     /**
@@ -31,24 +39,17 @@ public enum QueueType {
     /**
      * 
      */
-    MULTINODE("multinode") {
-        
-    },
+    MULTINODE("multinode"),
     
     /**
      * 
      */
-    
-    VERYLONG("verylong") {
-        
-    },
+    VERYLONG("verylong") ,
 
     /**
      *
      */
-    FAT("fat") {
-        
-    };
+    FAT("fat");
     
     private final String type;
     
@@ -61,7 +62,9 @@ public enum QueueType {
         return this.type;
     }
     
-    
+    /**
+     * Returns the default resources that a specific queue class has.
+     */ 
     public List<MoabResources> getDefaultResources() {
         List<MoabResources> defaultResources = new ArrayList<MoabResources>();
         try {
@@ -126,6 +129,7 @@ public enum QueueType {
             defaultResources.add(defaultResource2);
             defaultResources.add(defaultResource3);
             return defaultResources;
+            
         } catch (CommandException ex) {
             Logger.getLogger(QueueType.class.getName()).log(Level.SEVERE, null, ex);
         }

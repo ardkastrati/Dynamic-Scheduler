@@ -23,8 +23,8 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="193.0873260498047" minHeight="10.0" prefHeight="30.968751907348633" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="502.0" minHeight="10.0" prefHeight="474.37957763671875" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="72.28353881835938" minHeight="0.0" prefHeight="30.62042236328125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="502.0" minHeight="10.0" prefHeight="461.6095886230469" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="72.28353881835938" minHeight="0.0" prefHeight="46.390411376953125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="moabInterface" alignment="BOTTOM_CENTER" prefHeight="27.0" prefWidth="726.0" text="MOAB Interface" textAlignment="CENTER" GridPane.columnIndex="1">
@@ -35,13 +35,13 @@
                         <Insets bottom="7.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="cancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="75.0" text="Cancel" textAlignment="CENTER" textFill="#a43333" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="cancel" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="105.0" text="Cancel" textAlignment="CENTER" textFill="#a43333" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets right="170.0" />
+                        <Insets right="440.0" />
                      </GridPane.margin></Button>
-                  <Button fx:id="execute" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#execute" prefHeight="25.0" prefWidth="160.0" text="Execute" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                  <Button fx:id="execute" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#execute" prefHeight="25.0" prefWidth="244.0" text="Execute" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
-                        <Insets />
+                        <Insets right="180.0" />
                      </GridPane.margin>
                   </Button>
                   <StackPane fx:id="body" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

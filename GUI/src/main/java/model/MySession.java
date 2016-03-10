@@ -10,24 +10,35 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import controller.SessionException;
+import com.jcraft.jsch.UIKeyboardInteractive;
+import com.jcraft.jsch.UserInfo;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import services.CreateNewChannelTask;
 import services.CreateNewSessionTask;
 import services.EstablishConnectionTask;
 
 /**
- *
+ * This class represents the single current session of the program. Only one session can be established in the program,
+ * in a specific time. Each class can get this session and use it to communicate via SSH with the server.
  * @author ardkastrati
  */
 public class MySession {
     
     
      // Executor for background tasks:        
-    private static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
+    public static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
         Thread t = new Thread(r);
         t.setDaemon(true);
         return t ;
@@ -37,9 +48,33 @@ public class MySession {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+    * This enum represents the possible types of statuses of the session.<br/>
+    * The following list specifies the allowed status types:
+    * <p>
+    *  <ul>
+    *   <li>READY</li>
+    *   <li>ONLINE</li>
+    *   <li>DISCONNECTED</li>
+    *  </ul>
+    * </p>
+    * @author ardkastrati
+    * @version 1.0
+    *
+    */
     public enum SessionStatus {
+        /**
+         * When the session is successfully tested but intentionally disconnected, because it's not currently needed and the time
+         * the user can be with the server connected is limited.
+         */ 
         READY,
+        /**
+         * The session is connected with the server.
+         */ 
         ONLINE,
+        /**
+         * The session couldn't be connected because a failure occured, or the user never tried to connect to the server.
+         */ 
         DISCONNECTED;
     }
     
@@ -49,13 +84,13 @@ public class MySession {
     
     
     
-    // vielleich kann man reconnect und nicht die als static speichern 
     private JSch jsch = new JSch();
-    private Session currentSession;
     
+    private Session currentSession;
     private String username;
     private String host;
     private String password;
+    private MyUserInfo userInfo = new MyUserInfo();
     
     private int port = -1;
     private Channel currentOpenedChannel;
@@ -66,17 +101,15 @@ public class MySession {
     private static MySession thisSession = new MySession();
     
     /**
-     *
-     */
+     * Return the only current session of the program.
+     */ 
     public static MySession getInstant() {
         return thisSession;
     }
     
     
-    
-    public void connect() {
-        
-       
+   /*
+    private void connect() {
             EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
             exec.submit(firstTry);
             firstTry.setOnSucceeded(event -> {
@@ -104,11 +137,11 @@ public class MySession {
                  });
           });
     }
-    
+    */
     
     public void initializeSession(String username, String host, int port, String password) throws JSchException {
         
-        CreateNewSessionTask newSession = new CreateNewSessionTask(username, host, password, port);
+        CreateNewSessionTask newSession = new CreateNewSessionTask(username, host, password, port, userInfo);
         this.username = username;
         this.host = host;
         this.port = port;
@@ -127,16 +160,11 @@ public class MySession {
         
     }
     
-    
-  
-    
-    
-   /*public static void validateJSchForNewSession() throws JSchException {
-       
-    }*/
-    
-    
-    // kann besser denn oben ist connect!
+     /**
+     * Tries to establishe a connection with the server and open a channel.
+     * First tries to reconnect the session which already has been tested. In failure tries to create a new connection,
+     * from the given data then if succeeded the chanel type will be opened.
+     */ 
     public void initiateOpeningChannel(String channelType) {
         
         
@@ -164,7 +192,7 @@ public class MySession {
             firstTry.setOnFailed(event -> {
                  
                  System.out.println("Session kaputt. Baue neue.");
-                 CreateNewSessionTask secondTry = new CreateNewSessionTask(username, host, password, port);
+                 CreateNewSessionTask secondTry = new CreateNewSessionTask(username, host, password, port, userInfo);
                  exec.submit(secondTry);
                  secondTry.setOnSucceeded(event2 -> {
                      
@@ -190,27 +218,30 @@ public class MySession {
           });
         
     }
-        
+    /**    
+     * Closes the current channel and at the same time disconnects the current session because of the limited time.
+     */ 
     public void closeChannel() {
         
         if (currentOpenedChannel != null && currentOpenedChannel.isConnected()) { 
-            System.out.println("po hin te e para");
-            currentOpenedChannel.disconnect(); 
+            
+            ((ChannelSftp) currentOpenedChannel).quit();
+            
             setSessionStatus(SessionStatus.READY);
         }
         if(currentSession != null && !currentSession.isConnected()) {
-             System.out.println("po hin te e dyta");
             currentSession.disconnect();
             setSessionStatus(SessionStatus.READY);
         }
-        
-      
-      
     }
     
+    /**
+     * Removes completely the connection. After this method is called, this class has the same state, 
+     * which it had in the beginning of the program.
+     */ 
     public void removeConnection() {
         if (currentOpenedChannel != null) { 
-            currentOpenedChannel.disconnect(); 
+            ((ChannelSftp) currentOpenedChannel).quit();
             currentOpenedChannel = null;
             setSessionStatus(SessionStatus.READY);
         }
@@ -222,26 +253,153 @@ public class MySession {
         this.password = null;
         this.port = -1;
         this.host = null;
-        
+        userInfo = new MyUserInfo();
         setSessionStatus(SessionStatus.DISCONNECTED);
     }
     
-    
-    // normal property accessor method:
+    /**
+     * Specifies the status of the session.
+     * @return ObjectProperty the status of the class {@code MySession};
+     * @see ObjectProperty
+     */ 
     public final ObjectProperty<SessionStatus> sessionStatusProperty() {
         return  this.sessionStatus;
     }
     
-    public final void setSessionStatus(final SessionStatus sessionStatus) {
+    /**
+     * This methods sets the status of MySession.
+     * @param sessionStatus 
+     */
+    private final void setSessionStatus(final SessionStatus sessionStatus) {
         this.sessionStatusProperty().set(sessionStatus);
     }
     
+    /**
+     * This method return the current status of the session.
+     * @return SessionStatus the current session status
+     */
     public final SessionStatus getSessionStatus() {
             return this.sessionStatusProperty().get();
     }
     
+    /**
+     * This method returns the current opened channel
+     * @return the current opened channel
+     */
     public final Channel getCurrentOpenedChannel() {
         return this.currentOpenedChannel;
     }
     
+    
+    /**
+	 * The MyuserInfo class deals with the user information and interaction.
+	 * @author ardkastrati
+	 */
+	public class MyUserInfo implements UserInfo, UIKeyboardInteractive {
+                String hostKeyAuthentication;
+                @Override
+		public String getPassword() {
+			return passwd;
+		}
+
+		/**
+		 * Displays a warning message prompt with two possible options - yes and no. 
+		 * @param str the message to be displayed
+		 * @return an integer indicating the option chosen by the user, or JOptionPane.CLOSED_OPTION if the user closed the dialog
+		 */
+                @Override
+		public boolean promptYesNo(String str) {
+                    int foo;
+                        if(hostKeyAuthentication == null) {
+			Object[] options = { "yes", "no" };
+			foo = JOptionPane.showOptionDialog(null, str, "Warning", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                              if(foo == 0) {
+                                  hostKeyAuthentication = "Yes";
+                              }
+                        } else {
+                            foo = 0;
+                        }
+			return foo == 0;
+		}
+
+		String passwd;
+		JTextField passwordField = (JTextField) new JPasswordField(20);
+
+                @Override
+		public String getPassphrase() {
+			return null;
+		}
+
+                @Override
+		public boolean promptPassphrase(String message) {
+			return true;
+		}
+
+                @Override
+		public boolean promptPassword(String message) {
+			Object[] ob = { passwordField };
+			int result = JOptionPane.showConfirmDialog(null, ob, message, JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				passwd = passwordField.getText();
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+                @Override
+		public void showMessage(String message) {
+			JOptionPane.showMessageDialog(null, message);
+		}
+
+		final GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTHWEST,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0);
+		private Container panel;
+
+                @Override
+		public String[] promptKeyboardInteractive(String destination, String name, String instruction, String[] prompt,
+				boolean[] echo) {
+			panel = new JPanel();
+			panel.setLayout(new GridBagLayout());
+
+			gbc.weightx = 1.0;
+			gbc.gridwidth = GridBagConstraints.REMAINDER;
+			gbc.gridx = 0;
+			panel.add(new JLabel(instruction), gbc);
+			gbc.gridy++;
+
+			gbc.gridwidth = GridBagConstraints.RELATIVE;
+
+			JTextField[] texts = new JTextField[prompt.length];
+			for (int i = 0; i < prompt.length; i++) {
+				gbc.fill = GridBagConstraints.NONE;
+				gbc.gridx = 0;
+				gbc.weightx = 1;
+				panel.add(new JLabel(prompt[i]), gbc);
+
+				gbc.gridx = 1;
+				gbc.fill = GridBagConstraints.HORIZONTAL;
+				gbc.weighty = 1;
+				if (echo[i]) {
+					texts[i] = new JTextField(20);
+				} else {
+					texts[i] = new JPasswordField(20);
+				}
+				panel.add(texts[i], gbc);
+				gbc.gridy++;
+			}
+
+			if (JOptionPane.showConfirmDialog(null, panel, destination + ": " + name, JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION) {
+				String[] response = new String[prompt.length];
+				for (int i = 0; i < prompt.length; i++) {
+					response[i] = texts[i].getText();
+				}
+				return response;
+			} else {
+				return null; // cancel
+			}
+		}
+	}
 }

@@ -5,11 +5,8 @@
  */
 package model;
 
-import model.commands.*;
-import java.util.List;
-
 /**
- *
+ * This class represents a job which is currently running or it is already finished on the MOAB workload manager. 
  * @author ardkastrati
  */
 public class Job {
@@ -20,8 +17,5 @@ public class Job {
     private String state;
     private int procs;
     private int startTime;
-    
-    
-    //Getter, Setter
     
 }

@@ -4,14 +4,24 @@
  */
 package model.commands.Compile;
 
-import com.jcraft.jsch.Channel;
 import model.commands.ICommand;
 import java.util.ArrayList;
 
-/**
- *
- * @author ardkastrati
- */
+ /**
+    * This enum represents the possible types of the module command in MOAB Workload Manager.<br/>
+    * The following list specifies the allowed paramters in {@code module} command:
+    * <p>
+    *  <ul>
+    *   <li>LOAD</li>
+    *   <li>UNLOAD</li>
+    *   <li>AVAIL</li>
+    *   <li>LIST</li>
+    *  </ul>
+    * </p>
+    * @author ardkastrati
+    * @version 1.0
+    *
+    */
 public enum Module implements ICommand{
     
     LOAD("load") {
@@ -20,8 +30,6 @@ public enum Module implements ICommand{
         public String toString() {
            return "module load";
         }
-        
-        
         
     },
     UNLOAD("unload") {
@@ -41,14 +49,12 @@ public enum Module implements ICommand{
         
     },
     LIST("list") {
-
         @Override
         public String toString() {
             return "module list";
         }
         
     };
-    
     
     private String command;
     
@@ -58,20 +64,19 @@ public enum Module implements ICommand{
 
     @Override
     public String getCommand() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public ArrayList<String> getScriptCommands() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
-     *
+     * Compares to ICommands lexiographically and ignores case.
      * @param command
-     * @return
+     * @return true if the command is lexiographically the same.
      */
-    @Override
     public boolean equals(ICommand command) {
        return command.toString().equalsIgnoreCase(this.toString());        
     }

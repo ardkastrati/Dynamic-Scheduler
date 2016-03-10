@@ -1,7 +1,4 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package GUIcomponents;
 
 import com.jcraft.jsch.ChannelSftp;
@@ -14,128 +11,130 @@ import javafx.scene.control.TreeItem;
 import services.LoadSftpTreeTask;
 
 /**
- *
+ * The SftpTreeItem class represents a tree item in form of a directory name which is loaded using Secure FTP.
  * @author ardkastrati
+ * @version 1.0
+ * @see TreeItem
  */
 public class SftpTreeItem extends TreeItem<String> {
-    
-    
-    // Executor for background tasks:        
-    private static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
-        Thread t = new Thread(r);
-        t.setDaemon(true);
-        return t ;
-    });
-    
-    private static ChannelSftp sftp;
-    //private static LoadSftpTreeService sftpService;
-    
-    // possible load statuses:
-    public enum ChildrenLoadedStatus { 
-        NOT_LOADED, 
-        LOADING, 
-        LOADED 
-    }
-    
-    
-    // observable property for current load status:
-    private final ObjectProperty<ChildrenLoadedStatus> childrenLoadedStatus = 
-                new SimpleObjectProperty<>(ChildrenLoadedStatus.NOT_LOADED);
-    
-    public SftpTreeItem(String value) {
-        super(value);
-    }
-    
-    // getChildren() method loads children lazily:
-    @Override
-    public ObservableList<TreeItem<String>> getChildren() {
-        if (getChildrenLoadedStatus() == ChildrenLoadedStatus.NOT_LOADED) {
-            loadChildrenViaSFTP();
-        }
-          return super.getChildren() ;
-    }
-    
-   
-    // load child nodes in background, updating status accordingly:
-    private void loadChildrenViaSFTP() {
 
-        // change current status to "loading":
-        setChildrenLoadedStatus(ChildrenLoadedStatus.LOADING);
-        String value = getValue();
+	// Executor for background tasks:
+	private static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
+		Thread t = new Thread(r);
+		t.setDaemon(true);
+		return t;
+	});
 
-        // background task to load children:
-       /* Task<List<Sftp2TreeItem>> loadTask = new Task<List<Sftp2TreeItem>>() {
+	private static ChannelSftp sftp;
+	// private static LoadSftpTreeService sftpService;
 
-            @Override
-            protected List<Sftp2TreeItem> call() throws Exception {
-                List<Sftp2TreeItem> children = new ArrayList<>();
-                for (int i=0; i<10; i++) {
-                    children.add(new Sftp2TreeItem(Integer.toString(i)));
-                }
+	/**
+	 * A enum representing possible loading statuses for SFTP tree items. <br/>
+	 * A SFTP tree item can have one of the following loading statuses: <br/>
+	 * NOT_LOADED <br/>
+	 * LOADING <br/>
+	 * LOADED <br/>
+	 */
+	public enum ChildrenLoadedStatus {
+		NOT_LOADED, LOADING, LOADED
+	}
 
-                // for testing (loading is so lazy it falls asleep)
-                Thread.sleep(3000);
-                return children;
-            }
+	// observable property for current load status:
+	private final ObjectProperty<ChildrenLoadedStatus> childrenLoadedStatus = new SimpleObjectProperty<>(
+			ChildrenLoadedStatus.NOT_LOADED);
 
-        };*/
-        if(sftp == null) {
-            System.out.println("Sftp not set");
-        }
+	/**
+	 * Initializes the SftpTreeItem object
+	 * @param value the value of the SFTP tree item
+	 */
+	public SftpTreeItem(String value) {
+		super(value);
+	}
+
+	// getChildren() method loads children lazily
+	@Override
+	public ObservableList<TreeItem<String>> getChildren() {
+		if (getChildrenLoadedStatus() == ChildrenLoadedStatus.NOT_LOADED) {
+			loadChildrenViaSFTP();
+		}
+		return super.getChildren();
+	}
+
+	// load child nodes in background, updating status accordingly:
+	private void loadChildrenViaSFTP() {
+
+		// change current status to "loading":
+		setChildrenLoadedStatus(ChildrenLoadedStatus.LOADING);
+		String value = getValue();
+
+		// background task to load children:
+		/*
+		 * Task<List<Sftp2TreeItem>> loadTask = new Task<List<Sftp2TreeItem>>()
+		 * {
+		 * 
+		 * @Override protected List<Sftp2TreeItem> call() throws Exception {
+		 * List<Sftp2TreeItem> children = new ArrayList<>(); for (int i=0; i<10;
+		 * i++) { children.add(new Sftp2TreeItem(Integer.toString(i))); }
+		 * 
+		 * // for testing (loading is so lazy it falls asleep)
+		 * Thread.sleep(3000); return children; }
+		 * 
+		 * };
+		 */
+		if (sftp == null) {
+			System.out.println("Sftp not set");
+		}
+
+		LoadSftpTreeTask loadTask = new LoadSftpTreeTask(value);
+		System.out.println(loadTask);
+		// when loading is complete:
+		// 1. set actual child nodes to loaded nodes
+		// 2. update status to "loaded"
+		loadTask.setOnSucceeded(event -> {
+			super.getChildren().setAll(loadTask.getValue());
+			setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
+		});
+
+		loadTask.setOnFailed(event -> {
+			setChildrenLoadedStatus(ChildrenLoadedStatus.NOT_LOADED);
+		});
+
+		// execute task in background
+		exec.submit(loadTask);
+	}
+
+	// is leaf is true only if we *know* there are no children
+	// i.e. we've done the loading and still found nothing
+	@Override
+	public boolean isLeaf() {
+		return getChildrenLoadedStatus() == ChildrenLoadedStatus.LOADED && super.getChildren().size() == 0;
+	}
         
-        LoadSftpTreeTask loadTask = new LoadSftpTreeTask(value);
-        System.out.println(loadTask);
-        // when loading is complete:
-        // 1. set actual child nodes to loaded nodes
-        // 2. update status to "loaded"
-        /*sftpService.setOnSucceeded(event -> {
-            super.getChildren().setAll(sftpService.getValue());
-            setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
-        });*/
-        loadTask.setOnSucceeded(event -> {
-            System.out.println("GetCHildren: " + super.getChildren());
-            System.out.println(loadTask.getValue());
-            super.getChildren().setAll(loadTask.getValue());
-            setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
-        });
-        
-        loadTask.setOnFailed(event -> {
-            System.out.println("Failed to load tree items");
-            setChildrenLoadedStatus(ChildrenLoadedStatus.NOT_LOADED);
-        });
 
-        // execute task in background
-        exec.submit(loadTask);
-        //sftpService.setPath(value);
-         //exec.submit(sftpService);
-    }
-    
-    // is leaf is true only if we *know* there are no children
-    // i.e. we've done the loading and still found nothing
-    @Override
-    public boolean isLeaf() {
-        return getChildrenLoadedStatus() == ChildrenLoadedStatus.LOADED && super.getChildren().size()==0 ;
-    }
-    
-    
-    public final SftpTreeItem.ChildrenLoadedStatus getChildrenLoadedStatus() {
-            return this.childrenLoadedStatusProperty().get();
-    }
+	/**
+	 * Returns the loading status of the children
+	 * @return the loading status of the children
+	 * @see ChildrenLoadedStatus
+	 */
+	public final SftpTreeItem.ChildrenLoadedStatus getChildrenLoadedStatus() {
+		return this.childrenLoadedStatusProperty().get();
+	}
 
-    
-    // normal property accessor method:
-    public final ObjectProperty<ChildrenLoadedStatus> childrenLoadedStatusProperty() {
-        return this.childrenLoadedStatus;
-    }
-    
-    public final void setChildrenLoadedStatus(final SftpTreeItem.ChildrenLoadedStatus childrenLoadedStatus) {
-        this.childrenLoadedStatusProperty().set(childrenLoadedStatus);
-    }
-    
-   
-    
-    /*public static void setSFTPService(LoadSftpTreeService sftpService) {
-        SftpTreeItem.sftpService = sftpService;
-    }*/
-    
+	// normal property accessor method:
+	public final ObjectProperty<ChildrenLoadedStatus> childrenLoadedStatusProperty() {
+		return this.childrenLoadedStatus;
+	}
+
+	/**
+	 * Sets the given loading status for the children of this tree item
+	 * @param childrenLoadedStatus the loading status to be set
+	 */
+	public final void setChildrenLoadedStatus(final SftpTreeItem.ChildrenLoadedStatus childrenLoadedStatus) {
+		this.childrenLoadedStatusProperty().set(childrenLoadedStatus);
+	}
+
+	/*
+	 * public static void setSFTPService(LoadSftpTreeService sftpService) {
+	 * SftpTreeItem.sftpService = sftpService; }
+	 */
 }
