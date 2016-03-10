@@ -139,6 +139,12 @@
 	    <scope>system</scope>
             <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.panayotis.gnuplot</groupId>
+            <artifactId>gnuplot</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
 </project>
