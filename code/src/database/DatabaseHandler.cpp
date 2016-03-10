@@ -20,7 +20,7 @@ DatabaseHandler::DatabaseHandler()
 {
 	data_bookkeeping = new BookkeepingDatabase();
 	data_statistic = new StatisticDatabase();
-	stInq = new StatisticInquiry;
+	stInq = new dataInquiry;
 	size = 0;
 }
 
@@ -43,7 +43,7 @@ void DatabaseHandler::storeLocalStatistic(TaskData* data, long runtime)
 
 }
 
-StatisticInquiry* DatabaseHandler::dataMiningInquiry()
+dataInquiry* DatabaseHandler::dataMiningInquiry()
 {
 	return stInq;
 }
@@ -58,7 +58,6 @@ void DatabaseHandler::storeData(TaskData *data)
 	}
 	data_bookkeeping->insertTaskData(bookkeeping_package);
 
-	readStatistic();
 }
 
 string DatabaseHandler::dataParserBookkeeping(TaskData *data)
@@ -187,7 +186,9 @@ string DatabaseHandler::dataParserStatistic(TaskData *data)
 	return package;
 }
 
-void DatabaseHandler::readStatistic()
+dataInquiry* DatabaseHandler::readStatistic()
 {
-	data_statistic->readTaskData();
+	//make sure to clear old structure
+	dataInquiry* file_section = new dataInquiry;
+	data_statistic->readTaskData(file_section);
 }

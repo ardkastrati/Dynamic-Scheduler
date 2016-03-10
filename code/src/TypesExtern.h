@@ -14,11 +14,11 @@
 #include <mpi.h>
 
 
-typedef struct _StatisticInquiry {
+typedef struct _dataInquiry {
 	int parameter_size;
 	std::vector<long> runtime = std::vector<long>(100);
 	std::vector<double> para = std::vector<double>(100);
-} StatisticInquiry;
+} dataInquiry;
 
 typedef struct _Task {
 	long id;

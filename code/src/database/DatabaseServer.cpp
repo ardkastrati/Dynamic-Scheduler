@@ -12,17 +12,12 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 {
     DataMining_instance_flag = false;
     database_handler = new DatabaseHandler();
-    //datamining_handler = new GridDataMining();
-    //dataminer?
-	//init
 }
 DatabaseServer::~DatabaseServer()
 {
     //LOG(DEBUG) << "Destructor DatabaseServer";
-    //database_handler->~DatabaseHandler();
     delete database_handler;
     delete datamining_handler;
-    //destruct rest
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
@@ -37,6 +32,8 @@ void DatabaseServer::run()
     TaskData task_data;
     MPI_Status status;
 
+    //database_handler->readStatistic();
+
     while (true) {
 
         MPI_Recv(&task_data, 1, MY_MPI_TASK_DATA_TYPE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
@@ -46,7 +43,7 @@ void DatabaseServer::run()
         }
         else if (status.MPI_TAG == DATAENTRY)
         {
-        	//store the new task
+        	  //store the new task
             database_handler->storeData(&task_data);
 
             //insert the new task in datamining

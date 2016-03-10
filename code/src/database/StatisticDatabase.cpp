@@ -42,16 +42,85 @@ void StatisticDatabase::initNewFile()
 	stfile.close();
 }
 
-void StatisticDatabase::readTaskData()
+void StatisticDatabase::readTaskData(dataInquiry* data_section)
 {
+	//file open?
+	if(stfile.is_open())
+	{
+		stfile.close();
+	}
+
 	string line;
 	stfile.open("Statistic.txt",std::fstream::in);
-	std::getline(stfile, line);
-	std::getline(stfile, line);
-	std::getline(stfile, line);
-	std::getline(stfile, line);
+	bool data_start = false;
+	string operator_string;
+
+	//pass data_section
+	while(!data_start)
+	{
+		getline(stfile, line);
+		if(line == "####DATA_START####")
+		{
+			data_start = true;
+		}
+	}
+	//read before eof()
+	getline(stfile, line);
+	while(!stfile.eof())
+	{
+		int j = 0;
+		int parameter_counter = 0;
+		long runtime;
+		double parameter;
+		for(int i = 0; i < line.length(); i++)
+		{
+			//save runtime
+			if(line[i] == ';')
+			{
+				runtime = std::stol(operator_string);
+				//character after ";"
+				j = i + 1;
+				break;
+			}
+			operator_string.push_back(line[i]);
+		}
+		cout << "ausgelese runtime: "<< runtime << "\n";
+		data_section->runtime.push_back(runtime);
+		operator_string.clear();
+		//now the parameters
+		for(; j < line.length(); j++)
+		{
+			//check again
+			if(line[j] == '#')
+			{
+				break;
+			}
+			//save parameter
+			if(line[j] == ';')
+			{
+				parameter_counter++;
+				//what if 0 parameter?
+				parameter = std::stod(operator_string);
+				//end of line?
+				if(line[j + 1] == '#')
+				{
+					break;
+				}
+				operator_string.clear();
+				//character after ";"
+				j = j + 1;
+			}
+			operator_string.push_back(line[j]);
+		}
+		data_section->para.push_back(parameter);
+		data_section->parameter_size = parameter_counter;
+		operator_string.clear();
+		line.clear();
+		getline(stfile, line);
+	}
 	stfile.close();
-	//cout << line << "\n";
+	//for continue write
+	//stfile.open("Statistic.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);
 }
 
 void StatisticDatabase::insertTaskData(string data)

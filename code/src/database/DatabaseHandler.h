@@ -55,7 +55,7 @@ public:
 	 * @param NumberOfParameters number of parameter dimension
 	 * @return struct data* returns pointer to data
 	 */
-	StatisticInquiry* dataMiningInquiry();
+	dataInquiry* dataMiningInquiry();
 
 	/**
 	 * Stores the information about the task in the main memory for DataMiner inquiry.
@@ -65,15 +65,17 @@ public:
 	 */
 	void storeLocalStatistic(TaskData* data, long runtime);
 
-	/*
-	 * Read the whole statistic file new.
+	/**
+	 * Read the whole statistic file again or read a new statistic file and
+	 * store the data in memory.
+	 * @return struct data* returns pointer to data
 	 */
-	void readStatistic();
+	dataInquiry* readStatistic();
 
 	/**
 	 * Dataobject for the DataMiner.
 	 */
-	StatisticInquiry* stInq;
+	dataInquiry* stInq;
 
 private:
 
@@ -88,12 +90,10 @@ private:
 	Database* data_statistic;
 
 	/**
-	 * Number of Dimensions.
+	 * Number of dimensions.
 	 */
 	int size;
 
 };
-
-
 
 #endif /* DATABASEHANDLER_H_ */

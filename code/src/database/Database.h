@@ -18,18 +18,24 @@ class Database
 {
 public:
 
-	/*
+	/**
 	 * insertTaskData writes a datastring in the file.
 	 * The function must be inherited.
 	 * @param data string containing one data package of a task
 	 */
 	virtual void insertTaskData(string data) = 0;
 
-	virtual void readTaskData() = 0;
+	/**
+	 * The function reads a existing file in and stores data in memory
+	 * for the datamining.
+	 * Afterwards the file can be extended with new entries.
+	 * The file need to be placed in the working
+	 * directory.
+	 * @param data_section a defined struct which contains the data
+	 */
+	virtual void readTaskData(dataInquiry* data_section) = 0;
 
 private:
 };
-
-
 
 #endif /* DATABASE_H_ */

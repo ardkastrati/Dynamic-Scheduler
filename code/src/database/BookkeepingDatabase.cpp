@@ -42,7 +42,7 @@ void BookkeepingDatabase::initNewFile()
 	bkfile.close();
 }
 
-void BookkeepingDatabase::readTaskData()
+void BookkeepingDatabase::readTaskData(dataInquiry* data_section)
 {
 
 }

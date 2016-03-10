@@ -267,7 +267,7 @@ void GridDataMining::make_new_grid()
   }
   memory -> set_new_array(new_dimensions, new_increment, min_parameter);
   nr_of_tasks = 0; //reset nr of tasks
-  StatisticInquiry *data = database -> dataMiningInquiry();
+  dataInquiry *data = database -> dataMiningInquiry();
   int former_task_count = data->runtime.size();
   long runtime;
   double* parameter;
@@ -332,17 +332,14 @@ bool GridDataMining::check_for_update()
   #endif
   if(make_new_grid_running)
   {
-    cout << "grid data mining check for updates return_0 " << false << "\n";
     return false;
   }
   else if (max_differential_time < average_differential)
   {
-    cout << "grid data mining check for updates return_1 " << true << "\n";
     return true;
   }
   else
   {
-    cout << "grid data mining check for updates return_2 " << false << "\n";
     return false;
   }
 }
