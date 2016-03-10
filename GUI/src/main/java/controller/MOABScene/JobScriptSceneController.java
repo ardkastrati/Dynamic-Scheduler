@@ -4,59 +4,63 @@
  */
 package controller.MOABScene;
 
+import controller.Controller;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import model.commands.ICommand;
+import javafx.scene.control.TextField;
+import services.FileTransportTask;
 
 /**
- * FXML Controller class
- *
+ * The JobScriptSceneController class controls the JobScript FXML scene which is
+ * shown when the script is generated.
+ * 
  * @author ardkastrati
+ * @version 1.0
  */
-public class JobScriptSceneController implements Initializable, CommandController {
+public class JobScriptSceneController implements Initializable, Controller {
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    private TextArea generatedScript;
-  
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+	/**
+	 * Initializes the controller class.
+	 */
+        @FXML
+	private TextArea generatedScript;
+        @FXML
+        private TextField nameOfFile;
 
-    @Override
-    public void onExecuteClicked() {
-       
-    }
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// the job script scene
+	}
+        
+	public Task onExecuteClicked() {
+               FileTransportTask transportFileTask = new FileTransportTask(generatedScript, getFileName());
+               return transportFileTask;
+	}
+        
 
-    @Override
-    public void onCancelClicked() {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	
+        @Override
+	public void onEntry() {
+            //intentionally left blanks
+	}
 
-  
-    @Override
-    public String getOnExecuteText() {
-         return "Save";
-    }
-
-    @Override
-    public void onEntry() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void onExit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-    
-    
+	@Override
+	public void onExit() {
+            //intentionally left blank
+	}
+        
+        public void setScript(ArrayList<String> lines) {
+            for(String line : lines) {
+               generatedScript.appendText(line + "\n");
+            }
+        }
+        
+        public String getFileName() {
+            return nameOfFile.getLength() > 0 ? nameOfFile.getText() : nameOfFile.getPromptText();
+        }
 }

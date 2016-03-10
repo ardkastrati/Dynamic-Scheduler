@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MOABScene.CommandValidationSceneController">
+   <children>
+      <ImageView fx:id="failureImage" fitHeight="201.0" fitWidth="203.0" layoutX="256.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/onFailure.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="successImage" fitHeight="201.0" fitWidth="245.0" layoutX="235.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/successfullyConnected.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="commandValidationText" layoutX="133.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="492.43251037597656" />
+      <ProgressIndicator fx:id="commandIndicator" layoutX="285.0" layoutY="131.0" prefHeight="143.0" prefWidth="157.0" />
+   </children>
+</AnchorPane>

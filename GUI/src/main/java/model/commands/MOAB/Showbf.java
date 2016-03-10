@@ -4,9 +4,7 @@
  */
 package model.commands.MOAB;
 
-import com.jcraft.jsch.Channel;
 import java.util.ArrayList;
-import javafx.scene.control.Control;
 import model.commands.ICommand;
 
 /**

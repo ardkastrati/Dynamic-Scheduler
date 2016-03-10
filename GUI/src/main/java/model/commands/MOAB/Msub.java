@@ -7,13 +7,10 @@ package model.commands.MOAB;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import model.MemoryUnit;
-import model.NodeAccessPolicy;
-import model.commands.CommandException;
 import model.commands.ICommand;
 
 /**
- *
+ *  This class represents the msub command in MOAB Workload Manager with all its parameters.
  * @author ardkastrati
  */
 
@@ -25,81 +22,77 @@ public class Msub implements ICommand {
         
         private QueueType queueType;
         
-        //MoabResources nodes = MoabResources.NODES;
-        /*MoabResources processesPerNode = MoabResources.NODES_AND_PROCESSES_PER_NODE;
-        MoabResources nodeAccessPolicy  = MoabResources.NODE_ACCESSPOLICY;
-        MoabResources processorMemory = MoabResources.PROCESSOR_MEMORY;
-        MoabResources walltime = MoabResources.WALLTIME;
-        MoabResources reservationName = MoabResources.RESERVATION_NAME;
-        MoabResources memoryUnit = MoabResources.MOAB_PROCESSOR_MEMORY_UNIT;*/
-        
-        List<MoabResources> resourceParameters = new LinkedList<>();
+        private List<MoabResources> resourceParameters = new LinkedList<>();
         
         private String jobName;
         private String outputFileName;
         private String shell;
-        private char[] sendEmail;
-        private String email;
+        private String sendEmail;
+        private String emailCode;
         
         
         // SETTERS 
-        
-        public void setJobName() {
+        /**
+         * Sets a user specified name to the job.
+         * @param jobName
+         */ 
+        public void setJobName(String jobName) {
             this.jobName = jobName;
         }
+        /**
+         * Sets the queue type.
+         * @param queueType the type of the queue
+         */
         public void setQueueType(QueueType queueType) {
             this.queueType = queueType;
         }
-        public void setFileName(String outPutFileName) {
+        /**
+         * Sets the file-name to be used for the standard output stream of the batch job.
+         * @param outPutFileName
+         *          the name of the output file
+         */ 
+        public void setOutPutFileName(String outPutFileName) {
             this.outputFileName = outPutFileName;
         }
         /**
          * Send email when job begins (b), ends (e) or aborts (a).
          * @param sendEmail 
+         *          the email where to send
+         * @param emailCode
+         *          the email code job begins (b), ends (e) or aborts (a).
          */ 
-        public void sendEmail(char[] sendEmail, String email) {
+        public void sendEmail(String sendEmail, String emailCode) {
             this.sendEmail = sendEmail;
-            this.email = email;
+            this.emailCode = emailCode;
         }
 
+        /**
+         * Sets the shell (state path+name, for example: /bin/bash) that interpret the job script.
+         */ 
         public void setShell(String shell) {
             this.shell = shell;
         }
-       
+        /**
+         * Adds the resources that are required by the job.
+         * @param resource The resource to be added
+         * @see MoabResources
+         */ 
         public void addRessourceParameter(MoabResources resource) {
             this.resourceParameters.add(resource);
         }
         
-        /*
-        public void setNodeAccessPolicy(NodeAccessPolicy nodeAccessPolicyType) throws CommandException {
-            this.nodeAccessPolicy.setParameter(nodeAccessPolicyType);
-        }
-        
-        /*public void setNumOfNodes(int numOfNodes) throws CommandException {
-            this.nodes.setParameter(numOfNodes);
-        }*/
-
-        /*public void setProcessesPerNode(int processesPerNode) throws CommandException {
-            this.processesPerNode.setParameter(processesPerNode);
-        }
-        
-        public void setProcessorMemory(int memory) throws CommandException {
-            this.processorMemory.setParameter(memory);
-        }
-        
-        public void setMemoryUnit(MemoryUnit unitType) throws CommandException {
-            this.memoryUnit.setParameter(unitType);
-        }*/
-
+        /**
+         * Returns an array of lines which represents the msub command in shell script language.
+         */
+        @Override
         public ArrayList<String> getScriptCommands() {
-
-            ArrayList<String> scriptLines = new ArrayList<>();
-
-            String queue = new String(" -q " + queueType.toString());
-            scriptLines.add(queue);
-
             
-            //TODO: Resources parsen.
+            ArrayList<String> scriptLines = new ArrayList<>();
+            
+            if(queueType != null) {
+                String queue = " -q " + queueType.toString();
+                scriptLines.add(queue);
+            }
             
             for(MoabResources resource : resourceParameters) {
                 StringBuilder scriptLine = new StringBuilder();
@@ -107,34 +100,33 @@ public class Msub implements ICommand {
                 scriptLine.append(resource.getParameter());
                 scriptLines.add(scriptLine.toString());
              }
-            String fileName = new String(" N " + jobName);
-            scriptLines.add(fileName);
-            
+            if(jobName != null) {
+                String fileName = " -N " + jobName;
+                scriptLines.add(fileName);
+            }
             if(outputFileName != null) {
-                String scriptLine = new String(" -o " + outputFileName);
+                String scriptLine = " -o " + outputFileName;
                 scriptLines.add(scriptLine);
             }
             if(shell != null) {
-                String scriptLine = new String(" -S " + shell);
+                String scriptLine = " -S " + shell;
                 scriptLines.add(scriptLine);
             }
-            if(sendEmail != null && sendEmail.length != 0) {
-                String scriptLine = new String(" -m " + sendEmail);
+            if(sendEmail != null) {
+                String scriptLine = " -m " + sendEmail;
                 scriptLines.add(scriptLine);
             }
-            if(email != null) {
-                String scriptLine = new String(" -M " + email);
+            if(emailCode != null) {
+                String scriptLine = " -M " + emailCode;
                 scriptLines.add(scriptLine);
             }
 
             return scriptLines;
-
         }
         
-        public void setJobName(String jobname) {
-            this.jobName = jobname;
-        }
-
+        /**
+         * Return a string representation of the command.
+         */
         @Override
         public String getCommand() {
 
@@ -160,24 +152,26 @@ public class Msub implements ICommand {
                 command.append(" -S ");
                 command.append(shell);
             }
-            if(sendEmail.length != 0) {
+            if(sendEmail != null && sendEmail.length() > 0) {
                 command.append(" -m ");
                 command.append(sendEmail);
             }
-            if(email != null && email.length() > 0) {
+            if(emailCode != null && emailCode.length() > 0) {
                 command.append(" -M ");
-                command.append(email);
+                command.append(emailCode);
             }
             return command.toString();
 
         }
 
+    
+    @Override
     public String toString() {
         return "msub";
     }
     
     /**
-     *
+     * Compares to type of commands lexiographically where case is ignored.
      * @param command
      * @return
      */

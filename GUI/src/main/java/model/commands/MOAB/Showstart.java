@@ -4,9 +4,7 @@
  */
 package model.commands.MOAB;
 
-import com.jcraft.jsch.Channel;
 import java.util.ArrayList;
-import javafx.scene.control.Control;
 import model.commands.ICommand;
 
 /**
@@ -18,6 +16,7 @@ public class Showstart implements ICommand {
     
     
     
+    @Override
     public String getCommand() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
@@ -28,6 +27,7 @@ public class Showstart implements ICommand {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public String toString() {
        return "showstart";
     }
