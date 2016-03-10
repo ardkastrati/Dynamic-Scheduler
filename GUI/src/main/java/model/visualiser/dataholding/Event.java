@@ -2,36 +2,23 @@ package model.visualiser.dataholding;
 
 public class Event {
 	
-	private int time;
+	private Long time;
 	
-	private String event;
-	
-	private int rank;
+	private Double[] parameters;
 
-	public int getTime() {
+	public Long getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
 
-	public String getEvent() {
-		return event;
-	}
-
-	public void setEvent(String event) {
-		this.event = event;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-	
-	
-
+        public Double[] getParameters() {
+            return parameters;
+        }
+        
+        public void setParameters(Double[] parameters) {
+            this.parameters = parameters;
+        }
 }
