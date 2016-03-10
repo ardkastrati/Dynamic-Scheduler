@@ -1,7 +1,7 @@
 #ifndef _LJF_H
 #define _LJF_H
 
-#include "SchedulingStrategy.h"
+#include "MasterSchedulingStrategy.h"
 #include <queue>
 #include <vector>
 /**
@@ -34,7 +34,7 @@ public:
  * @author Fabio Broghammer
  * @version 1.0
  */
-class LJF: public SchedulingStrategy {
+class LJF: public MasterSchedulingStrategy {
 private:
     /**
      * Priority  queue  of TaskTypes. The priority queue stores the scientific tasks ordered using the estimated runtime with Longest Job First  (LJF) strategy.

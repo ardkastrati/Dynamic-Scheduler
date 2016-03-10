@@ -7,7 +7,7 @@
 #include "../util/IdUtility.h"
 
 
-Master::Master(SchedulingStrategy* scheduling_strategy, int rank, int number_of_processors)
+Master::Master(MasterSchedulingStrategy* scheduling_strategy, int rank, int number_of_processors)
 : AbstractScheduler(scheduling_strategy, rank, number_of_processors),
 free_worker(new std::queue<int>())
 {

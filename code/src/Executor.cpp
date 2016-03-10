@@ -8,7 +8,7 @@
 #include "scheduler/FIFO.h"
 #include "scheduler/LIFO.h"
 #include "scheduler/LJF.h"
-#include "scheduler/SchedulingStrategy.h"
+#include "scheduler/MasterSchedulingStrategy.h"
 #include "worker/WorkerExecutor.h"
 #include "database/DatabaseServer.h"
 #include <mpi.h>
@@ -45,7 +45,7 @@ Executor* Executor::get_new_executor_for_master_worker(int rank, int number_of_p
     Executor* executor;
     if (rank == 0)
     {
-        SchedulingStrategy* scheduling_strategy;
+        MasterSchedulingStrategy* scheduling_strategy;
         switch (strategy)
         {
             case ENUM_FIFO:

@@ -18,6 +18,7 @@
 
 #include "AbstractScheduler.h"
 #include "../datamining/DataMining.h"
+#include "MasterSchedulingStrategy.h"
 #include <queue>
 
 class Master: public AbstractScheduler {
@@ -50,7 +51,7 @@ class Master: public AbstractScheduler {
          * @param rank the MPI rank of the processors, that execute the scheduler
          * @param number_of_processors the total number of processors of the MPI world
          */
-        Master(SchedulingStrategy* scheduling_strategy, int rank, int number_of_processors);
+        Master(MasterSchedulingStrategy* scheduling_strategy, int rank, int number_of_processors);
 
         /**
          * Deletes the queue free_worker object

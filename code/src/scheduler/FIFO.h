@@ -10,10 +10,10 @@
 #ifndef _FIFO_H
 #define _FIFO_H
 
-#include "SchedulingStrategy.h"
+#include "MasterSchedulingStrategy.h"
 #include <queue>
 
-class FIFO: public SchedulingStrategy {
+class FIFO: public MasterSchedulingStrategy {
 private:
     /**
      * First In - First Out (FIFO) queue of TaskTypes. The queue stores  the scientific tasks.
