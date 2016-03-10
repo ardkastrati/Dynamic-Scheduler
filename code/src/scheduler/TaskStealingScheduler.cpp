@@ -79,6 +79,7 @@ void TaskStealingScheduler::execute(int argc, char* argv[])
 
 void TaskStealingScheduler::run() {
     bool is_running = true;
+    int number_of_tries = 10;
     while (is_running) {
         //std::cout << "Run loop" << std::endl;
         /*MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
@@ -92,6 +93,7 @@ void TaskStealingScheduler::run() {
             MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
             *status = WORKING;
             MPI_Win_unlock(rank, win_status);
+            number_of_tries = 10;
             //cout << task.parameters[0] << endl;
             worker->run_task(task);
 
@@ -102,6 +104,10 @@ void TaskStealingScheduler::run() {
 
         } else
         {
+            number_of_tries--;
+            if (number_of_tries > 0) {
+              continue;
+            }
             if (rank == 0 ){
               if (is_finish()) {
                 MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
@@ -110,7 +116,6 @@ void TaskStealingScheduler::run() {
                 is_running = false;
               }
             } else {
-              if (status == IDLE) {
                 int temp_status;
                 MPI_Win_lock(MPI_LOCK_EXCLUSIVE, MASTER, 0, win_status);
                 MPI_Get(&temp_status, 1, MPI_INT, MASTER, 0, 1, MPI_INT, win_status);
@@ -118,11 +123,9 @@ void TaskStealingScheduler::run() {
                 if (temp_status == IDLE) {
                   is_running = false;
                 }
-              } else {
                 MPI_Win_lock(MPI_LOCK_EXCLUSIVE, rank, 0, win_status);
                 *status = IDLE;
                 MPI_Win_unlock(rank, win_status);
-              }
 
             }
             //is_running = !is_finish();

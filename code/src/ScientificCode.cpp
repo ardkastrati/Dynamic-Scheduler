@@ -44,7 +44,7 @@ void code_preprocessing_slave(int argc, char* argv[])
 
 void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* context) {
     if (task.parameters[0] < 50) {
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < 10; i++) {
         Task newTask;
         newTask.parameter_size = 1;
         newTask.parameters[0] = task.parameters[0] + 100;// + 100* i;

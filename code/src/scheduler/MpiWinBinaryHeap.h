@@ -123,6 +123,8 @@ public:
 
     /**
      * Steals the next task from the given rank in case the queue of the given rank is not empty.
+     * Will return task.parameter_size == -1 if the win_offset window could not be locked.
+     * Will return task.parameter_size == -2 if the queue is empty.
      *
      * @param rank the rank of the remote queue
      *

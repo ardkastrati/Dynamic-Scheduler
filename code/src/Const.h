@@ -42,7 +42,7 @@
 /**
  * The init task parameter count
  */
- #define MAX_INIT_TASK_COUNT 1000
+ #define MAX_INIT_TASK_COUNT 100
 
  /**
   * The max queue size for taskstealing
