@@ -1,5 +1,7 @@
 package controller.VisualisationScene;
 
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import java.io.File;
 import java.net.URL;
@@ -9,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.ServiceLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +22,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import model.MySession;
 import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
@@ -79,7 +84,18 @@ public class VisualisationSceneController  implements Initializable, Controller{
 
     @FXML
     public void refresh(ActionEvent event) {
-      
+        MySession session = MySession.getInstant();
+        ChannelSftp sftp = session.getSFTPChannel("sftp");
+        try {
+            sftp.get("Bookkeeping.txt", baseDir + "/Bookkeeping.txt");
+        } catch (SftpException ex) {
+            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         try {
+            sftp.get("Statistic.txt", baseDir + "/Statistic.txt");
+        } catch (SftpException ex) {
+            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

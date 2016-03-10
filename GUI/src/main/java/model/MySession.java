@@ -13,6 +13,8 @@ import com.jcraft.jsch.Session;
 import controller.SessionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import services.CreateNewChannelTask;
@@ -34,7 +36,13 @@ public class MySession {
     });
 
     public ChannelSftp getSFTPChannel(String sftp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ChannelSftp sftpChannel= null;
+        try {
+            sftpChannel = (ChannelSftp) currentSession.openChannel(sftp);
+        } catch (JSchException ex) {
+            Logger.getLogger(MySession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sftpChannel;
     }
     
     public enum SessionStatus {
