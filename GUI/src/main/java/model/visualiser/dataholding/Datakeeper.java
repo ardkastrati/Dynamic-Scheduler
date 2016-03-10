@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 /**
  *
  * 
+ * Stores data for a single calculation
  */
 public class Datakeeper {
     
@@ -23,6 +24,10 @@ public class Datakeeper {
     
     List<Event> eventList;
     
+    /**
+     * Constructs a new Datakeeper with the files at the given base directory
+     * @param basePath base directory for this Datakeeper
+     */
     public Datakeeper(String basePath) {
         Parser parser = new Parser();
         try {
@@ -41,10 +46,18 @@ public class Datakeeper {
         } 
     }
     
+    /**
+     * Returns the taskMap of this calculation
+     * @return the taskMap of this calculation
+     */
     public HashMap<Integer, Task> getTaskMap() {
         return this.taskMap;
     }
     
+    /**
+     * Returns the list of events of this calculation
+     * @return the list of events of this calculation
+     */
     public List<Event> getEventList() {
         return this.eventList;
     }
