@@ -5,6 +5,8 @@ import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import java.io.File;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,6 +51,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private HashMap<String,Visualiser> visualiserMap;
     private String baseDir;
     private boolean CurrentDirty;
+    private String runningDir;
     
     @FXML
     public void show(ActionEvent event) {
@@ -87,12 +90,12 @@ public class VisualisationSceneController  implements Initializable, Controller{
         MySession session = MySession.getInstant();
         ChannelSftp sftp = session.getSFTPChannel("sftp");
         try {
-            sftp.get("Bookkeeping.txt", baseDir + "/Bookkeeping.txt");
+            sftp.get("Bookkeeping.txt", baseDir + runningDir + "/Bookkeeping.txt");
         } catch (SftpException ex) {
             Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
          try {
-            sftp.get("Statistic.txt", baseDir + "/Statistic.txt");
+            sftp.get("Statistic.txt", baseDir + runningDir + "/Statistic.txt");
         } catch (SftpException ex) {
             Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +110,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
         assert diagramBox != null : "fx:id=\"diagramBox\" was not injected: check your FXML file 'DiagramScene.fxml'.";
         keeperMap = new HashMap<String,Datakeeper>();
         visualiserMap = new HashMap<String,Visualiser>();
+        runningDir = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         
         ServiceLoader<Visualiser> visualiserServiceLoader = ServiceLoader.load(Visualiser.class);
         Iterator<Visualiser> visualiserService = visualiserServiceLoader.iterator();
