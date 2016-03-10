@@ -108,7 +108,7 @@ public class MOABSceneController implements Initializable, Controller {
 		
 		try {
                         FXMLLoader loader = loaderHelper.loadScene(command);
- 			parent = loader.load();
+ 			parent = (Node) loader.load();
 			// set the new controller, since a new scene has been loaded
 			currentCommandController = loader.getController();
 			execute.setText(currentCommandController.getOnExecuteText());
@@ -137,7 +137,7 @@ public class MOABSceneController implements Initializable, Controller {
                 LoadSceneHelper loaderHelper = new LoadSceneHelper();
                 FXMLLoader loader = loaderHelper.loadScene("ValidateCommand");
                 Node newBody = null;
-                newBody = loader.load();
+                newBody = (Node) loader.load();
                 currentCommandController = loader.getController();
                 grid.getChildren().remove(grid.getChildren().size() - 1);
                 grid.add(newBody, 1, 1);

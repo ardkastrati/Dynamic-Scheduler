@@ -1,7 +1,7 @@
 package controller.SSHConnectionScene;
 
 import com.jcraft.jsch.JSchException;
-import components.NumericTextField;
+import GUIcomponents.NumericTextField;
 import controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
