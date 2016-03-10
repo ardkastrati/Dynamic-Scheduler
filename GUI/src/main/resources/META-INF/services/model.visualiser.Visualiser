@@ -1,3 +1,4 @@
 model.visualiser.TaskFlowVisualiser
 model.visualiser.GridVisualiser
 model.visualiser.UsageVisualiser
+model.visualiser.StatisticVisualiser
