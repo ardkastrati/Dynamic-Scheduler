@@ -23,7 +23,7 @@ typedef struct _dataInquiry {
 typedef struct _Task {
 	long id;
     long time_appeared;
-	long runtime;
+		long runtime;
     long parent;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
@@ -37,8 +37,8 @@ typedef struct _TaskData {
     int event;
     int mode;
     long parent;
-    int time_intercommunication_start;
-    int time_intercommunication_end;
+    long time_intercommunication_start;
+    long time_intercommunication_end;
     int rank;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
