@@ -1,8 +1,12 @@
 package model.visualiser.dataholding;
 
+/**
+ *
+ * This class represents a Task
+ */
 public class Task {
 	
-	private long appered;
+	private long appaered;
 	
 	private long started;
 	
@@ -11,44 +15,106 @@ public class Task {
 	private int rank;
 	
 	private int id;
+        
+        private int parent;
 
-	public long getAppered() {
-		return appered;
+    /**
+     * Returns the id of the parent task
+     * @return The id of the parent task
+     */
+    public int getParent() {
+        return parent;
+    }
+
+    /**
+     * Sets the id of the parent task
+     * @param parent id of the parent task
+     */
+    public void setParent(int parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * Returns the time this task appeared
+     * @return the time this task appeared
+     */
+    public long getAppaered() {
+		return appaered;
 	}
 
-	public void setAppered(long appered) {
-		this.appered = appered;
+    /**
+     * Sets the time this task appeared
+     * @param appered the time this task appeared
+     */
+    public void setAppaered(long appaered) {
+		this.appaered = appaered;
 	}
 
-	public long getStarted() {
+    /**
+     * Returns the time this task started
+     * @return the time this task started
+     */
+    public long getStarted() {
 		return started;
 	}
 
-	public void setStarted(long started) {
+    /**
+     * Sets the time this task started
+     * @param started the time this task started
+     */
+    public void setStarted(long started) {
 		this.started = started;
 	}
 
-	public long getEnded() {
+    /**
+     * Returns the time this task ended
+     * @return the time this task ended
+     */
+    public long getEnded() {
 		return ended;
 	}
 
-	public void setEnded(long ended) {
+    /**
+     * Sets the time this task ended
+     * @param ended the time this task ended
+     */
+    public void setEnded(long ended) {
 		this.ended = ended;
 	}
 
-	public long getRank() {
+    /**
+     * Returns the rank of the processor this task was executed on
+     * @return the rank of the processor this task was executed on
+     */
+    public long getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+    /**
+     * Sets the rank of the processor this task was executed on
+     * @param rank the rank of the processor this task was executed on
+     */
+    public void setRank(int rank) {
 		this.rank = rank;
 	}
 
-	public long getId() {
+    /**
+     * Returns the id of this task
+     * @return the id of this task
+     */
+    public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+    /**
+     * Sets the id of this task
+     * @param id the id of this task
+     */
+    public void setId(int id) {
 		this.id = id;
 	}
+
+    void setAppered(long time) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
