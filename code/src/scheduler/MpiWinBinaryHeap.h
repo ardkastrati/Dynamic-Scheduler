@@ -141,6 +141,14 @@ public:
 
     bool is_statistic_based();
 
+    /**
+     * Compare the given runtimes depending on the is_min_heap flog
+     * If is_min_heap == TRUE the comparator will return (runtime1 < rumtime2).
+     * If is_min_heap == FALSE the comparator will return (runtime1 > runtime2).
+     * @param runtime1 first runtime to be compared
+     * @param runtime2 second runtime to be compared
+     * @return (runtime1 < runtime2), if is_min_heap == TRUE, else (runtime1 > runtime2)
+     */
     bool comparator(long runtime1, long runtime2);
 };
 
