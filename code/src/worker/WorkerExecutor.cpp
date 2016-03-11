@@ -76,7 +76,6 @@ void WorkerExecutor::run_task(Task task)
 
 void WorkerExecutor::place_task(Task task)
 {
-    //LOG(DEBUG) << "place_task: " << task.parameters[0];
     task.time_appeared = get_time_in_mirco();
     MPI_Send(&task, 1, MY_MPI_TASK_TYPE, MASTER, REQUEST, MPI_COMM_WORLD);
 
