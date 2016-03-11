@@ -1,7 +1,7 @@
 #ifndef _SJF_H
 #define _SJF_H
 
-#include "SchedulingStrategy.h"
+#include "MasterSchedulingStrategy.h"
 #include <queue>
 #include <vector>
 /**
@@ -34,7 +34,7 @@ public:
  * @author Fabio Broghammer
  * @version 1.0
  */
-class SJF: public SchedulingStrategy {
+class SJF : public MasterSchedulingStrategy {
 private:
     /**
      * priority  queue  of TaskTypes. The priority queue   keeps the scientific tasks and orders them using the estimated runtime with Shortest Job First  (SJF) strategy

@@ -2,19 +2,17 @@
 
 #include <mpi.h>
 #include "Master.h"
-//#include "../../lib/easylogging++.h"
 #include "../Const.h"
 #include "../util/IdUtility.h"
 
 
-Master::Master(SchedulingStrategy* scheduling_strategy, DataMining* data_miner, int rank, int number_of_processors)
-: AbstractScheduler(scheduling_strategy, data_miner, rank, number_of_processors),
+Master::Master(MasterSchedulingStrategy* scheduling_strategy, int rank, int number_of_processors)
+: AbstractScheduler(scheduling_strategy, rank, number_of_processors),
 free_worker(new std::queue<int>())
 {
 }
 
 Master::~Master(){
-    //LOG(DEBUG) << "Destructor master";
     delete free_worker;
 }
 
@@ -48,9 +46,7 @@ void Master::run()
             free_worker->push(worker);
 
         }else if (status.MPI_TAG == REQUEST) {
-            //LOG(DEBUG) << "palce task funktion: " << task.parameters[0];
             place_task(task);
-            //LOG(DEBUG) << "added task: " << task.parameters[0];
         }
         if (free_worker->size() > 0 && scheduling_strategy->get_task_count() > 0) {
             int worker = free_worker->front();
@@ -64,19 +60,15 @@ void Master::run()
 
 bool Master::is_finish()
 {
-    //TODO: -2 replace dynamische databaseserver count
     return scheduling_strategy->get_task_count() == 0 && free_worker->size() == number_of_processors - 2;
 }
 
 void Master::execute(int argc, char* argv[]){
-    //LOG(DEBUG) << "I'am a master";
-
-    Task init_tasks[100];
+    Task init_tasks[MAX_INIT_TASK_COUNT];
     int init_tasks_number;
     preprocessing(argc, argv, init_tasks, &init_tasks_number);
 
     for (int i = 0; i < init_tasks_number; i++) {
-        //scheduling_strategy->push_new_task(init_tasks[i], scheduling_strategy->DEFAULT_RUNTIME);
         place_task(init_tasks[i]);
     }
 

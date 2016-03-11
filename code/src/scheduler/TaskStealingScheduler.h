@@ -35,11 +35,10 @@ public:
      * Constructs a new TaskStealingScheduler.
      *
      * @param scheduling_strategy the scheduling strategy instance
-     * @param data_miner the data miner instance
      * @param rank the rank of the TaskStealingScheduler relative to the task stealing communicator
      * @param number_of_processors the number of processors in the task stealing communicator
      */
-    TaskStealingScheduler(MpiWinSchedulingStrategy* scheduling_strategy, DataMining* data_miner, int rank, int number_of_processors);
+    TaskStealingScheduler(MpiWinSchedulingStrategy* scheduling_strategy, int rank, int number_of_processors);
     /**
      * Destructs the TaskStealingScheduler and frees the MPI window and the status.
      */

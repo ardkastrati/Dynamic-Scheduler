@@ -8,13 +8,12 @@
 #include "scheduler/FIFO.h"
 #include "scheduler/LIFO.h"
 #include "scheduler/LJF.h"
-#include "scheduler/SchedulingStrategy.h"
+#include "scheduler/MasterSchedulingStrategy.h"
 #include "worker/WorkerExecutor.h"
 #include "database/DatabaseServer.h"
 #include <mpi.h>
 #include "TypesExtern.h"
-
-#define MAX_MPI_WIN_TASK_COUNT 200
+#include "Const.h"
 
 
 Executor::Executor(int rank, int number_of_processors) :
@@ -46,7 +45,7 @@ Executor* Executor::get_new_executor_for_master_worker(int rank, int number_of_p
     Executor* executor;
     if (rank == 0)
     {
-        SchedulingStrategy* scheduling_strategy;
+        MasterSchedulingStrategy* scheduling_strategy;
         switch (strategy)
         {
             case ENUM_FIFO:
@@ -64,7 +63,7 @@ Executor* Executor::get_new_executor_for_master_worker(int rank, int number_of_p
             default:
                 throw "Unreachable";
         }
-        executor = new Master(scheduling_strategy, NULL, rank, number_of_processors);
+        executor = new Master(scheduling_strategy, rank, number_of_processors);
     }
     else if (rank == 1)
     {
@@ -108,7 +107,7 @@ Executor* Executor::get_new_executor_for_taskstealing(int rank, int number_of_pr
           default:
             throw "Unreachable";
         }
-        executor = new TaskStealingScheduler(scheduling_strategy, NULL, taskstealing_world_rank,
+        executor = new TaskStealingScheduler(scheduling_strategy, taskstealing_world_rank,
                                              taskstealing_world_number_of_processors);
     }
 

@@ -9,28 +9,25 @@
 #define NDEBUG
 
 #include "ScientificCode.h"
-//#include "../lib/easylogging++.h"
 #include <cmath>
 #include "worker/Worker.h"
 #include <iostream>
+#include "Const.h"
 
 using namespace std;
 
 void code_postprocessing_master()
 {
-    //LOG(DEBUG) << "code postprocessing master";
 }
 
 void code_postprocessing_slave()
 {
-    //LOG(DEBUG) << "code postprocessing slave";
 }
 
 void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initial_tasks_number)
 {
-    //LOG(DEBUG) << "code preprocessing master";
-    *initial_tasks_number = 100;
-    for (int i = 0; i < 100; i++)
+    *initial_tasks_number = MAX_INIT_TASK_COUNT;
+    for (int i = 0; i < MAX_INIT_TASK_COUNT; i++)
     {
         Task task;
         task.parameters[0] = i;
@@ -42,12 +39,11 @@ void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initia
 
 void code_preprocessing_slave(int argc, char* argv[])
 {
-    //LOG(DEBUG) << "code preprocessing slave";
 }
 
 void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* context) {
     if (task.parameters[0] < 50) {
-      for (int i = 0; i < 1; i++) {
+      for (int i = 0; i < 10; i++) {
         Task newTask;
         newTask.parameter_size = 1;
         newTask.parameters[0] = task.parameters[0] + 100;// + 100* i;
@@ -57,9 +53,8 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
       }
 
     }
-    for (int i = 0; i < task.parameters[0] * 100000; i++) {
+    for (int i = 0; i < task.parameters[0] * 10000; i++) {
         log(i);
 
     }
-    //LOG(DEBUG) << "task done:" << task.parameters[0];
 }

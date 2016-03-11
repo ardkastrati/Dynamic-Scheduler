@@ -1,16 +1,16 @@
 /**
- * Project Dynamic Scheduler for Scientific Simulations
+ * Implements the GridDataMining.h.
  */
  #define GRID_DATA_MINING_DEBUG 0
  #define PRINTGRID 0
- #define GRID_LIBARY_DEBUG 0
+ #define GRID_LIBRARY_DEBUG 0
  #define MPI_PROXY_DEBUG 0
  #define ARRAY_HANDLER_DEBUG 0
 
 #include "GridDataMining.h"
 #include "ArrayHandler.h"
 #include "MpiProxy.h"
-#include "GridLibary.h"
+#include "GridLibrary.h"
 #include <cmath>
 #include <assert.h>
 #include <stddef.h>
@@ -25,8 +25,8 @@
 
 
 #if GRID_DATA_MINING_DEBUG
-  GridLibary::print_name
-  GridLibary::print_
+  GridLibrary::print_name
+  GridLibrary::print_
 #endif
 
 */
@@ -35,21 +35,21 @@
 void printgrid(MpiProxy* proxy, int nr_of_dimensions)
 {
 
-  GridLibary::print_name("Gridprint:");
+  GridLibrary::print_name("Gridprint:");
   int* dimension = proxy -> get_dimensions();
-  int grid_lenght = 1;
+  int grid_length = 1;
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    grid_lenght = grid_lenght * dimension[i];
+    grid_length = grid_length * dimension[i];
   }
   long time[dimension[nr_of_dimensions - 1]];
-  for(int i = 0; i < grid_lenght; i = i + dimension[nr_of_dimensions - 1])
+  for(int i = 0; i < grid_length; i = i + dimension[nr_of_dimensions - 1])
   {
     for(int j = 0; j < dimension[nr_of_dimensions - 1]; j++)
     {
       time[j] = proxy -> get_time(i + j);
     }
-    GridLibary::print_array_long("", time, dimension[nr_of_dimensions - 1]);
+    GridLibrary::print_array_long("", time, dimension[nr_of_dimensions - 1]);
   }
 }
 #endif
@@ -61,13 +61,13 @@ void printgrid(MpiProxy* proxy, int nr_of_dimensions)
 GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count)
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining Konstruktor");
-    GridLibary::print_int("rank", rank);
-    GridLibary::print_int("target_rank", target_rank);
-    GridLibary::print_int("parameter_count", parameter_count);
-    GridLibary::print_array_double("initial_tasks_parameter", initial_tasks_parameter, initial_task_count * parameter_count);
-    GridLibary::print_array_long("initial_task_runtime", initial_task_runtime, initial_task_count);
-    GridLibary::print_int("initial_task_count", initial_task_count);
+    GridLibrary::print_name("GridDataMining constructor");
+    GridLibrary::print_int("rank", rank);
+    GridLibrary::print_int("target_rank", target_rank);
+    GridLibrary::print_int("parameter_count", parameter_count);
+    GridLibrary::print_array_double("initial_tasks_parameter", initial_tasks_parameter, initial_task_count * parameter_count);
+    GridLibrary::print_array_long("initial_task_runtime", initial_task_runtime, initial_task_count);
+    GridLibrary::print_int("initial_task_count", initial_task_count);
   #endif
   assert(rank >= 0);
   assert(target_rank >= 0);
@@ -85,22 +85,22 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
   memory = new ArrayHandler(parameter_count, proxy);
   nr_of_dimensions = parameter_count;
   nr_of_tasks = 0;
-  average_differential = 0;
+  average_deviation = 0;
   //prediction_time_range
   max_differential_time = 100; //1 second
   //
   max_parameter = new double[nr_of_dimensions];
   min_parameter = new double[nr_of_dimensions];
-  int start_dimenison[nr_of_dimensions];
+  int start_dimension[nr_of_dimensions];
   double start_offset[nr_of_dimensions];
   double start_increment[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
   {//dummy values
-    start_dimenison[i] = 4;
+    start_dimension[i] = 4;
     start_offset[i] = 0;
     start_increment[i] = 1;
   }
-  memory -> set_new_array(start_dimenison, start_increment, start_offset);
+  memory -> set_new_array(start_dimension, start_increment, start_offset);
   for(int i = 0; i < initial_task_count * nr_of_dimensions; i = i + nr_of_dimensions)
   {
     double parameter[nr_of_dimensions];
@@ -121,7 +121,7 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
 GridDataMining::~GridDataMining()
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining Dekonstuktor");
+    GridLibrary::print_name("GridDataMining Destructor");
   #endif
   delete proxy;
   //delete memory;
@@ -132,18 +132,18 @@ GridDataMining::~GridDataMining()
 long GridDataMining::predict(double* parameters)
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining predict");
-    GridLibary::print_array_double("parameters", parameters, nr_of_dimensions);
+    GridLibrary::print_name("GridDataMining predict");
+    GridLibrary::print_array_double("parameters", parameters, nr_of_dimensions);
   #endif
   assert (parameters != NULL);
   int nr_of_enviroment_grid_points = pow(2, nr_of_dimensions);
   int* enviroment_index = memory -> get_enviroment_index(parameters);
-  int array_lenght = nr_of_dimensions * nr_of_enviroment_grid_points;
+  int array_length = nr_of_dimensions * nr_of_enviroment_grid_points;
   double* enviroment_distances = new double[nr_of_enviroment_grid_points];
   //double enviroment_distances[nr_of_enviroment_grid_points];
   long* enviroment_times = new long[nr_of_enviroment_grid_points];
-  for(int i = 0; i < array_lenght; i = i + nr_of_dimensions)
-  {//for each vektor in enviroment_index
+  for(int i = 0; i < array_length; i = i + nr_of_dimensions)
+  {//for each vector in enviroment_index
     int* index = new int[nr_of_dimensions];
     for(int j = 0; j < nr_of_dimensions; j++)
     {
@@ -153,8 +153,8 @@ long GridDataMining::predict(double* parameters)
     enviroment_times[i / nr_of_dimensions] = memory -> get_time(index);
     delete index;
   }
-  double* factors = GridLibary::kastrati_value(enviroment_distances, nr_of_enviroment_grid_points);
-  double* summand = GridLibary::multiply_array(enviroment_times, factors, nr_of_enviroment_grid_points);
+  double* factors = GridLibrary::kastrati_value(enviroment_distances, nr_of_enviroment_grid_points);
+  double* summand = GridLibrary::multiply_array(enviroment_times, factors, nr_of_enviroment_grid_points);
   //sum the array
   double sum = 0;
   for(int i = 0; i < nr_of_enviroment_grid_points; i++)
@@ -173,43 +173,43 @@ long GridDataMining::predict(double* parameters)
 void GridDataMining::hard_insert(double* parameters, long runtime)
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining hard_insert");
-    GridLibary::print_array_double("parameters", parameters, nr_of_dimensions);
-    GridLibary::print_long("runtime", runtime);
+    GridLibrary::print_name("GridDataMining hard_insert");
+    GridLibrary::print_array_double("parameters", parameters, nr_of_dimensions);
+    GridLibrary::print_long("runtime", runtime);
   #endif
   assert (parameters != NULL);
   assert (runtime >= 0);
-  int position_vektor[nr_of_dimensions];
+  int position_vector[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    position_vektor[i] = 0;
+    position_vector[i] = 0;
   }
-  int* dimenison = memory -> get_dimensions();
-  int array_lenght = 1;
+  int* dimension = memory -> get_dimensions();
+  int array_length = 1;
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    array_lenght = array_lenght * dimenison[i];
+    array_length = array_length * dimension[i];
   }
 
-  for(int i = 0; i < array_lenght; i++)
+  for(int i = 0; i < array_length; i++)
   {
-    memory -> insert_at_point(position_vektor, parameters, runtime);
-    //increase position_vektor
+    memory -> insert_at_point(position_vector, parameters, runtime);
+    //increase position_vector
     bool incresed_yet = false;
     for(int j = 0; j < nr_of_dimensions && !incresed_yet; j++)
     {
-      if(position_vektor[j] < dimenison[j] - 1)
+      if(position_vector[j] < dimension[j] - 1)
       {
-        position_vektor[j]++;
+        position_vector[j]++;
         incresed_yet = true;
       }
       else
       {
-        position_vektor[j] = 0;
+        position_vector[j] = 0;
       }
     }
   }
-  delete dimenison;
+  delete dimension;
   #if PRINTGRID
     printgrid(proxy, nr_of_dimensions);
   #endif
@@ -219,18 +219,18 @@ void GridDataMining::hard_insert(double* parameters, long runtime)
 void GridDataMining::insert(double* parameters, long runtime)
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining insert");
-    GridLibary::print_array_double("parameters", parameters, nr_of_dimensions);
-    GridLibary::print_long("runtime", runtime);
+    GridLibrary::print_name("GridDataMining insert");
+    GridLibrary::print_array_double("parameters", parameters, nr_of_dimensions);
+    GridLibrary::print_long("runtime", runtime);
   #endif
   assert (parameters != NULL);
   assert (runtime >= 0);
   int* enviroment_index = memory -> get_enviroment_index(parameters);
-  int array_lenght = nr_of_dimensions * pow(2, nr_of_dimensions);
+  int array_length = nr_of_dimensions * pow(2, nr_of_dimensions);
 
 
-  for(int i = 0; i < array_lenght; i = i + nr_of_dimensions)
-  {//for each vektor in enviroment_index
+  for(int i = 0; i < array_length; i = i + nr_of_dimensions)
+  {//for each vector in enviroment_index
     int* index = new int[nr_of_dimensions];
     for(int j = 0; j < nr_of_dimensions; j++)
     {
@@ -250,20 +250,20 @@ void GridDataMining::insert(double* parameters, long runtime)
 void GridDataMining::make_new_grid()
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining make_new_grid");
+    GridLibrary::print_name("GridDataMining make_new_grid");
   #endif
   make_new_grid_running = true;
   //here is at the moment some dummy code but it works
-  int* dimenison = memory -> get_dimensions();
+  int* dimension = memory -> get_dimensions();
   int new_dimensions[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    new_dimensions[i] = dimenison[i] * 2;//this gets realy realy big soon
+    new_dimensions[i] = dimension[i] * 2;//this gets really big really soon
   }
   double new_increment[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    new_increment[i] = (max_parameter[i] - min_parameter[i]) / dimenison[i];
+    new_increment[i] = (max_parameter[i] - min_parameter[i]) / dimension[i];
   }
   memory -> set_new_array(new_dimensions, new_increment, min_parameter);
   nr_of_tasks = 0; //reset nr of tasks
@@ -298,9 +298,9 @@ void GridDataMining::make_new_grid()
 void GridDataMining::grid_bookkeping(double* parameters, long runtime)
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining grid_bookkeping");
-    GridLibary::print_array_double("parameters", parameters, nr_of_dimensions);
-    GridLibary::print_long("runtime", runtime);
+    GridLibrary::print_name("GridDataMining grid_bookkeping");
+    GridLibrary::print_array_double("parameters", parameters, nr_of_dimensions);
+    GridLibrary::print_long("runtime", runtime);
   #endif
   assert (parameters != NULL);
   assert (runtime >= 0);
@@ -311,10 +311,10 @@ void GridDataMining::grid_bookkeping(double* parameters, long runtime)
      min_parameter[i] = (min_parameter[i] > parameters[i]) ? parameters[i] : min_parameter[i];
   }
 
-  long sceduled_time = predict(parameters);//adapt average_differential
-  long differenz_time = sceduled_time - runtime;
-  average_differential = (average_differential * nr_of_tasks + differenz_time) / (nr_of_tasks + 1);
-  average_differential = (average_differential < 0) ? -average_differential : average_differential;
+  long sceduled_time = predict(parameters);//adapt average_deviation
+  long difference_time = sceduled_time - runtime;
+  difference_time = (difference_time < 0) ? -difference_time : difference_time;
+  average_deviation = (average_deviation * nr_of_tasks + difference_time) / (nr_of_tasks + 1);
   nr_of_tasks++;//increase nr of task
 
   if(check_for_update())
@@ -326,15 +326,15 @@ void GridDataMining::grid_bookkeping(double* parameters, long runtime)
 bool GridDataMining::check_for_update()
 {
   #if GRID_DATA_MINING_DEBUG
-    GridLibary::print_name("GridDataMining check_for_update");
-    GridLibary::print_double("max_differential_time", max_differential_time);
-    GridLibary::print_double("average_differential", average_differential);
+    GridLibrary::print_name("GridDataMining check_for_update");
+    GridLibrary::print_double("max_deviation_time", max_deviation_time);
+    GridLibrary::print_double("average_deviation", average_deviation);
   #endif
   if(make_new_grid_running)
   {
     return false;
   }
-  else if (max_differential_time < average_differential)
+  else if (max_deviation_time < average_deviation)
   {
     return true;
   }

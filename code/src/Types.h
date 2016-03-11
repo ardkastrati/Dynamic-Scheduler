@@ -46,8 +46,8 @@ typedef struct _TaskData {
     int event;
     int mode;
     long parent;
-    int time_intercommunication_start;
-    int time_intercommunication_end;
+    long time_intercommunication_start;
+    long time_intercommunication_end;
     int rank;
     int parameter_size;
     double parameters[PARAMTER_LENGTH];
@@ -62,8 +62,8 @@ MPI_Datatype mpi_task_data_type_type[12] = {MPI_LONG,
                                             MPI_INT,
                                             MPI_INT,
                                             MPI_LONG,
-                                            MPI_INT,
-                                            MPI_INT,
+                                            MPI_LONG,
+                                            MPI_LONG,
                                             MPI_INT,
                                             MPI_INT,
                                             MPI_DOUBLE};

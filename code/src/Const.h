@@ -38,3 +38,13 @@
  * Tag to indicate a data mining request
  */
 #define DATAMINING 192
+
+/**
+ * The init task parameter count
+ */
+ #define MAX_INIT_TASK_COUNT 100
+
+ /**
+  * The max queue size for taskstealing
+  */
+ #define MAX_MPI_WIN_TASK_COUNT 200000

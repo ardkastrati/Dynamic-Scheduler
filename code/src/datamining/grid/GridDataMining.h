@@ -1,5 +1,7 @@
 /**
- * Project Dynamic Scheduler for Scientific Simulations
+ * Implementation of 'DataMining' Superclass.
+ * GridDataMining creates a multi-dimensional array (with each parameter as dimension) used to predict the runtime of future tasks.
+ * The virtual 'grid points' are set according to the closest tasks previously executed.
  */
 
 
@@ -17,101 +19,103 @@ class GridDataMining : public DataMining {
 private:
 	DatabaseHandler* database;
 	/**
-	 * the nr of dimensions of the virtal mulitdimenisonal array
+	 * The nr of dimensions of the virtual multi-dimensional array.
 	 */
 	int nr_of_dimensions;
 	/**
-	 * number of tasks that are in the Grid
+	 * Number of tasks already inserted in the grid.
 	 */
 	int nr_of_tasks;
 	/**
-	 * is true when the Grid is recreated
+	 * True during the grid is recreated.
 	 */
 	bool make_new_grid_running;
 	/**
-	 * the maximun of the parameters of the task that are insertet yet
+	 * The maximum of the parameters of the tasks already inserted.
 	 */
 	double* max_parameter;
 	/**
-	 * the minimun of the parameters of the task that are insertet yet
+	 * The minimum of the parameters of the task already inserted.
 	 */
 	double* min_parameter;
 	/**
-	 * the average differenz between the prediction and the real time the task had taken
+	 * The average deviation between the predicted runtime and the actual runtime of all tasks already executed.
 	 */
-	double average_differential;
+	double average_deviation;
 	/**
-	 * the maximun average differenz
+	 * The maximum average deviation allowed before a new grid is created.
 	 */
-	double max_differential_time;
+	double max_deviation_time;
 	/**
-	 * the ArrayHandler that manage the communikation between the GridDataMininer and the data
+	 * The ArrayHandler managing the data access.
 	 */
 	ArrayHandler* memory;
 	/**
-	 * the MpiProxy manage the communikation between MPI and the Grid
+	 * The MpiProxy manages the communication between MPI and the grid.
 	 */
 	MpiProxy* proxy;
 	/**
-	 * inserts a task into the Grid but different from the normal insert every Gridpoint is checked instead of the surrounding
+	 * Inserts a task into the grid.
+	 * Unlike the normal insert every grid point might get adapted instead of only the surrounding.
 	 * @param parameter the parameter of the task
-	 *				 musst be nr_of_dimensions long
-	 *				 musst not be NULL
+	 *				 must be nr_of_dimensions long
+	 *				 must not be NULL
 	 * @param time the new time of the task
-	 *				 musst not be negativ
+	 *				 must not be negative
 	 */
 	void hard_insert(double* parameters, long runtime);
 	/**
-	 * creates a new Grid and inserts every task that erver ran
+	 * Creates a new grid and inserts every task ever executed.
 	 */
 	void make_new_grid();
 	/**
- 	 * update the min and max parameter vektors and the average_differential
+ 	 * Updates the min and max parameter vectors and the average_deviation.
  	 * @param parameter the parameter of the task
- 	 *				musst be nr_of_dimensions long
- 	 *				musst not be NULL
+ 	 *				must be nr_of_dimensions long
+ 	 *				must not be NULL
  	 * @param time the new time of the task
- 	 *				musst not be negativ
+ 	 *				must not be negative
  	 */
 	void grid_bookkeping(double* parameters, long runtime);
 	/**
-	 * check if the Grid musst be recreated
-	 * @return true if the grid musst be recreated false if the grid is good or the grid is recreated right know
+	 * Checks whether the grid must get recreated.
+	 * @return true if the grid must be recreated false if the grid is good or the grid is recreated right know
 	 */
 	bool check_for_update();
 public:
 	/**
-	 * Grid Konstruktor create a ArrayHandler and a MpiProxy
+	 * Grid constructor.
+	 * Creates an ArrayHandler and a MpiProxy.
 	 * @param rank in the MPI World
 	 * @param target_rank the MPI rank of the GridDataMininer that holds the MPI SharedMemory
 	 * @param database holds all task that ever ran
-	 * @param nr_of_dimensions the nr of dimensions of the virtal mulitdimenisonal array
+	 * @param nr_of_dimensions the nr of dimensions of the virtual multi-dimensional array
 	 * @param initial_tasks_parameter a array with the parameter of the initial task
-	 * 				musst be initial_task_count * nr_of_dimensions long
+	 * 				must be initial_task_count * nr_of_dimensions long
 	 * @param initial_task_runtime a array with the runtime of the initial task
-	 *				musst be initial_task_count long
+	 *				must be initial_task_count long
 	 * @param initial_task_count the number of initial task
-	 *				musst be bigger than zero
+	 *				must be greater than zero
 	 */
 	GridDataMining(int rank, int target_rank, DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count);
 	/**
-	 * Deconstructor
+	 * Destructor
 	 */
 	~GridDataMining();
 	/**
-	 * predict a given task
+	 * Predicts a given task's runtime.
 	 * @param parameter the parameter of the task
- 	 *				musst be nr_of_dimensions long
- 	 *				musst not be NULL
+ 	 *				must be nr_of_dimensions long
+ 	 *				must not be NULL
 	 */
 	long predict(double* parameters);
 	/**
-	 * insert a ran task into the grid
+	 * Inserts an executed task into the grid.
 	 * @param parameter the parameter of the task
- 	 *				musst be nr_of_dimensions long
- 	 *				musst not be NULL
+ 	 *				must be nr_of_dimensions long
+ 	 *				must not be NULL
  	 * @param time the new time of the task
- 	 *				musst not be negativ
+ 	 *				must not be negative
  	 */
 	void insert(double* parameters, long runtime);
 };

@@ -9,11 +9,11 @@
 #ifndef _LIFO_H
 #define _LIFO_H
 
-#include "SchedulingStrategy.h"
+#include "MasterSchedulingStrategy.h"
 #include <stack>
 
 
-class LIFO: public SchedulingStrategy {
+class LIFO: public MasterSchedulingStrategy {
 private:
     /**
      * Last In - First Out (LIFO) (stack like) queue of TaskTypes. The stack keeps the scientific tasks.

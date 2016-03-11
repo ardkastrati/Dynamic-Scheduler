@@ -27,11 +27,6 @@ protected:
     SchedulingStrategy* scheduling_strategy;
 
     /**
-     * The current data_miner of the scheduler.
-     */
-    DataMining* data_miner;
-
-    /**
      * The current scheduling strategy evaluator of the scheduler.
      */
     SchedulingStrategyEvaluator* schedulingStrategyEvaluator;
@@ -73,14 +68,12 @@ public:
      * This constructor is called from the subclass constructors.
      *
      * @param scheduling_strategy the scheduling strategy to be set
-     * @param data_mining the data miner to be set
      * @param rank the MPI rank of the processors, that execute the scheduler
      * @param number_of_processors the total number of processors of the MPI world
      */
-    AbstractScheduler(SchedulingStrategy* scheduling_strategy,
-        DataMining* data_miner, int rank, int number_of_processors);
+    AbstractScheduler(SchedulingStrategy* scheduling_strategy, int rank, int number_of_processors);
     /**
-     * Deletes the scheduling_strategy and data_miner object.
+     * Deletes the scheduling_strategy object.
      */
     virtual ~AbstractScheduler();
 
