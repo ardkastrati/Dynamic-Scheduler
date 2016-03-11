@@ -41,8 +41,6 @@ void AbstractScheduler::place_task(Task task)
         TaskData temp;
         temp.parameter_size = task.parameter_size;
         memcpy(temp.parameters, task.parameters, sizeof(double)*temp.parameter_size);
-        std::cout << "hallo ich schicke1 " << temp.parameters[0] << std::endl;
-        std::cout << "hallo ich schicke2 " << temp.parameters[1] << std::endl;
         //std::copy(std::begin(task.parameters), std::end(task.parameters), std::begin(temp.parameters));
 
         MPI_Status status;

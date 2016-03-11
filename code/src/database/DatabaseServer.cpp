@@ -102,9 +102,6 @@ void DatabaseServer::run()
             } else {
               //predict
               long runtime = datamining_handler->predict(task_data.parameters);
-              cout << "runtime: " << runtime << endl;
-              cout << "predict mein arsch1: " << task_data.parameters[0] << endl;
-              cout << "predict mein arsch2: " << task_data.parameters[1] << endl;
               //long runtime = 1;
               //send prediction
               int target_rank = status.MPI_SOURCE;
