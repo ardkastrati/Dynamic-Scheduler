@@ -4,7 +4,7 @@
  */
 package controller.MOABScene;
 
-import GUIcomponents.SftpTreeItem;
+import components.SftpTreeItem;
 import controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
