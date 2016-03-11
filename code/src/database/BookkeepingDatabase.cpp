@@ -49,9 +49,8 @@ void BookkeepingDatabase::readTaskData(dataInquiry* data_section)
 
 void BookkeepingDatabase::insertTaskData(string data)
 {
-	/*data[] is structed in ID;Timestamp_APP/START/END;Mode;Parent_Process of appearing task/
-	* Hosting process of starting task/Hosting process of ended task;Timestamp intercommunication start;
-	* Timestamp intercommmunication end;CPU rank
+	/*data[] is structed in ID;Timestamp_APP/START/END;Event;Mode;Parent;Timestamp intercommunication start;
+	* Timestamp intercommmunication end;Rank;Parameter_size
 	*/
 
 	bkfile.open("Bookkeeping.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);

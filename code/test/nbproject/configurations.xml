@@ -11,7 +11,6 @@
       <itemPath>scheduler/LJFTestCase.h</itemPath>
       <itemPath>scheduler/SJFTestCase.h</itemPath>
       <itemPath>scheduler/SchedulerTestSuite.h</itemPath>
-      <itemPath>database/StatisticDatabase.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -27,7 +26,6 @@
       <itemPath>scheduler/LJFTestCase.cpp</itemPath>
       <itemPath>scheduler/SJFTestCase.cpp</itemPath>
       <itemPath>scheduler/SchedulerTestSuite.cpp</itemPath>
-      <itemPath>database/StatisticDatabase.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -85,10 +83,6 @@
       </item>
       <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="database/StatisticDatabase.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="database/StatisticDatabase.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="scheduler/FIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
@@ -142,10 +136,6 @@
       <item path="database/DatabaseTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="database/StatisticDatabase.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="database/StatisticDatabase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

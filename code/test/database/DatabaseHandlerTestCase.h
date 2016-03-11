@@ -56,12 +56,22 @@ public:
      */
     void test_dataMiningInquiry_pointerExist();
     
-    
-    
+    /**
+     * 
+     */
     void setUp_DummyTask();
+    
+    /**
+     * 
+     */
     void test_dataParserBookkeeping();
+    
+    /**
+     * 
+     */
     void test_dataParserStatistic();
-
+    
+    
 private:
     
     dataInquiry* data_Inq;
@@ -79,6 +89,10 @@ private:
      *
      */
     string file_entry_statistic;
+    
+    /**
+     *
+     */
     string file_entry_bookkeeping;
 };
 

@@ -84,7 +84,6 @@ void StatisticDatabase::readTaskData(dataInquiry* data_section)
 			}
 			operator_string.push_back(line[i]);
 		}
-		cout << "ausgelese runtime: "<< runtime << "\n";
 		data_section->runtime.push_back(runtime);
 		operator_string.clear();
 		//now the parameters
@@ -125,9 +124,7 @@ void StatisticDatabase::readTaskData(dataInquiry* data_section)
 
 void StatisticDatabase::insertTaskData(string data)
 {
-	/*data[] is structed in ID;Timestamp_APP/START/END;Mode;Parent_Process of appearing task/
-	* Hosting process of starting task/Hosting process of ended task;Timestamp intercommunication start;
-	* Timestamp intercommmunication end;CPU rank
+	/*data[] is structed in runtime;parameter[0]; ... ;parameter[parameter_size]
 	*/
 
 	stfile.open("Statistic.txt",std::fstream::out| std::fstream::app  | std::fstream::ate);

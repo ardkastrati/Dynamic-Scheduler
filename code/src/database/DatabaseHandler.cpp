@@ -191,4 +191,5 @@ dataInquiry* DatabaseHandler::readStatistic()
 	//make sure to clear old structure
 	dataInquiry* file_section = new dataInquiry;
 	data_statistic->readTaskData(file_section);
+	return file_section;
 }

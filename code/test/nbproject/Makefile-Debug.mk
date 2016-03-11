@@ -37,7 +37,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/database/DatabaseHandlerTestCase.o \
 	${OBJECTDIR}/database/DatabaseTestSuite.o \
-	${OBJECTDIR}/database/StatisticDatabase.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/scheduler/FIFOTestCase.o \
 	${OBJECTDIR}/scheduler/LIFOTestCase.o \
@@ -83,11 +82,6 @@ ${OBJECTDIR}/database/DatabaseTestSuite.o: database/DatabaseTestSuite.cpp
 	${MKDIR} -p ${OBJECTDIR}/database
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseTestSuite.o database/DatabaseTestSuite.cpp
-
-${OBJECTDIR}/database/StatisticDatabase.o: database/StatisticDatabase.cpp 
-	${MKDIR} -p ${OBJECTDIR}/database
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/StatisticDatabase.o database/StatisticDatabase.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
