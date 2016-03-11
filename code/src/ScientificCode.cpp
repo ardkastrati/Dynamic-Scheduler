@@ -31,7 +31,8 @@ void code_preprocessing_master(int argc, char* argv[], Task* buffer, int* initia
     {
         Task task;
         task.parameters[0] = i;
-        task.parameter_size = 1;
+        task.parameters[1] = i + 10;
+        task.parameter_size = 2;
         task.runtime = i;
         buffer[i] = task;
     }
@@ -45,16 +46,19 @@ void code_run_task(Task task, void (*place_task_forwarder) (void*, Task), void* 
     if (task.parameters[0] < 50) {
       for (int i = 0; i < 10; i++) {
         Task newTask;
-        newTask.parameter_size = 1;
+        newTask.parameter_size = 2;
         newTask.parameters[0] = task.parameters[0] + 100;// + 100* i;
+        newTask.parameters[1] = task.parameters[1] + 100 + 10;
         newTask.runtime = (long) newTask.parameters[0];
         newTask.parent = task.id;
         place_task_forwarder(context, newTask);
       }
 
     }
-    for (int i = 0; i < task.parameters[0] * 10000; i++) {
-        log(i);
+    for (int i = 0; i < task.parameters[0] * 100; i++) {
+      for (int j = 0; j < task.parameters[1] * 10; j++) {
+                log(i+j);
+      }
 
     }
 }
