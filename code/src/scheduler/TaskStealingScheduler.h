@@ -29,6 +29,18 @@ private:
      *  The TaskStealingWorker
      */
     Worker* worker;
+
+    /**
+     * The main loop of the task stealing algorithm.
+     * The function returns when all scientific tasks are completed.
+     */
+    void run();
+    /**
+     * Returns, if the scientific calculation finished.
+     *
+     * @return TRUE if the scientific calculation finished
+     */
+    bool is_finish();
 public:
 
     /**
@@ -46,18 +58,9 @@ public:
 
     void execute(int argc, char* argv[]);
 
-    /**
-     * The main loop of the master - worker algorithm.
-     * The function returns when all scientific tasks are completed.
-     */
-    void run();
 
-    /**
-     * Returns, if the scientific calculation finished.
-     *
-     * @return TRUE if the scientific calculation finished
-     */
-    bool is_finish();
+
+
 };
 
 #endif //_TASKSTEALINGSCHEDULER_H
