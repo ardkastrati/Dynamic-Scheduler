@@ -5,7 +5,6 @@
 package model;
 
 import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -38,10 +37,11 @@ public class MySession {
     
     
      // Executor for background tasks:        
-    public static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
+    private ExecutorService exec = Executors.newCachedThreadPool(r -> {
         Thread t = new Thread(r);
+        
         t.setDaemon(true);
-        return t ;
+        return t;
     });
 
     public ChannelSftp getSFTPChannel(String sftp) {
@@ -75,7 +75,15 @@ public class MySession {
         /**
          * The session couldn't be connected because a failure occured, or the user never tried to connect to the server.
          */ 
-        DISCONNECTED;
+        DISCONNECTED,
+        /**
+         * The session is trying to connect with the server.
+         */ 
+        CONNECTING,
+        /**
+         * The session is establishing connection.
+         */
+        ESTABLISHING;
     }
     
     // observable property for current load status:
@@ -85,7 +93,6 @@ public class MySession {
     
     
     private JSch jsch = new JSch();
-    
     private Session currentSession;
     private String username;
     private String host;
@@ -146,6 +153,7 @@ public class MySession {
         this.host = host;
         this.port = port;
         this.password = password;
+        setSessionStatus(SessionStatus.CONNECTING);
         exec.submit(newSession);
         newSession.setOnSucceeded(event -> {
            currentSession = newSession.getValue();
@@ -153,7 +161,6 @@ public class MySession {
             setSessionStatus(SessionStatus.READY);
         });
         newSession.setOnFailed(event -> {
-            System.out.println("Failed to initialize seession");
             setSessionStatus(SessionStatus.DISCONNECTED);
         });
         
@@ -169,6 +176,7 @@ public class MySession {
         
         
          EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
+         setSessionStatus(SessionStatus.ESTABLISHING);
             exec.submit(firstTry);
             firstTry.setOnSucceeded(event -> {
                 
@@ -178,11 +186,13 @@ public class MySession {
                 exec.submit(channelTask);
                  
                 channelTask.setOnSucceeded(event3 -> {
+                    
                     setSessionStatus(SessionStatus.ONLINE);
                     currentOpenedChannel = channelTask.getValue();
                  });
                  channelTask.setOnFailed(event3 -> {
-                     System.out.println("no channel could be opened");
+                    
+                     currentSession.disconnect();
                     setSessionStatus(SessionStatus.READY);
                  });
                
@@ -193,6 +203,7 @@ public class MySession {
                  
                  System.out.println("Session kaputt. Baue neue.");
                  CreateNewSessionTask secondTry = new CreateNewSessionTask(username, host, password, port, userInfo);
+                 
                  exec.submit(secondTry);
                  secondTry.setOnSucceeded(event2 -> {
                      
@@ -202,11 +213,15 @@ public class MySession {
                      exec.submit(channelTask);
                      
                      channelTask.setOnSucceeded(event3 -> {
+                         System.out.println("Channel is opened");
                          currentOpenedChannel = channelTask.getValue();
                          setSessionStatus(SessionStatus.ONLINE);
                      });
+                     
                      channelTask.setOnFailed(event3 -> {
+                          System.out.println("Channel opening failed");
                          System.out.println("no channel could be opened");
+                         currentSession.disconnect();
                          setSessionStatus(SessionStatus.READY);
                      });
                  });

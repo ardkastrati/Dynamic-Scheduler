@@ -9,7 +9,7 @@
 
         ##### Directory
 
-cd ./intel
+cd ./.mozilla/extensions
 
 
         #### MPI commands

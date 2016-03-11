@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import model.MySession;
 import model.commands.MPI.MpiRun;
 import org.controlsfx.control.ToggleSwitch;
 
@@ -51,7 +53,6 @@ public class MpirunSceneController implements Initializable, CommandController {
 	@FXML
 	private GridPane schedulerGrid;
         
-        
         public MpirunSceneController() {
             this.strategyProperty = new SimpleListProperty<>();
         }
@@ -62,7 +63,6 @@ public class MpirunSceneController implements Initializable, CommandController {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
             
-		
             ArrayList<MpiRun.SchedulingStrategy> strategies = new ArrayList<>();
             for(MpiRun.SchedulingStrategy strategy : MpiRun.SchedulingStrategy.values()) { 
                  strategies.add(strategy); 
@@ -126,12 +126,11 @@ public class MpirunSceneController implements Initializable, CommandController {
 
 	@Override
 	public void onEntry() {
-		// nothing should be changed when the mpirun scene is entered!
+		MySession.getInstant().closeChannel();
 	}
 
 	@Override
 	public void onExit() {
-		// nothing should be changed when the mpirun scene is exited!
 	}
 
         @Override

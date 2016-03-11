@@ -120,9 +120,13 @@ public class MainSceneController implements Initializable, Controller {
 				status.setText("Disconnected");
 			} else if (newStatus == MySession.SessionStatus.READY) {
 				status.setText("Ready");
-			} else {
-				status.setText("Online");
-			}
+			} else if(newStatus == MySession.SessionStatus.CONNECTING){
+				status.setText("Connecting...");
+			} else if(newStatus == MySession.SessionStatus.ESTABLISHING) {
+                                status.setText("Establishing...");
+                        } else {
+                                status.setText("Online");
+                        }
 		};
 
 		MySession.getInstant().sessionStatusProperty().addListener(listener);

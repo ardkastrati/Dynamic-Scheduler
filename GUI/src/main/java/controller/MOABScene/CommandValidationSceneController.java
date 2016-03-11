@@ -45,6 +45,7 @@ public class CommandValidationSceneController implements Initializable, CommandC
     
     private ChangeListener<MySession.SessionStatus> listener;
     private Task currentCommand;
+    private boolean triedCommand = false;
     
     /**
      * Initializes the controller class.
@@ -52,14 +53,18 @@ public class CommandValidationSceneController implements Initializable, CommandC
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         listener = (obs, oldStatus, newStatus) -> {
-                if (newStatus == MySession.SessionStatus.DISCONNECTED) {
+                if (newStatus == MySession.SessionStatus.DISCONNECTED && !triedCommand) {
+                    triedCommand = true;
+                    commandIndicator.setVisible(false);
                     failureImage.setVisible(true);
                     startTransition(failureImage);
                     commandValidationText.setText("Sorry, this command could not be sent because there is no connection.");
-                } else if (newStatus == MySession.SessionStatus.READY) {
+                } else if (newStatus == MySession.SessionStatus.READY && !triedCommand) {
                     // should not happen    
-                } else {
+                } else if(newStatus == MySession.SessionStatus.ONLINE && !triedCommand) {
+                     triedCommand = true;
                      initiateTask();
+                     
                 }
 	};
     }  
