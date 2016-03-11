@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/database/DatabaseHandler.o \
 	${OBJECTDIR}/database/DatabaseHandlerTestCase.o \
 	${OBJECTDIR}/database/DatabaseTestSuite.o \
 	${OBJECTDIR}/database/StatisticDatabase.o \
@@ -73,57 +72,52 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ../bin/libscheduler.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/database/DatabaseHandler.o: database/DatabaseHandler.cpp 
-	${MKDIR} -p ${OBJECTDIR}/database
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandler.o database/DatabaseHandler.cpp
+	mpic++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/database/DatabaseHandlerTestCase.o: database/DatabaseHandlerTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/database
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandlerTestCase.o database/DatabaseHandlerTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandlerTestCase.o database/DatabaseHandlerTestCase.cpp
 
 ${OBJECTDIR}/database/DatabaseTestSuite.o: database/DatabaseTestSuite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/database
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseTestSuite.o database/DatabaseTestSuite.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseTestSuite.o database/DatabaseTestSuite.cpp
 
 ${OBJECTDIR}/database/StatisticDatabase.o: database/StatisticDatabase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/database
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/StatisticDatabase.o database/StatisticDatabase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/StatisticDatabase.o database/StatisticDatabase.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/scheduler/FIFOTestCase.o: scheduler/FIFOTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/FIFOTestCase.o scheduler/FIFOTestCase.cpp
 
 ${OBJECTDIR}/scheduler/LIFOTestCase.o: scheduler/LIFOTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LIFOTestCase.o scheduler/LIFOTestCase.cpp
 
 ${OBJECTDIR}/scheduler/LJFTestCase.o: scheduler/LJFTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LJFTestCase.o scheduler/LJFTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/LJFTestCase.o scheduler/LJFTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SJFTestCase.o: scheduler/SJFTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SJFTestCase.o scheduler/SJFTestCase.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SJFTestCase.o scheduler/SJFTestCase.cpp
 
 ${OBJECTDIR}/scheduler/SchedulerTestSuite.o: scheduler/SchedulerTestSuite.cpp 
 	${MKDIR} -p ${OBJECTDIR}/scheduler
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -s -I/usr/include/cppunit -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SchedulerTestSuite.o scheduler/SchedulerTestSuite.cpp
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scheduler/SchedulerTestSuite.o scheduler/SchedulerTestSuite.cpp
 
 # Subprojects
 .build-subprojects:

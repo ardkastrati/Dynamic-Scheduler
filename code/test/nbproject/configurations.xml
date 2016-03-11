@@ -20,7 +20,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>database/DatabaseHandler.cpp</itemPath>
       <itemPath>database/DatabaseHandlerTestCase.cpp</itemPath>
       <itemPath>database/DatabaseTestSuite.cpp</itemPath>
       <itemPath>scheduler/FIFOTestCase.cpp</itemPath>
@@ -54,6 +53,9 @@
       <compileType>
         <cTool>
           <standard>10</standard>
+          <incDir>
+            <pElem>/usr/include/</pElem>
+          </incDir>
         </cTool>
         <ccTool>
           <stripSymbols>true</stripSymbols>
@@ -61,17 +63,17 @@
           <commandlineTool>mpic++</commandlineTool>
           <incDir>
             <pElem>/usr/include/cppunit</pElem>
+            <pElem>/usr/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
+          <commandlineTool>mpic++</commandlineTool>
           <linkerLibItems>
             <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libcppunit.a</linkerLibFileItem>
             <linkerLibFileItem>../bin/libscheduler.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="database/DatabaseHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="database/DatabaseHandlerTestCase.cpp"
             ex="false"
             tool="1"
@@ -130,8 +132,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="database/DatabaseHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="database/DatabaseHandlerTestCase.cpp"
             ex="false"
             tool="1"

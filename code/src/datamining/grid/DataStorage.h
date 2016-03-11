@@ -2,27 +2,23 @@
  * This class stores all data used in the grid data  mining procedures.
  */
 
-#ifndef _MPIPROXY_H
-#define _MPIPROXY_H
+#ifndef _DATASTORAGE_H
+#define _DATASTORAGE_H
 
 
-class MpiProxy {
+class DataStorage {
 	public:
 		/**
-		 * The constructor of the MPI Proxy initializing the MPI shared memory.
+		 * The constructor of the DataStorage
 		 * and the attributes with default values
 		 * @param nr_of_dimensions the number of dimensions in the virtual multi-dimensional array
 		 *				must be greater than zero
-		 * @param rank the own rank in the MPI world
-		 *				must not be negative
-		 * @param target_rank the rank of the instance that hold the MPI shared memory
-		 *				must not be negative
 		 */
-		MpiProxy(int nr_of_dimensions, int rank, int target_rank);
+		DataStorage(int nr_of_dimensions);
 		/**
-		 * The destructor of the MPI Proxy it deletes the MPI shared memory window.
+		 * The destructor of the DataStorage
 		 */
-		~MpiProxy();
+		~DataStorage();
 		/**
 		 * Getter for the dimensions array.
 		 * @return a copy of the actual dimensions
@@ -53,8 +49,7 @@ class MpiProxy {
 		 */
 		double get_correction_vector(int index);
 		/**
-		 * Creates a new MPI window with the new size.
-		 * BUT does not change anything at the old MPI window
+		 * Set new values for dimensions, offset and increment
 		 * @param new_dimensions the new size of the time and the correction vector array
 		 *				must be nr_of_dimensions long
 		 *				must not be NULL
@@ -66,11 +61,6 @@ class MpiProxy {
 		 *				must not be NULL
 		 */
 		void set_new_array(int* new_dimensions, double* new_offset, double* new_increment);
-		/**
-		 * Deletes the old MPI shared Memory and sets the new one instead.
-		 * Only callable if target rank is equal rank and if set_new_array is called previously.
-		 */
-		void push_new_array();
 		/**
 		 * Setter for the correction_vector.
 		 * @param index the index of the correction vector array
@@ -120,14 +110,6 @@ class MpiProxy {
 		 * The nr of dimensions of the virtual multi-dimensional array.
 		 */
 		int nr_of_dimensions;
-		/**
-		 * The MPI rank of the instance.
-		 */
-		int rank;
-		/**
-		 * The MPI rank of the instance that holds the shared memory.
-		 */
-		int target_rank;
 };
 
-#endif //_MPIPROXY_H
+#endif //_DATASTORAGE_H

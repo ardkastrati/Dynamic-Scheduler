@@ -2,28 +2,22 @@
  * Implementes data storage of all data used in the grid data mining procedures.
  */
 
-#include "MpiProxy.h"
+#include "DataStorage.h"
 #include <cmath>
 #include <assert.h>
 #include <stddef.h>
 /**
- * MpiProxy implementation
+ * DataStorage implementation
  */
 
-MpiProxy::MpiProxy(int nr_of_dimensions, int rank, int traget_rank)
+DataStorage::DataStorage(int nr_of_dimensions)
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy Konstruktor");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage Konstruktor");
 		GridLibrary::print_int("nr_of_dimensions", nr_of_dimensions);
-		GridLibrary::print_int("rank", rank);
-		GridLibrary::print_int("traget_rank", traget_rank);
 	#endif
 	assert (nr_of_dimensions > 0);
-	//assert (target_rank >= 0);
-	//assert (rank >= 0);
 	this -> nr_of_dimensions = nr_of_dimensions;
-	this -> rank = rank;
-	this -> target_rank = target_rank;
 	dimensions = new int[nr_of_dimensions];
 	for(int i = 0; i < nr_of_dimensions; i++)
 	{
@@ -52,10 +46,10 @@ MpiProxy::MpiProxy(int nr_of_dimensions, int rank, int traget_rank)
 	}
 }
 
-MpiProxy::~MpiProxy()
+DataStorage::~DataStorage()
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy Destructor");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage Destructor");
 	#endif
 	delete dimensions;
 	delete time;
@@ -64,10 +58,10 @@ MpiProxy::~MpiProxy()
 	delete correction_vector;
 }
 
-int* MpiProxy::get_dimensions()
+int* DataStorage::get_dimensions()
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy get_dimensions");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage get_dimensions");
 	#endif
 	int* to_return = new int[nr_of_dimensions];
 	for(int i = 0; i < nr_of_dimensions; i++)
@@ -77,10 +71,10 @@ int* MpiProxy::get_dimensions()
 	return to_return;
 }
 
-double* MpiProxy::get_offset()
+double* DataStorage::get_offset()
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy get_offset");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage get_offset");
 	#endif
 	double* to_return = new double[nr_of_dimensions];
 	for(int i = 0; i < nr_of_dimensions; i++)
@@ -90,10 +84,10 @@ double* MpiProxy::get_offset()
 	return to_return;
 }
 
-double* MpiProxy::get_increment()
+double* DataStorage::get_increment()
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy get_increment");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage get_increment");
 	#endif
 	double* to_return = new double[nr_of_dimensions];
         for(int i = 0; i < nr_of_dimensions; i++)
@@ -103,20 +97,20 @@ double* MpiProxy::get_increment()
         return to_return;
 }
 
-long MpiProxy::get_time(int index)
+long DataStorage::get_time(int index)
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy get_time");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage get_time");
 	#endif
 	assert (index >= 0);
 	long to_return = time[index];
 	return to_return;
 }
 
-double MpiProxy::get_correction_vector(int index)
+double DataStorage::get_correction_vector(int index)
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy get_correction_vector");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage get_correction_vector");
 		GridLibrary::print_int("index",index);
 	#endif
 	assert (index >= 0);
@@ -124,10 +118,10 @@ double MpiProxy::get_correction_vector(int index)
 	return to_return;
 }
 
-void MpiProxy::set_new_array(int* new_dimensions, double* new_offset, double* new_increment)
+void DataStorage::set_new_array(int* new_dimensions, double* new_offset, double* new_increment)
 {
-	#if MPI_PROXY_DEBUG
-	  GridLibrary::print_name("MpiProxy set_new_array");
+	#if DATASTORAGE_DEBUG
+	  GridLibrary::print_name("DataStorage set_new_array");
 		GridLibrary::print_array_int("new_dimensions", new_dimensions, nr_of_dimensions);
 		GridLibrary::print_array_double("new_offset", new_offset, nr_of_dimensions);
 		GridLibrary::print_array_double("new_increment", new_increment, nr_of_dimensions);
@@ -177,15 +171,10 @@ void MpiProxy::set_new_array(int* new_dimensions, double* new_offset, double* ne
 	}
 }
 
-void MpiProxy::push_new_array()
+void DataStorage::set_correction_vector(int index, double new_value)
 {
-	//return;
-}
-
-void MpiProxy::set_correction_vector(int index, double new_value)
-{
-	#if MPI_PROXY_DEBUG
-		GridLibrary::print_name("MpiProxy set_correction_vector");
+	#if DATASTORAGE_DEBUG
+		GridLibrary::print_name("DataStorage set_correction_vector");
 		GridLibrary::print_int("index", index);
 		GridLibrary::print_double("new_value", new_value);
 	#endif
@@ -193,10 +182,10 @@ void MpiProxy::set_correction_vector(int index, double new_value)
 	correction_vector[index] = new_value;
 }
 
-void MpiProxy::set_time(int index, long new_time)
+void DataStorage::set_time(int index, long new_time)
 {
-	#if MPI_PROXY_DEBUG
-		GridLibrary::print_name("MpiProxy set_time");
+	#if DATASTORAGE_DEBUG
+		GridLibrary::print_name("DataStorage set_time");
 		GridLibrary::print_int("index", index);
 		GridLibrary::print_long("new_time", new_time);
 	#endif

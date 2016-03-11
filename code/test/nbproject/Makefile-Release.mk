@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/database/DatabaseHandler.o \
 	${OBJECTDIR}/database/DatabaseHandlerTestCase.o \
 	${OBJECTDIR}/database/DatabaseTestSuite.o \
 	${OBJECTDIR}/database/StatisticDatabase.o \
@@ -70,11 +69,6 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/database/DatabaseHandler.o: database/DatabaseHandler.cpp 
-	${MKDIR} -p ${OBJECTDIR}/database
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseHandler.o database/DatabaseHandler.cpp
 
 ${OBJECTDIR}/database/DatabaseHandlerTestCase.o: database/DatabaseHandlerTestCase.cpp 
 	${MKDIR} -p ${OBJECTDIR}/database

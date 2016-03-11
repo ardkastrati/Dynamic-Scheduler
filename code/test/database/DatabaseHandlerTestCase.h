@@ -38,32 +38,48 @@ public:
      * This is called after every test case.
      */
     void tearDown();
+
     /**
      *
      */
-    string test_dataParserBookkeeping(TaskData* data);
-    /**
-     *
-     */
-    string test_dataParserStatistic(TaskData* data);
-    /**
-     *
-     */
-    void test_storeData(TaskData* data);
+    void test_storeData();
     /**
      * 
      */
-    void test_storeLocalStatistic(TaskData* data, long runtime);
+    void test_storeLocalStatistic();
     /*
      * 
      */
-    void test_readTaskData();
+    void test_readStatistic();
+    /*
+     *
+     */
+    void test_dataMiningInquiry_pointerExist();
+    
+    
+    
+    void setUp_DummyTask();
+    void test_dataParserBookkeeping();
+    void test_dataParserStatistic();
 
 private:
+    
+    dataInquiry* data_Inq;
     /**
      *
      */
     DatabaseHandler* database_handler;
+    
+    /**
+     *
+     */
+    TaskData* dummy_task;
+    
+    /**
+     *
+     */
+    string file_entry_statistic;
+    string file_entry_bookkeeping;
 };
 
 #endif /* DATABASEHANDLERTESTCASE_H */

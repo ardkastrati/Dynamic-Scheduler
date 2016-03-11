@@ -5,6 +5,7 @@
 #include "../Const.h"
 #include "../TypesExtern.h"
 #include "../datamining/grid/GridLibrary.h"
+#include "../scheduler/SchedulingStrategy.h"
 
 using namespace std;
 
@@ -15,12 +16,14 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 }
 DatabaseServer::~DatabaseServer()
 {
+    //LOG(DEBUG) << "Destructor DatabaseServer";
     delete database_handler;
     delete datamining_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
 {
+    //LOG(DEBUG) << "Ich bin ein Datenbankserver";
     run();
 }
 
@@ -51,10 +54,10 @@ void DatabaseServer::run()
             	{
             		double* initial_parameters;
             		//information of first task
-            		long runtime = database_handler->dataMiningInquiry()->runtime[0];
+            		long runtime_init = database_handler->dataMiningInquiry()->runtime[0];
             		initial_parameters = &(database_handler->dataMiningInquiry()->para[0]);
             		//if there is no datamining instance yet, create one
-            		datamining_handler = new GridDataMining(0, 0, database_handler, task_data.parameter_size, initial_parameters, &runtime, 1);
+            		datamining_handler = new GridDataMining(database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
             		DataMining_instance_flag = true;
             	}
 
@@ -73,22 +76,41 @@ void DatabaseServer::run()
             }
         }
         else if (status.MPI_TAG == DATAMINING) {
-            	if(task_data.event == 2)
+          if(!DataMining_instance_flag)
+          {
+            	if(database_handler->dataMiningInquiry()->runtime.size() != 0)
             	{
             		double* initial_parameters;
             		//information of first task
-            		long runtime = database_handler->dataMiningInquiry()->runtime[0];
+            		long runtime_init = database_handler->dataMiningInquiry()->runtime[0];
             		initial_parameters = &(database_handler->dataMiningInquiry()->para[0]);
             		//if there is no datamining instance yet, create one
-            		datamining_handler = new GridDataMining(0, 0, database_handler, task_data.parameter_size, initial_parameters, &runtime, 1);
+            		datamining_handler = new GridDataMining(database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
             		DataMining_instance_flag = true;
-            	}
-            //predict
-            long runtime = task_data.parameters[0];//mining_handler->predict(task_data.parameters);
-            //cout << "predict: " << runtime << std::endl;
-            //send prediction
-            int target_rank = status.MPI_SOURCE;
-            MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
+
+                long runtime = datamining_handler->predict(task_data.parameters);
+                //long runtime = 1;
+                //cout << "predict: " << runtime << std::endl;
+                //send prediction
+                int target_rank = status.MPI_SOURCE;
+                MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
+
+            	} else {
+                //default value
+                long runtime = SchedulingStrategy::DEFAULT_RUNTIME;
+                int target_rank = status.MPI_SOURCE;
+                MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
+              }
+            } else {
+              //predict
+              long runtime = datamining_handler->predict(task_data.parameters);
+              //long runtime = 1;
+              cout << "predict: " << runtime << std::endl;
+              cout << "parameteeeer: " << task_data.parameters[0] << std::endl;;
+              //send prediction
+              int target_rank = status.MPI_SOURCE;
+              MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);
+            }
         }
     }
 }

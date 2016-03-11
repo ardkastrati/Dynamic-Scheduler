@@ -38,12 +38,18 @@ void AbstractScheduler::place_task(Task task)
     //std::cout << task.id << std::endl;
     long runtime = scheduling_strategy->DEFAULT_RUNTIME;
     if (scheduling_strategy->is_statistic_based()) {
-        short temp;
+        TaskData temp;
+        temp.parameter_size = task.parameter_size;
+        memcpy(temp.parameters, task.parameters, sizeof(double));
+        //std::copy(std::begin(task.parameters), std::end(task.parameters), std::begin(temp.parameters));
+
         MPI_Status status;
-        MPI_Sendrecv(&temp, 1, MPI_SHORT, DATABASE, DATAMINING,
+        MPI_Sendrecv(&temp, 1, MY_MPI_TASK_DATA_TYPE, DATABASE, DATAMINING,
                      &runtime, 1, MPI_LONG, DATABASE, DATAMINING, MPI_COMM_WORLD, &status);
+
     }
     scheduling_strategy->push_new_task(task, runtime);
+
 }
 
 int AbstractScheduler::get_rank()
