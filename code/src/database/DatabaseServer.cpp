@@ -55,7 +55,7 @@ void DatabaseServer::run()
             		long runtime_init = database_handler->dataMiningInquiry()->runtime[0];
             		initial_parameters = &(database_handler->dataMiningInquiry()->para[0]);
             		//if there is no datamining instance yet, create one
-            		datamining_handler = new GridDataMining(0, 0, database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
+            		datamining_handler = new GridDataMining(database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
             		DataMining_instance_flag = true;
             	}
 
@@ -83,7 +83,7 @@ void DatabaseServer::run()
             		long runtime_init = database_handler->dataMiningInquiry()->runtime[0];
             		initial_parameters = &(database_handler->dataMiningInquiry()->para[0]);
             		//if there is no datamining instance yet, create one
-            		datamining_handler = new GridDataMining(0, 0, database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
+            		datamining_handler = new GridDataMining(database_handler, task_data.parameter_size, initial_parameters, &runtime_init, 1);
             		DataMining_instance_flag = true;
 
                 long runtime = datamining_handler->predict(task_data.parameters);

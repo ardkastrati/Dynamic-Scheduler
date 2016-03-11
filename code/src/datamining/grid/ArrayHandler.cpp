@@ -14,7 +14,7 @@
  * ArrayHandler implementation
  */
 
-ArrayHandler::ArrayHandler(int nr_of_dimensions, MpiProxy* memory)
+ArrayHandler::ArrayHandler(int nr_of_dimensions, DataStorage* memory)
 {
 	#if ARRAY_HANDLER_DEBUG
 	  GridLibrary::print_name("ArrayHandler constructor");
@@ -205,8 +205,8 @@ double* ArrayHandler::get_parameter(int* index)
 	{
 		assert (index[i] >= 0);
 	}
-  double* offset = get_offset();
-  double* increment = get_increment();
+  double* offset = memory -> get_offset();
+  double* increment = memory -> get_increment();
 	long* long_index = new long[nr_of_dimensions];
 	//cast int into long
 	for(int i = 0; i < nr_of_dimensions; i++)
@@ -340,12 +340,4 @@ double* ArrayHandler::get_increment()
 	#endif
   double* to_return = memory -> get_increment();
   return to_return;
-}
-
-void ArrayHandler::push_new_array()
-{
-	#if ARRAY_HANDLER_DEBUG
-	  GridLibrary::print_name("ArrayHandler push_new_array");
-	#endif
-	memory -> push_new_array();
 }

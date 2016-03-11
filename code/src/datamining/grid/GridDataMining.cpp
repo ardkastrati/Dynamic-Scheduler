@@ -4,12 +4,12 @@
  #define GRID_DATA_MINING_DEBUG 0
  #define PRINTGRID 0
  #define GRID_LIBRARY_DEBUG 0
- #define MPI_PROXY_DEBUG 0
+ #define DATASTORAGE_DEBUG 0
  #define ARRAY_HANDLER_DEBUG 0
 
 #include "GridDataMining.h"
 #include "ArrayHandler.h"
-#include "MpiProxy.h"
+#include "DataStorage.h"
 #include "GridLibrary.h"
 #include <cmath>
 #include <assert.h>
@@ -32,7 +32,7 @@
 */
 
 #if PRINTGRID
-void printgrid(MpiProxy* proxy, int nr_of_dimensions)
+void printgrid(DataStorage* proxy, int nr_of_dimensions)
 {
 
   GridLibrary::print_name("Gridprint:");
@@ -58,20 +58,16 @@ void printgrid(MpiProxy* proxy, int nr_of_dimensions)
  * GridDataMining implementation
  */
 
-GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count)
+GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time = 1000000, double start_offset = 0, double start_increment = 1, int start_dimension = 10)
 {
   #if GRID_DATA_MINING_DEBUG
     GridLibrary::print_name("GridDataMining constructor");
-    GridLibrary::print_int("rank", rank);
-    GridLibrary::print_int("target_rank", target_rank);
     GridLibrary::print_int("parameter_count", parameter_count);
     GridLibrary::print_array_double("initial_tasks_parameter", initial_tasks_parameter, initial_task_count * parameter_count);
     GridLibrary::print_array_long("initial_task_runtime", initial_task_runtime, initial_task_count);
     GridLibrary::print_int("initial_task_count", initial_task_count);
   #endif
-  assert(rank >= 0);
-  assert(target_rank >= 0);
-  //database can be NULL
+  assert(database != NULL);
   assert(parameter_count > 0);
   assert(initial_tasks_parameter != NULL);
   assert(initial_task_count > 0);
@@ -80,27 +76,27 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
   {
     assert(initial_task_runtime >= 0);
   }
-  this->database = database;
-  proxy = new MpiProxy(parameter_count, rank, target_rank);
+  this -> database = database;
+  proxy = new DataStorage(parameter_count);
   memory = new ArrayHandler(parameter_count, proxy);
   nr_of_dimensions = parameter_count;
   nr_of_tasks = 0;
   average_deviation = 0;
   //prediction_time_range
-  max_deviation_time = 100; //1 second
+  this -> max_deviation_time = max_deviation_time;
   //
   max_parameter = new double[nr_of_dimensions];
   min_parameter = new double[nr_of_dimensions];
-  int start_dimension[nr_of_dimensions];
-  double start_offset[nr_of_dimensions];
-  double start_increment[nr_of_dimensions];
+  int dimension[nr_of_dimensions];
+  double offset[nr_of_dimensions];
+  double increment[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
-  {//dummy values
-    start_dimension[i] = 4;
-    start_offset[i] = 0;
-    start_increment[i] = 1;
+  {
+    dimension[i] = start_dimension;
+    offset[i] = start_offset;
+    increment[i] = start_increment;
   }
-  memory -> set_new_array(start_dimension, start_increment, start_offset);
+  memory -> set_new_array(dimension, increment, offset);
   for(int i = 0; i < initial_task_count * nr_of_dimensions; i = i + nr_of_dimensions)
   {
     double parameter[nr_of_dimensions];
@@ -290,8 +286,6 @@ void GridDataMining::make_new_grid()
     }
     delete parameter;
   }
-
-  memory -> push_new_array();
   make_new_grid_running = false;
 }
 

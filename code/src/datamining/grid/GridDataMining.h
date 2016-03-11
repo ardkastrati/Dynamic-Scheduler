@@ -10,7 +10,7 @@
 
 
 #include "../DataMining.h"
-#include "MpiProxy.h"
+#include "DataStorage.h"
 #include "ArrayHandler.h"
 
 #include "../../database/DatabaseHandler.h"
@@ -51,9 +51,9 @@ private:
 	 */
 	ArrayHandler* memory;
 	/**
-	 * The MpiProxy manages the communication between MPI and the grid.
+	 * The DataStorage manages the data of the grid.
 	 */
-	MpiProxy* proxy;
+	DataStorage* proxy;
 	/**
 	 * Inserts a task into the grid.
 	 * Unlike the normal insert every grid point might get adapted instead of only the surrounding.
@@ -85,9 +85,7 @@ private:
 public:
 	/**
 	 * Grid constructor.
-	 * Creates an ArrayHandler and a MpiProxy.
-	 * @param rank in the MPI World
-	 * @param target_rank the MPI rank of the GridDataMininer that holds the MPI SharedMemory
+	 * Creates an ArrayHandler and a DataStorage.
 	 * @param database holds all task that ever ran
 	 * @param nr_of_dimensions the nr of dimensions of the virtual multi-dimensional array
 	 * @param initial_tasks_parameter a array with the parameter of the initial task
@@ -97,7 +95,8 @@ public:
 	 * @param initial_task_count the number of initial task
 	 *				must be greater than zero
 	 */
-	GridDataMining(int rank, int target_rank, DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count);
+
+	GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time, double start_offset, double start_increment, int start_dimension);
 	/**
 	 * Destructor
 	 */
