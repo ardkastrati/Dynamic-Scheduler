@@ -1,7 +1,7 @@
 /**
  * Implements the GridDataMining.h.
  */
- #define GRID_DATA_MINING_DEBUG 1
+ #define GRID_DATA_MINING_DEBUG 0
  #define PRINTGRID 0
  #define GRID_LIBRARY_DEBUG 0
  #define DATASTORAGE_DEBUG 0
