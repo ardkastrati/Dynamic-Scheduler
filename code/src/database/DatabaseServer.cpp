@@ -4,7 +4,7 @@
 #include <mpi.h>
 #include "../Const.h"
 #include "../TypesExtern.h"
-#include "../datamining/grid/GridLibary.h"
+#include "../datamining/grid/GridLribary.h"
 #include "../scheduler/SchedulingStrategy.h"
 
 using namespace std;
