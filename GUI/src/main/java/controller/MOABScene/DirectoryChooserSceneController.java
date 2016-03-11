@@ -83,7 +83,9 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
 	 */
 	public void init() {
 		sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    if(newValue != null) {
 			sftpPath.setText(newValue.getValue());
+                    }
 		});
 		// switch to the root directory
                 sftpTree.setRoot(new SftpTreeItem("."));
@@ -165,6 +167,7 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
 
         @Override
 	public void onEntry() {
+          
                 MySession.getInstant().sessionStatusProperty().addListener(listener);
                 /*if(MySession.getInstant().getSessionStatus() == MySession.SessionStatus.DISCONNECTED) {
                         sftpTree.setDisable(true);

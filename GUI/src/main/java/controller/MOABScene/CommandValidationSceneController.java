@@ -73,8 +73,10 @@ public class CommandValidationSceneController implements Initializable, CommandC
 
     @Override
     public void onEntry() {
+        if(!triedCommand) {
         MySession.getInstant().sessionStatusProperty().addListener(listener);
         MySession.getInstant().initiateOpeningChannel("sftp");
+        }
     }
 
     @Override

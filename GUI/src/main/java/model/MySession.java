@@ -353,14 +353,15 @@ public class MySession {
 
                 @Override
 		public boolean promptPassword(String message) {
-			Object[] ob = { passwordField };
+                        return false;
+			/*Object[] ob = { passwordField };
 			int result = JOptionPane.showConfirmDialog(null, ob, message, JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				passwd = passwordField.getText();
 				return true;
 			} else {
 				return false;
-			}
+			}*/
 		}
 
                 @Override
