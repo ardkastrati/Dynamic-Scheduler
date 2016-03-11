@@ -1,0 +1,21 @@
+/*
+ * Main.cpp
+ *
+ *  Created on: 21.01.2016
+ *      Author: kai
+ */
+
+#include "Main.h"
+
+Main::Main() {
+	// TODO Automatisch generierter Konstruktorstub
+
+}
+
+Main::~Main() {
+	// TODO !CodeTemplates.destructorstub.tododesc!
+}
+
+Visualiser v = new UsageVisualiser();
+
+v::visualise();

@@ -74,7 +74,7 @@
                             <goal>exec</goal>                            
                         </goals>
                         <configuration>
-                            <executable>${java.home}/bin/java</executable>
+                            <executable>${java.home}/../bin/java</executable>
                             <commandlineArgs>${runfx.args}</commandlineArgs>
                         </configuration>
                     </execution>
@@ -131,6 +131,19 @@
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>3.3</version>
+        </dependency>
+	<dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx</artifactId>
+	    <version>2.2</version>
+	    <scope>system</scope>
+            <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.panayotis.gnuplot</groupId>
+            <artifactId>gnuplot</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     

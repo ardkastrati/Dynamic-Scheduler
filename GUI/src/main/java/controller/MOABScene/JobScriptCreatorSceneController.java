@@ -89,7 +89,7 @@ public class JobScriptCreatorSceneController implements Initializable, CommandCo
                 }
                 Node newBody = null;
                     try {
-                        newBody = loader.load();
+                        newBody = (Node) loader.load();
                         jobScriptCreatorRoot.getChildren().remove(0);
                         jobScriptCreatorRoot.getChildren().add(newBody);
                         scriptController = loader.getController();

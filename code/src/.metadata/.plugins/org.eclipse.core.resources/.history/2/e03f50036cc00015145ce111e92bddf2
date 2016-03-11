@@ -1,0 +1,19 @@
+/*
+ * UsageVisualiser.h
+ *
+ *  Created on: 21.01.2016
+ *      Author: kai
+ */
+
+#ifndef USAGEVISUALISER_H_
+#define USAGEVISUALISER_H_
+
+#include "Visualiser.h"
+
+class UsageVisualiser: public Visualiser {
+public:
+	UsageVisualiser();
+	virtual ~UsageVisualiser();
+};
+
+#endif /* USAGEVISUALISER_H_ */

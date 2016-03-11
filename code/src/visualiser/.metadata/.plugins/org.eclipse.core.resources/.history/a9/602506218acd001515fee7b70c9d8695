@@ -1,0 +1,25 @@
+package visualiser;
+
+import javax.swing.JFrame;
+
+import com.panayotis.gnuplot.JavaPlot;
+import com.panayotis.gnuplot.swing.*;
+import com.panayotis.gnuplot.terminal.*;
+
+public class Visualiser {
+
+	public void visualise() {
+		JavaPlot p = new JavaPlot(true);
+		JPlot j = new JPlot(p);
+		j.plot();
+		
+		JFrame f = new JFrame();
+		
+//		p.addPlot("sin(x)");
+//		p.plot();
+//		System.out.println("Debug2");
+//		for( int i = 0; i < 8; i++) {
+//			
+//		}
+	}
+}

@@ -4,7 +4,7 @@
  */
 package controller.MOABScene;
 
-import components.NumericTextField;
+import GUIcomponents.NumericTextField;
 import controller.ParserException;
 import java.net.URL;
 import java.util.ArrayList;

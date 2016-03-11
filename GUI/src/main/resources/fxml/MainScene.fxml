@@ -50,14 +50,14 @@
          <center>
             <TabPane fx:id="mainTabPane" prefHeight="543.0" prefWidth="471.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="91.0" tabMinHeight="100.0" tabMinWidth="91.0" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab id="sshConnection" fx:id="SSHConnection">
+                <!--<Tab id="sshConnection" fx:id="SSHConnection">
                      <content>
                          <fx:include fx:id="sshConnection" source="SSHConnection.fxml" />
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="76.0" prefWidth="104.0" text="SSH" textAlignment="CENTER" wrapText="true" />
                      </graphic>
-                </Tab>
+                </Tab>-->
                   <Tab id="compileJob">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -84,7 +84,7 @@
                   </Tab>
                   <Tab id="visualizer" fx:id="visualizer">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <fx:include fx:id="visualizer" source="DiagramScene.fxml"/>
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />

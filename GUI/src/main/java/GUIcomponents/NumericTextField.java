@@ -1,5 +1,5 @@
 
-package components;
+package GUIcomponents;
 
 import javafx.scene.control.TextField;
 

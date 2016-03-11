@@ -182,3 +182,13 @@ pythontex-files-*/
 /Test/nbproject/private/
 /Test/dist/
 /Test/build/
+
+code/bin/*
+code/lib/*
+code/build
+
+#eclipse metadata
+code/src/visualiser/.metadata/
+*.class
+
+GUI/src/.metadata/

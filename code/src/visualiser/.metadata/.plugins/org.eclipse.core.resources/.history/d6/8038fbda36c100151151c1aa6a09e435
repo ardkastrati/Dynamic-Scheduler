@@ -1,0 +1,22 @@
+package visualiser;
+
+import com.panayotis.gnuplot.JavaPlot;
+import com.panayotis.gnuplot.terminal.*;
+
+public class Visualiser {
+
+	public void visualise() {
+		JavaPlot p = new JavaPlot();
+		p.addPlot("sin(x)");
+		p.plot();
+		System.out.println("Debug2");
+		
+		SVGTerminal t = new SVGTerminal();
+		try {
+			t.getPanel();
+		} catch (ClassNotFoundException e) {
+			// TODO Automatisch generierter Erfassungsblock
+			e.printStackTrace();
+		}
+	}
+}
