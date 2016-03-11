@@ -14,7 +14,7 @@
  * ArrayHandler implementation
  */
 
-ArrayHandler::ArrayHandler(int nr_of_dimensions, MpiProxy* memory)
+ArrayHandler::ArrayHandler(int nr_of_dimensions, DataStorage* memory)
 {
 	#if ARRAY_HANDLER_DEBUG
 	  GridLibrary::print_name("ArrayHandler constructor");

@@ -58,7 +58,7 @@ void printgrid(DataStorage* proxy, int nr_of_dimensions)
  * GridDataMining implementation
  */
 
-GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time = 1000000, double start_offset = 0, double increment = 1, int dimension = 10)
+GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time = 1000000, double start_offset = 0, double start_increment = 1, int start_dimension = 10)
 {
   #if GRID_DATA_MINING_DEBUG
     GridLibrary::print_name("GridDataMining constructor");
@@ -87,16 +87,16 @@ GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, d
   //
   max_parameter = new double[nr_of_dimensions];
   min_parameter = new double[nr_of_dimensions];
-  int start_dimension[nr_of_dimensions];
-  double start_offset[nr_of_dimensions];
-  double start_increment[nr_of_dimensions];
+  int dimension[nr_of_dimensions];
+  double offset[nr_of_dimensions];
+  double increment[nr_of_dimensions];
   for(int i = 0; i < nr_of_dimensions; i++)
   {
-    this -> start_dimension[i] = start_dimension;
-    this -> start_offset[i] = start_offset;
-    this -> start_increment[i] = start_increment;
+    dimension[i] = start_dimension;
+    offset[i] = start_offset;
+    increment[i] = start_increment;
   }
-  memory -> set_new_array(start_dimension, start_increment, start_offset);
+  memory -> set_new_array(dimension, increment, offset);
   for(int i = 0; i < initial_task_count * nr_of_dimensions; i = i + nr_of_dimensions)
   {
     double parameter[nr_of_dimensions];

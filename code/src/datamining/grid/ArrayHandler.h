@@ -9,7 +9,7 @@
 #ifndef _ARRAYHANDLER_H
 #define _ARRAYHANDLER_H
 
-#include "MpiProxy.h"
+#include "DataStorage.h"
 
 class  ArrayHandler
 {
@@ -18,10 +18,10 @@ class  ArrayHandler
 		 * The constructor of the ArrayHandler.
 		 * @param nr_of_dimensions the number of dimensions in the virtual multidimensional array
 		 *				must be greater than zero
-		 * @param memory is the MpiProxy that provide acces to the Grid data
+		 * @param memory is the DataStorage that provide acces to the Grid data
 		 *				must not be NULL
 		 */
-		ArrayHandler(int nr_of_dimensions, MpiProxy* memory);
+		ArrayHandler(int nr_of_dimensions, DataStorage* memory);
 		/**
 		 * The destructor of the ArrayHandler.
 		 */
@@ -64,7 +64,7 @@ class  ArrayHandler
 		 */
 		double get_corrected_distanz(int* index, double* parameter);
 		/**
-		 * Calls the set_new_array function in the MpiProxy.
+		 * Calls the set_new_array function in the DataStorage.
 		 * @param new_dimensions the new size of the time and the correction vector array
 		 *				 must be nr_of_dimensions long
 		 *				 must not be NULL and
@@ -160,9 +160,9 @@ class  ArrayHandler
 		 */
 		int nr_of_dimensions;
 		/**
-		 * the MpiProxy that provides access to the Grid data
+		 * the DataStorage that provides access to the Grid data
 		 */
-		MpiProxy* memory;
+		DataStorage* memory;
 
 };
 

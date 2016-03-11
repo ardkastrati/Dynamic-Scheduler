@@ -96,7 +96,7 @@ public:
 	 *				must be greater than zero
 	 */
 
-	GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time = 1000000, double start_offset = 0, double increment = 1, int dimension = 10)
+	GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time, double start_offset, double start_increment, int start_dimension);
 	/**
 	 * Destructor
 	 */
