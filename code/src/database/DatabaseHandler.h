@@ -93,7 +93,6 @@ private:
 	 * Number of dimensions.
 	 */
 	int size;
-
 };
 
 #endif /* DATABASEHANDLER_H_ */
