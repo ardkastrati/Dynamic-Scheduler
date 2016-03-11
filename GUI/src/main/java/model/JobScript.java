@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import model.commands.MOAB.Msub;
 import model.commands.MPI.MpiRun;
 
 /**
- *
+ * This class represents a jobscript which will be created as a file in the MOAB Workload manager. It's an abstract
+ * representation of the file, whereas the file can be easily generated.
  * @author ardkastrati
  */
 public class JobScript {

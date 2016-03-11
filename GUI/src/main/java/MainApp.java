@@ -1,14 +1,7 @@
 
-
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
 import controller.Controller;
-import controller.MOABScene.DirectoryChooserSceneController;
-import controller.mainScene.MainSceneController;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,143 +12,48 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
+/**
+ * The main GUI entry point.
+ * 
+ * @author ardkastrati
+ * @version 1.0
+ */
 public class MainApp extends Application {
 
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-       
-       
-        
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainScene.fxml"));
-        MainSceneController controller = loader.getController();
-       
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("Dynamic scheduler for scientific simulations");
-        stage.setScene(scene);
-        //controller.onEntry();
-        
-        //stage.setOnCloseRequest(event -> {
-        //    controller.onExit();
-        //});
-       
-        stage.show();
-      
-    }
+	@Override
+	public void start(Stage stage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    
-    public static class MyUserInfo implements UserInfo, UIKeyboardInteractive{
-    public String getPassword(){ return passwd; }
-    public boolean promptYesNo(String str){
-      Object[] options={ "yes", "no" };
-      int foo=JOptionPane.showOptionDialog(null, 
-             str,
-             "Warning", 
-             JOptionPane.DEFAULT_OPTION, 
-             JOptionPane.WARNING_MESSAGE,
-             null, options, options[0]);
-       return foo==0;
-    }
-  
-    String passwd;
-    JTextField passwordField=(JTextField)new JPasswordField(20);
+		Parent root = (Parent)loader.load();
+		Controller controller = loader.getController();
 
-    public String getPassphrase(){ return null; }
-    public boolean promptPassphrase(String message){ return true; }
-    public boolean promptPassword(String message){
-      Object[] ob={passwordField}; 
-      int result=
-	  JOptionPane.showConfirmDialog(null, ob, message,
-					JOptionPane.OK_CANCEL_OPTION);
-      if(result==JOptionPane.OK_OPTION){
-	passwd=passwordField.getText();
-	return true;
-      }
-      else{ return false; }
-    }
-    public void showMessage(String message){
-      JOptionPane.showMessageDialog(null, message);
-    }
-    final GridBagConstraints gbc = 
-      new GridBagConstraints(0,0,1,1,1,1,
-                             GridBagConstraints.NORTHWEST,
-                             GridBagConstraints.NONE,
-                             new Insets(0,0,0,0),0,0);
-    private Container panel;
-    public String[] promptKeyboardInteractive(String destination,
-                                              String name,
-                                              String instruction,
-                                              String[] prompt,
-                                              boolean[] echo){
-      panel = new JPanel();
-      panel.setLayout(new GridBagLayout());
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add("/styles/Styles.css");
 
-      gbc.weightx = 1.0;
-      gbc.gridwidth = GridBagConstraints.REMAINDER;
-      gbc.gridx = 0;
-      panel.add(new JLabel(instruction), gbc);
-      gbc.gridy++;
+		stage.setTitle("Dynamic scheduler for scientific simulations");
+		stage.setScene(scene);
+		controller.onEntry();
 
-      gbc.gridwidth = GridBagConstraints.RELATIVE;
+		stage.setOnCloseRequest(event -> {
+			controller.onExit();
+		});
 
-      JTextField[] texts=new JTextField[prompt.length];
-      for(int i=0; i<prompt.length; i++){
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.gridx = 0;
-        gbc.weightx = 1;
-        panel.add(new JLabel(prompt[i]),gbc);
+		stage.show();
+	}
 
-        gbc.gridx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weighty = 1;
-        if(echo[i]){
-          texts[i]=new JTextField(20);
-        }
-        else{
-          texts[i]=new JPasswordField(20);
-        }
-        panel.add(texts[i], gbc);
-        gbc.gridy++;
-      }
+	/**
+	 * The main() method is ignored in correctly deployed JavaFX application.
+	 * main() serves only as fallback in case the application can not be
+	 * launched through deployment artifacts, e.g., in IDEs with limited FX
+	 * support. NetBeans ignores main().
+	 *
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-      if(JOptionPane.showConfirmDialog(null, panel, 
-                                       destination+": "+name,
-                                       JOptionPane.OK_CANCEL_OPTION,
-                                       JOptionPane.QUESTION_MESSAGE)
-         ==JOptionPane.OK_OPTION){
-        String[] response=new String[prompt.length];
-        for(int i=0; i<prompt.length; i++){
-          response[i]=texts[i].getText();
-        }
-	return response;
-      }
-      else{
-        return null;  // cancel
-      }
-    }
-  }
-    
-
+	
 }

@@ -7,36 +7,38 @@ package services;
 import GUIcomponents.SftpTreeItem;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpATTRS;
-import com.jcraft.jsch.SftpException;
 import java.util.ArrayList;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.control.TreeItem;
 import model.MySession;
 
 /**
+ * A task for loading the subdirectories of a specific directory so the the tree item can add them lazily.
  *
  * @author ardkastrati
+ * @version 1.0
  */
-
 public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
     
     private String path;
    
 
     /**
-     *
-     * @param sftp
-     */
+     * The constructor of this task.
+     * @param path The directory
+     */ 
     public LoadSftpTreeTask(String path) {
         
         this.path = path;
     }
 
-
+    /**
+     * Runs the task and creats an array of lines of all subdirectories
+     * Note that this method is called on the background thread (all other code in this application is
+     * on the JavaFX Application Thread!).
+     * @return the lines of the scrip
+     * @throws java.lang.Exception
+     */
     @Override
     protected ArrayList<SftpTreeItem> call() throws Exception {
         
@@ -51,8 +53,7 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
                      childrens = sftp.ls(path);
                  } catch(Exception e) {
                         System.out.println(e.getCause()); 
-                  }
-                System.out.println("Childrens " + childrens);
+                 }
                 if(childrens != null){
                     SftpATTRS stat = null;
                     treeChildrens = new ArrayList<>(childrens.size());
@@ -65,20 +66,19 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
                           
                           String children = ((com.jcraft.jsch.ChannelSftp.LsEntry)obj).getFilename();
                             if(!children.equals(".") && !children.equals("..")) {
-                          StringBuilder builder = new StringBuilder(this.path);
-                          builder.append("/");
-                          builder.append(children);
-                          
-                          stat = sftp.stat(builder.toString());
-                           
-                          if(stat.isDir()) {
-                            SftpTreeItem child = new SftpTreeItem(builder.toString());  
-                            treeChildrens.add(child);
-                           }
-                           System.out.println("added: " + builder.toString());
-                        }
-                        updateProgress(i, childrens.size());
-                       
+                                StringBuilder builder = new StringBuilder(this.path);
+                                builder.append("/");
+                                builder.append(children);
+
+                                stat = sftp.stat(builder.toString());
+
+                                if(stat.isDir()) {
+                                  SftpTreeItem child = new SftpTreeItem(builder.toString());  
+                                  treeChildrens.add(child);
+                                }
+                            }
+                        
+                          updateProgress(i, childrens.size());
                         }
                     }
                       updateProgress(childrens.size(), childrens.size());

@@ -94,7 +94,7 @@
       </GridPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <ListView fx:id="queueTypes" layoutX="1.0" layoutY="33.0" onMouseClicked="#onSelectedQueueType" prefHeight="209.0" prefWidth="130.0" />
+            <ListView fx:id="queueTypes" layoutX="1.0" layoutY="33.0" prefHeight="209.0" prefWidth="130.0" />
          </children>
       </AnchorPane>
       <Separator orientation="VERTICAL" prefHeight="274.0" prefWidth="32.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />

@@ -1,34 +1,46 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package services;
 
 import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import javafx.concurrent.Task;
 
 /**
+ * A task for creating a new channel.
  *
  * @author ardkastrati
+ * @version 1.0
  */
+
 public class CreateNewChannelTask extends Task<Channel> {
 
-    private Session currentSession;
-    private String channelType;
+    private final Session currentSession;
+    private final String channelType;
     
+    
+    /**
+     * The constructor of this task.
+     * @param session the session where to create the channel
+     * @param channelType the type of channel
+     */ 
     public CreateNewChannelTask(Session session, String channelType) {
         this.currentSession = session; 
         this.channelType = channelType;
     }
-    
+    /**
+     * Runs the task which creates a new channel.
+     * Note that this method is called on the background thread (all other code in this application is
+     * on the JavaFX Application Thread!).
+     * @return the created channel.
+     * @throws com.jcraft.jsch.JSchException
+     */
     @Override
-    protected Channel call() throws Exception {
+    protected Channel call() throws JSchException  {
         Channel channel = currentSession.openChannel(channelType);
-        
+        updateMessage("Channel successfully opened!");
         channel.connect();
-        System.out.println("Channel opened");
+        updateMessage("Channel connected successfully");
         return channel;
     }
     

@@ -7,29 +7,6 @@ import model.NodeAccessPolicy;
 
 public enum MoabResources {
         
-        
-       /* NODES ("nodes"){
-            private int numOfNodes;
-            @Override
-            public String getParameter() {
-                assert numOfNodes >= 0;
-                StringBuilder resourceCommand = new StringBuilder();
-                resourceCommand.append("nodes=");
-                resourceCommand.append(Integer.toString(numOfNodes));
-                return resourceCommand.toString();
-            }
-
-            @Override
-            public void setParameter(Object... parameters) throws CommandException {
-                checkNumOfParameters(1, parameters);
-                if (parameters[0] instanceof Integer) {
-                    numOfNodes = (Integer) parameters[0];
-                } else {
-                     throw new CommandException("Parameter \"nodes\" needs an integer as a parameter!");
-                }
-            }
-            
-        },*/
     
         NODES_AND_PROCESSES_PER_NODE("nodes") {
             private int numOfNodes;
@@ -117,7 +94,7 @@ public enum MoabResources {
             public void setParameter(Object... parameters) throws CommandException {
                 checkNumOfParameters(1, parameters);
                 
-                if (parameters[0] instanceof Integer && parameters[1] instanceof MemoryUnit ) {
+                if (parameters[0] instanceof Integer) {
                      processMemory = (Integer) parameters[0];
                     
                 } else {
@@ -165,9 +142,12 @@ public enum MoabResources {
             @Override
             public void setParameter(Object... parameters) throws CommandException {
                 checkNumOfParameters(1, parameters);
-                
+                System.out.println("Erreicht hier!");
                 if (parameters[0] instanceof String) {
+                    System.out.println("Erreicht hier2");
+                    
                      reservationName = (String) parameters[0];
+                     System.out.println("Erreich hier3");
                     
                 } else {
                      throw new CommandException("Parameter \"advres\" needs a String as a parameter!");
