@@ -87,7 +87,7 @@ GridDataMining::GridDataMining(int rank, int target_rank, DatabaseHandler* datab
   nr_of_tasks = 0;
   average_deviation = 0;
   //prediction_time_range
-  max_differential_time = 100; //1 second
+  max_deviation_time = 100; //1 second
   //
   max_parameter = new double[nr_of_dimensions];
   min_parameter = new double[nr_of_dimensions];
