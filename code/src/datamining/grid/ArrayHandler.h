@@ -91,10 +91,6 @@ class  ArrayHandler
 		 *				 must not be negative
 		 */
 		void insert_at_point(int* index, double* parameter, long time);
-		/**
-		 * Calls the corresponding function in the 'MpiProxy' class
- 		 */
-		void push_new_array();
 
 	private:
 		/**

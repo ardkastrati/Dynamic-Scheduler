@@ -150,7 +150,7 @@ double* GridLibrary::kastrati_value(double* length, int length_length)
 	return to_return;
 }
 
-#if PRINTGRID || ARRAY_HANDLER_DEBUG || GRID_DATA_MINING_DEBUG || GRID_LIBRARY_DEBUG || MPI_PROXY_DEBUG
+//#if PRINTGRID || ARRAY_HANDLER_DEBUG || GRID_DATA_MINING_DEBUG || GRID_LIBRARY_DEBUG || MPI_PROXY_DEBUG
 
 void GridLibrary::print_name(std::string name)
 {
@@ -202,4 +202,4 @@ void GridLibrary::print_double(std::string name, double to_print)
   std::cout << name << " has value: " << to_print << "\n";
 }
 
-#endif
+//#endif

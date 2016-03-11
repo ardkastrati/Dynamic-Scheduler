@@ -95,7 +95,7 @@ class GridLibrary {
 		 */
 		static double* kastrati_value(double* length, int length_length);
 
-		#if PRINTGRID || ARRAY_HANDLER_DEBUG || GRID_DATA_MINING_DEBUG || GRID_LIBRARY_DEBUG || MPI_PROXY_DEBUG
+		//#if PRINTGRID || ARRAY_HANDLER_DEBUG || GRID_DATA_MINING_DEBUG || GRID_LIBRARY_DEBUG || MPI_PROXY_DEBUG
 
 		static void print_name(std::string name);
 
@@ -111,7 +111,7 @@ class GridLibrary {
 
 		static void print_double(std::string name, double to_print);
 
-		#endif
+		//#endif
 };
 
 #endif //_GRIDLIBARY_H
