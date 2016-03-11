@@ -16,14 +16,12 @@ DatabaseServer::DatabaseServer(int rank, int number_of_processors) : Executor(ra
 }
 DatabaseServer::~DatabaseServer()
 {
-    //LOG(DEBUG) << "Destructor DatabaseServer";
     delete database_handler;
     delete datamining_handler;
 }
 
 void DatabaseServer::execute(int argc, char *argv[])
 {
-    //LOG(DEBUG) << "Ich bin ein Datenbankserver";
     run();
 }
 
@@ -105,8 +103,6 @@ void DatabaseServer::run()
               //predict
               long runtime = datamining_handler->predict(task_data.parameters);
               //long runtime = 1;
-              cout << "predict: " << runtime << std::endl;
-              cout << "parameteeeer: " << task_data.parameters[0] << std::endl;;
               //send prediction
               int target_rank = status.MPI_SOURCE;
               MPI_Send(&runtime, 1, MPI_LONG, target_rank, DATAMINING, MPI_COMM_WORLD);

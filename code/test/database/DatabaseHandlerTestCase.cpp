@@ -73,7 +73,7 @@ void DatabaseHandlerTestCase::test_storeData() {
 
 void DatabaseHandlerTestCase::test_readStatistic() {
     data_Inq = database_handler->readStatistic();
-    data_Inq->runtime
+    data_Inq.
     //store and then compare memory
     CPPUNIT_ASSERT(data_Inq->parameter_size == 3);
     CPPUNIT_ASSERT(data_Inq->runtime[0] == 10);

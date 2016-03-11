@@ -58,7 +58,7 @@ void printgrid(DataStorage* proxy, int nr_of_dimensions)
  * GridDataMining implementation
  */
 
-GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time = 1000000, double start_offset = 0, double start_increment = 1, int start_dimension = 10)
+GridDataMining::GridDataMining(DatabaseHandler* database, int parameter_count, double* initial_tasks_parameter, long* initial_task_runtime, int initial_task_count, double max_deviation_time, double start_offset, double start_increment, int start_dimension)
 {
   #if GRID_DATA_MINING_DEBUG
     GridLibrary::print_name("GridDataMining constructor");

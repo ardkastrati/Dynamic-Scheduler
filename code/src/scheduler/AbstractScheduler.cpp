@@ -40,7 +40,7 @@ void AbstractScheduler::place_task(Task task)
     if (scheduling_strategy->is_statistic_based()) {
         TaskData temp;
         temp.parameter_size = task.parameter_size;
-        memcpy(temp.parameters, task.parameters, sizeof(double));
+        memcpy(temp.parameters, task.parameters, sizeof(double)*temp.parameter_size);
         //std::copy(std::begin(task.parameters), std::end(task.parameters), std::begin(temp.parameters));
 
         MPI_Status status;
