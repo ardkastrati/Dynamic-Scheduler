@@ -59,19 +59,21 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
 				connectingIndicator.setVisible(false);
 				noConnectionLabel.setVisible(true);
 				tryNewConnection.setVisible(true);
-			} else if (newStatus == MySession.SessionStatus.READY) {
+			} else if (newStatus == MySession.SessionStatus.ESTABLISHING) {
 				sftpTree.setDisable(true);
 				connectingIndicator.setVisible(true);
 				connectingIndicator.setProgress(-1);
 				noConnectionLabel.setVisible(false);
 				tryNewConnection.setVisible(false);
-			} else {
+			} else if(newStatus == MySession.SessionStatus.ONLINE) {
 				connectingIndicator.setVisible(false);
 				sftpTree.setDisable(false);
 				noConnectionLabel.setVisible(false);
 				tryNewConnection.setVisible(false);
 				init();
-			}
+			} else if(newStatus == MySession.SessionStatus.READY) {
+                                MySession.getInstant().initiateOpeningChannel("sftp");
+                        }
 		};
 		
 	}
@@ -81,7 +83,9 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
 	 */
 	public void init() {
 		sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    if(newValue != null) {
 			sftpPath.setText(newValue.getValue());
+                    }
 		});
 		// switch to the root directory
                 sftpTree.setRoot(new SftpTreeItem("."));
@@ -163,8 +167,9 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
 
         @Override
 	public void onEntry() {
+          
                 MySession.getInstant().sessionStatusProperty().addListener(listener);
-                if(MySession.getInstant().getSessionStatus() == MySession.SessionStatus.DISCONNECTED) {
+                /*if(MySession.getInstant().getSessionStatus() == MySession.SessionStatus.DISCONNECTED) {
                         sftpTree.setDisable(true);
                         connectingIndicator.setVisible(false);
                         noConnectionLabel.setVisible(true);
@@ -176,7 +181,7 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
                         connectingIndicator.setProgress(-1);
                         noConnectionLabel.setVisible(false);
                         tryNewConnection.setVisible(false);
-                }
+                }*/
 		MySession.getInstant().initiateOpeningChannel("sftp");
 	}
 

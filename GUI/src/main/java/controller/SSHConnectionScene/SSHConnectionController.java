@@ -75,7 +75,6 @@ public class SSHConnectionController implements Initializable, Controller {
 	@FXML
 	private void onDisconnect() {
             MySession.getInstant().removeConnection();
-            System.out.println("Removed correctly");
             onTryingToConnect.setVisible(false);
             imageOnSuccess.setVisible(false);
             imageOnSuccess.setY(imageOnSuccess.getY() - 78);
@@ -103,7 +102,7 @@ public class SSHConnectionController implements Initializable, Controller {
 
 		ChangeListener<MySession.SessionStatus> listener;
 		listener = (obs, oldStatus, newStatus) -> {
-                    if (newStatus ==  MySession.SessionStatus.DISCONNECTED && oldStatus == MySession.SessionStatus.DISCONNECTED) {
+                    if (newStatus ==  MySession.SessionStatus.DISCONNECTED && oldStatus == MySession.SessionStatus.CONNECTING) {
                             gridPane.setVisible(false);
                             imageOnFailure.setVisible(true);
                             onTryingToConnect.setText(("Failed to connect with SSH. Please try again!"));
@@ -113,14 +112,15 @@ public class SSHConnectionController implements Initializable, Controller {
 
 
                     } else if (newStatus == MySession.SessionStatus.READY
-                                    && oldStatus == MySession.SessionStatus.DISCONNECTED) {
+                                    && oldStatus == MySession.SessionStatus.CONNECTING) {
                             gridPane.setVisible(false);
                             imageOnSuccess.setVisible(true);
                             disconnect.setVisible(true);
                             onTryingToConnect.setText("Successfully connected.");
                             onTryingToConnect.setVisible(true);
                             startTickTransition(imageOnSuccess);
-                    } 
+                    }
+                      
                 
 		};
 		MySession.getInstant().sessionStatusProperty().addListener(listener);
