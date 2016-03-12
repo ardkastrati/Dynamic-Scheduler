@@ -13,6 +13,7 @@
 #include "ui/text/TestRunner.h"
 #include "scheduler/SchedulerTestSuite.h"
 #include "database/DatabaseTestSuite.h"
+#include "datamining/grid/GridDataMiningTestSuite.h"
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/CompilerOutputter.h>
@@ -34,6 +35,7 @@ int main(int argc, char** argv) {
     runner.addTest(registry.makeTest());
     runner.addTest(SchedulerTestSuite::suite());
     runner.addTest(DatabaseTestSuite::suite());
+    runner.addTest(GridDataMiningTestSuite::suite());
     runner.run(controller);
     CompilerOutputter outputter(&result, std::cout);
     outputter.write();

@@ -37,6 +37,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/database/DatabaseHandlerTestCase.o \
 	${OBJECTDIR}/database/DatabaseTestSuite.o \
+	${OBJECTDIR}/datamining/grid/ArrayHandlerTestCase.o \
+	${OBJECTDIR}/datamining/grid/DataStorageTestCase.o \
+	${OBJECTDIR}/datamining/grid/GridDataMiningTestCase.o \
+	${OBJECTDIR}/datamining/grid/GridDataMiningTestSuite.o \
+	${OBJECTDIR}/datamining/grid/GridLibraryTestCase.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/scheduler/FIFOTestCase.o \
 	${OBJECTDIR}/scheduler/LIFOTestCase.o \
@@ -59,15 +64,15 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/usr/lib/x86_64-linux-gnu/libcppunit.a ../bin/libscheduler.a
+LDLIBSOPTIONS=../bin/libscheduler.a /usr/lib/libcppunit.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: /usr/lib/x86_64-linux-gnu/libcppunit.a
-
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ../bin/libscheduler.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: /usr/lib/libcppunit.so
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -82,6 +87,31 @@ ${OBJECTDIR}/database/DatabaseTestSuite.o: database/DatabaseTestSuite.cpp
 	${MKDIR} -p ${OBJECTDIR}/database
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/database/DatabaseTestSuite.o database/DatabaseTestSuite.cpp
+
+${OBJECTDIR}/datamining/grid/ArrayHandlerTestCase.o: datamining/grid/ArrayHandlerTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/datamining/grid
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datamining/grid/ArrayHandlerTestCase.o datamining/grid/ArrayHandlerTestCase.cpp
+
+${OBJECTDIR}/datamining/grid/DataStorageTestCase.o: datamining/grid/DataStorageTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/datamining/grid
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datamining/grid/DataStorageTestCase.o datamining/grid/DataStorageTestCase.cpp
+
+${OBJECTDIR}/datamining/grid/GridDataMiningTestCase.o: datamining/grid/GridDataMiningTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/datamining/grid
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datamining/grid/GridDataMiningTestCase.o datamining/grid/GridDataMiningTestCase.cpp
+
+${OBJECTDIR}/datamining/grid/GridDataMiningTestSuite.o: datamining/grid/GridDataMiningTestSuite.cpp 
+	${MKDIR} -p ${OBJECTDIR}/datamining/grid
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datamining/grid/GridDataMiningTestSuite.o datamining/grid/GridDataMiningTestSuite.cpp
+
+${OBJECTDIR}/datamining/grid/GridLibraryTestCase.o: datamining/grid/GridLibraryTestCase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/datamining/grid
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -s -I/usr/include/cppunit -I/usr/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/datamining/grid/GridLibraryTestCase.o datamining/grid/GridLibraryTestCase.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

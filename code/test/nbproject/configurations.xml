@@ -4,9 +4,14 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>datamining/grid/ArrayHandlerTestCase.h</itemPath>
+      <itemPath>datamining/grid/DataStorageTestCase.h</itemPath>
       <itemPath>database/DatabaseHandlerTestCase.h</itemPath>
       <itemPath>database/DatabaseTestSuite.h</itemPath>
       <itemPath>scheduler/FIFOTestCase.h</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestCase.h</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestSuite.h</itemPath>
+      <itemPath>datamining/grid/GridLibraryTestCase.h</itemPath>
       <itemPath>scheduler/LIFOTestCase.h</itemPath>
       <itemPath>scheduler/LJFTestCase.h</itemPath>
       <itemPath>scheduler/SJFTestCase.h</itemPath>
@@ -19,9 +24,14 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>datamining/grid/ArrayHandlerTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/DataStorageTestCase.cpp</itemPath>
       <itemPath>database/DatabaseHandlerTestCase.cpp</itemPath>
       <itemPath>database/DatabaseTestSuite.cpp</itemPath>
       <itemPath>scheduler/FIFOTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestSuite.cpp</itemPath>
+      <itemPath>datamining/grid/GridLibraryTestCase.cpp</itemPath>
       <itemPath>scheduler/LIFOTestCase.cpp</itemPath>
       <itemPath>scheduler/LJFTestCase.cpp</itemPath>
       <itemPath>scheduler/SJFTestCase.cpp</itemPath>
@@ -67,8 +77,8 @@
         <linkerTool>
           <commandlineTool>mpic++</commandlineTool>
           <linkerLibItems>
-            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libcppunit.a</linkerLibFileItem>
             <linkerLibFileItem>../bin/libscheduler.a</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/libcppunit.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -82,6 +92,56 @@
       <item path="database/DatabaseTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -136,6 +196,56 @@
       <item path="database/DatabaseTestSuite.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
