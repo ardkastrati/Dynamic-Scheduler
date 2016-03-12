@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   GridDataMiningTestSuite.h
  * Author: jan
  *
@@ -28,9 +28,8 @@ public:
      * Returns a test suite instance that contains all tests for the module.
      * @return a test suite instance
      */
-    static TestSuite* suite();
+    static Test* suite();
 private:
 
 };
 #endif /* GRIDDATAMININGTESTSUITE_H */
-

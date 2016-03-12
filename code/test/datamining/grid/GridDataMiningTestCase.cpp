@@ -4,21 +4,23 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   GridDataMiningTestCase.cpp
  * Author: jan
- * 
+ *
  * Created on 11. März 2016, 12:51
  */
 
 #include "GridDataMiningTestCase.h"
 
-GridDataMiningTestCase::GridDataMiningTestCase() {
+Test* GridDataMiningTestCase::suite()
+{
+    Test* suite = new Test("GridDataMining test cases");
+    return suite;
 }
 
-GridDataMiningTestCase::GridDataMiningTestCase(const GridDataMiningTestCase& orig) {
-}
+void GridDataMiningTestCase::setUp()
+{}
 
-GridDataMiningTestCase::~GridDataMiningTestCase() {
-}
-
+void GridDataMiningTestCase::tearDown()
+{}

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   DataStorageTestCase.h
  * Author: jan
  *
@@ -59,4 +59,3 @@ public:
     double* test_increment;
 };
 #endif /* DATASTORAGETESTCASE_H */
-

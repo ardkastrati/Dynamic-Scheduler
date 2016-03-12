@@ -10,15 +10,19 @@
  *
  * Created on 11. März 2016, 12:51
  */
- #include "TestFixture.h"
+
 
 #ifndef GRIDDATAMININGTESTCASE_H
 #define GRIDDATAMININGTESTCASE_H
 
+#include "TestFixture.h"
+
+using namespace CppUnit;
+
 class GridDataMiningTestCase : public TestFixture {
 public:
   /**
-   * Returns a test suite instance that contains all testcases
+   * Returns a test suite instance that contains all test cases
    * @return a test suite instance
    */
   static Test* suite();
