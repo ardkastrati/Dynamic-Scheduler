@@ -19,7 +19,8 @@
 #include "GridLibraryTestCase.h"
 #include "DataStorageTestCase.h"
 #include "ArrayHandlerTestCase.h"
-#include "GridDataMiningTestCase.h"
+//#include "GridDataMiningTestCase.h"
+
 using namespace CppUnit;
 
 class GridDataMiningTestSuite {
