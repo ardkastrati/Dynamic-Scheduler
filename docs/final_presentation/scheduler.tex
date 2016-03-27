@@ -1,35 +1,33 @@
 \section{Scheduler}
-\section{Architecture}
+\subsection{Architecture}
 
-\subsection{Master-Worker}
-	\begin{frame}
+\subsubsection{Master-Worker}
+	\begin{frame}{Master-Worker}
 		
 	\end{frame}
-\subsection{Task stealing}
-	\begin{frame}
+\subsubsection{Task stealing}
+	\begin{frame}{Task Stealing}
 	\end{frame}
-\section{Scheduling strategies}
+\subsection{Scheduling strategies}
 
 	\begin{frame}{Scheduling strategies}
-		non statistical
+		\begin{itemize}
+		\item non statistical
 		\begin{itemize}
 			\item First In-First out (FIFO)
 			\item Last In-Last out
 		\end{itemize}
-		statistical
+		\item statistical
 		\begin{itemize}
 			\item Shortest job first
 			\item Longest job first
 		\end{itemize}
-	\end{frame}
-\subsection{Master-Worker}
-	\begin{frame}{Scheduling strategies: Master-Worker}
-		\begin{itemize}
-			\item uses fast standard lib implementation
-			\item dynamic size
-			\item easy to switch between scheduling strategies
+		\item standardized interface - it is very easy to include new strategies
 		\end{itemize}
 	\end{frame}
-\subsection{Task stealing}
+\subsubsection{Master-Worker}
+	\begin{frame}{Scheduling strategies: Master-Worker vs. Task stealing}
+	\end{frame}
+\subsubsection{Task stealing}
 	\begin{frame}
 	\end{frame}
