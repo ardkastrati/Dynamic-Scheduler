@@ -4,7 +4,7 @@
  */
 package services;
 
-import GUIcomponents.SftpTreeItem;
+import components.SftpTreeItem;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpATTRS;
 import java.util.ArrayList;

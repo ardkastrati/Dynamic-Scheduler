@@ -49,6 +49,11 @@ public class MySession {
     public ChannelSftp getSFTPChannel(String sftp) {
         ChannelSftp sftpChannel= null;
         try {
+            currentSession.connect();
+        } catch (JSchException ex) {
+            Logger.getLogger(MySession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             sftpChannel = (ChannelSftp) currentSession.openChannel(sftp);
         } catch (JSchException ex) {
             Logger.getLogger(MySession.class.getName()).log(Level.SEVERE, null, ex);

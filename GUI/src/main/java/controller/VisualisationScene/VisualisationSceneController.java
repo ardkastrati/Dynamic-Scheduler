@@ -123,11 +123,11 @@ public class VisualisationSceneController  implements Initializable, Controller{
             diagramBox.getItems().add(visualiser);
         }
         
-        this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
+       /* this.baseDir = "/home/a/Dokumente/PSE/testdata/";
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
-        }
+        }*/
     }
 
     @Override

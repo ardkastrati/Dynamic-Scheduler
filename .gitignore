@@ -192,3 +192,4 @@ code/src/visualiser/.metadata/
 *.class
 
 GUI/src/.metadata/
+/GUI/nbproject/

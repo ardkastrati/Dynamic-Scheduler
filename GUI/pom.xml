@@ -106,12 +106,6 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>0.1.46</version>
@@ -132,17 +126,36 @@
             <artifactId>commons-net</artifactId>
             <version>3.3</version>
         </dependency>
-	<dependency>
-            <groupId>javafx</groupId>
+	 <!--<dependency>
+           <groupId>javafx</groupId>
             <artifactId>javafx</artifactId>
 	    <version>2.2</version>
 	    <scope>system</scope>
             <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.panayotis.gnuplot</groupId>
             <artifactId>gnuplot</artifactId>
             <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+	<dependency>
+		<groupId>edu.uci.ics.jung</groupId>
+		<artifactId>jung</artifactId>
+		<version>1.7.6</version>
+	    <type>jar</type>
+	</dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
             <type>jar</type>
         </dependency>
     </dependencies>

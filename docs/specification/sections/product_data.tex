@@ -13,9 +13,10 @@
 		\begin{itemize}
 			\item All tasks of the computation, where a task consists of:
 				\begin{itemize}
-					\item \textbf{Data\_Type} (e.g. structure or array);
-					\item \textbf{Data} of this type
+					\item Task
+					\item TaskData
 				\end{itemize}
+			\item Task representation in main memory (for fast data mining access) as struct 'DataInquiry'
 			\item Command line parameter that chooses scheduling strategy
 			\item Run arguments for the scientific code initialization
 		\end{itemize}
@@ -23,24 +24,23 @@
 
 	\subsection{Bookkeeping}
 		\begin{itemize}
-			\item Hosting process for each task
-			\item Timestamp when a task appears
+			\item Events occuring (task appeared, task started, task ended)
+			\item Simulation mode (task stealing / master - worker)
+			\item Timestamp when a task appeared
 			\item Timestamp when a task is started
 			\item Timestamp when a task is finished
-			\item Task parameters when a task appears
-			\item Task parameters when a task is started
-			\item Task parameters when a task is finished
-			\item Parent process of the appearing task
-			\item Hosting process of the starting task
-			\item Hosting process of the finishing task
+			\item unique Task identifier (ID)
+			\item Parent process of the appearing task (MPI rank)
+			\item Number of parameters
+			\item Task parameters
 			\item Timestamp when a intercommunication between processes started
 			\item Timestamp when a intercommunication between processes finished
-			\item Which CPUs (processors' ranks) communicated and the direction of the communication (e.g. from p1 to p2) 
 		\end{itemize}
 			
 			
 	\subsection{Statistics}
 		\begin{itemize}
-			\item The runtime for each task depending on task parameters (Which data are important for the statistics is defined in the task data type)
+			\item The runtime of each task
+			\item The parameter of each task
 		\end{itemize}
 }

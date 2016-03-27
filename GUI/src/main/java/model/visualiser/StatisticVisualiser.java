@@ -27,6 +27,7 @@ import javafx.embed.swing.SwingNode;
  * 
  */
 public class StatisticVisualiser implements Visualiser{
+
     
     @Override
     public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
