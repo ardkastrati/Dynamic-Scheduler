@@ -9,15 +9,15 @@
 
 	\begin{frame}{Scheduling strategies}
 		\begin{itemize}
-		\item non statistical
+		\item non-statistical
 		\begin{itemize}
 			\item First In-First out (FIFO)
-			\item Last In-Last out
+			\item Last In-Last out (LIFO)
 		\end{itemize}
 		\item statistical
 		\begin{itemize}
-			\item Shortest job first
-			\item Longest job first
+			\item Shortest job first (SJF)
+			\item Longest job first (LJF)
 		\end{itemize}
 		\item standardized interface - it is very easy to include new strategies
 		\end{itemize}
@@ -27,14 +27,13 @@
 			\item Master-Worker
 				\begin{itemize}
 					\item fast standard c++ implementation
-					\item dynamically size
-					\item easy to switch between scheduling strategies online					
+					\item dynamic size
+					\item easy to switch between scheduling strategies at runtime	
 				\end{itemize}
 			
 			\item Task stealing
 					\begin{itemize}
 						\item own implementation in MPI-Window
-						\item synchronization overhead
 					\end{itemize}
 			
 		\end{itemize}
