@@ -2,19 +2,19 @@
 
 #MSUB  -q develop
 #MSUB  -l nodes=22:ppn=22
-#MSUB  -l walltime=22
-#MSUB  -l pmem=22
-#MSUB  -l advres=ard
-#MSUB  -N ard
-#MSUB  -o ard
+#MSUB  -l walltime=1000
+#MSUB  -N 
+#MSUB  -o 
 #MSUB  -S #!/bin/bash
+#MSUB  -m ab
+#MSUB  -M uxdok@student.kit.edu
 
 
         ##### Directory
 
-cd .
+cd ./Documents
 
 
         #### MPI commands
 
-mpirun ard
+mpirun -np 4 ./myExec -design master-worker -strategy fifo
