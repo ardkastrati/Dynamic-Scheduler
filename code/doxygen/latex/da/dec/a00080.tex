@@ -1,0 +1,160 @@
+\hypertarget{a00080}{}\subsection{S\+J\+F Class Reference}
+\label{a00080}\index{S\+J\+F@{S\+J\+F}}
+
+
+{\ttfamily \#include $<$S\+J\+F.\+h$>$}
+
+
+
+Inheritance diagram for S\+J\+F\+:
+% FIG 0
+
+
+Collaboration diagram for S\+J\+F\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00080_aad25acf31705ffe3de354d7ed9d246b0}{S\+J\+F} ()
+\item 
+\hyperlink{a00080_a355e1c11942bdc83724bb522788ef85c}{$\sim$\+S\+J\+F} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00080_ae4b4643d0ab5399d9ead911324316f8b}{get\+\_\+next\+\_\+task} ()
+\item 
+int \hyperlink{a00080_a52050fbf818f6ce0e7de4d206d768af7}{get\+\_\+task\+\_\+count} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00080_aa9c95d30d23d76c6738c9b4076574d68}{pop\+\_\+next\+\_\+task} ()
+\item 
+void \hyperlink{a00080_acf85a4d139f386a2a82578b32a1b3989}{push\+\_\+new\+\_\+task} (\hyperlink{a00002}{Task} task, long runtime)
+\item 
+\hyperlink{a00076}{Scheduling\+Strategy} $\ast$ \hyperlink{a00080_aa1816e24350bf8ee69641e79bc4354e1}{change\+\_\+strategy} (\hyperlink{a00076}{Scheduling\+Strategy} $\ast$new\+\_\+strategy)
+\item 
+bool \hyperlink{a00080_a113a0c4ba9bf1ede8e3189c882a7b8c7}{is\+\_\+statistic\+\_\+based} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Detailed Description}
+Implements the \hyperlink{a00076}{Scheduling\+Strategy} interface and realises the Shortest Job First (\hyperlink{a00080}{S\+J\+F}) scheduling strategy. Shortest Job First scheduling uses the estimated runtime of tasks to order the task queue. \hyperlink{a00080}{S\+J\+F} is a statistically based scheduling strategy. The \hyperlink{a00080}{S\+J\+F} class uses the std\+::priority\+\_\+queue priority queue to keep the tasks.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00080_aad25acf31705ffe3de354d7ed9d246b0}{}\index{S\+J\+F@{S\+J\+F}!S\+J\+F@{S\+J\+F}}
+\index{S\+J\+F@{S\+J\+F}!S\+J\+F@{S\+J\+F}}
+\paragraph[{S\+J\+F}]{\setlength{\rightskip}{0pt plus 5cm}S\+J\+F\+::\+S\+J\+F (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00080_aad25acf31705ffe3de354d7ed9d246b0}
+Constructs a new \hyperlink{a00080}{S\+J\+F} scheduling queue \hypertarget{a00080_a355e1c11942bdc83724bb522788ef85c}{}\index{S\+J\+F@{S\+J\+F}!````~S\+J\+F@{$\sim$\+S\+J\+F}}
+\index{````~S\+J\+F@{$\sim$\+S\+J\+F}!S\+J\+F@{S\+J\+F}}
+\paragraph[{$\sim$\+S\+J\+F}]{\setlength{\rightskip}{0pt plus 5cm}S\+J\+F\+::$\sim$\+S\+J\+F (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00080_a355e1c11942bdc83724bb522788ef85c}
+Deletes the priority\+\_\+queue 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00080_aa1816e24350bf8ee69641e79bc4354e1}{}\index{S\+J\+F@{S\+J\+F}!change\+\_\+strategy@{change\+\_\+strategy}}
+\index{change\+\_\+strategy@{change\+\_\+strategy}!S\+J\+F@{S\+J\+F}}
+\paragraph[{change\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy} $\ast$ S\+J\+F\+::change\+\_\+strategy (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{new\+\_\+strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_aa1816e24350bf8ee69641e79bc4354e1}
+Changes the scheduling strategy. Returns the new schdeuling strategy with all tasks, or N\+U\+L\+L if there was an error.
+
+Estimated runtime of tasks will get lost by changing from statistically based strategies (L\+S\+F, \hyperlink{a00080}{S\+J\+F}) to non-\/statistically based strategies. The order of the old queue will be kept.
+
+All tasks will get a default rumtime value (defined in D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E) by changing from non-\/statistically based strategies (\hyperlink{a00028}{F\+I\+F\+O}, \hyperlink{a00038}{L\+I\+F\+O}) to statistically based strategies. The order of the old queue perhaps won\textquotesingle{}t be kept 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+strategy} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00076_a4874d194c1bb185480339360fe907d83}{Scheduling\+Strategy}.
+
+\hypertarget{a00080_ae4b4643d0ab5399d9ead911324316f8b}{}\index{S\+J\+F@{S\+J\+F}!get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}}
+\index{get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}!S\+J\+F@{S\+J\+F}}
+\paragraph[{get\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} S\+J\+F\+::get\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_ae4b4643d0ab5399d9ead911324316f8b}
+Returns the shortest task, or N\+U\+L\+L if the queue is empty
+
+\begin{DoxyReturn}{Returns}
+the shortest task 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00076_adce3619801460ad67d6c8f9bdffcd36b}{Scheduling\+Strategy}.
+
+\hypertarget{a00080_a52050fbf818f6ce0e7de4d206d768af7}{}\index{S\+J\+F@{S\+J\+F}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!S\+J\+F@{S\+J\+F}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int S\+J\+F\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_a52050fbf818f6ce0e7de4d206d768af7}
+Return the count of tasks in the scheduling queue
+
+the count of tasks 
+
+Implements \hyperlink{a00076_a0a3355ffe9c03236692ad00e4f94f5c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00080_a113a0c4ba9bf1ede8e3189c882a7b8c7}{}\index{S\+J\+F@{S\+J\+F}!is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}}
+\index{is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}!S\+J\+F@{S\+J\+F}}
+\paragraph[{is\+\_\+statistic\+\_\+based}]{\setlength{\rightskip}{0pt plus 5cm}bool S\+J\+F\+::is\+\_\+statistic\+\_\+based (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_a113a0c4ba9bf1ede8e3189c882a7b8c7}
+Returns true, if the current scheduling strategy statistic based.
+
+\begin{DoxyReturn}{Returns}
+true, if the current scheduling strategy statistic based 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00076_a5962845ca5af53bbdc014c19a6bdef99}{Scheduling\+Strategy}.
+
+\hypertarget{a00080_aa9c95d30d23d76c6738c9b4076574d68}{}\index{S\+J\+F@{S\+J\+F}!pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}}
+\index{pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}!S\+J\+F@{S\+J\+F}}
+\paragraph[{pop\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} S\+J\+F\+::pop\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_aa9c95d30d23d76c6738c9b4076574d68}
+Removes the next task in the queue, effectively reducing its size by one. 
+
+Implements \hyperlink{a00076_ac2ba483287c91fd4318f337da144a9c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00080_acf85a4d139f386a2a82578b32a1b3989}{}\index{S\+J\+F@{S\+J\+F}!push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}}
+\index{push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}!S\+J\+F@{S\+J\+F}}
+\paragraph[{push\+\_\+new\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}void S\+J\+F\+::push\+\_\+new\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00080_acf85a4d139f386a2a82578b32a1b3989}
+Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+{\em runtime} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00076_a62ffa0426528c14fdd0b0853f04a851f}{Scheduling\+Strategy}.
+

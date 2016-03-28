@@ -1,0 +1,223 @@
+\hypertarget{a00055}{}\subsection{Mpi\+Win\+Binary\+Heap Class Reference}
+\label{a00055}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+
+
+{\ttfamily \#include $<$Mpi\+Win\+Binary\+Heap.\+h$>$}
+
+
+
+Inheritance diagram for Mpi\+Win\+Binary\+Heap\+:
+% FIG 0
+
+
+Collaboration diagram for Mpi\+Win\+Binary\+Heap\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00055_a4a5fd6d6bbb17dae222b879232d11374}{Mpi\+Win\+Binary\+Heap} (int size, int rank, int number\+\_\+of\+\_\+processors)
+\item 
+\hyperlink{a00055_a907d0f48eee11b2563569fc51b6b3b6c}{$\sim$\+Mpi\+Win\+Binary\+Heap} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00055_a380cd524e7944a34b62e1f24e9e177dc}{get\+\_\+next\+\_\+task} ()
+\item 
+int \hyperlink{a00055_a5b1e74e642f812a39a5aa6a780767361}{get\+\_\+task\+\_\+count} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00055_a7320931203f8f33f3bc22bd7d91106f7}{pop\+\_\+next\+\_\+task} ()
+\item 
+void \hyperlink{a00055_a96148127c5d44c8b884a90c204ee8368}{push\+\_\+new\+\_\+task} (\hyperlink{a00002}{Task} task, long runtime)
+\item 
+\hyperlink{a00076}{Scheduling\+Strategy} $\ast$ \hyperlink{a00055_aff536070d82c0a220436a1c19e07b584}{change\+\_\+strategy} (\hyperlink{a00076}{Scheduling\+Strategy} $\ast$new\+\_\+strategy)
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00055_a713a9f45479e2b80a880867bbb003b8d}{steal\+\_\+next\+\_\+task} (int target\+\_\+rank, int number\+\_\+of\+\_\+tries)
+\item 
+int \hyperlink{a00055_a870ed56e326e732655a4ba14fa47a4cd}{get\+\_\+task\+\_\+count} (int target\+\_\+rank)
+\item 
+bool \hyperlink{a00055_a72e6b555d122e42f1dd72ea72f626975}{is\+\_\+statistic\+\_\+based} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Detailed Description}
+The class is a binary heap, that uses a M\+P\+I shared memory area (M\+P\+I Window) to store the data. The algorithm details can be found here \href{http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150520.pdf}{\tt http\+://crypto.\+iti.\+kit.\+edu/fileadmin/\+User/\+Lectures/\+Algorithmen\+\_\+\+S\+S15/folien\+\_\+20150520.\+pdf} and here\+: \href{http://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150518.pdf}{\tt http\+://crypto.\+iti.\+kit.\+edu/fileadmin/\+User/\+Lectures/\+Algorithmen\+\_\+\+S\+S15/folien\+\_\+20150518.\+pdf}.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00055_a4a5fd6d6bbb17dae222b879232d11374}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{Mpi\+Win\+Binary\+Heap}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Win\+Binary\+Heap\+::\+Mpi\+Win\+Binary\+Heap (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors}
+\end{DoxyParamCaption}
+)}\label{a00055_a4a5fd6d6bbb17dae222b879232d11374}
+Constructs a new binary heap scheduling queue
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the queue \\
+\hline
+{\em rank} & from the process inside the M\+Y\+\_\+\+M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+T\+A\+S\+K\+S\+T\+E\+A\+L\+I\+N\+G communicator \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & inside the M\+Y\+\_\+\+M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+T\+A\+S\+K\+S\+T\+E\+A\+L\+I\+N\+G communicator \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00055_a907d0f48eee11b2563569fc51b6b3b6c}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!````~Mpi\+Win\+Binary\+Heap@{$\sim$\+Mpi\+Win\+Binary\+Heap}}
+\index{````~Mpi\+Win\+Binary\+Heap@{$\sim$\+Mpi\+Win\+Binary\+Heap}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{$\sim$\+Mpi\+Win\+Binary\+Heap}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Win\+Binary\+Heap\+::$\sim$\+Mpi\+Win\+Binary\+Heap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00055_a907d0f48eee11b2563569fc51b6b3b6c}
+Destructs the binary heap scheduling queue 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00055_aff536070d82c0a220436a1c19e07b584}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!change\+\_\+strategy@{change\+\_\+strategy}}
+\index{change\+\_\+strategy@{change\+\_\+strategy}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{change\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy} $\ast$ Mpi\+Win\+Binary\+Heap\+::change\+\_\+strategy (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{new\+\_\+strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_aff536070d82c0a220436a1c19e07b584}
+Changes the scheduling strategy. Returns the new scheduling strategy with all tasks, or N\+U\+L\+L if there was an error.
+
+Estimated runtime of tasks will get lost by changing from statistically based strategies (L\+S\+F, \hyperlink{a00080}{S\+J\+F}) to non-\/statistically based strategies. The order of the old queue will be kept.
+
+All tasks will get a default runtime value (defined in D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E) by changing from non-\/statistically based strategies (\hyperlink{a00028}{F\+I\+F\+O}, \hyperlink{a00038}{L\+I\+F\+O}) to statistically based strategies. The order of the old queue perhaps won\textquotesingle{}t be kept 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+strategy} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00076_a4874d194c1bb185480339360fe907d83}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a380cd524e7944a34b62e1f24e9e177dc}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}}
+\index{get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{get\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+Binary\+Heap\+::get\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a380cd524e7944a34b62e1f24e9e177dc}
+Returns the first task, or N\+U\+L\+L if the queue is empty
+
+\begin{DoxyReturn}{Returns}
+the last-\/in task 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00076_adce3619801460ad67d6c8f9bdffcd36b}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a5b1e74e642f812a39a5aa6a780767361}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Mpi\+Win\+Binary\+Heap\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a5b1e74e642f812a39a5aa6a780767361}
+Return the count of tasks in the scheduling queue
+
+\begin{DoxyReturn}{Returns}
+the count of tasks 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00076_a0a3355ffe9c03236692ad00e4f94f5c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a870ed56e326e732655a4ba14fa47a4cd}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Mpi\+Win\+Binary\+Heap\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{int}]{target\+\_\+rank}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a870ed56e326e732655a4ba14fa47a4cd}
+Returns the task count of the remote queue of the given rank
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & the rank of the remote queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the task count of the remote queue 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00058_a8742d0d3a2204efe5aa47e39f856dee1}{Mpi\+Win\+Scheduling\+Strategy}.
+
+\hypertarget{a00055_a72e6b555d122e42f1dd72ea72f626975}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}}
+\index{is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{is\+\_\+statistic\+\_\+based}]{\setlength{\rightskip}{0pt plus 5cm}bool Mpi\+Win\+Binary\+Heap\+::is\+\_\+statistic\+\_\+based (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a72e6b555d122e42f1dd72ea72f626975}
+Returns true, if the current scheduling strategy statistic based.
+
+\begin{DoxyReturn}{Returns}
+true, if the current scheduling strategy statistic based 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00076_a5962845ca5af53bbdc014c19a6bdef99}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a7320931203f8f33f3bc22bd7d91106f7}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}}
+\index{pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{pop\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+Binary\+Heap\+::pop\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a7320931203f8f33f3bc22bd7d91106f7}
+Removes the next task in the queue, effectively reducing its size by one. 
+
+Implements \hyperlink{a00076_ac2ba483287c91fd4318f337da144a9c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a96148127c5d44c8b884a90c204ee8368}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}}
+\index{push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{push\+\_\+new\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Win\+Binary\+Heap\+::push\+\_\+new\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a96148127c5d44c8b884a90c204ee8368}
+Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+{\em runtime} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00076_a62ffa0426528c14fdd0b0853f04a851f}{Scheduling\+Strategy}.
+
+\hypertarget{a00055_a713a9f45479e2b80a880867bbb003b8d}{}\index{Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}!steal\+\_\+next\+\_\+task@{steal\+\_\+next\+\_\+task}}
+\index{steal\+\_\+next\+\_\+task@{steal\+\_\+next\+\_\+task}!Mpi\+Win\+Binary\+Heap@{Mpi\+Win\+Binary\+Heap}}
+\paragraph[{steal\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+Binary\+Heap\+::steal\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{int}]{target\+\_\+rank, }
+\item[{int}]{number\+\_\+of\+\_\+tries}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00055_a713a9f45479e2b80a880867bbb003b8d}
+Steals the next task from the given rank if the queue of the given rank is not empty
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & the rank of the remote queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next task from the given rank or N\+U\+L\+L if the queue is empty 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00058_ac1804574e61c9ed91c7f78bc48b332ea}{Mpi\+Win\+Scheduling\+Strategy}.
+

@@ -1,0 +1,88 @@
+\hypertarget{a00097}{}\subsection{el\+:\+:base\+:\+:Writer Class Reference}
+\label{a00097}\index{el\+::base\+::\+Writer@{el\+::base\+::\+Writer}}
+
+
+Main entry point of each logging.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:base\+:\+:Writer\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:base\+:\+:Writer\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00097_ac2a835925f37fd2ca3da00998d8a533c}{}{\bfseries Writer} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level, const char $\ast$file, unsigned long int line, const char $\ast$func, \hyperlink{a00184_a3aa2563d38e47388ba242a1694fc2839}{base\+::\+Dispatch\+Action} dispatch\+Action=base\+::\+Dispatch\+Action\+::\+Normal\+Log, base\+::type\+::\+Verbose\+Level verbose\+Level=0)\label{a00097_ac2a835925f37fd2ca3da00998d8a533c}
+
+\item 
+\hypertarget{a00097_ab94f0d920c6465a57937e893aa9f5ada}{}{\footnotesize template$<$typename T $>$ }\\\hyperlink{a00097}{Writer} \& {\bfseries operator$<$$<$} (const T \&log)\label{a00097_ab94f0d920c6465a57937e893aa9f5ada}
+
+\item 
+\hypertarget{a00097_aea6d7f996ff92e9485a76ad3955f0a29}{}\hyperlink{a00097}{Writer} \& {\bfseries operator$<$$<$} (std\+::ostream \&($\ast$log)(std\+::ostream \&))\label{a00097_aea6d7f996ff92e9485a76ad3955f0a29}
+
+\item 
+\hypertarget{a00097_a282d82f392a3e6fef9eda47ce53e87dc}{}\hyperlink{a00097}{Writer} \& {\bfseries construct} (\hyperlink{a00048}{Logger} $\ast$logger, bool need\+Lock=true)\label{a00097_a282d82f392a3e6fef9eda47ce53e87dc}
+
+\item 
+\hypertarget{a00097_ab2bc960787eb3c9b01569629dcbeb246}{}\hyperlink{a00097}{Writer} \& {\bfseries construct} (int count, const char $\ast$logger\+Ids,...)\label{a00097_ab2bc960787eb3c9b01569629dcbeb246}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00097_ae687ebbee62b086f318ee4c8d1a655c4}{}void {\bfseries initialize\+Logger} (const std\+::string \&logger\+Id, bool lookup=true, bool need\+Lock=true)\label{a00097_ae687ebbee62b086f318ee4c8d1a655c4}
+
+\item 
+\hypertarget{a00097_a692d05d209840d6ae8c2c8e0bea21d29}{}void {\bfseries process\+Dispatch} ()\label{a00097_a692d05d209840d6ae8c2c8e0bea21d29}
+
+\item 
+\hypertarget{a00097_a1c7d90bd4e00af4e7307f5936e1b6507}{}void {\bfseries trigger\+Dispatch} (void)\label{a00097_a1c7d90bd4e00af4e7307f5936e1b6507}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00097_a28522bf9b05b4edcc0baf5196645d317}{}\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} {\bfseries m\+\_\+level}\label{a00097_a28522bf9b05b4edcc0baf5196645d317}
+
+\item 
+\hypertarget{a00097_a1eada1175721ba11b4eb6c9515d8e2dc}{}const char $\ast$ {\bfseries m\+\_\+file}\label{a00097_a1eada1175721ba11b4eb6c9515d8e2dc}
+
+\item 
+\hypertarget{a00097_ac71f81d43f58b80ea31ae248e9fe6a23}{}const unsigned long int {\bfseries m\+\_\+line}\label{a00097_ac71f81d43f58b80ea31ae248e9fe6a23}
+
+\item 
+\hypertarget{a00097_a57291e0751fe93547d9d5551fb3e8415}{}const char $\ast$ {\bfseries m\+\_\+func}\label{a00097_a57291e0751fe93547d9d5551fb3e8415}
+
+\item 
+\hypertarget{a00097_a335803052b6878c058a4a888279df04d}{}base\+::type\+::\+Verbose\+Level {\bfseries m\+\_\+verbose\+Level}\label{a00097_a335803052b6878c058a4a888279df04d}
+
+\item 
+\hypertarget{a00097_a0fab2e9a168b7973bcca4574d05490d2}{}\hyperlink{a00048}{Logger} $\ast$ {\bfseries m\+\_\+logger}\label{a00097_a0fab2e9a168b7973bcca4574d05490d2}
+
+\item 
+\hypertarget{a00097_a238593eda90cf32645c4541e738bea9a}{}bool {\bfseries m\+\_\+proceed}\label{a00097_a238593eda90cf32645c4541e738bea9a}
+
+\item 
+\hypertarget{a00097_a63763a047d595271cb14f9a80430306b}{}\hyperlink{a00052}{base\+::\+Message\+Builder} {\bfseries m\+\_\+message\+Builder}\label{a00097_a63763a047d595271cb14f9a80430306b}
+
+\item 
+\hypertarget{a00097_acbea5b77953cf6e39baab015e83a4100}{}\hyperlink{a00184_a3aa2563d38e47388ba242a1694fc2839}{base\+::\+Dispatch\+Action} {\bfseries m\+\_\+dispatch\+Action}\label{a00097_acbea5b77953cf6e39baab015e83a4100}
+
+\item 
+\hypertarget{a00097_a9137860437510e1a26e8b0c1814c7ae7}{}std\+::vector$<$ std\+::string $>$ {\bfseries m\+\_\+logger\+Ids}\label{a00097_a9137860437510e1a26e8b0c1814c7ae7}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00097_a2fb8a2c02cbf86247f093c118bed877a}{}class {\bfseries el\+::\+Helpers}\label{a00097_a2fb8a2c02cbf86247f093c118bed877a}
+
+\end{DoxyCompactItemize}
