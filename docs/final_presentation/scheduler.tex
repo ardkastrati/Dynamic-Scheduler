@@ -25,9 +25,20 @@
 		\item standardized interface - it is very easy to include new strategies
 		\end{itemize}
 	\end{frame}
-\subsubsection{Master-Worker}
 	\begin{frame}{Scheduling strategies: Master-Worker vs. Task stealing}
-	\end{frame}
-\subsubsection{Task stealing}
-	\begin{frame}
+		\begin{itemize}
+			\item Master-Worker
+				\begin{itemize}
+					\item fast standard c++ implementation
+					\item dynamically size
+					\item easy to switch between scheduling strategies online					
+				\end{itemize}
+			
+			\item Task stealing
+					\begin{itemize}
+						\item own implementation in MPI-Window
+						\item synchronization overhead
+					\end{itemize}
+			
+		\end{itemize}
 	\end{frame}
