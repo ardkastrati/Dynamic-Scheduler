@@ -49,6 +49,7 @@
                         <AnchorPane prefHeight="479.0" prefWidth="791.0">
                            <children>
                               <ListView fx:id="listOfCommands" layoutX="250.0" layoutY="45.0" onMouseClicked="#onMouseClicked" prefHeight="369.0" prefWidth="220.0" />
+                              <Label fx:id="infoText" alignment="CENTER" contentDisplay="CENTER" layoutX="238.0" layoutY="425.0" prefHeight="17.0" prefWidth="247.0" text="This command is not supported yet!" textAlignment="CENTER" visible="false" />
                            </children>
                         </AnchorPane>
                      </children>

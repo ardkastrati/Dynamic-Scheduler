@@ -60,7 +60,7 @@ public class MySession {
         }
         return sftpChannel;
     }
-    
+   
     /**
     * This enum represents the possible types of statuses of the session.<br/>
     * The following list specifies the allowed status types:
@@ -114,6 +114,7 @@ public class MySession {
     
     private int port = -1;
     private Channel currentOpenedChannel;
+    int concurrent = 0;
     
     private MySession() {
         // intentionally left blank
@@ -160,7 +161,7 @@ public class MySession {
     */
     
     public void initializeSession(String username, String host, int port, String password) throws JSchException {
-        
+       
         CreateNewSessionTask newSession = new CreateNewSessionTask(username, host, password, port, userInfo);
         this.username = username;
         this.host = host;
@@ -186,8 +187,7 @@ public class MySession {
      * from the given data then if succeeded the chanel type will be opened.
      */ 
     public void initiateOpeningChannel(String channelType) {
-        
-        
+       
          EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
          setSessionStatus(SessionStatus.ESTABLISHING);
             exec.submit(firstTry);
@@ -246,11 +246,12 @@ public class MySession {
           });
         
     }
+    
+
     /**    
      * Closes the current channel and at the same time disconnects the current session because of the limited time.
      */ 
     public void closeChannel() {
-        
         if (currentOpenedChannel != null && currentOpenedChannel.isConnected()) { 
             
             ((ChannelSftp) currentOpenedChannel).quit();
@@ -261,6 +262,7 @@ public class MySession {
             currentSession.disconnect();
             setSessionStatus(SessionStatus.READY);
         }
+        
     }
     
     /**
@@ -268,6 +270,8 @@ public class MySession {
      * which it had in the beginning of the program.
      */ 
     public void removeConnection() {
+        
+        
         if (currentOpenedChannel != null) { 
             ((ChannelSftp) currentOpenedChannel).quit();
             currentOpenedChannel = null;
@@ -283,6 +287,7 @@ public class MySession {
         this.host = null;
         userInfo = new MyUserInfo();
         setSessionStatus(SessionStatus.DISCONNECTED);
+        
     }
     
     /**

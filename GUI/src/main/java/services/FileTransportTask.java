@@ -5,6 +5,7 @@
 package services;
 
 import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,6 +50,7 @@ public class FileTransportTask extends Task<Void> {
      */
     @Override
     protected Void call() throws SftpException, FileNotFoundException, IOException {
+       
        updateMessage("The file is beeing transferred via SFTP ...");
        
        File file = new File("src/main/resources/generated_docs/dummy.sh");
@@ -60,16 +62,18 @@ public class FileTransportTask extends Task<Void> {
        
        
        ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
+       System.out.println("sftp" + sftp);
        //sftp.cd(directory);
        try {
             sftp.put(new FileInputStream(file), nameOfFile);
-       } catch (IOException e) {
+       } catch (FileNotFoundException | SftpException e) {
             updateMessage("The file could't be transferred! Cause:  " + e.getMessage());
             throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());
        }
         updateMessage("The file is successfully transfered via SFTP to server.");
        
        return null;
+        
     }
                
     

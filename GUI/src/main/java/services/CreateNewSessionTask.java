@@ -8,6 +8,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import controller.SessionException;
 import javafx.concurrent.Task;
+import model.MySession;
 import model.MySession.MyUserInfo;
 
 /**
@@ -50,7 +51,7 @@ public class CreateNewSessionTask extends Task<Session>{
      */
     @Override
     protected Session call() throws Exception {
-        
+       
             if(username == null || server == null || password == null || port == -1) {
                 throw new SessionException("There is no valid data to connect to server");
             }
@@ -67,6 +68,7 @@ public class CreateNewSessionTask extends Task<Session>{
             currentSession.connect();
             updateMessage("Session successfully connected");
             return currentSession;
+        
     }
     
     

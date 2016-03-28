@@ -62,6 +62,9 @@ public class MOABSceneController implements Initializable, Controller {
 
 	private CommandController currentCommandController;
 
+        @FXML
+        private Label infoText;
+        
         private ChangeListener<MySession.SessionStatus> listener;
 	public MOABSceneController() {
 		this.listProperty = new SimpleListProperty<>();
@@ -117,10 +120,12 @@ public class MOABSceneController implements Initializable, Controller {
 			grid.add(parent, 1, 1);
                         
                         cancel.setDisable(false);
+                        infoText.setVisible(false);
                         execute.disableProperty().bind(currentCommandController.executableProperty());
                         
 		} catch (IOException|CommandException ex) {
-                      
+                      infoText.setVisible(true);
+                              
 		}
                 
 	}

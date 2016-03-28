@@ -5,6 +5,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import javafx.concurrent.Task;
+import model.MySession;
 
 /**
  * A task for creating a new channel.
@@ -37,10 +38,14 @@ public class CreateNewChannelTask extends Task<Channel> {
      */
     @Override
     protected Channel call() throws JSchException  {
-        Channel channel = currentSession.openChannel(channelType);
+       Channel channel;
+       
+        channel = currentSession.openChannel(channelType);
         updateMessage("Channel successfully opened!");
         channel.connect();
         updateMessage("Channel connected successfully");
+       
+       
         return channel;
     }
     

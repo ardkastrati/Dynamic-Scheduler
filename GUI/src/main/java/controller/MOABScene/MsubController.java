@@ -141,9 +141,7 @@ public class MsubController  implements Initializable, CommandController {
     public Msub createMsubFromDataInGUI() throws ParserException, CommandException {
         
         Msub msub = new Msub();
-        if(queueTypes.getSelectionModel().getSelectedItem() == null) {
-            throw new ParserException("Please select a queue type!");
-        } else {
+        if(queueTypes.getSelectionModel().getSelectedItem() != null) {
            msub.setQueueType((QueueType) queueTypes.getSelectionModel().getSelectedItem());  // ?
         }
         
