@@ -29,7 +29,7 @@
 % *.eps format if you use latex+dvips+ps2pdf, 
 % *.jpg/*.png/*.pdf if you use pdflatex)
 
-%\titleimage{mypicture}
+\titleimage{title}
 
 %% TITLE LOGO
 
@@ -53,14 +53,14 @@
 \subtitle{Final presentation}
 \author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philip Roth}
 
-\institute{Steinbuch Centre for Computing (SCC)}
+\institute{Steinbuch Centre for Computing - SCC}
 
 % Bibliography
 
 \usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
 \addbibresource{templates/example.bib}
 \bibhang1em
-
+\usepackage{graphicx}
 \begin{document}
 
 % change the following line to "ngerman" for German style date and logos
@@ -78,6 +78,9 @@
 
 \include{overview}
 \include{scheduler}
+\include{statistics}
+\include{experience}
 \include{database}
+
 
 \end{document}

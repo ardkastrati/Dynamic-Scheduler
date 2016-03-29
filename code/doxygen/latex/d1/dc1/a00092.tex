@@ -1,0 +1,101 @@
+\hypertarget{a00092}{}\subsection{el\+:\+:base\+:\+:Typed\+Configurations Class Reference}
+\label{a00092}\index{el\+::base\+::\+Typed\+Configurations@{el\+::base\+::\+Typed\+Configurations}}
+
+
+\hyperlink{a00014}{Configurations} with data types.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:base\+:\+:Typed\+Configurations\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:base\+:\+:Typed\+Configurations\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00092_a1b6d90479bb79da27c3e351a9be593ae}{Typed\+Configurations} (\hyperlink{a00014}{Configurations} $\ast$configurations, base\+::\+Log\+Streams\+Reference\+Map $\ast$log\+Streams\+Reference)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize (construct) the object off \hyperlink{a00014}{el\+::\+Configurations}. \end{DoxyCompactList}\item 
+\hypertarget{a00092_ae7b346e5d32305d4957bc6c564409090}{}{\bfseries Typed\+Configurations} (const \hyperlink{a00092}{Typed\+Configurations} \&other)\label{a00092_ae7b346e5d32305d4957bc6c564409090}
+
+\item 
+\hypertarget{a00092_a65d2ec91ff7edc07db304ebd9c30291f}{}const \hyperlink{a00014}{Configurations} $\ast$ {\bfseries configurations} (void) const \label{a00092_a65d2ec91ff7edc07db304ebd9c30291f}
+
+\item 
+\hypertarget{a00092_a924b35df988103c737907cc7993c3c1c}{}bool {\bfseries enabled} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_a924b35df988103c737907cc7993c3c1c}
+
+\item 
+\hypertarget{a00092_a20b9a1bd152cad3b72b558f97de3876b}{}bool {\bfseries to\+File} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_a20b9a1bd152cad3b72b558f97de3876b}
+
+\item 
+\hypertarget{a00092_a6a7871c0c37c3306334e90dfdc1d2e47}{}const std\+::string \& {\bfseries filename} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_a6a7871c0c37c3306334e90dfdc1d2e47}
+
+\item 
+\hypertarget{a00092_aeaa7bf7448319bc41e4e226124288c7e}{}bool {\bfseries to\+Standard\+Output} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_aeaa7bf7448319bc41e4e226124288c7e}
+
+\item 
+\hypertarget{a00092_a5d4d84a3dda6d54e0f291917703db441}{}const \hyperlink{a00046}{base\+::\+Log\+Format} \& {\bfseries log\+Format} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_a5d4d84a3dda6d54e0f291917703db441}
+
+\item 
+\hypertarget{a00092_ad078669014b01e587987e9ffc2214763}{}const \hyperlink{a00053}{base\+::\+Milliseconds\+Width} \& {\bfseries milliseconds\+Width} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level=\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36a4cc6684df7b4a92b1dec6fce3264fac8}{Level\+::\+Global})\label{a00092_ad078669014b01e587987e9ffc2214763}
+
+\item 
+\hypertarget{a00092_a0cef785df86dbfe17a27c5b78ed3e5da}{}bool {\bfseries performance\+Tracking} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level=\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36a4cc6684df7b4a92b1dec6fce3264fac8}{Level\+::\+Global})\label{a00092_a0cef785df86dbfe17a27c5b78ed3e5da}
+
+\item 
+\hypertarget{a00092_abb8250bc165b182524521faef6bedb19}{}base\+::type\+::fstream\+\_\+t $\ast$ {\bfseries file\+Stream} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_abb8250bc165b182524521faef6bedb19}
+
+\item 
+\hypertarget{a00092_aa48c0568be8fd177f1d463b1e7831f75}{}std\+::size\+\_\+t {\bfseries max\+Log\+File\+Size} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_aa48c0568be8fd177f1d463b1e7831f75}
+
+\item 
+\hypertarget{a00092_ae8710257d7f8bc20c2183a3a4404ebaf}{}std\+::size\+\_\+t {\bfseries log\+Flush\+Threshold} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00092_ae8710257d7f8bc20c2183a3a4404ebaf}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00092_a2fb8a2c02cbf86247f093c118bed877a}{}class {\bfseries el\+::\+Helpers}\label{a00092_a2fb8a2c02cbf86247f093c118bed877a}
+
+\item 
+\hypertarget{a00092_a81bbf6fe31fab133d182efa8367304f1}{}class {\bfseries el\+::base\+::\+Message\+Builder}\label{a00092_a81bbf6fe31fab133d182efa8367304f1}
+
+\item 
+\hypertarget{a00092_a7a728edbb2761d151832daa74d5b2736}{}class {\bfseries el\+::base\+::\+Writer}\label{a00092_a7a728edbb2761d151832daa74d5b2736}
+
+\item 
+\hypertarget{a00092_a42b1de96d584ae4fecbfc2b9aff95052}{}class {\bfseries el\+::base\+::\+Default\+Log\+Dispatch\+Callback}\label{a00092_a42b1de96d584ae4fecbfc2b9aff95052}
+
+\item 
+\hypertarget{a00092_a9b37b28ea1c5f8f862cc89f135711d92}{}class {\bfseries el\+::base\+::\+Log\+Dispatcher}\label{a00092_a9b37b28ea1c5f8f862cc89f135711d92}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+\hyperlink{a00014}{el\+::\+Configurations} have string based values. This is whats used internally in order to read correct configurations. This is to perform faster while writing logs using correct configurations.
+
+This is thread safe and final class containing non-\/virtual destructor (means nothing should inherit this class) 
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00092_a1b6d90479bb79da27c3e351a9be593ae}{}\index{el\+::base\+::\+Typed\+Configurations@{el\+::base\+::\+Typed\+Configurations}!Typed\+Configurations@{Typed\+Configurations}}
+\index{Typed\+Configurations@{Typed\+Configurations}!el\+::base\+::\+Typed\+Configurations@{el\+::base\+::\+Typed\+Configurations}}
+\paragraph[{Typed\+Configurations}]{\setlength{\rightskip}{0pt plus 5cm}el\+::base\+::\+Typed\+Configurations\+::\+Typed\+Configurations (
+\begin{DoxyParamCaption}
+\item[{{\bf Configurations} $\ast$}]{configurations, }
+\item[{base\+::\+Log\+Streams\+Reference\+Map $\ast$}]{log\+Streams\+Reference}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00092_a1b6d90479bb79da27c3e351a9be593ae}
+
+\begin{DoxyParams}{Parameters}
+{\em configurations} & \hyperlink{a00014}{Configurations} pointer/reference to base this typed configurations off. \\
+\hline
+{\em log\+Streams\+Reference} & Use E\+L\+P\+P-\/$>$registered\+Loggers()-\/$>$log\+Streams\+Reference() \\
+\hline
+\end{DoxyParams}

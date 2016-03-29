@@ -1,0 +1,122 @@
+\hypertarget{a00048}{}\subsection{el\+:\+:Logger Class Reference}
+\label{a00048}\index{el\+::\+Logger@{el\+::\+Logger}}
+
+
+Represents a logger holding I\+D and configurations we need to write logs.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:Logger\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:Logger\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00048_a59b1c5a0f8c5c670e59d2f69f9e39fbb}{}{\bfseries Logger} (const std\+::string \&id, base\+::\+Log\+Streams\+Reference\+Map $\ast$log\+Streams\+Reference)\label{a00048_a59b1c5a0f8c5c670e59d2f69f9e39fbb}
+
+\item 
+\hypertarget{a00048_a43abea8865d7316f05c8a676a8c04896}{}{\bfseries Logger} (const std\+::string \&id, const \hyperlink{a00014}{Configurations} \&configurations, base\+::\+Log\+Streams\+Reference\+Map $\ast$log\+Streams\+Reference)\label{a00048_a43abea8865d7316f05c8a676a8c04896}
+
+\item 
+\hypertarget{a00048_a984de07936a8c783e91496dfa6df69ea}{}{\bfseries Logger} (const \hyperlink{a00048}{Logger} \&logger)\label{a00048_a984de07936a8c783e91496dfa6df69ea}
+
+\item 
+\hypertarget{a00048_a2bfb4ed37f3281a701f20fb21a4cac62}{}\hyperlink{a00048}{Logger} \& {\bfseries operator=} (const \hyperlink{a00048}{Logger} \&logger)\label{a00048_a2bfb4ed37f3281a701f20fb21a4cac62}
+
+\item 
+\hypertarget{a00048_a12e1e5f6f91bad8d6a71c3918f09b672}{}virtual void {\bfseries log} (el\+::base\+::type\+::ostream\+\_\+t \&os) const \label{a00048_a12e1e5f6f91bad8d6a71c3918f09b672}
+
+\item 
+\hypertarget{a00048_ad9db621dbf8977bf814dc7baea8dcee4}{}void \hyperlink{a00048_ad9db621dbf8977bf814dc7baea8dcee4}{configure} (const \hyperlink{a00014}{Configurations} \&configurations)\label{a00048_ad9db621dbf8977bf814dc7baea8dcee4}
+
+\begin{DoxyCompactList}\small\item\em Configures the logger using specified configurations. \end{DoxyCompactList}\item 
+\hypertarget{a00048_adfd57ab27fb398cc980a3edfab92927e}{}void \hyperlink{a00048_adfd57ab27fb398cc980a3edfab92927e}{reconfigure} (void)\label{a00048_adfd57ab27fb398cc980a3edfab92927e}
+
+\begin{DoxyCompactList}\small\item\em Reconfigures logger using existing configurations. \end{DoxyCompactList}\item 
+\hypertarget{a00048_ae51a621df3c835f51f450134ba66f8ac}{}const std\+::string \& {\bfseries id} (void) const \label{a00048_ae51a621df3c835f51f450134ba66f8ac}
+
+\item 
+\hypertarget{a00048_a9e56e468bccd7b52281e7bbc75892431}{}const std\+::string \& {\bfseries parent\+Application\+Name} (void) const \label{a00048_a9e56e468bccd7b52281e7bbc75892431}
+
+\item 
+\hypertarget{a00048_a6890af8910adba26b01ef029429c4f15}{}void {\bfseries set\+Parent\+Application\+Name} (const std\+::string \&parent\+Application\+Name)\label{a00048_a6890af8910adba26b01ef029429c4f15}
+
+\item 
+\hypertarget{a00048_aeb57aeaddbb3dcd0cb96114019817142}{}\hyperlink{a00014}{Configurations} $\ast$ {\bfseries configurations} (void)\label{a00048_aeb57aeaddbb3dcd0cb96114019817142}
+
+\item 
+\hypertarget{a00048_ac1d34e77892ea506b011d5279b6b139d}{}\hyperlink{a00092}{base\+::\+Typed\+Configurations} $\ast$ {\bfseries typed\+Configurations} (void)\label{a00048_ac1d34e77892ea506b011d5279b6b139d}
+
+\item 
+\hypertarget{a00048_a9a89d454008b1ee1a197eec4b92ce22a}{}void \hyperlink{a00048_a9a89d454008b1ee1a197eec4b92ce22a}{flush} (void)\label{a00048_a9a89d454008b1ee1a197eec4b92ce22a}
+
+\begin{DoxyCompactList}\small\item\em Flushes logger to sync all log files for all levels. \end{DoxyCompactList}\item 
+\hypertarget{a00048_a83c85278ebeeef6a24cc112e56c344dd}{}void {\bfseries flush} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level, base\+::type\+::fstream\+\_\+t $\ast$fs)\label{a00048_a83c85278ebeeef6a24cc112e56c344dd}
+
+\item 
+\hypertarget{a00048_abdf56c00388c71d1cbaa7e2df4449202}{}bool {\bfseries is\+Flush\+Needed} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level)\label{a00048_abdf56c00388c71d1cbaa7e2df4449202}
+
+\item 
+\hypertarget{a00048_aead5b130c5141d2024740b03ab4b45d7}{}\hyperlink{a00042}{Log\+Builder} $\ast$ {\bfseries log\+Builder} (void) const \label{a00048_aead5b130c5141d2024740b03ab4b45d7}
+
+\item 
+\hypertarget{a00048_a737340322cc9d9d20febd7131c1e262f}{}void {\bfseries set\+Log\+Builder} (const Log\+Builder\+Ptr \&log\+Builder)\label{a00048_a737340322cc9d9d20febd7131c1e262f}
+
+\item 
+\hypertarget{a00048_a5abaca24ac28bfd4806bea32be193435}{}bool {\bfseries enabled} (\hyperlink{a00183_ab0ac6091262344c52dd2d3ad099e8e36}{Level} level) const \label{a00048_a5abaca24ac28bfd4806bea32be193435}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00048_af6cf4f266ceb65da9563afd3706f26d6}{}static bool {\bfseries is\+Valid\+Id} (const std\+::string \&id)\label{a00048_af6cf4f266ceb65da9563afd3706f26d6}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00048_a22965b691242a9f61d443ba03fce3e35}{}class {\bfseries el\+::\+Log\+Message}\label{a00048_a22965b691242a9f61d443ba03fce3e35}
+
+\item 
+\hypertarget{a00048_a6efe246b312d02731fb0e1d120c0331d}{}class {\bfseries el\+::\+Loggers}\label{a00048_a6efe246b312d02731fb0e1d120c0331d}
+
+\item 
+\hypertarget{a00048_a2fb8a2c02cbf86247f093c118bed877a}{}class {\bfseries el\+::\+Helpers}\label{a00048_a2fb8a2c02cbf86247f093c118bed877a}
+
+\item 
+\hypertarget{a00048_a574ecee25e8d578f76060a95a2fe7c9e}{}class {\bfseries el\+::base\+::\+Registered\+Loggers}\label{a00048_a574ecee25e8d578f76060a95a2fe7c9e}
+
+\item 
+\hypertarget{a00048_a42b1de96d584ae4fecbfc2b9aff95052}{}class {\bfseries el\+::base\+::\+Default\+Log\+Dispatch\+Callback}\label{a00048_a42b1de96d584ae4fecbfc2b9aff95052}
+
+\item 
+\hypertarget{a00048_a81bbf6fe31fab133d182efa8367304f1}{}class {\bfseries el\+::base\+::\+Message\+Builder}\label{a00048_a81bbf6fe31fab133d182efa8367304f1}
+
+\item 
+\hypertarget{a00048_a7a728edbb2761d151832daa74d5b2736}{}class {\bfseries el\+::base\+::\+Writer}\label{a00048_a7a728edbb2761d151832daa74d5b2736}
+
+\item 
+\hypertarget{a00048_a2a368b9be1b8d6a29d4bb92a11807f39}{}class {\bfseries el\+::base\+::\+P\+Error\+Writer}\label{a00048_a2a368b9be1b8d6a29d4bb92a11807f39}
+
+\item 
+\hypertarget{a00048_acc1efd1b8a3fc5e0028dab98b02e550a}{}class {\bfseries el\+::base\+::\+Storage}\label{a00048_acc1efd1b8a3fc5e0028dab98b02e550a}
+
+\item 
+\hypertarget{a00048_a6a4d7851e1984800be3c230f06a79528}{}class {\bfseries el\+::base\+::\+Performance\+Tracker}\label{a00048_a6a4d7851e1984800be3c230f06a79528}
+
+\item 
+\hypertarget{a00048_a9b37b28ea1c5f8f862cc89f135711d92}{}class {\bfseries el\+::base\+::\+Log\+Dispatcher}\label{a00048_a9b37b28ea1c5f8f862cc89f135711d92}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class does not write logs itself instead its used by writer to read configuations from. 

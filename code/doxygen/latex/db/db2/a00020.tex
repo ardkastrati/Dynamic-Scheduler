@@ -1,0 +1,188 @@
+\hypertarget{a00020}{}\subsection{Grid\+Libary Class Reference}
+\label{a00020}\index{Grid\+Libary@{Grid\+Libary}}
+
+
+{\ttfamily \#include $<$Grid\+Libary.\+h$>$}
+
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{a00020_ac0e3d277ebc93daebb97a05c8e25ea47}{get\+\_\+index} (int $\ast$dimensions, int $\ast$index, int nr\+\_\+of\+\_\+dimensions)
+\item 
+static double \hyperlink{a00020_a5537f26ba0b00eebcd3a8e6eac78100e}{get\+\_\+length\+\_\+of\+\_\+vektor} (double $\ast$vektor, int nr\+\_\+of\+\_\+dimensions)
+\item 
+static double $\ast$ \hyperlink{a00020_afd60742ee98fa80c155acee09d494975}{subtract\+\_\+array} (double $\ast$first\+\_\+array, double $\ast$second\+\_\+array, int lenght)
+\item 
+static double $\ast$ \hyperlink{a00020_a953ab2fc4cfd4665a11b48f640fb3415}{divide\+\_\+array} (double $\ast$array, double $\ast$factor, int lenght)
+\item 
+static double $\ast$ \hyperlink{a00020_a71d11c79c34b94a00dafc6bb52e17e58}{add\+\_\+array} (double $\ast$first\+\_\+array, double $\ast$second\+\_\+array, int lenght)
+\item 
+static double $\ast$ \hyperlink{a00020_aeb32c218fb79e7e3973cbd56fba2bee8}{multiply\+\_\+array} (long $\ast$first\+\_\+array, double $\ast$second\+\_\+array, int lenght)
+\item 
+static double $\ast$ \hyperlink{a00020_ad0f03d68e26782070a1e972b4bd1bf9d}{kastrati\+\_\+value} (double $\ast$lenght, int lenght\+\_\+lenght)
+\item 
+\hypertarget{a00020_ac243c3a3e220df64c8b5958f04ec8916}{}static void {\bfseries print\+\_\+name} (std\+::string name)\label{a00020_ac243c3a3e220df64c8b5958f04ec8916}
+
+\item 
+\hypertarget{a00020_a5a7d45b805e4b9f2b885cb6fecab2c7d}{}static void {\bfseries print\+\_\+array\+\_\+int} (std\+::string name, int $\ast$array, int lenght)\label{a00020_a5a7d45b805e4b9f2b885cb6fecab2c7d}
+
+\item 
+\hypertarget{a00020_a4d799b7d836c4d1c2bb481e206079826}{}static void {\bfseries print\+\_\+array\+\_\+long} (std\+::string name, long $\ast$array, int lenght)\label{a00020_a4d799b7d836c4d1c2bb481e206079826}
+
+\item 
+\hypertarget{a00020_abbc0d5844afd89efe1351a71a6a5c257}{}static void {\bfseries print\+\_\+array\+\_\+double} (std\+::string name, double $\ast$array, int lenght)\label{a00020_abbc0d5844afd89efe1351a71a6a5c257}
+
+\item 
+\hypertarget{a00020_af32d624a2767f630d05847a4220a3c61}{}static void {\bfseries print\+\_\+int} (std\+::string name, int to\+\_\+print)\label{a00020_af32d624a2767f630d05847a4220a3c61}
+
+\item 
+\hypertarget{a00020_a3166a321dcb27239644003c3de3edfde}{}static void {\bfseries print\+\_\+long} (std\+::string name, long to\+\_\+print)\label{a00020_a3166a321dcb27239644003c3de3edfde}
+
+\item 
+\hypertarget{a00020_ad44b442ff7cc0700be2b1190f1a90c7b}{}static void {\bfseries print\+\_\+double} (std\+::string name, double to\+\_\+print)\label{a00020_ad44b442ff7cc0700be2b1190f1a90c7b}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Project Dynamic Scheduler for Scientific Simulations 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00020_a71d11c79c34b94a00dafc6bb52e17e58}{}\index{Grid\+Libary@{Grid\+Libary}!add\+\_\+array@{add\+\_\+array}}
+\index{add\+\_\+array@{add\+\_\+array}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{add\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Grid\+Libary\+::add\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{first\+\_\+array, }
+\item[{double $\ast$}]{second\+\_\+array, }
+\item[{int}]{lenght}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_a71d11c79c34b94a00dafc6bb52e17e58}
+calculate first Array plus secound array item for item for lenght items 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+array} & the one Array musst be at least lenght long musst not be Null \\
+\hline
+{\em second\+\_\+array} & the other Array musst be at least lenght long musst not be Null \\
+\hline
+{\em lenght} & the the number of items that should be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the result Array is lenght long 
+\end{DoxyReturn}
+\hypertarget{a00020_a953ab2fc4cfd4665a11b48f640fb3415}{}\index{Grid\+Libary@{Grid\+Libary}!divide\+\_\+array@{divide\+\_\+array}}
+\index{divide\+\_\+array@{divide\+\_\+array}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{divide\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Grid\+Libary\+::divide\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{array, }
+\item[{double $\ast$}]{factor, }
+\item[{int}]{lenght}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_a953ab2fc4cfd4665a11b48f640fb3415}
+calculate first Array divided by the secound array item for item for lenght items 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+array} & the one Array musst be at least lenght long musst not be Null \\
+\hline
+{\em second\+\_\+array} & the other Array musst be at least lenght long musst not be Null \\
+\hline
+{\em lenght} & the the number of items that should be divided \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the result Array is lenght long 
+\end{DoxyReturn}
+\hypertarget{a00020_ac0e3d277ebc93daebb97a05c8e25ea47}{}\index{Grid\+Libary@{Grid\+Libary}!get\+\_\+index@{get\+\_\+index}}
+\index{get\+\_\+index@{get\+\_\+index}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{get\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}int Grid\+Libary\+::get\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{dimensions, }
+\item[{int $\ast$}]{index, }
+\item[{int}]{nr\+\_\+of\+\_\+dimensions}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_ac0e3d277ebc93daebb97a05c8e25ea47}
+transfer multidimensional indices into one dimensional 
+\begin{DoxyParams}{Parameters}
+{\em dimensions} & the dimensions of the room musst be at least nr\+\_\+of\+\_\+dimensions long (if its longer the overhead will be ignored) musst not be Null every item musst be bigger than zero \\
+\hline
+{\em index} & the multidimensional indices musst be at least nr\+\_\+of\+\_\+dimensions long (if its longer the overhead will be ignored) musst not be Null the nth item in index musst be in range from zero to the nth item in dimensions for all n in range from zero to nr\+\_\+of\+\_\+dimensions -\/ 1 \\
+\hline
+{\em nr\+\_\+of\+\_\+dimensions} & the number of items that should be noticed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the onedimensional index
+\end{DoxyReturn}
+Project Dynamic Scheduler for Scientific Simulations \hyperlink{a00020}{Grid\+Libary} implementation \hypertarget{a00020_a5537f26ba0b00eebcd3a8e6eac78100e}{}\index{Grid\+Libary@{Grid\+Libary}!get\+\_\+length\+\_\+of\+\_\+vektor@{get\+\_\+length\+\_\+of\+\_\+vektor}}
+\index{get\+\_\+length\+\_\+of\+\_\+vektor@{get\+\_\+length\+\_\+of\+\_\+vektor}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{get\+\_\+length\+\_\+of\+\_\+vektor}]{\setlength{\rightskip}{0pt plus 5cm}double Grid\+Libary\+::get\+\_\+length\+\_\+of\+\_\+vektor (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{vektor, }
+\item[{int}]{nr\+\_\+of\+\_\+dimensions}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_a5537f26ba0b00eebcd3a8e6eac78100e}
+calculates the lenght of a vektor 
+\begin{DoxyParams}{Parameters}
+{\em vektor} & the vektor whichs lenght sould be calculatet musst be at least nr\+\_\+of\+\_\+dimensions longer \\
+\hline
+{\em nr\+\_\+of\+\_\+dimensions} & the number of items that should be noticed \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00020_ad0f03d68e26782070a1e972b4bd1bf9d}{}\index{Grid\+Libary@{Grid\+Libary}!kastrati\+\_\+value@{kastrati\+\_\+value}}
+\index{kastrati\+\_\+value@{kastrati\+\_\+value}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{kastrati\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Grid\+Libary\+::kastrati\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{lenght, }
+\item[{int}]{lenght\+\_\+lenght}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_ad0f03d68e26782070a1e972b4bd1bf9d}
+it calculate a array with factors form a given array with longuerurs 
+\begin{DoxyParams}{Parameters}
+{\em lenght} & the array with the longuerurs musst be lenght\+\_\+lenght long every item musst not be negativ \\
+\hline
+{\em lenght\+\_\+lenght} & the lenght of the array lenght \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the Array of factors is lenght\+\_\+lenght long the sum of all factors is 1 
+\end{DoxyReturn}
+\hypertarget{a00020_aeb32c218fb79e7e3973cbd56fba2bee8}{}\index{Grid\+Libary@{Grid\+Libary}!multiply\+\_\+array@{multiply\+\_\+array}}
+\index{multiply\+\_\+array@{multiply\+\_\+array}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{multiply\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Grid\+Libary\+::multiply\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{long $\ast$}]{first\+\_\+array, }
+\item[{double $\ast$}]{second\+\_\+array, }
+\item[{int}]{lenght}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_aeb32c218fb79e7e3973cbd56fba2bee8}
+calculate first Array multiplyed by the secound array item for item for lenght items 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+array} & the one Array musst be at least lenght long musst not be Null \\
+\hline
+{\em second\+\_\+array} & the other Array musst be at least lenght long musst not be Null \\
+\hline
+{\em lenght} & the the number of items that should be multiplyed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the result Array is lenght long 
+\end{DoxyReturn}
+\hypertarget{a00020_afd60742ee98fa80c155acee09d494975}{}\index{Grid\+Libary@{Grid\+Libary}!subtract\+\_\+array@{subtract\+\_\+array}}
+\index{subtract\+\_\+array@{subtract\+\_\+array}!Grid\+Libary@{Grid\+Libary}}
+\paragraph[{subtract\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Grid\+Libary\+::subtract\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{first\+\_\+array, }
+\item[{double $\ast$}]{second\+\_\+array, }
+\item[{int}]{lenght}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00020_afd60742ee98fa80c155acee09d494975}
+calculate first Array minus secound array item for item for lenght items 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+array} & the one Array musst be at least lenght long musst not be Null \\
+\hline
+{\em second\+\_\+array} & the other Array musst be at least lenght long musst not be Null \\
+\hline
+{\em lenght} & the the number of items that should be substracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the result Array is lenght long 
+\end{DoxyReturn}

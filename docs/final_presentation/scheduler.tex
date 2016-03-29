@@ -1,33 +1,40 @@
-\section{Scheduler}
-\subsection{Architecture}
+\section{Architecture}
 
-\subsubsection{Master-Worker}
 	\begin{frame}{Master-Worker}
-		
+		\centerline{\includegraphics[scale=0.5]{images/master}}
 	\end{frame}
-\subsubsection{Task stealing}
 	\begin{frame}{Task Stealing}
+		\centerline{\includegraphics[scale=0.5]{images/taskstealing}}
 	\end{frame}
-\subsection{Scheduling strategies}
 
 	\begin{frame}{Scheduling strategies}
 		\begin{itemize}
-		\item non statistical
+		\item non-statistical
 		\begin{itemize}
 			\item First In-First out (FIFO)
-			\item Last In-Last out
+			\item Last In-Last out (LIFO)
 		\end{itemize}
 		\item statistical
 		\begin{itemize}
-			\item Shortest job first
-			\item Longest job first
+			\item Shortest job first (SJF)
+			\item Longest job first (LJF)
 		\end{itemize}
 		\item standardized interface - it is very easy to include new strategies
 		\end{itemize}
 	\end{frame}
-\subsubsection{Master-Worker}
 	\begin{frame}{Scheduling strategies: Master-Worker vs. Task stealing}
-	\end{frame}
-\subsubsection{Task stealing}
-	\begin{frame}
+		\begin{itemize}
+			\item Master-Worker
+				\begin{itemize}
+					\item fast standard c++ implementation
+					\item dynamic size
+					\item easy to switch between scheduling strategies at runtime	
+				\end{itemize}
+			
+			\item Task stealing
+					\begin{itemize}
+						\item own implementation in MPI-Window
+					\end{itemize}
+			
+		\end{itemize}
 	\end{frame}

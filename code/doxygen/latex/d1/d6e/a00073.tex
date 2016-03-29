@@ -1,0 +1,71 @@
+\hypertarget{a00073}{}\subsection{el\+:\+:base\+:\+:utils\+:\+:Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$ Class Template Reference}
+\label{a00073}\index{el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$@{el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$}}
+
+
+A pointer registry mechanism to manage memory and provide search functionalities. (non-\/predicate version)  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:base\+:\+:utils\+:\+:Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:base\+:\+:utils\+:\+:Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+:
+% FIG 1
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00073_a31f3d725285e6b65f1f9e990066f96ed}{}typedef \hyperlink{a00073}{Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::iterator {\bfseries iterator}\label{a00073_a31f3d725285e6b65f1f9e990066f96ed}
+
+\item 
+\hypertarget{a00073_a955e62adc74c60d0205b52a3fc430cef}{}typedef \hyperlink{a00073}{Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::const\+\_\+iterator {\bfseries const\+\_\+iterator}\label{a00073_a955e62adc74c60d0205b52a3fc430cef}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00073_adf5e97aa801be3b93e116ad645304759}{}\hyperlink{a00073_adf5e97aa801be3b93e116ad645304759}{Registry} (const \hyperlink{a00073}{Registry} \&sr)\label{a00073_adf5e97aa801be3b93e116ad645304759}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor that is useful for base classes. Try to avoid this constructor, use move constructor. \end{DoxyCompactList}\item 
+\hyperlink{a00073}{Registry} \& \hyperlink{a00073_a80e0ce12b7d0c24462b385fc7b3149e0}{operator=} (const \hyperlink{a00073}{Registry} \&sr)
+\begin{DoxyCompactList}\small\item\em Assignment operator that unregisters all the existing registeries and deeply copies each of repo element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00073_ac40e62ddf5017beb91c28b472c9628c2}{}virtual void \hyperlink{a00073_ac40e62ddf5017beb91c28b472c9628c2}{unregister\+All} (void) E\+L\+P\+P\+\_\+\+F\+I\+N\+A\+L\label{a00073_ac40e62ddf5017beb91c28b472c9628c2}
+
+\begin{DoxyCompactList}\small\item\em Unregisters all the pointers from current repository. \end{DoxyCompactList}\item 
+\hypertarget{a00073_ab10b3dd25ff0df036e7a015635a15dee}{}virtual void \hyperlink{a00073_ab10b3dd25ff0df036e7a015635a15dee}{register\+New} (const T\+\_\+\+Key \&uniq\+Key, T\+\_\+\+Ptr $\ast$ptr) E\+L\+P\+P\+\_\+\+F\+I\+N\+A\+L\label{a00073_ab10b3dd25ff0df036e7a015635a15dee}
+
+\begin{DoxyCompactList}\small\item\em Registers new registry to repository. \end{DoxyCompactList}\item 
+\hypertarget{a00073_aab6f0ce3a99feff11add0bd8b869fcb8}{}void \hyperlink{a00073_aab6f0ce3a99feff11add0bd8b869fcb8}{unregister} (const T\+\_\+\+Key \&uniq\+Key)\label{a00073_aab6f0ce3a99feff11add0bd8b869fcb8}
+
+\begin{DoxyCompactList}\small\item\em Unregisters single entry mapped to specified unique key. \end{DoxyCompactList}\item 
+\hypertarget{a00073_a18c332267f2acbe78c97a611dec2e5c2}{}T\+\_\+\+Ptr $\ast$ \hyperlink{a00073_a18c332267f2acbe78c97a611dec2e5c2}{get} (const T\+\_\+\+Key \&uniq\+Key)\label{a00073_a18c332267f2acbe78c97a611dec2e5c2}
+
+\begin{DoxyCompactList}\small\item\em Gets pointer from repository. If none found, nullptr is returned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+\subsubsection*{template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$class el\+::base\+::utils\+::\+Registry$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$}
+
+N\+O\+T\+E\+: This is thread-\/unsafe implementation (although it contains lock function, it does not use these functions) of Abstract\+Registry$<$\+T\+\_\+\+Ptr, Container$>$. Any implementation of this class should be explicitly (by using lock functions) 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00073_a80e0ce12b7d0c24462b385fc7b3149e0}{}\index{el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}!operator=@{operator=}}
+\index{operator=@{operator=}!el\+::base\+::utils\+::\+Registry@{el\+::base\+::utils\+::\+Registry}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T\+\_\+\+Ptr, typename T\+\_\+\+Key = const char$\ast$$>$ {\bf Registry}\& {\bf el\+::base\+::utils\+::\+Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Registry}$<$ T\+\_\+\+Ptr, T\+\_\+\+Key $>$ \&}]{sr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00073_a80e0ce12b7d0c24462b385fc7b3149e0}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{a00073_ac40e62ddf5017beb91c28b472c9628c2}{unregister\+All()} 
+
+deep\+Copy(const Abstract\+Registry\&) 
+\end{DoxySeeAlso}
