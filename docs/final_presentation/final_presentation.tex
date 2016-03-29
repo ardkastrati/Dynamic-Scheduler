@@ -61,6 +61,8 @@
 \addbibresource{templates/example.bib}
 \bibhang1em
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
 \begin{document}
 
 % change the following line to "ngerman" for German style date and logos
@@ -76,11 +78,13 @@
 \tableofcontents
 \end{frame}
 
+
 \include{overview}
 \include{scheduler}
+
+
+\include{database}
+\include{gui}
 \include{statistics}
 \include{experience}
-\include{database}
-
-
 \end{document}
