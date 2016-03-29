@@ -1,0 +1,161 @@
+\section{GridDatamining}
+
+\begin{frame}
+	\frametitle{Data Mining in General}
+	
+		\begin{block}<1-> {Objectives}
+			\begin{itemize}
+				\item<2-> {Estimate runtime in 'constant' time}
+						\begin{itemize}
+							\item<3-> {Constant to the amount of tasks already 											executed}	
+						\end{itemize}
+				\item<4-> {Estimation based on unlimited amounts of parameters}
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}<5-> {Concepts}
+				\begin{itemize}
+					\item<6-> {Strong correlation between parameters and 										runtime of a task}
+					\item<7-> {Tasks with similar parameters have similar 										runtime}
+						\begin{itemize}
+							\item<8-> {Tasks with identical parameters have 											identical runtime}	
+						\end{itemize}	
+				\end{itemize}
+		\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Grid Approximation: General Design}
+	
+		\begin{block}<1-> {Basic Design}
+			\begin{itemize}
+				\item<2-> {Array of 'grid points'}
+					\begin{itemize}
+						\item<3-> {Similar to a Cartesian coordinate system}
+						\item<4->{grid points: "pointer" to 'closest' task already executed}
+						\begin{itemize}
+							\item<5-> {closest defined as 'smallest parameter differences'}	
+						\end{itemize}
+					\end{itemize}	
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}<6-> {Design Details}
+				\begin{itemize}
+					\item<7-> {Grid origin $\neq$ Cartesian origin}
+					\item<8-> {Grid origin = grid point with the  smallest coordinates $										($component by component$)$} 
+					\item<9-> {Distance between two grid points in every dimension flexible}
+						\begin{itemize}
+							\item {'increment' vector consisting of all 'increment' values 											for every specific dimension}	
+						\end{itemize}
+				\end{itemize}
+		\end{block}
+\end{frame}
+
+%\begin{frame}
+%	\frametitle{Grid Approximation}
+		
+%		\begin{block}<1->{Approximation Procedure}
+%			\begin{itemize}
+%				\item<2->{Determine the surrounding grid points to a point}
+%				\item<3->{Calculate the influence of each point $($KASTRATI VALUE$)$}
+%				\begin{itemize}
+%					\item<4->{Check whether length is 0}
+%						\begin{itemize}
+%							\item<5->{in that case the corresponding factor is 1 the others 											are 0}
+%						\end{itemize}
+%					\item<6->{Otherwise calculate Kastrati value by doing}
+%						\begin{itemize}
+%							\item<7->{\[ RL_i = \frac{L_i}{Lsum} \]}
+%							\item<8->{$RL_i = Relative Length$}
+%							\item<9->{$L_i = Length array$}
+%							\item<10->{$Lsum = Sum of the Length array$}
+%							\item<11->{\[ F_i = \frac{1}{\frac{RL_i}{RL_0} + \frac{RL_i}{RL_1} + ... + \frac{RL_i}{RL_n}} \]}
+%							\item<12->{$F_i = Factors$}
+%						\end{itemize}
+%				\end{itemize}
+%			\end{itemize}
+%		\end{block}
+%\end{frame}
+
+%\begin{frame}
+%	\frametitle {Grid Approximation II}
+%	\begin{block}
+%		\begin{itemize}
+%					\item<1->{After that the sum of all factors are 1}
+%					\item<2->{Multiply every time with its corresponding %factor and make 										the sum of them}
+%					\item<3->{\[ \sum t_i * F_i\]}
+%					\item<4->{$t_i = Runtimes $}
+%		\end{itemize}
+%	\end{block}
+%				
+%		\begin{block}{Approximation Properties}
+%			\begin{itemize}
+%				\item<5-> {Whole approximation procedure works in %constant time}
+%			\end{itemize}
+%		\end{block}				
+%\end{frame}
+
+\begin{frame}
+	\frametitle{Grid Insertion}
+	
+		\begin{block}<1->{Insert Function Procedure}
+			\begin{itemize}
+				\item<2->{Checks whether the task is 'suited' as value of a 									surrounding grid point}
+				\begin{itemize}
+					\item<3->{Grid points 'always' contain the value of the 									closest task inserted to them}
+					\item<4->{Note that inserting a point only adapts the 										closest grid points}
+				\end{itemize}
+				\item<5->{Adapts surrounding grid points, if necessary}
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}<5->{Hard Insert}
+			\begin{itemize}
+				\item{'Hard insert': checks ALL grid points and eventually 								adapts them}
+			\end{itemize}	
+		\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Grid Evaluation}
+	
+	\begin{block}<1-> {Evaluation Function}
+		\begin{itemize}
+			\item<2-> {Grid Data is evaluated on every insert}
+			\item<3-> {Calculate average deviation}
+			\item<4-> {Compare with set threshold}
+			\begin{itemize}
+				\item<5->{If higher: recreate grid}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}	
+	
+	
+	
+\begin{frame}
+	\frametitle{Grid Creation}
+
+	\begin{block}<1-> {Creation Function}
+		\begin{itemize}
+			\item<2-> {Initialize offset vector}
+			\begin{itemize}
+				\item<3-> {first creation: 0}
+				\item<4-> {later: smallest value}
+			\end{itemize}
+			\item<5-> {Initialize increment vector}
+			\begin{itemize}
+				\item<6->{first creation: 1}
+				\item<7->{later: 'data size' divided by number of fields}
+			\end{itemize}
+			\item<8-> {'Hard Insert' all tasks stored in database}			
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%										☺
+%\begin{frame}
+%	\frametitle{}
+%\end{frame}
