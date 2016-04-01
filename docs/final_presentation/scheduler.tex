@@ -1,5 +1,5 @@
 
-\section{Architecture}
+\section{Scheduler}
 
 	\begin{frame}{Master-Worker}
 		\centerline{\includegraphics[scale=0.5]{images/master}}
@@ -9,9 +9,8 @@
 	\end{frame}
 
 	\begin{frame}{Scheduling strategies}
-		\includegraphics[scale=0.2,right]{images/fifo}
-		
-		\begin{itemize}
+	\begin{minipage}[]{.7\textwidth}%
+			\begin{itemize}
 		\item<1-> non-statistical
 		\begin{itemize}
 			\item First In-First out (FIFO)
@@ -24,6 +23,11 @@
 		\end{itemize}
 		\item<3-> standardized interface - simple to include new strategies
 		\end{itemize}
+\end{minipage}%
+\begin{minipage}[]{.3\textwidth}%
+  \vspace{-\ht\strutbox}\includegraphics[width=\textwidth]{images/fifo}%
+\end{minipage}		
+		
 	\end{frame}
 	\begin{frame}{Scheduling strategies: Master-Worker vs. Task stealing}
 		\begin{itemize}
