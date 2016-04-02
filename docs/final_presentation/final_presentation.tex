@@ -51,7 +51,7 @@
 
 \title[Specification presentation]{Dynamic scheduler for scientific simulations}
 \subtitle{Final presentation}
-\author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philip Roth}
+\author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philipp Roth}
 
 \institute{Steinbuch Centre for Computing - SCC}
 
@@ -61,7 +61,9 @@
 \addbibresource{templates/example.bib}
 \bibhang1em
 \usepackage{graphicx}
+\usepackage[export]{adjustbox}
 \usepackage{tikz}
+\usepackage[ngerman]{babel}
 \usetikzlibrary{shapes}
 \begin{document}
 
@@ -73,16 +75,32 @@
 \titlepage
 \end{frame}
 
+
+
+
 %table of contents
 \begin{frame}{Outline}
 \tableofcontents
 \end{frame}
 
+\section{Overview}
+\begin{frame}{Overview}
 
-\include{overview}
+\centerline{\includegraphics[scale=0.43]{images/overview}}
+\end{frame}
 \include{scheduler}
+\AtBeginSection[]{
+	\begin{frame}
 
 
+\begin{minipage}[]{.3\textwidth}%
+	\tableofcontents[currentsection]
+\end{minipage}%
+\begin{minipage}[]{.7\textwidth}%
+  \vspace{-\ht\strutbox}\includegraphics[width=\textwidth]{images/overview}%
+\end{minipage}
+\end{frame}
+}
 \include{database}
 \include{GridDatamining2}
 \include{gui}
