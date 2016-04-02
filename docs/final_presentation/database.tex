@@ -1,29 +1,34 @@
 \section{Database}
-%\subsection{stuff}
 
 \subsection{database}
 
-	\begin{frame}{What? - Metadata of a task}
+	\begin{frame}{What?}
+		\begin{block}{Metadata of task}<1->{}
 		\begin{itemize}
-		\item Identifier(ID)
-		\item Timestamp of an event
-		\item Event itself
-		\item Mode
-		\item Parent
-		\item Rank
+		\item<1->{} {Identifier(ID)}
+		\item<2->{} {Timestamp of an event}
+		\item<3->{} {Event itself}
+		\item<4->{} {Mode}
+		\item<5->{} {Parent}
+		\item<6->{} {Rank}
+		
 		%\item Intercommunication timestamp
-		\item Number of parameters
-		\item Parameters themselves
+
+		\item<7->{} {Number of parameters}
+		\item<8->{} {Parameters themselves}
 		\end{itemize}
+		\end{block}
 	\end{frame}
 	
-	\begin{frame}{How? - Structure}
+	\begin{frame}{How?}
+		\begin{block}{Structure}<1->{}
 		\begin{itemize}
-		\item Stored data in 2 seperated files
-		\item Bookkeeping: listed data of previous slide
-		\item Statistics: parameters and runtime of a task
-		\item Files are accessable for visualizer
+		\item<1->{} {Stored data in 2 seperated files}
+		\item<2->{} {Bookkeeping: listed data of previous slide}
+		\item<3->{} {Statistics: parameters and runtime of a task}
+		\item<5->{} {\textbf{Additional: }Files are accessable for visualizer}
 		\end{itemize}
+		\end{block}
 	\end{frame}
 \subsubsection{handling}
 	\begin{frame}{DatabaseHandler}
