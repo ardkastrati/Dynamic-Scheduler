@@ -1,0 +1,200 @@
+\hypertarget{a00087}{}\subsection{el\+:\+:base\+:\+:utils\+:\+:Str Class Reference}
+\label{a00087}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+
+
+String utilities helper class used internally. You should not use it.  
+
+
+
+
+{\ttfamily \#include $<$easylogging++.\+h$>$}
+
+
+
+Inheritance diagram for el\+:\+:base\+:\+:utils\+:\+:Str\+:
+% FIG 0
+
+
+Collaboration diagram for el\+:\+:base\+:\+:utils\+:\+:Str\+:
+% FIG 1
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00087_a4caae91dfe0310d9f182bd9b7e99103c}{}static bool \hyperlink{a00087_a4caae91dfe0310d9f182bd9b7e99103c}{is\+Digit} (char c)\label{a00087_a4caae91dfe0310d9f182bd9b7e99103c}
+
+\begin{DoxyCompactList}\small\item\em Checks if character is digit. Dont use libc implementation of it to prevent locale issues. \end{DoxyCompactList}\item 
+\hypertarget{a00087_a95e007a25dfcbd77d4c573b0f73b3153}{}static bool \hyperlink{a00087_a95e007a25dfcbd77d4c573b0f73b3153}{wild\+Card\+Match} (const char $\ast$str, const char $\ast$pattern)\label{a00087_a95e007a25dfcbd77d4c573b0f73b3153}
+
+\begin{DoxyCompactList}\small\item\em Matches wildcards, \textquotesingle{}$\ast$\textquotesingle{} and \textquotesingle{}?\textquotesingle{} only supported. \end{DoxyCompactList}\item 
+static std\+::string \& \hyperlink{a00087_a64b7a841f04ed916ed8d234b8508703e}{ltrim} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Trims string from start. \end{DoxyCompactList}\item 
+static std\+::string \& \hyperlink{a00087_a9202797763e10861c4fa84ffd40198bb}{rtrim} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Trim string from end. \end{DoxyCompactList}\item 
+static std\+::string \& \hyperlink{a00087_aba0bc132c410fd3c1e128d1038e996ba}{trim} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Trims string from left and right. \end{DoxyCompactList}\item 
+static bool \hyperlink{a00087_acf80221cec72da701ef50995a61ab91f}{starts\+With} (const std\+::string \&str, const std\+::string \&start)
+\begin{DoxyCompactList}\small\item\em Determines whether or not str starts with specified string. \end{DoxyCompactList}\item 
+static bool \hyperlink{a00087_a5bcf5f6cc41a7ed683be115148579561}{ends\+With} (const std\+::string \&str, const std\+::string \&end)
+\begin{DoxyCompactList}\small\item\em Determines whether or not str ends with specified string. \end{DoxyCompactList}\item 
+static std\+::string \& \hyperlink{a00087_aa07bfda259ed194120b371401734ae86}{replace\+All} (std\+::string \&str, char replace\+What, char replace\+With)
+\begin{DoxyCompactList}\small\item\em Replaces all instances of replace\+What with \textquotesingle{}replace\+With\textquotesingle{}. Original variable is changed for performance. \end{DoxyCompactList}\item 
+static std\+::string \& \hyperlink{a00087_a8e823aa60b160451ca0b8732c3c75568}{replace\+All} (std\+::string \&str, const std\+::string \&replace\+What, const std\+::string \&replace\+With)
+\begin{DoxyCompactList}\small\item\em Replaces all instances of \textquotesingle{}replace\+What\textquotesingle{} with \textquotesingle{}replace\+With\textquotesingle{}. (String version) Replaces in place. \end{DoxyCompactList}\item 
+\hypertarget{a00087_a3725349f601d07316d1c2bc211daaaa1}{}static void {\bfseries replace\+First\+With\+Escape} (base\+::type\+::string\+\_\+t \&str, const base\+::type\+::string\+\_\+t \&replace\+What, const base\+::type\+::string\+\_\+t \&replace\+With)\label{a00087_a3725349f601d07316d1c2bc211daaaa1}
+
+\item 
+static std\+::string \& \hyperlink{a00087_a6a05315fb967508dc1faf0584421a95d}{to\+Upper} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Converts string to uppercase. \end{DoxyCompactList}\item 
+\hypertarget{a00087_a8081458c7848ff991d765c69f7858c44}{}static bool \hyperlink{a00087_a8081458c7848ff991d765c69f7858c44}{c\+String\+Eq} (const char $\ast$s1, const char $\ast$s2)\label{a00087_a8081458c7848ff991d765c69f7858c44}
+
+\begin{DoxyCompactList}\small\item\em Compares cstring equality -\/ uses strcmp. \end{DoxyCompactList}\item 
+\hypertarget{a00087_aaa37755d713b5e6475950134ce9ce0e8}{}static bool \hyperlink{a00087_aaa37755d713b5e6475950134ce9ce0e8}{c\+String\+Case\+Eq} (const char $\ast$s1, const char $\ast$s2)\label{a00087_aaa37755d713b5e6475950134ce9ce0e8}
+
+\begin{DoxyCompactList}\small\item\em Compares cstring equality (case-\/insensitive) -\/ uses toupper(char) Dont use strcasecmp because of C\+R\+T (V\+C++) \end{DoxyCompactList}\item 
+\hypertarget{a00087_a27cc1c1625b21597eb75df62b8fca0f8}{}static bool \hyperlink{a00087_a27cc1c1625b21597eb75df62b8fca0f8}{contains} (const char $\ast$str, char c)\label{a00087_a27cc1c1625b21597eb75df62b8fca0f8}
+
+\begin{DoxyCompactList}\small\item\em Returns true if c exist in str. \end{DoxyCompactList}\item 
+\hypertarget{a00087_a5e12c163bf1085441ea5453fd6c62fa0}{}static char $\ast$ {\bfseries convert\+And\+Add\+To\+Buff} (std\+::size\+\_\+t n, int len, char $\ast$buf, const char $\ast$buf\+Lim, bool zero\+Padded=true)\label{a00087_a5e12c163bf1085441ea5453fd6c62fa0}
+
+\item 
+\hypertarget{a00087_aa6a96f625f71661c02ecd5366533abaa}{}static char $\ast$ {\bfseries add\+To\+Buff} (const char $\ast$str, char $\ast$buf, const char $\ast$buf\+Lim)\label{a00087_aa6a96f625f71661c02ecd5366533abaa}
+
+\item 
+\hypertarget{a00087_adf0c36c9b8276ede18111a866e31db8b}{}static char $\ast$ {\bfseries clear\+Buff} (char buff\mbox{[}$\,$\mbox{]}, std\+::size\+\_\+t lim)\label{a00087_adf0c36c9b8276ede18111a866e31db8b}
+
+\item 
+\hypertarget{a00087_a6dc022e7e8d4cbf2c80ba9e1354feaea}{}static char $\ast$ \hyperlink{a00087_a6dc022e7e8d4cbf2c80ba9e1354feaea}{wchar\+Ptr\+To\+Char\+Ptr} (const wchar\+\_\+t $\ast$line)\label{a00087_a6dc022e7e8d4cbf2c80ba9e1354feaea}
+
+\begin{DoxyCompactList}\small\item\em Converst wchar$\ast$ to char$\ast$ N\+O\+T\+E\+: Need to free return value after use! \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00087_a5bcf5f6cc41a7ed683be115148579561}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!ends\+With@{ends\+With}}
+\index{ends\+With@{ends\+With}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{ends\+With}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::base\+::utils\+::\+Str\+::ends\+With (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_a5bcf5f6cc41a7ed683be115148579561}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to check \\
+\hline
+{\em end} & String to check against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if ends with specified string, false otherwise 
+\end{DoxyReturn}
+\hypertarget{a00087_a64b7a841f04ed916ed8d234b8508703e}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!ltrim@{ltrim}}
+\index{ltrim@{ltrim}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{ltrim}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::ltrim (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_a64b7a841f04ed916ed8d234b8508703e}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & String to trim \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00087_aa07bfda259ed194120b371401734ae86}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!replace\+All@{replace\+All}}
+\index{replace\+All@{replace\+All}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{replace\+All}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::replace\+All (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str, }
+\item[{char}]{replace\+What, }
+\item[{char}]{replace\+With}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_aa07bfda259ed194120b371401734ae86}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & String to replace from \\
+\hline
+ & {\em replace\+What} & Character to replace \\
+\hline
+ & {\em replace\+With} & Character to replace with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Modified version of str 
+\end{DoxyReturn}
+\hypertarget{a00087_a8e823aa60b160451ca0b8732c3c75568}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!replace\+All@{replace\+All}}
+\index{replace\+All@{replace\+All}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{replace\+All}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::replace\+All (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{replace\+What, }
+\item[{const std\+::string \&}]{replace\+With}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_a8e823aa60b160451ca0b8732c3c75568}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to replace from \\
+\hline
+{\em replace\+What} & Character to replace \\
+\hline
+{\em replace\+With} & Character to replace with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Modified (original) str 
+\end{DoxyReturn}
+\hypertarget{a00087_a9202797763e10861c4fa84ffd40198bb}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!rtrim@{rtrim}}
+\index{rtrim@{rtrim}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{rtrim}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::rtrim (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_a9202797763e10861c4fa84ffd40198bb}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & String to trim \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00087_acf80221cec72da701ef50995a61ab91f}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!starts\+With@{starts\+With}}
+\index{starts\+With@{starts\+With}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{starts\+With}]{\setlength{\rightskip}{0pt plus 5cm}static bool el\+::base\+::utils\+::\+Str\+::starts\+With (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{const std\+::string \&}]{start}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_acf80221cec72da701ef50995a61ab91f}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to check \\
+\hline
+{\em start} & String to check against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if starts with specified string, false otherwise 
+\end{DoxyReturn}
+\hypertarget{a00087_a6a05315fb967508dc1faf0584421a95d}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!to\+Upper@{to\+Upper}}
+\index{to\+Upper@{to\+Upper}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{to\+Upper}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::to\+Upper (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_a6a05315fb967508dc1faf0584421a95d}
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uppercase string 
+\end{DoxyReturn}
+\hypertarget{a00087_aba0bc132c410fd3c1e128d1038e996ba}{}\index{el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}!trim@{trim}}
+\index{trim@{trim}!el\+::base\+::utils\+::\+Str@{el\+::base\+::utils\+::\+Str}}
+\paragraph[{trim}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::string\& el\+::base\+::utils\+::\+Str\+::trim (
+\begin{DoxyParamCaption}
+\item[{std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00087_aba0bc132c410fd3c1e128d1038e996ba}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em str} & String to trim \\
+\hline
+\end{DoxyParams}
