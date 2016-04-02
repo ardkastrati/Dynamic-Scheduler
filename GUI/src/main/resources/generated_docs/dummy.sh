@@ -1,17 +1,18 @@
         #### MOAB commands
 
 #MSUB  -q develop
-#MSUB  -l nodes=22:ppn=22
-#MSUB  -N 
+#MSUB  -l nodes=2:ppn=2
+#MSUB  -l walltime=1000
+#MSUB  -N test
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
 
 
         ##### Directory
 
-cd ./.gnome2
+cd ./Documents
 
 
         #### MPI commands
 
-mpirun 22
+mpirun -np 4 ./myExec -design master-worker -strategy fifo

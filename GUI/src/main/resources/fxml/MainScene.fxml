@@ -58,12 +58,12 @@
                         <Label alignment="CENTER" prefHeight="76.0" prefWidth="104.0" text="SSH" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
-                  <Tab id="compileJob">
+                  <Tab id="compileJob" disable="true">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                      <graphic>
-                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="123.0" text="Compile/Install Job" textAlignment="CENTER" wrapText="true" />
+                        <Label alignment="CENTER" prefHeight="59.0" prefWidth="123.0" text="Compile Job " textAlignment="CENTER" wrapText="true" />
                      </graphic>
                   </Tab>
                 <Tab id="moab" fx:id="MOAB">
@@ -74,7 +74,7 @@
                         <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="Run Job via MOAB" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
-                  <Tab id="jobs" fx:id="jobs">
+                  <Tab id="jobs" fx:id="jobs" disable="true">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

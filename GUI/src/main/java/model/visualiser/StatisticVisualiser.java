@@ -28,6 +28,7 @@ import model.visualiser.dataholding.Datakeeper;
  * 
  */
 public class StatisticVisualiser implements Visualiser{
+
     
     @Override
     public void getVisualisation(Pane parent, Datakeeper datakeeper) {

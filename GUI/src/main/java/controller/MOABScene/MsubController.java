@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.MemoryUnit;
+import model.MySession;
 import model.NodeAccessPolicy;
 import model.commands.CommandException;
 import model.commands.MOAB.MoabResources;
@@ -72,7 +74,6 @@ public class MsubController  implements Initializable, CommandController {
     private CheckBox emailMeWhenJobEnds;
     @FXML
     private TextField email;
-    
     /**
     * Initialize the properties needed for the MsubController
     */
@@ -84,6 +85,9 @@ public class MsubController  implements Initializable, CommandController {
     
      @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        
+        
          ArrayList<QueueType> commands = new ArrayList<>();
             for(QueueType queueType : QueueType.values()) {
                 commands.add(queueType);
@@ -137,9 +141,7 @@ public class MsubController  implements Initializable, CommandController {
     public Msub createMsubFromDataInGUI() throws ParserException, CommandException {
         
         Msub msub = new Msub();
-        if(queueTypes.getSelectionModel().getSelectedItem() == null) {
-            throw new ParserException("Please select a queue type!");
-        } else {
+        if(queueTypes.getSelectionModel().getSelectedItem() != null) {
            msub.setQueueType((QueueType) queueTypes.getSelectionModel().getSelectedItem());  // ?
         }
         
@@ -216,12 +218,13 @@ public class MsubController  implements Initializable, CommandController {
 
     @Override
     public void onEntry() {
-        
+        // must be always not 
+        MySession.getInstant().closeChannel();
+          
     }
 
     @Override
     public void onExit() {
-        
     }
 
 

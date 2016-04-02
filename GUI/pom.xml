@@ -126,13 +126,13 @@
             <artifactId>commons-net</artifactId>
             <version>3.3</version>
         </dependency>
-	<dependency>
-            <groupId>javafx</groupId>
+	 <!--<dependency>
+           <groupId>javafx</groupId>
             <artifactId>javafx</artifactId>
 	    <version>2.2</version>
 	    <scope>system</scope>
             <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.panayotis.gnuplot</groupId>
             <artifactId>gnuplot</artifactId>
@@ -140,7 +140,7 @@
             <type>jar</type>
         </dependency>
 	<dependency>
-		<groupId>jung</groupId>
+		<groupId>edu.uci.ics.jung</groupId>
 		<artifactId>jung</artifactId>
 		<version>1.7.6</version>
 	    <type>jar</type>

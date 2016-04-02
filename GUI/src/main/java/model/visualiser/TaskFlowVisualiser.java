@@ -79,6 +79,22 @@ public class TaskFlowVisualiser implements Visualiser {
             Layout l = new FRLayout( g );
             Renderer r = new PluggableRenderer();
             VisualizationViewer vv = new VisualizationViewer( l, r );
+            //VertexLabelAsShapeRenderer.
+            //vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+            //Transformer transformer = new Transformer() {
+            //    public String transform(String arg0) { return arg0; }
+
+            //    @Override
+            //    public Point2D transform(Point2D pd) {
+            //        return pd;
+            //    }
+
+            //    @Override
+            //    public Point2D inverseTransform(Point2D pd) {
+            //        return pd;
+            //    }
+            //};
+            //vv.setViewTransformer((MutableTransformer) transformer);
             SwingNode node = new SwingNode();   
             node.setContent( vv );
             	

@@ -123,6 +123,7 @@ public class JobScriptCreatorSceneController implements Initializable, CommandCo
            
              generatingProgressIndicator.progressProperty().bind(currentTask.progressProperty());
              generatingPane.visibleProperty().bind(currentTask.runningProperty());
+             generatingProgressText.visibleProperty().bind(currentTask.runningProperty());
              generatingProgressText.textProperty().bind(currentTask.messageProperty());
              
              wizard.setVisible(false);

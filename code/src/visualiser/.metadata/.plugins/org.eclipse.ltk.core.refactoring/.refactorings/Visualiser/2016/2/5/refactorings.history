@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;resources&apos; to &apos;Visualiser/src/main&apos;&#x0A;- Ursprüngliches Projekt: &apos;Visualiser&apos;&#x0A;- Zielelement: &apos;Visualiser/src/main&apos;&#x0A;- Ursprüngliches Element: &apos;resources&apos;&#x0A;- Referenzen auf Element nach Refactoring aktualisieren" description="Ordner verschieben" destination="/src&lt;main" element1="resources" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1454516130289" units="0" version="1.0"/>
-</session>

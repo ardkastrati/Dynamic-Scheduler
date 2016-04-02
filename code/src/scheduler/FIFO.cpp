@@ -1,20 +1,10 @@
-/**
- * Project Dynamic Scheduler for Scientific Simulations
- */
-
+#define NDEBUG
 
 #include "FIFO.h"
 
-/**
- * FIFO implementation
- * 
- * Implements the SchedulingStrategy interface and realises the First In - First Out (FIFO) scheduling strategy.
- * FIFO is a non-statistically based scheduling strategy
- */
-
-FIFO::FIFO()
+FIFO::FIFO() :
+queue(new std::queue<Task>())
 {
-    queue = new std::queue<TaskType>();
 }
 
 FIFO::~FIFO()
@@ -22,7 +12,7 @@ FIFO::~FIFO()
     delete queue;
 }
 
-TaskType FIFO::get_next_task()
+Task FIFO::get_next_task()
 {
     return queue->front();
 }
@@ -31,13 +21,15 @@ int FIFO::get_task_count()
 {
     return queue->size();
 }
-
-void FIFO::pop_next_task()
+Task FIFO::pop_next_task()
 {
-    return queue->pop();
+    Task result;
+    result = queue->front();
+    queue->pop();
+    return result;
 }
 
-void FIFO::push_new_task(TaskType task, long runtime)
+void FIFO::push_new_task(Task task, long runtime)
 {
     queue->push(task);
 }
@@ -51,4 +43,8 @@ SchedulingStrategy* FIFO::change_strategy(SchedulingStrategy *new_strategy)
         queue->pop();
     }
     return new_strategy;
+}
+bool FIFO::is_statistic_based()
+{
+    return false;
 }
