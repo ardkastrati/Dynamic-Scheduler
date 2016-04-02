@@ -188,3 +188,14 @@ pythontex-files-*/
 /Test/build/
 /code/test/build/
 /code/test/dist/
+
+code/bin/*
+code/lib/*
+code/build
+
+#eclipse metadata
+code/src/visualiser/.metadata/
+*.class
+
+GUI/src/.metadata/
+/GUI/nbproject/
