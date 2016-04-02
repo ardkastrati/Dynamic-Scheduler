@@ -1,25 +1,43 @@
-/**
- * Project Dynamic Scheduler for Scientific Simulations
- */
-
-
 #ifndef _WORKER_H
 #define _WORKER_H
 
-#include "AbstractWorker.h"
+#include "../TypesExtern.h"
+#include "WorkerForwarder.h"
 
-
-class Worker: public AbstractWorker {
+/**
+ * This interface defines all functions a worker must provide.
+ *
+ * @author Fabio Broghammer
+ * @version 1.0
+ */
+class Worker {
 public:
-    Worker(int rank, int number_of_processors);
-    void execute(int argc, char* argv[]);
-    void run_task(TaskType task);
-    static void place_task(TaskType task);
-private:
-    void preporcessing(int argc, char* argv[]);
-    void postprocessing();
-    void wait_for_task();
+    /**
+     * Calls the code_run_task() function of the scientific and starts the scientific calculation with the given task.
+     *
+     * @param task scientific task to be computed
+     */
+    virtual void run_task(Task task) = 0;
 
+    /**
+     * Calls the code_preprocessing_slave() function of the scientific code and pass the command lines arguments.
+     *
+     * @param argc command line argument count
+     * @param argv command line arguments
+     */
+    virtual void preprocessing(int argc, char* argv[]) = 0;
+
+    /**
+     * Calls the code_postprocessing_slave() function of the scientific code.
+     */
+    virtual void postprocessing() = 0;
+
+    /**
+     * This function is called from the scientific code to place a new task in the scheduling queue.
+     *
+     * @param task task to be placed in the scheduling queue
+     */
+    virtual void place_task(Task task) = 0;
 };
 
 #endif //_WORKER_H

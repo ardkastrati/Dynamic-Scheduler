@@ -1,26 +1,12 @@
-/**
- * Project Dynamic Scheduler for Scientific Simulations
- */
-
-
 #include "SJF.h"
 
-
-/**
- * SJF implementation
- * 
- * Implements the SchedulingStrategy interface and realises the Shortest Job First (SJF) scheduling strategy. Shortest Job First scheduling uses the estimated runtime of  tasks  to order the task queue.
- * SJF is a statistically based scheduling strategy
- */
-
-bool ComparisonClassSJF::operator ()(TaskTimeType task1, TaskTimeType task2) {
-    return task1.second > task2.second;
+bool ComparisonClassSJF::operator ()(TaskTimeType task_time_1, TaskTimeType task_time_2) {
+    return task_time_1.second > task_time_2.second;
 }
 
-SJF::SJF()
+SJF::SJF() :
+queue(new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassSJF>())
 {
-    //TODO:Set right comparer
-    queue = new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassSJF>();
 }
 
 SJF::~SJF()
@@ -28,7 +14,7 @@ SJF::~SJF()
     delete queue;
 }
 
-TaskType SJF::get_next_task()
+Task SJF::get_next_task()
 {
     TaskTimeType result = queue->top();
     return result.first;
@@ -39,12 +25,15 @@ int SJF::get_task_count()
     return queue->size();
 }
 
-void SJF::pop_next_task()
+Task SJF::pop_next_task()
 {
+    TaskTimeType result;
+    result = queue->top();
     queue->pop();
+    return result.first;
 }
 
-void SJF::push_new_task(TaskType task, long runtime)
+void SJF::push_new_task(Task task, long runtime)
 {
     TaskTimeType taskTime;
     taskTime.first = task;
@@ -62,4 +51,9 @@ SchedulingStrategy* SJF::change_strategy(SchedulingStrategy *new_strategy)
         new_strategy->push_new_task(taskTime.first, taskTime.second);
     }
     return new_strategy;
+}
+
+bool SJF::is_statistic_based()
+{
+    return true;
 }

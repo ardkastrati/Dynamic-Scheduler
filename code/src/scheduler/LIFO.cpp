@@ -1,20 +1,10 @@
-/**
- * Project Dynamic Scheduler for Scientific Simulations
- */
-
+#define NDEBUG
 
 #include "LIFO.h"
 
-/**
- * LIFO implementation
- * 
- * Implements the SchedulingStrategy interface and realises the Last In - First Out (LIFO) scheduling strategy.
- * LIFO is a non-statistically based scheduling strategy
- */
-
-LIFO::LIFO()
+LIFO::LIFO() :
+stack(new std::stack<Task>())
 {
-    stack = new std::stack<TaskType>();
 }
 
 LIFO::~LIFO()
@@ -22,7 +12,7 @@ LIFO::~LIFO()
     delete stack;
 }
 
-TaskType LIFO::get_next_task()
+Task LIFO::get_next_task()
 {
     return stack->top();
 }
@@ -32,12 +22,15 @@ int LIFO::get_task_count()
     return stack->size();
 }
 
-void LIFO::pop_next_task()
+Task LIFO::pop_next_task()
 {
+    Task result;
+    result = stack->top();
     stack->pop();
+    return result;
 }
 
-void LIFO::push_new_task(TaskType task, long runtime)
+void LIFO::push_new_task(Task task, long runtime)
 {
     stack->push(task);
 }
@@ -51,4 +44,8 @@ SchedulingStrategy* LIFO::change_strategy(SchedulingStrategy *new_strategy)
         stack->pop();
     }
     return new_strategy;
+}
+bool LIFO::is_statistic_based()
+{
+    return false;
 }
