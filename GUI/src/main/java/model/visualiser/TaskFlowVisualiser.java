@@ -40,14 +40,15 @@ import model.visualiser.dataholding.Task;
 import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.Transformer;
 import java.awt.geom.Point2D;
+import model.visualiser.dataholding.Datakeeper;
 //import jung.SimpleGraphView;
 
 public class TaskFlowVisualiser implements Visualiser {
 
 	@Override
-	public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
-            //SimpleGraphView sgv = new SimpleGraphView();
-            Graph/*<MyLink,SparseVertex>*/ g;
+	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+            HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
+            Graph g;
             g = new DirectedSparseGraph();
             
             HashMap<Long,Vertex> vertexMap = new HashMap();
@@ -78,26 +79,15 @@ public class TaskFlowVisualiser implements Visualiser {
             Layout l = new FRLayout( g );
             Renderer r = new PluggableRenderer();
             VisualizationViewer vv = new VisualizationViewer( l, r );
-            //VertexLabelAsShapeRenderer.
-            //vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-            //Transformer transformer = new Transformer() {
-            //    public String transform(String arg0) { return arg0; }
-
-            //    @Override
-            //    public Point2D transform(Point2D pd) {
-            //        return pd;
-            //    }
-
-            //    @Override
-            //    public Point2D inverseTransform(Point2D pd) {
-            //        return pd;
-            //    }
-            //};
-            //vv.setViewTransformer((MutableTransformer) transformer);
             SwingNode node = new SwingNode();   
             node.setContent( vv );
             	
             parent.getChildren().add(node);
         }      
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
            
 }

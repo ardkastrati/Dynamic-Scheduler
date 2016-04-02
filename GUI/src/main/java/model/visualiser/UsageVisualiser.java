@@ -13,6 +13,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
 import model.visualiser.dataholding.Task;
 
@@ -23,10 +24,11 @@ import model.visualiser.dataholding.Task;
 public class UsageVisualiser implements Visualiser{
 
     @Override
-    public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
+    public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+        HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
         List<Long> usage;
         usage = new ArrayList<>();
-        long overallStartTime = 1457118642041528L;   
+        long overallStartTime = datakeeper.getOverAllStartTime();   
         //List<Task> taskList = new ArrayList<Task>(taskMap.values());
         //taskList.forEach(System.out::println);
         Iterator taskIterator = taskMap.entrySet().iterator();
@@ -61,5 +63,10 @@ public class UsageVisualiser implements Visualiser{
         }
         usageChart.getData().add(series);
         parent.getChildren().add(usageChart);
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

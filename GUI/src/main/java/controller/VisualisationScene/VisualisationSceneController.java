@@ -4,6 +4,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,15 +16,21 @@ import java.util.ResourceBundle;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.MySession;
 import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
@@ -35,6 +42,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
     @FXML
     private ResourceBundle resources;
     @FXML
+    private ProgressIndicator refreshIndicator;
+    @FXML
     private URL location;
     @FXML
     private ChoiceBox<Visualiser> diagramBox;
@@ -43,62 +52,87 @@ public class VisualisationSceneController  implements Initializable, Controller{
     @FXML
     private Button showButton;
     @FXML
+    private Button refreshButton;
+    @FXML
     private TabPane diagramPane;
     @FXML
     private Tab addDiagramTab;
     
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
-    private String baseDir;
+    static private String baseDir;
     private boolean CurrentDirty;
     private String runningDir;
+    private ChangeListener<MySession.SessionStatus> listener;
     
     @FXML
     public void show(ActionEvent event) {
         Visualiser diagramType = diagramBox.getValue();
         String calculation = calculationBox.getValue();
         Tab tab = new Tab();
-        //Parser parser = new Parser();
-        HashMap<Integer, Task> taskMap = null;
-        //try {
-        //    taskMap = parser.parseBookkeeping("/home/kai/Dokumente/PSE/testdata/Bookkeeping.txt");
-        //} catch (FileNotFoundException ex) {
-        //    MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 50, true, true);
-        //} catch (ParserException ex) {
-        //    MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 50, true, true);
-        //}
+        HashMap<Long, Task> taskMap = null;
         List<Event> eventList = null;//parser.parseStatistic("/home/kai/Dokumente/PSE/testdata/Statisics.txt");
         Pane pane = new AnchorPane();
         //System.out.println(taskMap.toString());
+        Datakeeper keeper = null;
         if (keeperMap.containsKey(calculation)) {
-            taskMap = keeperMap.get(calculation).getTaskMap();
-            eventList = keeperMap.get(calculation).getEventList();
+            keeper = keeperMap.get(calculation);
         } else {
-            Datakeeper datakeeper = new Datakeeper(baseDir + calculation);
-            keeperMap.put(calculation, datakeeper);
-            taskMap = datakeeper.getTaskMap();
-            eventList = datakeeper.getEventList();
+            keeper = new Datakeeper(baseDir + calculation);
+            keeperMap.put(calculation, keeper);
         }
-        diagramType.getVisualisation(pane, taskMap, eventList);
+        diagramType.getVisualisation(pane, keeper);
         tab.setText(calculation + " - " );
         tab.setContent(pane);
+        tab.setClosable(true);
         diagramPane.getTabs().add(tab);
     }
 
     @FXML
     public void refresh(ActionEvent event) {
-        MySession session = MySession.getInstant();
-        ChannelSftp sftp = session.getSFTPChannel("sftp");
+        Parent root;
         try {
-            sftp.get("Bookkeeping.txt", baseDir + runningDir + "/Bookkeeping.txt");
-        } catch (SftpException ex) {
-            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+           FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
+           //System.out.println(loader.getLocation());
+           root = (Parent)loader.<Parent>load();
+           Stage stage = new Stage();
+           stage.setTitle("Loader");
+           stage.setScene(new Scene(root,600,400));
+           Controller controller = loader.getController();
+           controller.onEntry();
+           stage.setOnCloseRequest(ev -> {
+               controller.onExit();
+           });
+           
+           stage.show();
+           
+        } catch(IOException e) {
+            //System.out.println(loader);
+            System.out.println("DEBUG");
+            e.printStackTrace();
         }
-         try {
-            sftp.get("Statistic.txt", baseDir + runningDir + "/Statistic.txt");
-        } catch (SftpException ex) {
-            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //MySession.getInstant().initiateOpeningChannel("sftp");
+    }
+    private void refresh() {
+            
+       /*   
+       ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
+        //try {
+            System.out.println("Trying to get Bookkeeping text");
+            //sftp.get("Bookkeeping.txt", baseDir + runningDir + "/Bookkeeping.txt");
+        //} catch (SftpException ex) {
+            System.out.println("Error");
+           //(()) Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        // try {
+              System.out.println("Trying to get Statistic text");
+            ///sftp.get("Statistic.txt", baseDir + runningDir + "/Statistic.txt");
+        //} catch (SftpException ex) {
+            System.out.println("Error");
+           // Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+       */
+        
     }
     
     @Override
@@ -119,7 +153,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
         }
         while(visualiserService.hasNext()) {
             Visualiser visualiser = visualiserService.next();
-            visualiserMap.put(visualiser.toString(), visualiser);
+            String[] split = visualiser.toString().split("Visualiser", 1);
+            visualiserMap.put(split[0], visualiser);
             diagramBox.getItems().add(visualiser);
         }
         
@@ -128,17 +163,43 @@ public class VisualisationSceneController  implements Initializable, Controller{
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
         }
+        
+        // Change listener for the session status
+        listener = (obs, oldStatus, newStatus) -> {
+            if (newStatus == MySession.SessionStatus.READY || newStatus == MySession.SessionStatus.DISCONNECTED) {
+                refreshButton.setDisable(false);
+                refreshIndicator.setVisible(false);
+                //Was willst du machen in wenn du nicht connected bist
+            } else if (newStatus == MySession.SessionStatus.ONLINE) {
+                refresh();
+            //Was willst du machen wenn du verbunden bist    
+            } else { //andere Zustände wenn du brauchst
+                refreshButton.setDisable(true);
+                refreshIndicator.setVisible(true);
+               
+            }
+        };
+        //sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+	//		sftpPath.setText(newValue.getValue());
+	//	});
     }
 
     @Override
     public void onEntry() {
-        System.out.println("Debug");
+        System.out.println("Add listener");
+        MySession.getInstant().sessionStatusProperty().addListener(listener);
+        //System.out.println("Debug");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onExit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Remove listener");
+        MySession.getInstant().sessionStatusProperty().removeListener(listener);
+         MySession.getInstant().closeChannel();
     }
 
+    static protected void setBaseDir(String basedir){
+        baseDir = basedir;
+    }
 }

@@ -1,19 +1,17 @@
         #### MOAB commands
 
 #MSUB  -q develop
-#MSUB  -l nodes=2:ppn=2
-#MSUB  -l walltime=2000
-#MSUB  -l pmem=200
-#MSUB  -N etrzgfctg
+#MSUB  -l nodes=22:ppn=22
+#MSUB  -N 
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
 
 
         ##### Directory
 
-cd .
+cd ./.gnome2
 
 
         #### MPI commands
 
-mpirun -np 4 echo "test" -design master-worker -strategy fifo
+mpirun 22

@@ -84,7 +84,7 @@
                   </Tab>
                   <Tab id="visualizer" fx:id="visualizer">
                     <content>
-                      <fx:include fx:id="visualizer" source="DiagramScene.fxml"/>
+                      <fx:include fx:id="visualizer" source="VisualisationScene.fxml"/>
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />
