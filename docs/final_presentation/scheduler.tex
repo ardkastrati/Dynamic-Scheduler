@@ -1,27 +1,29 @@
 
-\section{Scheduler}
 
-	\begin{frame}{Scheduler: Master-Worker}
+	\begin{frame}{Master-Worker}
 		\centerline{\includegraphics[scale=0.5]{images/master}}
 	\end{frame}
-	\begin{frame}{Scheduler: Task Stealing}
+	\begin{frame}{Task Stealing}
 		\centerline{\includegraphics[scale=0.5]{images/taskstealing}}
 	\end{frame}
 
-	\begin{frame}{Scheduler: Scheduling strategies}
+	\begin{frame}{Scheduling Strategies}
 	\begin{minipage}[]{.7\textwidth}%
 			\begin{itemize}
-		\item<2-> non-statistical
+		\item<2-> Non-statistical
 		\begin{itemize}
-			\item First In-First out (FIFO)
-			\item Last In-Last out (LIFO)
+			\item<3-> First In-First Out (FIFO)
+			\item<4-> Last In-Fist Out (LIFO)
 		\end{itemize}
-		\item<3-> statistical
+		\item<5-> Statistical
 		\begin{itemize}
-			\item Shortest job first (SJF)
-			\item Longest job first (LJF)
+			\item<6-> Shortest Job First (SJF)
+			\item<7-> Longest Job First (LJF)
 		\end{itemize}
-		\item<4-> standardized interface - simple to include new strategies
+		\item<8-> Standardized interface 
+			\begin{itemize}
+				\item<9-> s imple to include new strategies
+			\end{itemize}					
 		\end{itemize}
 \end{minipage}%
 \begin{minipage}[]{.3\textwidth}%
@@ -29,18 +31,18 @@
 \end{minipage}		
 		
 	\end{frame}
-	\begin{frame}{Scheduling strategies: Master-Worker vs. Task stealing}
+	\begin{frame}{Master-Worker vs. Task Stealing}
 		\begin{itemize}
 			\item<2-> Master-Worker
 				\begin{itemize}
-					\item fast standard c++ implementation
-					\item dynamic size
-					\item easy to switch between scheduling strategies at runtime	
+					\item<3-> fast standard c++ implementation
+					\item<4-> dynamic size
+					\item<5-> easy to switch between scheduling strategies at runtime	
 				\end{itemize}
 			
-			\item<3-> Task stealing
+			\item<6-> Task stealing
 					\begin{itemize}
-						\item custom implementation inside a MPI-Window
+						\item<7-> custom implementation inside a MPI-Window
 					\end{itemize}
 			
 		\end{itemize}
