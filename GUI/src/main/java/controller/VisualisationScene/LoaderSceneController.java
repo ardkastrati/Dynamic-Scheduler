@@ -4,6 +4,7 @@
  */
 package controller.VisualisationScene;
 
+import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import components.LoaderTreeItem;
 import components.SftpTreeItem;
@@ -12,7 +13,10 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -49,7 +53,11 @@ public class LoaderSceneController implements Initializable, Controller {
 
     @FXML
     public void download(ActionEvent event){
-        
+        try {
+            Channel channel = MySession.getInstant().getSFTPChannel();
+        } catch (SftpException ex) {
+            Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -140,10 +148,10 @@ public class LoaderSceneController implements Initializable, Controller {
        MySession.getInstant().sessionStatusProperty().addListener(listener);
        String localHost = ".";
        try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
-       TreeItem<String> root = new TreeItem<>(localHost);
+       LoaderTreeItem root = new LoaderTreeItem(Paths.get(localHost));
        Iterable<Path> rootDir = FileSystems.getDefault().getRootDirectories();
        for(Path p:rootDir) {
-           TreeItem<String> node = new TreeItem(p);
+           LoaderTreeItem node = new LoaderTreeItem(p);
            node.setExpanded(true);
            root.getChildren().add(node);
        }
@@ -159,12 +167,13 @@ public class LoaderSceneController implements Initializable, Controller {
             }
         });
        System.out.println(localTreeView.getRoot().getChildren());
-       init();
+       MySession.getInstant().initiateOpeningChannel("sftp");
     }
 
     @Override
     public void onExit() {
         MySession.getInstant().sessionStatusProperty().removeListener(listener);
+        MySession.getInstant().closeChannel();
     }
     
 }

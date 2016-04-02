@@ -92,7 +92,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
     public void refresh(ActionEvent event) {
         Parent root;
         try {
-           FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
            //System.out.println(loader.getLocation());
            root = (Parent)loader.<Parent>load();
            Stage stage = new Stage();
@@ -158,7 +158,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
             diagramBox.getItems().add(visualiser);
         }
         
-        this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
+        this.baseDir = System.getProperty("user.dir");//"/home/kai/Dokumente/PSE/testdata/";
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
