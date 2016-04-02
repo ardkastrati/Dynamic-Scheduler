@@ -1,17 +1,17 @@
         #### MOAB commands
 
 #MSUB  -q develop
-#MSUB  -l nodes=22:ppn=22
-#MSUB  -N 
+#MSUB  -l nodes=2:ppn=2
+#MSUB  -N ard
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
 
 
         ##### Directory
 
-cd ./.gnome2
+cd ./pse
 
 
         #### MPI commands
 
-mpirun 22
+mpirun -n 4 ls

@@ -33,7 +33,7 @@ public class TaskFlowVisualiser implements Visualiser {
 
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
-            HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
+        /*    HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
             Graph g;
             g = new DirectedSparseGraph();
             
@@ -69,6 +69,7 @@ public class TaskFlowVisualiser implements Visualiser {
             node.setContent( vv );
             	
             parent.getChildren().add(node);
+                */
         }      
     
            

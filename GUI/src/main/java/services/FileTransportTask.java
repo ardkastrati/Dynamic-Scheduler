@@ -4,13 +4,18 @@
  */
 package services;
 
+import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 import model.MySession;
@@ -60,9 +65,49 @@ public class FileTransportTask extends Task<Void> {
        
        
        ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
+       ChannelExec exec = null;
+        try {
+            exec = (ChannelExec) MySession.getInstant().getSession().openChannel("exec");
+        } catch (JSchException ex) {
+            Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
        //sftp.cd(directory);
        try {
             sftp.put(new FileInputStream(file), nameOfFile);
+            exec.setCommand("msub " + nameOfFile);
+            
+             //channel.setInputStream(System.in);
+      exec.setInputStream(null);
+
+      //channel.setOutputStream(System.out);
+
+      //FileOutputStream fos=new FileOutputStream("/tmp/stderr");
+      //((ChannelExec)channel).setErrStream(fos);
+      ((ChannelExec)exec).setErrStream(System.err);
+
+      InputStream in=exec.getInputStream();
+
+           try {
+               exec.connect();
+           } catch (JSchException ex) {
+               Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
+           }
+
+      byte[] tmp=new byte[1024];
+      while(true){
+        while(in.available()>0){
+          int i=in.read(tmp, 0, 1024);
+          if(i<0)break;
+          System.out.print(new String(tmp, 0, i));
+        }
+        if(exec.isClosed()){
+          if(in.available()>0) continue; 
+          System.out.println("exit-status: "+exec.getExitStatus());
+          break;
+        }
+        try{Thread.sleep(1000);}
+        catch(Exception ee){}
+      }
        } catch (IOException e) {
             updateMessage("The file could't be transferred! Cause:  " + e.getMessage());
             throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());

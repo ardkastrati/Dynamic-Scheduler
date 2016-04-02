@@ -120,7 +120,9 @@ public class MySession {
         return thisSession;
     }
     
-    
+    public Session getSession() {
+        return this.currentSession;
+    }
    /*
     private void connect() {
             EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
@@ -302,6 +304,7 @@ public class MySession {
     public final Channel getCurrentOpenedChannel() {
         return this.currentOpenedChannel;
     }
+    
     
     
     /**
