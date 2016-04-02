@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>model.MainApp</mainClass>
+        <mainClass>MainApp</mainClass>
     </properties>
 
     <organization>
@@ -74,7 +74,7 @@
                             <goal>exec</goal>                            
                         </goals>
                         <configuration>
-                            <executable>${java.home}/bin/java</executable>
+                            <executable>${java.home}/../bin/java</executable>
                             <commandlineArgs>${runfx.args}</commandlineArgs>
                         </configuration>
                     </execution>
@@ -85,8 +85,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <compilerArguments>
                         <bootclasspath>${sun.boot.class.path}${path.separator}${java.home}/lib/jfxrt.jar</bootclasspath>
                     </compilerArguments>
@@ -106,15 +106,56 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>0.1.46</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+	<groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.40.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.vfsjfilechooser2</groupId>
+            <artifactId>vfsjfilechooser2</artifactId>
+            <version>0.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.3</version>
+        </dependency>
+	 <!--<dependency>
+           <groupId>javafx</groupId>
+            <artifactId>javafx</artifactId>
+	    <version>2.2</version>
+	    <scope>system</scope>
+            <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
+        </dependency>-->
+        <dependency>
+            <groupId>com.panayotis.gnuplot</groupId>
+            <artifactId>gnuplot</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+	<dependency>
+		<groupId>edu.uci.ics.jung</groupId>
+		<artifactId>jung</artifactId>
+		<version>1.7.6</version>
+	    <type>jar</type>
+	</dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
             <type>jar</type>
         </dependency>
     </dependencies>
