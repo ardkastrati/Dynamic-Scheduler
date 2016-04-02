@@ -159,10 +159,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
         }
         
         this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
-        File[] directories = new File(baseDir).listFiles(File::isDirectory);
+        /*File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
-        }
+        }*/
         
         // Change listener for the session status
         listener = (obs, oldStatus, newStatus) -> {

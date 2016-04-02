@@ -139,7 +139,11 @@ public class LoaderSceneController implements Initializable, Controller {
        System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
        String localHost = ".";
-       try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
+       try {
+           localHost = InetAddress.getLocalHost().getHostName();
+       }
+       catch(UnknownHostException u) {
+       }
        TreeItem<String> root = new TreeItem<>(localHost);
        Iterable<Path> rootDir = FileSystems.getDefault().getRootDirectories();
        for(Path p:rootDir) {
@@ -159,12 +163,13 @@ public class LoaderSceneController implements Initializable, Controller {
             }
         });
        System.out.println(localTreeView.getRoot().getChildren());
-       init();
+       MySession.getInstant().initiateOpeningChannel("sftp");
     }
 
     @Override
     public void onExit() {
         MySession.getInstant().sessionStatusProperty().removeListener(listener);
+        MySession.getInstant().closeChannel();
     }
     
 }
