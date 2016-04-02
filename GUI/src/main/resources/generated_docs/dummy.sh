@@ -3,14 +3,14 @@
 #MSUB  -q develop
 #MSUB  -l nodes=2:ppn=2
 #MSUB  -l walltime=1000
-#MSUB  -N 
+#MSUB  -N test
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
 
 
         ##### Directory
 
-cd 
+cd ./Documents
 
 
         #### MPI commands
