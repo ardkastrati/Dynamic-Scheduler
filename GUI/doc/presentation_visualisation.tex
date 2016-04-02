@@ -1,0 +1,54 @@
+\documentclass{beamer}
+
+\begin{document}
+
+\frame{%
+
+\frametitle{Visualiser-Interface}
+
+This Interface consists of
+\begin{itemize}
+	\item The Interface Visualiser
+	\begin{itemize}
+		\item Must be implemented to add a new diagram type
+		\item One method to implement: visualise(Pane parent, Datakeeper datakeeper)
+	\end{itemize}
+	\item Datakeeper
+	\begin{itemize}
+		\item Holds the metadata of the calculation
+		\item List of statistic events
+		\item Hashmap of tasks
+	\end{itemize}
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Visualiser-Interface}
+	
+Visualiser.java:
+\begin{itemize}
+	\item visualise(Pane parent, Datakeeper datakeeper)
+	\item parent - The pane to draw on 
+	\item datakeeper - contains all data available for drawing
+\end{itemize}	
+}
+
+\frame{
+\frametitle{Visualiser-Interface}
+
+Datakeeper:
+\begin{itemize}
+	\item Metadata
+	\begin{itemize}
+		\item Number of Processors
+		\item Over-all-start-time
+	\end{itemize}
+	\item List of statistic events
+	\item Hashmap of tasks
+	\end{itemize}
+}
+
+
+
+\end{document}
