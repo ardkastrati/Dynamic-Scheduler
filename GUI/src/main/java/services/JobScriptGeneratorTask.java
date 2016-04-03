@@ -59,14 +59,14 @@ public class JobScriptGeneratorTask extends Task<ArrayList<String>> {
         
         lines.add(moabCommands);
         updateProgress(1, 6);
-        Thread.sleep(1000);
+        Thread.sleep(100);
         lines.add("");
         
         Msub msubCommand = msubController.createMsubFromDataInGUI();
         updateMessage("Msub command successfully parsed");
         
         updateProgress(2, 6);
-        Thread.sleep(1000);
+        Thread.sleep(100);
         
         ArrayList<String> msubCommandParameters = msubCommand.getScriptCommands();
         for(String line : msubCommandParameters) {
@@ -74,7 +74,7 @@ public class JobScriptGeneratorTask extends Task<ArrayList<String>> {
         }
         updateMessage("Msub script command generated");
         updateProgress(3, 6);
-        Thread.sleep(1000);
+        Thread.sleep(100);
         lines.add("");
         lines.add("");
         lines.add(directoryCommand);
@@ -82,7 +82,7 @@ public class JobScriptGeneratorTask extends Task<ArrayList<String>> {
         lines.add(directoryController.getDirectory());
         updateMessage("Directory successfully parsed");
         updateProgress(4, 6);
-        Thread.sleep(1000);
+        Thread.sleep(100);
         lines.add("");
         lines.add("");
         lines.add(shellCommands);
@@ -96,7 +96,7 @@ public class JobScriptGeneratorTask extends Task<ArrayList<String>> {
         }
         updateMessage("Mpirun script command generated");
         updateProgress(6, 6);
-        Thread.sleep(1000);
+        Thread.sleep(100);
         return lines;
     }
 
