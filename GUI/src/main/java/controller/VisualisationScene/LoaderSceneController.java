@@ -4,10 +4,12 @@
  */
 package controller.VisualisationScene;
 
+import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import components.LoaderTreeItem;
 import components.SftpTreeItem;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -26,6 +28,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.MySession;
 
 
@@ -49,12 +54,17 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     public void choose(ActionEvent event){
         VisualisationSceneController.setBaseDir(localDir);
+        DirectoryChooser fc = new DirectoryChooser();
+        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        File sd = fc.showDialog(new Stage());
+        VisualisationSceneController.setBaseDir(sd.getAbsolutePath());
     }
 
     @FXML
     public void download(ActionEvent event){
         try {
-            Channel channel = MySession.getInstant().getSFTPChannel();
+            ChannelSftp channel = MySession.getInstant().getSFTPChannel();
+            channel.get("Bookkeeping.txt");
         } catch (SftpException ex) {
             Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }

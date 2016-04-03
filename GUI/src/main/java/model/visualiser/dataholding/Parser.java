@@ -36,11 +36,14 @@ public class Parser {
     public List<Event> parseStatistic(String path) throws FileNotFoundException, ParserException{
         List<Event> eventList = new ArrayList<Event>();
         File file = new File(path);
+        
         Scanner input = null;
         try {
             input = new Scanner(file);
         } catch (FileNotFoundException e) {
                 //TODO handle Error
+            System.out.println("DEBUG");
+            System.out.println(path);
         }
         String line = null;
         String[] splitLine;
