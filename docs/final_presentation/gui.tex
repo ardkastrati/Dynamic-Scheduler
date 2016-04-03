@@ -6,7 +6,8 @@
 			\pause
 			\item Generate shell scripts for MOAB Workload Manager 
 			\begin{itemize}
-				\item  Send script via SSH to the bwunicluster
+				\pause
+				\item  send script via SSH to the bwUniCluster
 			\end{itemize}
 			\pause
 			\item Visualization
@@ -19,7 +20,9 @@
 	\pause
 			\item Model-View-Presenter
 			\begin{itemize}
+				\pause
 				\item FXML to describe the UI
+				\pause
 				\item Java code for application logic
 			\end{itemize}
 	        
@@ -47,10 +50,10 @@
     (1) edge [bend right] node[left] {Try Connection} (2)
         
     (2) edge [bend right] node[right] {Connection Failed} (1)
-        edge [bend right] node[left] {Valid connecion} (3)
-    (3) edge [bend left] node[right] {Initiate connection} (4)
+        edge [bend right] node[left] {Valid Connection} (3)
+    (3) edge [bend left] node[right] {Initiate Connection} (4)
     		
-    (4) edge [bend right] node[right] {Initiation failed} (1)
+    (4) edge [bend right] node[right] {Initiation Failed} (1)
        	edge [bend left] node[right] {Success} (5)
     (5)  edge [bend right] node[above] {Disconnect} (1)
          edge [bend left=90] node[right] {Offline} (3);
@@ -60,7 +63,7 @@
 	\begin{frame}{Script Generator}
 	\begin{itemize}
 		\pause
-		\item Shell script generator for MOAB Workload Manager :
+		\item Shell script generator for MOAB Workload Manager:
 		
 		\begin{itemize}
 			\pause
@@ -110,7 +113,7 @@
 \begin{frame}{Conclusion}
 \begin{itemize}
 \pause
-\item GUI features
+\item GUI features:
 \begin{itemize}
 			\pause
 			 \item generate script
@@ -124,7 +127,7 @@
 %\item In The Beginning... was the Command Line - Neal Stephenson
 %\end{itemize}
 \pause
-\item \Smiley{} Extensibility - implementation takes future growth into consideration 
+\item Extensibility
 	\end{itemize}
 		
 	\end{frame}
