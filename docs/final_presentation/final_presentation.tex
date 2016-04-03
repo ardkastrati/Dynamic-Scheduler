@@ -17,8 +17,8 @@
 % use 'beamerthemekit' for standard 4:3 ratio
 % for widescreen slides (16:9), use 'beamerthemekitwide'
 
-\usepackage{templates/beamerthemekit}
-% \usepackage{templates/beamerthemekitwide}
+%\usepackage{templates/beamerthemekit}
+\usepackage{templates/beamerthemekitwide}
 
 %% TITLE PICTURE
 
@@ -36,7 +36,7 @@
 % for a custom logo on the front page, copy your file into the 'logos'
 % directory, insert the filename in the line below and uncomment it
 
-%\titlelogo{mylogo}
+\titlelogo{scc-logo}
 
 % (*.eps format if you use latex+dvips+ps2pdf,
 % *.jpg/*.png/*.pdf if you use pdflatex)
@@ -49,8 +49,8 @@
 
 % the presentation starts here
 
-\title[Specification presentation]{Dynamic scheduler for scientific simulations}
-\subtitle{Final presentation}
+\title[Project Presentation]{Dynamic Scheduler for Scientific Simulations}
+\subtitle{Project Presentation}
 \author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philipp Roth}
 
 \institute{Steinbuch Centre for Computing - SCC}
@@ -86,32 +86,27 @@
 \end{frame}
 
 \section{Overview}
-\begin{frame}{Overview}
-
-\centerline{\includegraphics[scale=0.43]{images/overview}}
-\end{frame}
+\include{overview}
+\section{Scheduler}
 \include{scheduler}
-\AtBeginSection[]{
-	\begin{frame}
+\section{Database}
+\include{overview}
 
-
-\begin{minipage}[]{.3\textwidth}%
-	\tableofcontents[currentsection]
-\end{minipage}%
-\begin{minipage}[]{.7\textwidth}%
-  \vspace{-\ht\strutbox}\includegraphics[width=\textwidth]{images/overview}%
-\end{minipage}
-\end{frame}
-}
 \include{database}
+\section{Data Mining}
+\include{overview}
 \include{GridDatamining2}
+\section{GUI}
+\include{overview}
 \include{gui}
 \begin{frame}
 	\begin{center}
 			\huge{\textbf{Live Demo}}
 	\end{center}		
 \end{frame}
+\section{Statistics}
 \include{statistics}
+\section{Experience}
 \include{experience}
 \begin{frame}
 	\begin{center}

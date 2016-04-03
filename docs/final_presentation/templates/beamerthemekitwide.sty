@@ -164,8 +164,31 @@ KIT -- University of the State of Baden-Wuerttemberg and National Laboratory of 
 }
 
 %footer
+%footer
 \setbeamertemplate{footline}
 {
+	\vskip.4mm
+	\begin{beamercolorbox}[ht=2.2mm, dp=3mm]{section in head/foot}
+		%include mini frame navigation
+		%\insertnavigation{\paperwidth}
+		\vskip -2.2mm
+	\end{beamercolorbox}
+	
+	\hbox{
+		\begin{beamercolorbox}[wd=0.7\textwidth,ht=2.2mm,dp=2mm,left,leftskip=1.3em]{author in head/foot}%
+			\usebeamerfont{author in head/foot}%
+			\insertshortauthor\hspace{2.5pt}--\hspace{2.5pt}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=0.2\textwidth,ht=2.2mm,dp=2mm,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}%
+			\insertshortdate
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=0.05\paperwidth,ht=2.2mm,dp=2mm,right]{date in head/foot}%
+			\usebeamerfont{date in head/foot}%
+			\insertframenumber{}/\inserttotalframenumber
+		\end{beamercolorbox}%
+		
+	}
 
 \hbox{
 \begin{beamercolorbox}[wd=0.7\textwidth,ht=2.2mm,dp=2mm,leftskip=1.3em]{author in head/foot}%
@@ -206,9 +229,9 @@ KIT -- University of the State of Baden-Wuerttemberg and National Laboratory of 
     }%
     {%
       \hskip3mm%
-      \usebeamercolor[fg]{author in sidebar}%
-      \usebeamerfont{author in sidebar}%
-      \insertshortauthor[width=\beamer@tempdim,respectlinebreaks]\par%
+      %\usebeamercolor[fg]{author in sidebar}%
+      %\usebeamerfont{author in sidebar}%
+      %\insertshortauthor[width=\beamer@tempdim,respectlinebreaks]\par%
       \vskip1.25em%
     }%
     \hskip3mm\insertverticalnavigation{\beamer@sidebarwidth}%

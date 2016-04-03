@@ -1,35 +1,35 @@
-\section{GridDatamining}
+
 
 \begin{frame}
-	\frametitle{Data Mining: Objectives}
+	\frametitle{Objectives}
 		\begin{itemize}
-			\item<1-> {Estimate runtime in 'constant' time}
+			\item<2-> {Estimate runtime in 'constant' time}
 				\begin{itemize}
-					\item<2-> {Constant to the amount of tasks already executed}	
+					\item<3-> {Constant to the amount of tasks already executed}	
 				\end{itemize}
-				\item<3-> {Estimation based on variable amounts of parameters}
+				\item<4-> {Estimation based on variable amounts of parameters}
 			\end{itemize}
 \end{frame}		
 		
 \begin{frame} 
-	\frametitle{Data Mining: Concepts}
+	\frametitle{Concepts}
 		\begin{itemize}
-			\item<1-> {Strong correlation between parameters and runtime of a task}
-			\item<2-> {Tasks with similar parameters have similar runtime}
+			\item<2-> {Strong correlation between parameters and runtime of a task}
+			\item<3-> {Tasks with similar parameters have similar runtime}
 				\begin{itemize}
-					\item<3-> {Tasks with identical parameters have identical runtime}	
+					\item<4-> {tasks with identical parameters have identical runtime}	
 				\end{itemize}	
 		\end{itemize}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Basic Design}
+	\frametitle{Basic Design}
 	\begin{minipage}[t]{0.42\linewidth}
 		\begin{itemize}
-			\item<1-> {Array of 'grid points'}
+			\item<2-> {Array of 'grid points'}
 				\begin{itemize}
-					\item<2-> {Similar to a Cartesian coordinate system}
+					\item<3-> {similar to a Cartesian coordinate system}
 					%\item<3->{grid points: "pointer" to 'closest' task already executed}
 					%\begin{itemize}
 					%	\item<4->{closest defined as 'smallest parameter differences'}	
@@ -81,15 +81,15 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Basic Design}
+	\frametitle{Basic Design}
 	\begin{minipage}[t]{0.48\linewidth}
 		%\begin{itemize}
 		%	\item<1-> {Array of 'grid points'}
 				\begin{itemize}
 		%			\item<2-> {Similar to a Cartesian coordinate system}
-					\item<1->{grid points: "pointer" to 'closest' task already executed}
+					\item<2->{Grid points: "pointer" to 'closest' task already executed}
 					\begin{itemize}
-						\item<2->{closest defined as 'smallest parameter differences'}	
+						\item<3->{closest defined as 'smallest parameter differences'}	
 					\end{itemize}
 				\end{itemize}	
 		%\end{itemize}
@@ -123,14 +123,14 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Design Details}
+	\frametitle{Design Details}
 	\begin{minipage}[t]{0.45\linewidth}
 		\begin{itemize}
-			\item<1-> {Grid origin $\neq$ Cartesian origin}
-			\item<2-> {Grid origin = grid point with the  smallest coordinates} 
-			\item<3-> {Distance between two grid points in every dimension flexible}
+			\item<2-> {Grid origin $\neq$ Cartesian origin}
+			\item<3-> {Grid origin = grid point with the  smallest coordinates} 
+			\item<4-> {Distance between grid points in every dimension flexible}
 				\begin{itemize}
-					\item {'increment' vector consisting of all 'increment' values}	
+					\item<5-> {'increment' vector consisting of all 'increment' values}	
 				\end{itemize}
 		\end{itemize}
 	\end{minipage}\hfill
@@ -155,10 +155,10 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Runtime Approximation I}
+	\frametitle{Runtime Approximation I}
 	\begin{minipage}[t]{0.40\linewidth}
 		\begin{itemize}
-			\item<1->{Determine the surrounding grid points to a task}
+			\item<2->{Determine the surrounding grid points to a task}
 			%\item<2->{Calculate the influence factor $F_i$ per grid point}
 			%\begin{itemize}
 				%\item<3->{Check whether the distance to the point is 0}
@@ -206,11 +206,11 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Runtime Approximation II}
+	\frametitle{Runtime Approximation II}
 	\begin{minipage}[t]{0.40\linewidth}
 		\begin{itemize}
 			%\item<1->{Determine the surrounding grid points to a task}
-			\item<1->{Calculate the influence factor $F_i$ per grid point}
+			\item<2->{Calculate the influence factor $F_i$ per grid point}
 			%\begin{itemize}
 				%\item<3->{Check whether the distance to the point is 0}
 				%\begin{itemize}
@@ -265,57 +265,57 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle {Grid Data Mining: Runtime Approximation III}	
+	\frametitle {Runtime Approximation III}	
 		\begin{itemize}
-			\item<1->{The total sum of all 'Kastrati' factors is 1}
-			\item<2->{$\sum t_i * F_i$}
-			\item<3->{$t_i$ = runtime of grid point i}					
-			\item<4->{Multiply the runtime of each grid point with its corresponding 								factor}
+			\item<2->{The total sum of all influence factors is 1}
+			\item<3->{Multiply the runtime of each grid point with its corresponding factor}
+			\item<4->{Approximated runtime = $\sum t_i * F_i$}
+			\item<5->{$t_i$ = runtime of grid point i}					
 		\end{itemize}				
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Task Insertion}
+	\frametitle{Task Insertion}
 		\begin{itemize}
-			\item<1->{Check whether the task is 'suited' as value of a 													surrounding grid point}
+			\item<2->{Check whether the task is 'suited' as value of a 													surrounding grid point}
 			\begin{itemize}
-				\item<2->{Grid points 'always' contain the value of the 													closest task inserted to them}
-				\item<3->{Note that inserting a point only adapts the 														closest grid points}
+				\item<3->{grid points 'always' point to the closet task already inserted}
+				\item<4->{note that inserting a point only adapts the 														closest grid points}
 			\end{itemize}
-			\item<4->{Adapts surrounding grid points, if necessary}
+			\item<5->{Adapt surrounding grid points, if necessary}
 		\end{itemize}
 		
 		\begin{itemize}
-			\item<5->{'Hard insert': checks ALL grid points and eventually adapts them}
+			\item<6->{'Hard insert': check \textbf{all} grid points and eventually adapt them}
 		\end{itemize}	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Grid Data Mining: Evaluation}
+	\frametitle{Evaluation}
 		\begin{itemize}
-			\item<1-> {Grid Data is evaluated on every insert}
-			\item<2-> {Calculate average deviation}
-			\item<3-> {Compare with set threshold}
+			\item<2-> {Evaluation on each insert}
+			\item<3-> {Calculate average deviation}
+			\item<4-> {Compare with set threshold}
 			\begin{itemize}
-				\item<4->{If higher: recreate grid}
+				\item<5->{deviation $>$ threshold: recreate grid}
 			\end{itemize}
 		\end{itemize}
 \end{frame}	
 	
 \begin{frame}
-	\frametitle{Grid Data Mining: Creation}
+	\frametitle{Creation}
 		\begin{itemize}
-			\item<1-> {Initialize offset vector}
+			\item<2-> {Initialize offset vector}
 			\begin{itemize}
-				\item<2-> {first creation: 0}
-				\item<3-> {later: smallest value}
+				\item<3-> {first creation: 0}
+				\item<4-> {later: smallest value}
 			\end{itemize}
-			\item<4-> {Initialize increment vector}
+			\item<5-> {Initialize increment vector}
 			\begin{itemize}
-				\item<5->{first creation: 1}
-				\item<6->{later: 'data size' divided by number of fields}
+				\item<6->{first creation: 1}
+				\item<7->{later: 'data size' divided by number of fields}
 			\end{itemize}
-			\item<7-> {'Hard Insert' all tasks stored in database}			
+			\item<8-> {'Hard Insert' all tasks stored in database}			
 		\end{itemize}
 \end{frame}
 
