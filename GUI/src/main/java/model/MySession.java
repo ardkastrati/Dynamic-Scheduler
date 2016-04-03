@@ -114,7 +114,6 @@ public class MySession {
     
     private int port = -1;
     private Channel currentOpenedChannel;
-    int concurrent = 0;
     
     private MySession() {
         // intentionally left blank
@@ -127,7 +126,9 @@ public class MySession {
     public static MySession getInstant() {
         return thisSession;
     }
-    
+    public Session getSession() {
+        return this.currentSession;
+    }
     
    /*
     private void connect() {
