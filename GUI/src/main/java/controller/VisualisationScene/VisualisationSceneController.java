@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -91,19 +92,20 @@ public class VisualisationSceneController  implements Initializable, Controller{
             public void run()
             {
                 diagramType.getVisualisation(pane, ikeeper);
-                System.out.println("test");
-                tab.setText(calculation + " - " + diagramBox.getValue());
+                System.out.println("testt");
+                tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
                 tab.setClosable(true);
                 diagramPane.getTabs().add(tab);
             }
         });
-        //pane.getChildren().addListener(new ChangeListener<Object>() {
-          //  @Override
-            //public void changed(ObservableValue<? extends Number> observable,Number oldvalue,Number newvalue) {
-                
-          //  }
-        //});
+        pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
+            System.out.println("test");
+            tab.setText(calculation + " -- " + diagramBox.getValue());
+            tab.setContent(pane);
+            tab.setClosable(true);
+            diagramPane.getTabs().add(tab);
+        });
         diagramType.getVisualisation(pane, keeper);
         tab.setText(calculation + " - " + diagramBox.getValue());
         tab.setContent(pane);

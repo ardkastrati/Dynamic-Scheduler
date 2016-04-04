@@ -28,7 +28,8 @@ public class UsageVisualiser implements Visualiser{
         HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
         List<Long> usage;
         usage = new ArrayList<>();
-        long overallStartTime = datakeeper.getOverAllStartTime();   
+        long overallStartTime = datakeeper.getOverAllStartTime();
+        System.out.println(overallStartTime);
         //List<Task> taskList = new ArrayList<Task>(taskMap.values());
         //taskList.forEach(System.out::println);
         Iterator taskIterator = taskMap.entrySet().iterator();
@@ -36,6 +37,9 @@ public class UsageVisualiser implements Visualiser{
             System.out.println("Debug");
             Map.Entry pair = (Map.Entry) taskIterator.next();
             Task task = (Task)pair.getValue();
+            if (task.getStarted() < overallStartTime) {
+                continue;
+            }
             long started = (task.getStarted() - overallStartTime) / 1000000 ;
             long ended = (task.getEnded() - overallStartTime) / 1000000;
             System.out.println("STARTED:" + started + "ENDED:" + ended + "SIZE:" + usage.size());
@@ -45,8 +49,11 @@ public class UsageVisualiser implements Visualiser{
                 }
             }
             System.out.println("started:" + task.getStarted() + "; ended:" + task.getEnded() + "; size:" + usage.size());
+            if (task.getStarted() == 0) {
+                
+            }
             for(long i = started; i <= ended; i++) {
-                usage.set((int) i, usage.get((int) i) + 1);
+                usage.set((int) Math.abs(i), usage.get((int) Math.abs(i)) + 1);
             }
         }
         final NumberAxis xAxis = new NumberAxis();

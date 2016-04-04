@@ -53,6 +53,7 @@ public class StatisticVisualiser implements Visualiser{
        }
        
        DataSetPlot datasetplot = new DataSetPlot(dataset);
+       datasetplot.setTitle("runtime");
        PlotStyle style = new PlotStyle();
        //style.setFill(new FillStyle(FillStyle.Fill.SOLID));
        style.setStyle(Style.HISTEPS);

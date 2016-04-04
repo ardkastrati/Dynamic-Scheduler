@@ -8,7 +8,9 @@ import controller.ParserException;
 import controller.mainScene.MainSceneController;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,7 +66,16 @@ public class Datakeeper {
         } catch (ParserException ex) {
             //MainSceneController.showPopupMessage("Statistic file has wrong format", diagramPane, 100, 150, true, true);
         } 
-        
+        this.overAllStartTime = Long.MAX_VALUE;
+        Iterator taskIterator = taskMap.entrySet().iterator();
+        while(taskIterator.hasNext()){
+            Map.Entry pair = (Map.Entry) taskIterator.next();
+            Task task = (Task)pair.getValue();
+            if (task.getStarted() != 0 && task.getStarted() < this.overAllStartTime) {
+                this.overAllStartTime = task.getStarted();
+            }
+        }
+        //this.overAllStartTime = 1457697135641821L;
     }
     
     
