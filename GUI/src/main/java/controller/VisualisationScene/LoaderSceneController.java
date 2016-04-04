@@ -32,6 +32,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.MySession;
+import services.FileLoaderTask;
 
 
 /**
@@ -62,12 +63,20 @@ public class LoaderSceneController implements Initializable, Controller {
 
     @FXML
     public void download(ActionEvent event){
-        try {
-            ChannelSftp channel = MySession.getInstant().getSFTPChannel();
-            channel.get("Bookkeeping.txt");
-        } catch (SftpException ex) {
-            Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //try {
+        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
+        //    channel.get("Bookkeeping.txt");
+        //} catch (SftpException ex) {
+        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/test" + "/Bookkeeping.txt");
+        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/test" + "/Statistic.txt");
+        Thread bookThread = new Thread(task);
+        bookThread.setDaemon(true);
+        Thread statThread = new Thread(taskStat);
+        statThread.setDaemon(true);
+        bookThread.start();
+        statThread.start();
     }
     
     @Override
