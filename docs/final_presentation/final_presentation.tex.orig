@@ -10,7 +10,12 @@
 %% Problems, bugs and comments to
 %% burger@kit.edu
 
+<<<<<<< HEAD
+\documentclass[18pt, handout]{beamer}
+=======
 \documentclass[18pt,handout]{beamer}
+>>>>>>> fc0084ee12b0376f31d48f4a3a7d428ea4335683
+
 %% SLIDE FORMAT
 
 % use 'beamerthemekit' for standard 4:3 ratio
