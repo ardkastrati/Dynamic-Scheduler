@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -40,6 +41,7 @@ import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
 import model.visualiser.dataholding.Task;
+import services.VisualisationTask;
 
 public class VisualisationSceneController  implements Initializable, Controller{
 	
@@ -88,30 +90,53 @@ public class VisualisationSceneController  implements Initializable, Controller{
             keeperMap.put(calculation, keeper);
         }
         final Datakeeper ikeeper = keeper;
-        Thread t = new Thread(new Runnable() {
-            public void run()
-            {
-                diagramType.getVisualisation(pane, ikeeper);
-                System.out.println("testt");
+        //Thread t = new Thread(new Runnable() {
+           // public void run()
+           // {
+               // diagramType.getVisualisation(pane, ikeeper);
+               // System.out.println("testt");
                 //tab.setText(calculation + " --- " + diagramBox.getValue());
                 //tab.setContent(pane);
                 //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
+            //}
+        //});
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                diagramType.getVisualisation(pane, ikeeper);
+                Tab tab = new Tab();
+                tab.setText(calculation + " --- " + diagramBox.getValue());
+                tab.setContent(pane);
+                tab.setClosable(true);
+                diagramPane.getTabs().add(tab);
             }
+            
         });
-        pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
-            System.out.println("test");
-            Tab itab = new Tab();
-            itab.setText(calculation + " -- " + diagramBox.getValue());
-            itab.setContent(pane);
-            itab.setClosable(true);
-            diagramPane.getTabs().add(itab);
-        });
-        diagramType.getVisualisation(pane, keeper);
-        tab.setText(calculation + " - " + diagramBox.getValue());
-        tab.setContent(pane);
-        tab.setClosable(true);
-        diagramPane.getTabs().add(tab);
+        //pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
+        //    System.out.println("test");
+        //    c.next();
+        //    Pane ipane = (Pane)c.getAddedSubList().get(0);
+        //    Tab itab = new Tab();
+        //    itab.setText(calculation + " -- " + diagramBox.getValue());
+        //    itab.setContent(ipane);
+        //    itab.setClosable(true);
+        //    diagramPane.getTabs().add(itab);
+        //});
+        //diagramType.getVisualisation(pane, keeper);
+        //tab.setText(calculation + " - " + diagramBox.getValue());
+        //tab.setContent(pane);
+        //tab.setClosable(true);
+        //diagramPane.getTabs().add(tab);
+        
+        //VisualisationTask task = new VisualisationTask();
+        //task.setVisualiser(diagramType);
+        //task.setDatakeeper(ikeeper);
+        //task.setDiagramPane(diagramPane);
+        
+        //Thread th = new Thread(task);
+        //th.setDaemon(true);
+        //th.start();
     }
 
     @FXML
