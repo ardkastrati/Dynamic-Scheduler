@@ -1,0 +1,223 @@
+\hypertarget{a00029}{}\subsection{Mpi\+Win\+F\+I\+F\+O Class Reference}
+\label{a00029}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+
+
+{\ttfamily \#include $<$Mpi\+Win\+F\+I\+F\+O.\+h$>$}
+
+
+
+Inheritance diagram for Mpi\+Win\+F\+I\+F\+O\+:
+% FIG 0
+
+
+Collaboration diagram for Mpi\+Win\+F\+I\+F\+O\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00029_a52b5238edee8c348afbf0d370c81d8ce}{Mpi\+Win\+F\+I\+F\+O} (int size, int rank, int number\+\_\+of\+\_\+processors)
+\item 
+\hyperlink{a00029_a6ca0a6e127618d262ae40d3171bbb672}{$\sim$\+Mpi\+Win\+F\+I\+F\+O} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00029_aeffee53a08818badfafed7642a41b955}{get\+\_\+next\+\_\+task} ()
+\item 
+int \hyperlink{a00029_a609d1de2a9afc8d82dfab9746fe7c885}{get\+\_\+task\+\_\+count} ()
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00029_a1ceb2f48f1ae2fbbf14ab9227ba8df9e}{pop\+\_\+next\+\_\+task} ()
+\item 
+void \hyperlink{a00029_ab250777bda97e37530c354683a87e8b4}{push\+\_\+new\+\_\+task} (\hyperlink{a00002}{Task} task, long runtime)
+\item 
+\hyperlink{a00033}{Scheduling\+Strategy} $\ast$ \hyperlink{a00029_ae5620542c597abff58986506d595c29e}{change\+\_\+strategy} (\hyperlink{a00033}{Scheduling\+Strategy} $\ast$new\+\_\+strategy)
+\item 
+\hyperlink{a00002}{Task} \hyperlink{a00029_a8f4af1f3c3f90b939f3638bf321be3bf}{steal\+\_\+next\+\_\+task} (int target\+\_\+rank, int number\+\_\+of\+\_\+tries)
+\item 
+int \hyperlink{a00029_a7481a465167e95e3993251106fe40cb3}{get\+\_\+task\+\_\+count} (int target\+\_\+rank)
+\item 
+bool \hyperlink{a00029_ab568b8ec6f8eb9baabaae8552a938204}{is\+\_\+statistic\+\_\+based} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Detailed Description}
+This class implements the \hyperlink{a00031}{Mpi\+Win\+Scheduling\+Strategy} and realize a \hyperlink{a00016}{F\+I\+F\+O} queue. The \hyperlink{a00016}{F\+I\+F\+O} queue is represented as cyclic array. (See \href{https://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS15/folien_20150427.pdf}{\tt https\+://crypto.\+iti.\+kit.\+edu/fileadmin/\+User/\+Lectures/\+Algorithmen\+\_\+\+S\+S15/folien\+\_\+20150427.\+pdf} page 125) The queue itself and the offset are inside several M\+P\+I window to give other processes access to the data.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00029_a52b5238edee8c348afbf0d370c81d8ce}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{Mpi\+Win\+F\+I\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Win\+F\+I\+F\+O\+::\+Mpi\+Win\+F\+I\+F\+O (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors}
+\end{DoxyParamCaption}
+)}\label{a00029_a52b5238edee8c348afbf0d370c81d8ce}
+Constructs a new \hyperlink{a00022}{L\+I\+F\+O} scheduling queue
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the queue \\
+\hline
+{\em rank} & from the process inside the M\+Y\+\_\+\+M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+T\+A\+S\+K\+S\+T\+E\+A\+L\+I\+N\+G communicator \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & inside the M\+Y\+\_\+\+M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+T\+A\+S\+K\+S\+T\+E\+A\+L\+I\+N\+G communicator \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00029_a6ca0a6e127618d262ae40d3171bbb672}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!````~Mpi\+Win\+F\+I\+F\+O@{$\sim$\+Mpi\+Win\+F\+I\+F\+O}}
+\index{````~Mpi\+Win\+F\+I\+F\+O@{$\sim$\+Mpi\+Win\+F\+I\+F\+O}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{$\sim$\+Mpi\+Win\+F\+I\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Win\+F\+I\+F\+O\+::$\sim$\+Mpi\+Win\+F\+I\+F\+O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00029_a6ca0a6e127618d262ae40d3171bbb672}
+Destructs a new \hyperlink{a00022}{L\+I\+F\+O} scheduling queue 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00029_ae5620542c597abff58986506d595c29e}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!change\+\_\+strategy@{change\+\_\+strategy}}
+\index{change\+\_\+strategy@{change\+\_\+strategy}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{change\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy} $\ast$ Mpi\+Win\+F\+I\+F\+O\+::change\+\_\+strategy (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{new\+\_\+strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_ae5620542c597abff58986506d595c29e}
+Changes the scheduling strategy. Returns the new scheduling strategy with all tasks, or N\+U\+L\+L if there was an error.
+
+Estimated runtime of tasks will get lost by changing from statistically based strategies (L\+S\+F, \hyperlink{a00035}{S\+J\+F}) to non-\/statistically based strategies. The order of the old queue will be kept.
+
+All tasks will get a default runtime value (defined in D\+E\+F\+A\+U\+L\+T\+\_\+\+R\+U\+N\+T\+I\+M\+E) by changing from non-\/statistically based strategies (\hyperlink{a00016}{F\+I\+F\+O}, \hyperlink{a00022}{L\+I\+F\+O}) to statistically based strategies. The order of the old queue perhaps won\textquotesingle{}t be kept 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+strategy} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00033_a4874d194c1bb185480339360fe907d83}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_aeffee53a08818badfafed7642a41b955}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}}
+\index{get\+\_\+next\+\_\+task@{get\+\_\+next\+\_\+task}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{get\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+F\+I\+F\+O\+::get\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_aeffee53a08818badfafed7642a41b955}
+Returns the last-\/in task, or N\+U\+L\+L if the queue is empty
+
+\begin{DoxyReturn}{Returns}
+the last-\/in task 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00033_adce3619801460ad67d6c8f9bdffcd36b}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_a609d1de2a9afc8d82dfab9746fe7c885}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Mpi\+Win\+F\+I\+F\+O\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_a609d1de2a9afc8d82dfab9746fe7c885}
+Return the count of tasks in the scheduling queue
+
+\begin{DoxyReturn}{Returns}
+the count of tasks 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00033_a0a3355ffe9c03236692ad00e4f94f5c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_a7481a465167e95e3993251106fe40cb3}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}}
+\index{get\+\_\+task\+\_\+count@{get\+\_\+task\+\_\+count}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{get\+\_\+task\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Mpi\+Win\+F\+I\+F\+O\+::get\+\_\+task\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{int}]{target\+\_\+rank}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_a7481a465167e95e3993251106fe40cb3}
+Returns the task count of the remote queue of the given rank
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & the rank of the remote queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the task count of the remote queue 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00031_a8742d0d3a2204efe5aa47e39f856dee1}{Mpi\+Win\+Scheduling\+Strategy}.
+
+\hypertarget{a00029_ab568b8ec6f8eb9baabaae8552a938204}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}}
+\index{is\+\_\+statistic\+\_\+based@{is\+\_\+statistic\+\_\+based}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{is\+\_\+statistic\+\_\+based}]{\setlength{\rightskip}{0pt plus 5cm}bool Mpi\+Win\+F\+I\+F\+O\+::is\+\_\+statistic\+\_\+based (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_ab568b8ec6f8eb9baabaae8552a938204}
+Returns true, if the current scheduling strategy statistic based.
+
+\begin{DoxyReturn}{Returns}
+true, if the current scheduling strategy statistic based 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00033_a5962845ca5af53bbdc014c19a6bdef99}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_a1ceb2f48f1ae2fbbf14ab9227ba8df9e}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}}
+\index{pop\+\_\+next\+\_\+task@{pop\+\_\+next\+\_\+task}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{pop\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+F\+I\+F\+O\+::pop\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_a1ceb2f48f1ae2fbbf14ab9227ba8df9e}
+Removes the next task in the queue, effectively reducing its size by one. 
+
+Implements \hyperlink{a00033_ac2ba483287c91fd4318f337da144a9c5}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_ab250777bda97e37530c354683a87e8b4}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}}
+\index{push\+\_\+new\+\_\+task@{push\+\_\+new\+\_\+task}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{push\+\_\+new\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Win\+F\+I\+F\+O\+::push\+\_\+new\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{task, }
+\item[{long}]{runtime}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_ab250777bda97e37530c354683a87e8b4}
+Insert a new task in the scheduling queue depending on the scheduling strategy and the estimated runtime 
+\begin{DoxyParams}{Parameters}
+{\em task} & \\
+\hline
+{\em runtime} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00033_a62ffa0426528c14fdd0b0853f04a851f}{Scheduling\+Strategy}.
+
+\hypertarget{a00029_a8f4af1f3c3f90b939f3638bf321be3bf}{}\index{Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}!steal\+\_\+next\+\_\+task@{steal\+\_\+next\+\_\+task}}
+\index{steal\+\_\+next\+\_\+task@{steal\+\_\+next\+\_\+task}!Mpi\+Win\+F\+I\+F\+O@{Mpi\+Win\+F\+I\+F\+O}}
+\paragraph[{steal\+\_\+next\+\_\+task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} Mpi\+Win\+F\+I\+F\+O\+::steal\+\_\+next\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{int}]{target\+\_\+rank, }
+\item[{int}]{number\+\_\+of\+\_\+tries}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00029_a8f4af1f3c3f90b939f3638bf321be3bf}
+Steals the next task from the given rank if the queue of the given rank is not empty
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & the rank of the remote queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next task from the given rank or N\+U\+L\+L if the queue is empty 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00031_ac1804574e61c9ed91c7f78bc48b332ea}{Mpi\+Win\+Scheduling\+Strategy}.
+

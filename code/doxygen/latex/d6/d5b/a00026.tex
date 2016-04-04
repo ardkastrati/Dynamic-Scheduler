@@ -1,0 +1,94 @@
+\hypertarget{a00026}{}\subsection{Master Class Reference}
+\label{a00026}\index{Master@{Master}}
+
+
+{\ttfamily \#include $<$Master.\+h$>$}
+
+
+
+Inheritance diagram for Master\+:
+% FIG 0
+
+
+Collaboration diagram for Master\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00026_a4ffd1a0c99fc39712ac89c50f87dedfa}{Master} (\hyperlink{a00033}{Scheduling\+Strategy} $\ast$\hyperlink{a00004_a7dd11eee79bfb44c820d6c28480fd0c7}{scheduling\+\_\+strategy}, \hyperlink{a00013}{Data\+Mining} $\ast$\hyperlink{a00004_a6e281d90fa4b965779cd13eabf7d0249}{data\+\_\+miner}, int \hyperlink{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{rank}, int \hyperlink{a00015_a4e798bde66d26fe200de7e8d2b54e915}{number\+\_\+of\+\_\+processors})
+\item 
+\hyperlink{a00026_a20f70958ed75532ba672af1b780f59eb}{$\sim$\+Master} ()
+\item 
+void \hyperlink{a00026_acea94dce898273bbbddfaae52f243bca}{execute} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Detailed Description}
+The \hyperlink{a00026}{Master} class inherits from the \hyperlink{a00004}{Abstract\+Scheduler} class and implements the master-\/worker scheduling design. The \hyperlink{a00026}{Master} class collects scientific tasks and order them depending on the chosen scheduling strategy such as \hyperlink{a00016}{F\+I\+F\+O}, \hyperlink{a00022}{L\+I\+F\+O}, \hyperlink{a00035}{S\+J\+F} and \hyperlink{a00024}{L\+J\+F}. The class adds worker executor in a queue and sends them scientific tasks using the M\+P\+I\+\_\+\+Send() function and waits for receiving F\+I\+N\+I\+S\+H or R\+E\+Q\+U\+E\+S\+T tags using the M\+P\+I\+\_\+\+Recv() function. If the master receives a F\+I\+N\+I\+S\+H tag, the master will add the worker to the free\+\_\+worker queue. If the master receives a R\+E\+Q\+U\+E\+S\+T tag with a scientific task, the master will add the scientific task to the scheduling queue.
+
+If the is\+\_\+finish() function returns true, the master will send a message using M\+P\+I\+\_\+\+Send() with the tag S\+T\+O\+P to all worker executors and database servers to terminate them.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00026_a4ffd1a0c99fc39712ac89c50f87dedfa}{}\index{Master@{Master}!Master@{Master}}
+\index{Master@{Master}!Master@{Master}}
+\paragraph[{Master}]{\setlength{\rightskip}{0pt plus 5cm}Master\+::\+Master (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{scheduling\+\_\+strategy, }
+\item[{{\bf Data\+Mining} $\ast$}]{data\+\_\+miner, }
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors}
+\end{DoxyParamCaption}
+)}\label{a00026_a4ffd1a0c99fc39712ac89c50f87dedfa}
+Constructs a new master for master -\/ worker scheduling. The constructor only initialize the queue free\+\_\+worker and calls the super constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduling\+\_\+strategy} & the scheduling strategy to be set \\
+\hline
+{\em data\+\_\+mining} & the data miner to be set \\
+\hline
+{\em rank} & the M\+P\+I rank of the processors, that execute the scheduler \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & the total number of processors of the M\+P\+I world \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00026_a20f70958ed75532ba672af1b780f59eb}{}\index{Master@{Master}!````~Master@{$\sim$\+Master}}
+\index{````~Master@{$\sim$\+Master}!Master@{Master}}
+\paragraph[{$\sim$\+Master}]{\setlength{\rightskip}{0pt plus 5cm}Master\+::$\sim$\+Master (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00026_a20f70958ed75532ba672af1b780f59eb}
+Deletes the queue free\+\_\+worker object 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00026_acea94dce898273bbbddfaae52f243bca}{}\index{Master@{Master}!execute@{execute}}
+\index{execute@{execute}!Master@{Master}}
+\paragraph[{execute}]{\setlength{\rightskip}{0pt plus 5cm}void Master\+::execute (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00026_acea94dce898273bbbddfaae52f243bca}
+Override the execute function from executor. This function ist called to start the master
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & command line argument count \\
+\hline
+{\em argv} & command line arguments \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00015_aabad4923751a6ea70ca536d4d1f2f32a}{Executor}.
+

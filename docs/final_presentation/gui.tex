@@ -1,29 +1,40 @@
-\section{GUI}
+
 	\begin{frame}{Introduction}
 		\begin{itemize}
 			\pause
-			\item The graphical user interface is an optional feature so the scientists can easily use MOAB Workload Manager and dynamic scheduler interface. 
+			\item Easy usage of MOAB Workload Manager and Dynamic Scheduler
 			\pause
-			\item The user can generate a shell script for MOAB Workload Manager and send it via SSH to the server.
+			\item Generate shell scripts for MOAB Workload Manager 
+			\begin{itemize}
+				\pause
+				\item  send script via SSH to the bwUniCluster
+			\end{itemize}
 			\pause
-			\item User can also discover relationships in his/her tasks and observe the performance the program. 
+			\item Visualization
 			
 		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}{Architecture}
 		\begin{itemize}
-			\item The main architecture pattern, the graphical user interface is oriented to, is the Model-View-
-Presenter. 
-	        \item The view of the user interface is developed in the FXML scripting language and Java code is used for application logic.
+	\pause
+			\item Model-View-Presenter
+			\begin{itemize}
+				\pause
+				\item FXML to describe the UI
+				\pause
+				\item Java code for application logic
+			\end{itemize}
 	        
 				\includegraphics[width=300px, height=100px]{images/mvp.png}
 		\end{itemize}
 	\end{frame}
+	
+	
 %	\subsection{Design}
-	\begin{frame}{Architecture (Design)}
-		\includegraphics[width=300px, height=210px]{images/GUIDesign.png}
-	\end{frame}
+%	\begin{frame}{Architecture (Design)}
+%		\includegraphics[width=300px, height=210px]{images/GUIDesign.png}
+%	\end{frame}
 	
 
 	\begin{frame}{SSH-Connection}
@@ -39,37 +50,40 @@ Presenter.
     (1) edge [bend right] node[left] {Try Connection} (2)
         
     (2) edge [bend right] node[right] {Connection Failed} (1)
-        edge [bend right] node[left] {Valid connecion} (3)
-    (3) edge [bend left] node[right] {Initiate connection} (4)
+        edge [bend right] node[left] {Valid Connection} (3)
+    (3) edge [bend left] node[right] {Initiate Connection} (4)
     		
-    (4) edge [bend right] node[right] {Initiation failed} (1)
+    (4) edge [bend right] node[right] {Initiation Failed} (1)
        	edge [bend left] node[right] {Success} (5)
     (5)  edge [bend right] node[above] {Disconnect} (1)
          edge [bend left=90] node[right] {Offline} (3);
 	\end{tikzpicture}
 	\end{frame}
 	
-	\begin{frame}{Script generator}
-		Shell script generator for MOAB Workload Manager :
+	\begin{frame}{Script Generator}
+	\begin{itemize}
+		\pause
+		\item Shell script generator for MOAB Workload Manager:
 		
 		\begin{itemize}
 			\pause
-			\item Parses msub command
+			\item parse msub command
 			
 			\pause			
-			\item Specifies the directory in server using lazy tree 
+			\item specify the directory in server using lazy tree 
 			 
 			\pause
-			\item Parses mpirun command
+			\item parse mpirun command
 			
 			\pause
-			\item Parses parameters of the dynamic scheduler
+			\item parse parameters of the dynamic scheduler
 		\end{itemize}
+			\end{itemize}
 	\end{frame}
 	
 	
 	
-	\begin{frame}{Script generator (Structure)}
+	\begin{frame}{Script Structure}
 		
 		\begin{block}{run\_scheduler.sh}
 		        \#\#\#\# MOAB commands
@@ -94,3 +108,5 @@ Presenter.
 			
 		\end{block}
 	\end{frame}
+	
+	

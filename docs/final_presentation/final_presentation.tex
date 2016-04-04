@@ -10,15 +10,14 @@
 %% Problems, bugs and comments to
 %% burger@kit.edu
 
-\documentclass[18pt]{beamer}
-
+\documentclass[18pt,handout]{beamer}
 %% SLIDE FORMAT
 
 % use 'beamerthemekit' for standard 4:3 ratio
 % for widescreen slides (16:9), use 'beamerthemekitwide'
 
-\usepackage{templates/beamerthemekit}
-% \usepackage{templates/beamerthemekitwide}
+%\usepackage{templates/beamerthemekit}
+\usepackage{templates/beamerthemekitwide}
 
 %% TITLE PICTURE
 
@@ -36,7 +35,7 @@
 % for a custom logo on the front page, copy your file into the 'logos'
 % directory, insert the filename in the line below and uncomment it
 
-%\titlelogo{mylogo}
+\titlelogo{scc-logo}
 
 % (*.eps format if you use latex+dvips+ps2pdf,
 % *.jpg/*.png/*.pdf if you use pdflatex)
@@ -49,9 +48,9 @@
 
 % the presentation starts here
 
-\title[Specification presentation]{Dynamic scheduler for scientific simulations}
-\subtitle{Final presentation}
-\author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philip Roth}
+\title[Project Presentation]{Dynamic Scheduler for Scientific Simulations}
+\subtitle{Project Presentation}
+\author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philipp Roth}
 
 \institute{Steinbuch Centre for Computing - SCC}
 
@@ -61,7 +60,12 @@
 \addbibresource{templates/example.bib}
 \bibhang1em
 \usepackage{graphicx}
+\usepackage[export]{adjustbox}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{automata}
+\usepackage{marvosym}
+\usepackage[ngerman]{babel}
 \usetikzlibrary{shapes}
 \begin{document}
 
@@ -73,25 +77,39 @@
 \titlepage
 \end{frame}
 
+
+
+
 %table of contents
 \begin{frame}{Outline}
 \tableofcontents
 \end{frame}
 
-
+\section{Overview}
 \include{overview}
+\section{Scheduler}
 \include{scheduler}
-
+\section{Database}
+\include{overview}
 
 \include{database}
+\section{Data Mining}
+\include{overview}
 \include{GridDatamining2}
+\section{GUI}
+\include{overview}
 \include{gui}
 \begin{frame}
 	\begin{center}
 			\huge{\textbf{Live Demo}}
 	\end{center}		
 \end{frame}
+\include{visualization}
+\section{Summary}
+\include{summary}
+\section{Statistics}
 \include{statistics}
+\section{Experience}
 \include{experience}
 \begin{frame}
 	\begin{center}

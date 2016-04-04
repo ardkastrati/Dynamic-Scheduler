@@ -1,0 +1,13 @@
+digraph "datamining" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_68267d1309a1af8e8297ef4c3efbcdba {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"]
+  subgraph clusterdir_e30bb717cd847fa28d0a5d1114235443 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_e30bb717cd847fa28d0a5d1114235443.html"];
+    dir_e30bb717cd847fa28d0a5d1114235443 [shape=plaintext label="datamining"];
+    dir_385c2e5b8d0429c351e51221fa7514df [shape=box label="grid" color="black" fillcolor="white" style="filled" URL="dir_385c2e5b8d0429c351e51221fa7514df.html"];
+  }
+  }
+}

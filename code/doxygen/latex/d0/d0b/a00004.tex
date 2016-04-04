@@ -1,0 +1,179 @@
+\hypertarget{a00004}{}\subsection{Abstract\+Scheduler Class Reference}
+\label{a00004}\index{Abstract\+Scheduler@{Abstract\+Scheduler}}
+
+
+{\ttfamily \#include $<$Abstract\+Scheduler.\+h$>$}
+
+
+
+Inheritance diagram for Abstract\+Scheduler\+:
+% FIG 0
+
+
+Collaboration diagram for Abstract\+Scheduler\+:
+% FIG 1
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00004_addaf6f185aefd7304df9a3cc4e020b00}{Abstract\+Scheduler} (\hyperlink{a00033}{Scheduling\+Strategy} $\ast$\hyperlink{a00004_a7dd11eee79bfb44c820d6c28480fd0c7}{scheduling\+\_\+strategy}, \hyperlink{a00013}{Data\+Mining} $\ast$\hyperlink{a00004_a6e281d90fa4b965779cd13eabf7d0249}{data\+\_\+miner}, int \hyperlink{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{rank}, int \hyperlink{a00015_a4e798bde66d26fe200de7e8d2b54e915}{number\+\_\+of\+\_\+processors})
+\item 
+virtual \hyperlink{a00004_a1f8fb108f61bf092407c6fba1afb8578}{$\sim$\+Abstract\+Scheduler} ()
+\item 
+\hypertarget{a00004_a5171d8f76ad183ea1d0f6bb393293be8}{}virtual void {\bfseries place\+\_\+task} (\hyperlink{a00002}{Task} task)\label{a00004_a5171d8f76ad183ea1d0f6bb393293be8}
+
+\item 
+int \hyperlink{a00004_a205d6e6fd08ffbc000a79944f9f59853}{get\+\_\+rank} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00004_a284ad11479af671abf7130abb5f69992}{preprocessing} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, \hyperlink{a00002}{Task} $\ast$buffer, int $\ast$initial\+\_\+tasks\+\_\+number)
+\item 
+virtual void \hyperlink{a00004_a3c2b64a8a6de2687258dea9d58769792}{postprocessing} ()
+\item 
+virtual void \hyperlink{a00004_ab5f9142ccfc130e91fa6d92c7d3d7469}{run} ()=0
+\item 
+virtual bool \hyperlink{a00004_acc7d6dc38aa80ca77ac892c74b915432}{is\+\_\+finish} ()=0
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{a00004_a284f6bdf5184c39cdb1e6b37f424ffab}{task\+\_\+number} = 0
+\item 
+\hyperlink{a00033}{Scheduling\+Strategy} $\ast$ \hyperlink{a00004_a7dd11eee79bfb44c820d6c28480fd0c7}{scheduling\+\_\+strategy}
+\item 
+\hyperlink{a00013}{Data\+Mining} $\ast$ \hyperlink{a00004_a6e281d90fa4b965779cd13eabf7d0249}{data\+\_\+miner}
+\item 
+\hyperlink{a00034}{Scheduling\+Strategy\+Evaluator} $\ast$ \hyperlink{a00004_a5f95e61e03441ca92c6ba8f434be7fe0}{scheduling\+Strategy\+Evaluator}
+\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
+
+
+\subsubsection{Detailed Description}
+The abstract \hyperlink{a00004}{Abstract\+Scheduler} class is the base class for all types of scheduler objects like master-\/worker scheduler or task stealing scheduler and inherits from the \hyperlink{a00015}{Executor} class. Subclasses have to override the \hyperlink{a00004_ab5f9142ccfc130e91fa6d92c7d3d7469}{run()} and the \hyperlink{a00004_acc7d6dc38aa80ca77ac892c74b915432}{is\+\_\+finish()} function. The preprocessing and the postprocessing function call the code\+\_\+proprocessing\+\_\+master() and the code\+\_\+postprocessing\+\_\+master() functions on the code interface.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00004_addaf6f185aefd7304df9a3cc4e020b00}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\index{Abstract\+Scheduler@{Abstract\+Scheduler}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{Abstract\+Scheduler}]{\setlength{\rightskip}{0pt plus 5cm}Abstract\+Scheduler\+::\+Abstract\+Scheduler (
+\begin{DoxyParamCaption}
+\item[{{\bf Scheduling\+Strategy} $\ast$}]{scheduling\+\_\+strategy, }
+\item[{{\bf Data\+Mining} $\ast$}]{data\+\_\+miner, }
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors}
+\end{DoxyParamCaption}
+)}\label{a00004_addaf6f185aefd7304df9a3cc4e020b00}
+Initialize the fields from abstract scheduler. This constructor is called from the subclass constructors
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduling\+\_\+strategy} & the scheduling strategy to be set \\
+\hline
+{\em data\+\_\+mining} & the data miner to be set \\
+\hline
+{\em rank} & the M\+P\+I rank of the processors, that execute the scheduler \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & the total number of processors of the M\+P\+I world \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00004_a1f8fb108f61bf092407c6fba1afb8578}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!````~Abstract\+Scheduler@{$\sim$\+Abstract\+Scheduler}}
+\index{````~Abstract\+Scheduler@{$\sim$\+Abstract\+Scheduler}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{$\sim$\+Abstract\+Scheduler}]{\setlength{\rightskip}{0pt plus 5cm}Abstract\+Scheduler\+::$\sim$\+Abstract\+Scheduler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{a00004_a1f8fb108f61bf092407c6fba1afb8578}
+Deletes the scheduling\+\_\+strategy and data\+\_\+miner object 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00004_a205d6e6fd08ffbc000a79944f9f59853}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!get\+\_\+rank@{get\+\_\+rank}}
+\index{get\+\_\+rank@{get\+\_\+rank}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{get\+\_\+rank}]{\setlength{\rightskip}{0pt plus 5cm}int Abstract\+Scheduler\+::get\+\_\+rank (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00004_a205d6e6fd08ffbc000a79944f9f59853}
+Returns the rank of the scheduler
+
+\begin{DoxyReturn}{Returns}
+the rank of the scheduler 
+\end{DoxyReturn}
+\hypertarget{a00004_acc7d6dc38aa80ca77ac892c74b915432}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!is\+\_\+finish@{is\+\_\+finish}}
+\index{is\+\_\+finish@{is\+\_\+finish}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{is\+\_\+finish}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Abstract\+Scheduler\+::is\+\_\+finish (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00004_acc7d6dc38aa80ca77ac892c74b915432}
+Checks if all scientific tasks are completed. All tasks completed $<$=$>$ free\+\_\+worker = worker\+\_\+count and tasksqueue is empty
+
+\begin{DoxyReturn}{Returns}
+T\+R\+U\+E if all scientific tasks are completed 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00038_a4d411046663ce0d63f4f70505aa51a2d}{Task\+Stealing\+Scheduler}.
+
+\hypertarget{a00004_a3c2b64a8a6de2687258dea9d58769792}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!postprocessing@{postprocessing}}
+\index{postprocessing@{postprocessing}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{postprocessing}]{\setlength{\rightskip}{0pt plus 5cm}void Abstract\+Scheduler\+::postprocessing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00004_a3c2b64a8a6de2687258dea9d58769792}
+This function is called after all scientific tasks are completed. This function runs the calls the scientific code\+\_\+postprocessing\+\_\+master() code \hypertarget{a00004_a284ad11479af671abf7130abb5f69992}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!preprocessing@{preprocessing}}
+\index{preprocessing@{preprocessing}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{preprocessing}]{\setlength{\rightskip}{0pt plus 5cm}void Abstract\+Scheduler\+::preprocessing (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf Task} $\ast$}]{buffer, }
+\item[{int $\ast$}]{initial\+\_\+tasks\+\_\+number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00004_a284ad11479af671abf7130abb5f69992}
+This function is called before the master starts the scheduling of the scientific tasks. This function calls the scientific code\+\_\+preprocessing\+\_\+master() code 
+\begin{DoxyParams}{Parameters}
+{\em argc} & command line argument count. Must not be negative \\
+\hline
+{\em argv} & command line arguments. Must not be N\+U\+L\+L \\
+\hline
+{\em buffer} & buffer where the scientific code can store the initial tasks. Must not be N\+U\+L\+L \\
+\hline
+{\em initial\+\_\+tasks\+\_\+number} & the count of initial tasks. Must not be N\+U\+L\+L \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00004_ab5f9142ccfc130e91fa6d92c7d3d7469}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!run@{run}}
+\index{run@{run}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{run}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Abstract\+Scheduler\+::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00004_ab5f9142ccfc130e91fa6d92c7d3d7469}
+The main loop of the master -\/ worker algorithm. the function returns when all scientific tasks are completed 
+
+Implemented in \hyperlink{a00038_a362edbac4a417c08ee8b19a364cc97bb}{Task\+Stealing\+Scheduler}.
+
+
+
+\subsubsection{Field Documentation}
+\hypertarget{a00004_a6e281d90fa4b965779cd13eabf7d0249}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!data\+\_\+miner@{data\+\_\+miner}}
+\index{data\+\_\+miner@{data\+\_\+miner}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{data\+\_\+miner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data\+Mining}$\ast$ Abstract\+Scheduler\+::data\+\_\+miner\hspace{0.3cm}{\ttfamily [protected]}}\label{a00004_a6e281d90fa4b965779cd13eabf7d0249}
+The current data\+\_\+miner of the scheduler \hypertarget{a00004_a7dd11eee79bfb44c820d6c28480fd0c7}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!scheduling\+\_\+strategy@{scheduling\+\_\+strategy}}
+\index{scheduling\+\_\+strategy@{scheduling\+\_\+strategy}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{scheduling\+\_\+strategy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy}$\ast$ Abstract\+Scheduler\+::scheduling\+\_\+strategy\hspace{0.3cm}{\ttfamily [protected]}}\label{a00004_a7dd11eee79bfb44c820d6c28480fd0c7}
+The current scheduling strategy of the scheduler \hypertarget{a00004_a5f95e61e03441ca92c6ba8f434be7fe0}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!scheduling\+Strategy\+Evaluator@{scheduling\+Strategy\+Evaluator}}
+\index{scheduling\+Strategy\+Evaluator@{scheduling\+Strategy\+Evaluator}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{scheduling\+Strategy\+Evaluator}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scheduling\+Strategy\+Evaluator}$\ast$ Abstract\+Scheduler\+::scheduling\+Strategy\+Evaluator\hspace{0.3cm}{\ttfamily [protected]}}\label{a00004_a5f95e61e03441ca92c6ba8f434be7fe0}
+The current scheduling strategy evaluator of the scheduler \hypertarget{a00004_a284f6bdf5184c39cdb1e6b37f424ffab}{}\index{Abstract\+Scheduler@{Abstract\+Scheduler}!task\+\_\+number@{task\+\_\+number}}
+\index{task\+\_\+number@{task\+\_\+number}!Abstract\+Scheduler@{Abstract\+Scheduler}}
+\paragraph[{task\+\_\+number}]{\setlength{\rightskip}{0pt plus 5cm}int Abstract\+Scheduler\+::task\+\_\+number = 0\hspace{0.3cm}{\ttfamily [protected]}}\label{a00004_a284f6bdf5184c39cdb1e6b37f424ffab}
+Will be incremented when a new task appears 
