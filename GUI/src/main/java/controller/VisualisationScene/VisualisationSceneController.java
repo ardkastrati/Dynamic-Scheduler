@@ -93,18 +93,19 @@ public class VisualisationSceneController  implements Initializable, Controller{
             {
                 diagramType.getVisualisation(pane, ikeeper);
                 System.out.println("testt");
-                tab.setText(calculation + " --- " + diagramBox.getValue());
-                tab.setContent(pane);
-                tab.setClosable(true);
-                diagramPane.getTabs().add(tab);
+                //tab.setText(calculation + " --- " + diagramBox.getValue());
+                //tab.setContent(pane);
+                //tab.setClosable(true);
+                //diagramPane.getTabs().add(tab);
             }
         });
         pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
             System.out.println("test");
-            tab.setText(calculation + " -- " + diagramBox.getValue());
-            tab.setContent(pane);
-            tab.setClosable(true);
-            diagramPane.getTabs().add(tab);
+            Tab itab = new Tab();
+            itab.setText(calculation + " -- " + diagramBox.getValue());
+            itab.setContent(pane);
+            itab.setClosable(true);
+            diagramPane.getTabs().add(itab);
         });
         diagramType.getVisualisation(pane, keeper);
         tab.setText(calculation + " - " + diagramBox.getValue());
