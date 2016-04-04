@@ -126,10 +126,17 @@ public class MySession {
     public static MySession getInstant() {
         return thisSession;
     }
+<<<<<<< HEAD
+    
+    public Session getSession() {
+        return this.currentSession;
+    }
+=======
     public Session getSession() {
         return this.currentSession;
     }
     
+>>>>>>> 9c64815a74178df76d58df7d36d34544947ddac3
    /*
     private void connect() {
             EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);

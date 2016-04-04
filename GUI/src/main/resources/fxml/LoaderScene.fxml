@@ -8,7 +8,13 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="300.0">
          <children>
-            <TreeView fx:id="remoteTreeView" prefHeight="400.0" prefWidth="300.0" />
+            <AnchorPane prefHeight="630.0" prefWidth="300.0">
+               <children>
+                  <TreeView fx:id="remoteTreeView" prefHeight="361.0" prefWidth="300.0" />
+                  <Label fx:id="noConnectionLabel" layoutY="232.0" prefHeight="51.0" prefWidth="300.0" text="There cannot be established a connection to the server. Please try to connect again." textAlignment="CENTER" wrapText="true" />
+                  <ProgressIndicator fx:id="connectingIndicator" focusTraversable="false" layoutX="100.0" layoutY="130.0" prefHeight="80.0" prefWidth="126.0" progress="0.0" visible="false" />
+               </children>
+            </AnchorPane>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
                 <Button fx:id="downloadButton" mnemonicParsing="false" onAction="#download" text="Download" />

@@ -24,9 +24,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -34,7 +32,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.MySession;
-import services.FileLoaderTask;
 
 
 /**
@@ -46,12 +43,7 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     private TreeView localTreeView;
     @FXML
-    private TreeView<String> remoteTreeView;
-    
-    @FXML
-    private Label noConnectionLabel;
-    @FXML
-    private ProgressIndicator connectingIndicator;
+    private TreeView remoteTreeView;
     
     private ChangeListener<MySession.SessionStatus> listener;
     
@@ -70,55 +62,33 @@ public class LoaderSceneController implements Initializable, Controller {
 
     @FXML
     public void download(ActionEvent event){
-        //try {
-        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
-        //    channel.get("Bookkeeping.txt");
-        //} catch (SftpException ex) {
-        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/test" + "/Bookkeeping.txt");
-        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/test" + "/Statistic.txt");
-        Thread bookThread = new Thread(task);
-        bookThread.setDaemon(true);
-        Thread statThread = new Thread(taskStat);
-        statThread.setDaemon(true);
-        bookThread.start();
-        statThread.start();
+        try {
+            ChannelSftp channel = MySession.getInstant().getSFTPChannel();
+            channel.get("Bookkeeping.txt");
+        } catch (SftpException ex) {
+            Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       // Change listener for the session status
-		listener = (obs, oldStatus, newStatus) -> {
-			if (newStatus == MySession.SessionStatus.DISCONNECTED) {
-				remoteTreeView.setDisable(true);
-				connectingIndicator.setVisible(false);
-				noConnectionLabel.setVisible(true);
-				
-			} else if (newStatus == MySession.SessionStatus.ESTABLISHING) {
-				remoteTreeView.setDisable(true);
-				connectingIndicator.setVisible(true);
-				connectingIndicator.setProgress(-1);
-				noConnectionLabel.setVisible(false);
-				
-			} else if(newStatus == MySession.SessionStatus.ONLINE) {
-				connectingIndicator.setVisible(false);
-				remoteTreeView.setDisable(false);
-				noConnectionLabel.setVisible(false);
-				
-				init();
-			} else if(newStatus == MySession.SessionStatus.READY) {
-                                MySession.getInstant().initiateOpeningChannel("sftp");
-                        }
-		};
+        listener = (obs, oldStatus, newStatus) -> {
+            if (newStatus == MySession.SessionStatus.DISCONNECTED) {
+                
+            } else if (newStatus == MySession.SessionStatus.READY) {
+                
+            } else {
+                init();
+            }
+            
+        };
     }
     
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            /*LoaderTreeItem item = (LoaderTreeItem)newValue;
-            remoteDir = item.getPath();*/
+            LoaderTreeItem item = (LoaderTreeItem)newValue;
+            remoteDir = item.getPath();
         });
-       // remoteTreeView.setRoot(new SftpTreeItem("."));
         remoteTreeView.setRoot(new SftpTreeItem("."));
         initRemoteTree();
     }
@@ -186,10 +156,18 @@ public class LoaderSceneController implements Initializable, Controller {
     public void onEntry() {
        System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
-        MySession.getInstant().initiateOpeningChannel("sftp");
        String localHost = ".";
+<<<<<<< HEAD
+       try {
+           localHost = InetAddress.getLocalHost().getHostName();
+       }
+       catch(UnknownHostException u) {
+       }
+       TreeItem<String> root = new TreeItem<>(localHost);
+=======
        try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
        LoaderTreeItem root = new LoaderTreeItem(Paths.get(localHost));
+>>>>>>> 9c64815a74178df76d58df7d36d34544947ddac3
        Iterable<Path> rootDir = FileSystems.getDefault().getRootDirectories();
        for(Path p:rootDir) {
            LoaderTreeItem node = new LoaderTreeItem(p);
@@ -208,7 +186,7 @@ public class LoaderSceneController implements Initializable, Controller {
             }
         });
        System.out.println(localTreeView.getRoot().getChildren());
-      
+       MySession.getInstant().initiateOpeningChannel("sftp");
     }
 
     @Override

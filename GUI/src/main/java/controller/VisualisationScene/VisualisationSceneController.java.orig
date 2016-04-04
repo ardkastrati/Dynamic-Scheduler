@@ -71,6 +71,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
     static private String baseDir;
     private boolean CurrentDirty;
     private String runningDir;
+    private ChangeListener<MySession.SessionStatus> listener;
     
     @FXML
     public void show(ActionEvent event) {
@@ -103,16 +104,12 @@ public class VisualisationSceneController  implements Initializable, Controller{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Tab tab = new Tab();
-                final ProgressIndicator pi = new ProgressIndicator();
-                pi.setProgress(-1);
-                tab.setContent(pi);
-                diagramPane.getTabs().add(tab);
                 diagramType.getVisualisation(pane, ikeeper);
+                Tab tab = new Tab();
                 tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
                 tab.setClosable(true);
-                //diagramPane.getTabs().add(tab);
+                diagramPane.getTabs().add(tab);
             }
             
         });
@@ -214,14 +211,19 @@ public class VisualisationSceneController  implements Initializable, Controller{
             diagramBox.getItems().add(name);
         }
         
+<<<<<<< HEAD
+        this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
+        /*File[] directories = new File(baseDir).listFiles(File::isDirectory);
+=======
         this.baseDir = System.getProperty("user.dir");//"/home/kai/Dokumente/PSE/testdata/";
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
+>>>>>>> 9c64815a74178df76d58df7d36d34544947ddac3
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
-        }
+        }*/
         
         // Change listener for the session status
-       /* listener = (obs, oldStatus, newStatus) -> {
+        listener = (obs, oldStatus, newStatus) -> {
             if (newStatus == MySession.SessionStatus.READY || newStatus == MySession.SessionStatus.DISCONNECTED) {
                 refreshButton.setDisable(false);
                 refreshIndicator.setVisible(false);
@@ -234,7 +236,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
                 refreshIndicator.setVisible(true);
                
             }
-        };*/
+        };
         //sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 	//		sftpPath.setText(newValue.getValue());
 	//	});
@@ -242,21 +244,22 @@ public class VisualisationSceneController  implements Initializable, Controller{
 
     @Override
     public void onEntry() {
+        System.out.println("Add listener");
+        MySession.getInstant().sessionStatusProperty().addListener(listener);
         //System.out.println("Debug");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onExit() {
+        System.out.println("Remove listener");
+        MySession.getInstant().sessionStatusProperty().removeListener(listener);
+         MySession.getInstant().closeChannel();
     }
 
     static protected void setBaseDir(String basedir){
         baseDir = basedir;
         
-    }
-    
-    protected String getBaseDir() {
-      return baseDir;
     }
     
     public void chooseLoc(ActionEvent e) {
