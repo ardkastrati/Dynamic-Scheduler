@@ -57,6 +57,8 @@ public class SSHConnectionController implements Initializable, Controller {
 	 */
 	@FXML
 	private void onConnect(ActionEvent event) throws JSchException {
+            
+            
 		String user = usernameField.getText();
 		String host = serverField.getText();
 		int port = Integer.parseInt(portField.getText());
