@@ -1,0 +1,120 @@
+\hypertarget{a00015}{}\subsection{Executor Class Reference}
+\label{a00015}\index{Executor@{Executor}}
+
+
+{\ttfamily \#include $<$Executor.\+h$>$}
+
+
+
+Inheritance diagram for Executor\+:
+% FIG 0
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00015_ad0a052ec3c021786fed3c8d336ab0659}{Executor} (int \hyperlink{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{rank}, int \hyperlink{a00015_a4e798bde66d26fe200de7e8d2b54e915}{number\+\_\+of\+\_\+processors})
+\item 
+virtual void \hyperlink{a00015_aabad4923751a6ea70ca536d4d1f2f32a}{execute} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})=0
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00015}{Executor} $\ast$ \hyperlink{a00015_ab193432d6f64407c45780629e3341a87}{get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank} (int \hyperlink{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{rank}, int \hyperlink{a00015_a4e798bde66d26fe200de7e8d2b54e915}{number\+\_\+of\+\_\+processors}, Design\+Enum design, Strategy\+Enum strategy)
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{rank}
+\item 
+const int \hyperlink{a00015_a4e798bde66d26fe200de7e8d2b54e915}{number\+\_\+of\+\_\+processors}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The \hyperlink{a00015}{Executor} class is the base class for all objects that are mpi processes and have a one mpi rank. Objects from type \hyperlink{a00015}{Executor} run in a independent Process.
+
+\begin{DoxyAuthor}{Author}
+Fabio Broghammer 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00015_ad0a052ec3c021786fed3c8d336ab0659}{}\index{Executor@{Executor}!Executor@{Executor}}
+\index{Executor@{Executor}!Executor@{Executor}}
+\paragraph[{Executor}]{\setlength{\rightskip}{0pt plus 5cm}Executor\+::\+Executor (
+\begin{DoxyParamCaption}
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors}
+\end{DoxyParamCaption}
+)}\label{a00015_ad0a052ec3c021786fed3c8d336ab0659}
+Constructs a new executor object and initialize the parameters rank and number\+\_\+of\+\_\+processors
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & the M\+P\+I rank of the processor, that runs the executor code \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & the total number of processors of the M\+P\+I world \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00015_aabad4923751a6ea70ca536d4d1f2f32a}{}\index{Executor@{Executor}!execute@{execute}}
+\index{execute@{execute}!Executor@{Executor}}
+\paragraph[{execute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Executor\+::execute (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00015_aabad4923751a6ea70ca536d4d1f2f32a}
+This procedure is called on all executor subtypes to start them
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & command line argument count \\
+\hline
+{\em argv} & command line arguments \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{a00026_acea94dce898273bbbddfaae52f243bca}{Master}, \hyperlink{a00041_adb37338d137f4039d835519b14698d51}{Worker\+Executor}, \hyperlink{a00038_a8e2a2515ccc6021980508ba085f104fa}{Task\+Stealing\+Scheduler}, and \hyperlink{a00012_af476941a81155fd24d88d3e941be935b}{Database\+Server}.
+
+\hypertarget{a00015_ab193432d6f64407c45780629e3341a87}{}\index{Executor@{Executor}!get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank@{get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank}}
+\index{get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank@{get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank}!Executor@{Executor}}
+\paragraph[{get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Executor} $\ast$ Executor\+::get\+\_\+new\+\_\+executor\+\_\+by\+\_\+rank (
+\begin{DoxyParamCaption}
+\item[{int}]{rank, }
+\item[{int}]{number\+\_\+of\+\_\+processors, }
+\item[{Design\+Enum}]{design, }
+\item[{Strategy\+Enum}]{strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{a00015_ab193432d6f64407c45780629e3341a87}
+Returns a executor instance depending on the rank and design
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & of the process \\
+\hline
+{\em number\+\_\+of\+\_\+processors} & of the M\+P\+I\+\_\+\+C\+O\+M\+M\+\_\+\+W\+O\+R\+L\+D communicator \\
+\hline
+{\em design} & to be used \\
+\hline
+{\em strategy} & to be used\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a executor object 
+\end{DoxyReturn}
+
+
+\subsubsection{Field Documentation}
+\hypertarget{a00015_a4e798bde66d26fe200de7e8d2b54e915}{}\index{Executor@{Executor}!number\+\_\+of\+\_\+processors@{number\+\_\+of\+\_\+processors}}
+\index{number\+\_\+of\+\_\+processors@{number\+\_\+of\+\_\+processors}!Executor@{Executor}}
+\paragraph[{number\+\_\+of\+\_\+processors}]{\setlength{\rightskip}{0pt plus 5cm}const int Executor\+::number\+\_\+of\+\_\+processors\hspace{0.3cm}{\ttfamily [protected]}}\label{a00015_a4e798bde66d26fe200de7e8d2b54e915}
+The total number of processors of the M\+P\+I world The number of processors is relative to the communicator that is used. \hypertarget{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}{}\index{Executor@{Executor}!rank@{rank}}
+\index{rank@{rank}!Executor@{Executor}}
+\paragraph[{rank}]{\setlength{\rightskip}{0pt plus 5cm}const int Executor\+::rank\hspace{0.3cm}{\ttfamily [protected]}}\label{a00015_a33c24e2887b4d9c4ef7f3566d3bc803e}
+The M\+P\+I rank of the processor, that runs the executor code The rank is relative to the communicator that is used. 

@@ -1,11 +1,5 @@
 
-import com.jcraft.jsch.UIKeyboardInteractive;
-import com.jcraft.jsch.UserInfo;
 import controller.Controller;
-import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +19,7 @@ public class MainApp extends Application {
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
 
+        
 		Parent root = (Parent)loader.load();
 		Controller controller = loader.getController();
 

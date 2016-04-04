@@ -1,3 +1,5 @@
+code/Bookkeeping.txt
+code/Statistic.txt
 *.pdf
 .DS_Store
 /GUI/bin/
@@ -6,7 +8,9 @@
 /GUI/checkstyle.launch
 /GUI/.classpath
 /GUI/.settings/
-
+/code/bin/scheduler
+/code/.idea/
+/code/.settings/
 # Compiled Object files
 *.slo
 *.lo
@@ -182,6 +186,8 @@ pythontex-files-*/
 /Test/nbproject/private/
 /Test/dist/
 /Test/build/
+/code/test/build/
+/code/test/dist/
 
 code/bin/*
 code/lib/*

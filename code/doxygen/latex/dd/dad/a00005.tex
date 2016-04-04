@@ -1,0 +1,154 @@
+\hypertarget{a00005}{}\subsection{Array\+Handler Class Reference}
+\label{a00005}\index{Array\+Handler@{Array\+Handler}}
+
+
+{\ttfamily \#include $<$Array\+Handler.\+h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00005_a1beed0e1215e2a5b719aaf3bca8de751}{Array\+Handler} (int nr\+\_\+of\+\_\+dimensions, \hyperlink{a00027}{Mpi\+Proxy} $\ast$memory)
+\item 
+\hyperlink{a00005_a3e1713135553642fb86bad1ad8be0d31}{$\sim$\+Array\+Handler} ()
+\item 
+long \hyperlink{a00005_ae540ed162a064c68836437debb910dbb}{get\+\_\+time} (int $\ast$index)
+\item 
+int $\ast$ \hyperlink{a00005_a42ee7a07ea9091d711f4b701048d8bf2}{get\+\_\+enviroment\+\_\+index} (double $\ast$parameter)
+\item 
+int $\ast$ \hyperlink{a00005_ad4deff08a547191d984483180de3abd8}{get\+\_\+dimensions} ()
+\item 
+double \hyperlink{a00005_a6e54f132273c2191fc733c54f5e55e9c}{get\+\_\+corrected\+\_\+distanz} (int $\ast$index, double $\ast$parameter)
+\item 
+void \hyperlink{a00005_ab4a4cf85c84bd50c5f1e8b79c01e3971}{set\+\_\+new\+\_\+array} (int $\ast$dimensions, double $\ast$increment, double $\ast$offset)
+\item 
+void \hyperlink{a00005_ad9ff7602030d957f9bfcaf22673791ca}{insert\+\_\+at\+\_\+point} (int $\ast$index, double $\ast$parameter, long time)
+\item 
+void \hyperlink{a00005_a7be7ad49143fd8d10bd027d14cfe9f2a}{push\+\_\+new\+\_\+array} ()
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Project Dynamic Scheduler for Scientific Simulations 
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00005_a1beed0e1215e2a5b719aaf3bca8de751}{}\index{Array\+Handler@{Array\+Handler}!Array\+Handler@{Array\+Handler}}
+\index{Array\+Handler@{Array\+Handler}!Array\+Handler@{Array\+Handler}}
+\paragraph[{Array\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}Array\+Handler\+::\+Array\+Handler (
+\begin{DoxyParamCaption}
+\item[{int}]{nr\+\_\+of\+\_\+dimensions, }
+\item[{{\bf Mpi\+Proxy} $\ast$}]{memory}
+\end{DoxyParamCaption}
+)}\label{a00005_a1beed0e1215e2a5b719aaf3bca8de751}
+The constructor of the \hyperlink{a00005}{Array\+Handler} 
+\begin{DoxyParams}{Parameters}
+{\em nr\+\_\+of\+\_\+dimensions} & the number of dimensions in the virtual multidimensional array musst be bigger than zero \\
+\hline
+{\em memory} & is the \hyperlink{a00027}{Mpi\+Proxy} that provide acces to the Grid data musst not be N\+U\+L\+L\\
+\hline
+\end{DoxyParams}
+Project Dynamic Scheduler for Scientific Simulations \hyperlink{a00005}{Array\+Handler} implementation \hypertarget{a00005_a3e1713135553642fb86bad1ad8be0d31}{}\index{Array\+Handler@{Array\+Handler}!````~Array\+Handler@{$\sim$\+Array\+Handler}}
+\index{````~Array\+Handler@{$\sim$\+Array\+Handler}!Array\+Handler@{Array\+Handler}}
+\paragraph[{$\sim$\+Array\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}Array\+Handler\+::$\sim$\+Array\+Handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00005_a3e1713135553642fb86bad1ad8be0d31}
+The deconstructor of the \hyperlink{a00005}{Array\+Handler} it deletes the memory 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00005_a6e54f132273c2191fc733c54f5e55e9c}{}\index{Array\+Handler@{Array\+Handler}!get\+\_\+corrected\+\_\+distanz@{get\+\_\+corrected\+\_\+distanz}}
+\index{get\+\_\+corrected\+\_\+distanz@{get\+\_\+corrected\+\_\+distanz}!Array\+Handler@{Array\+Handler}}
+\paragraph[{get\+\_\+corrected\+\_\+distanz}]{\setlength{\rightskip}{0pt plus 5cm}double Array\+Handler\+::get\+\_\+corrected\+\_\+distanz (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{index, }
+\item[{double $\ast$}]{parameter}
+\end{DoxyParamCaption}
+)}\label{a00005_a6e54f132273c2191fc733c54f5e55e9c}
+calutates the distanz form the given point parameter to the grid point index under consideration of the correction\+\_\+vektor and standardized by the incremnet vektor 
+\begin{DoxyParams}{Parameters}
+{\em index} & the index in the virtual multidimensional array musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L the nth item in index musst be in range from zero to the nth item in dimensions for all n in range from zero to nr\+\_\+of\+\_\+dimensions -\/ 1 \\
+\hline
+{\em parameter} & the parameter of the task musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the distanz between the points 
+\end{DoxyReturn}
+\hypertarget{a00005_ad4deff08a547191d984483180de3abd8}{}\index{Array\+Handler@{Array\+Handler}!get\+\_\+dimensions@{get\+\_\+dimensions}}
+\index{get\+\_\+dimensions@{get\+\_\+dimensions}!Array\+Handler@{Array\+Handler}}
+\paragraph[{get\+\_\+dimensions}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ Array\+Handler\+::get\+\_\+dimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00005_ad4deff08a547191d984483180de3abd8}
+Getter for dimensions \begin{DoxyReturn}{Returns}
+returns an copy of the dimensions vektor is nr\+\_\+of\+\_\+dimensions long 
+\end{DoxyReturn}
+\hypertarget{a00005_a42ee7a07ea9091d711f4b701048d8bf2}{}\index{Array\+Handler@{Array\+Handler}!get\+\_\+enviroment\+\_\+index@{get\+\_\+enviroment\+\_\+index}}
+\index{get\+\_\+enviroment\+\_\+index@{get\+\_\+enviroment\+\_\+index}!Array\+Handler@{Array\+Handler}}
+\paragraph[{get\+\_\+enviroment\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ Array\+Handler\+::get\+\_\+enviroment\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{parameter}
+\end{DoxyParamCaption}
+)}\label{a00005_a42ee7a07ea9091d711f4b701048d8bf2}
+Return the surnding Grid points these are 2 to the power nr\+\_\+of\+\_\+dimensions many  parameter the parameter of the task musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \begin{DoxyReturn}{Returns}
+returns an array of the indices of the Grid points that surroundet the task it has the following form\+: x;y;z;...x+1;y;z;...x;y+1;z;...x+1;y+1;z;...x;y;z+1;... therfor it is nr\+\_\+of\+\_\+dimensions times 2 to the power of nr\+\_\+of\+\_\+dimensions long 
+\end{DoxyReturn}
+\hypertarget{a00005_ae540ed162a064c68836437debb910dbb}{}\index{Array\+Handler@{Array\+Handler}!get\+\_\+time@{get\+\_\+time}}
+\index{get\+\_\+time@{get\+\_\+time}!Array\+Handler@{Array\+Handler}}
+\paragraph[{get\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}long Array\+Handler\+::get\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{index}
+\end{DoxyParamCaption}
+)}\label{a00005_ae540ed162a064c68836437debb910dbb}
+Getter for the time array 
+\begin{DoxyParams}{Parameters}
+{\em index} & the index in the virtual multidimensional array musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L the nth item in index musst be in range from zero to the nth item in dimensions for all n in range from zero to nr\+\_\+of\+\_\+dimensions -\/ 1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the time of the Grid point 
+\end{DoxyReturn}
+\hypertarget{a00005_ad9ff7602030d957f9bfcaf22673791ca}{}\index{Array\+Handler@{Array\+Handler}!insert\+\_\+at\+\_\+point@{insert\+\_\+at\+\_\+point}}
+\index{insert\+\_\+at\+\_\+point@{insert\+\_\+at\+\_\+point}!Array\+Handler@{Array\+Handler}}
+\paragraph[{insert\+\_\+at\+\_\+point}]{\setlength{\rightskip}{0pt plus 5cm}void Array\+Handler\+::insert\+\_\+at\+\_\+point (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{index, }
+\item[{double $\ast$}]{parameter, }
+\item[{long}]{time}
+\end{DoxyParamCaption}
+)}\label{a00005_ad9ff7602030d957f9bfcaf22673791ca}
+Adapt a singel Gridpoint to a given task if the point is the best for that Gridpoint 
+\begin{DoxyParams}{Parameters}
+{\em index} & the index in the virtual multidimensional array musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L the nth item in index musst be in range from zero to the nth item in dimensions for all n in range from zero to nr\+\_\+of\+\_\+dimensions -\/ 1 \\
+\hline
+{\em parameter} & the parameter of the task musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+{\em time} & the new time of the task musst not be negativ \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00005_a7be7ad49143fd8d10bd027d14cfe9f2a}{}\index{Array\+Handler@{Array\+Handler}!push\+\_\+new\+\_\+array@{push\+\_\+new\+\_\+array}}
+\index{push\+\_\+new\+\_\+array@{push\+\_\+new\+\_\+array}!Array\+Handler@{Array\+Handler}}
+\paragraph[{push\+\_\+new\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void Array\+Handler\+::push\+\_\+new\+\_\+array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00005_a7be7ad49143fd8d10bd027d14cfe9f2a}
+Calls the same named funktion in the \hyperlink{a00027}{Mpi\+Proxy} \hypertarget{a00005_ab4a4cf85c84bd50c5f1e8b79c01e3971}{}\index{Array\+Handler@{Array\+Handler}!set\+\_\+new\+\_\+array@{set\+\_\+new\+\_\+array}}
+\index{set\+\_\+new\+\_\+array@{set\+\_\+new\+\_\+array}!Array\+Handler@{Array\+Handler}}
+\paragraph[{set\+\_\+new\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void Array\+Handler\+::set\+\_\+new\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{dimensions, }
+\item[{double $\ast$}]{increment, }
+\item[{double $\ast$}]{offset}
+\end{DoxyParamCaption}
+)}\label{a00005_ab4a4cf85c84bd50c5f1e8b79c01e3971}
+calls the set\+\_\+new\+\_\+array function in the \hyperlink{a00027}{Mpi\+Proxy} 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+dimensions} & the new size of the time and the correction vektor arry musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L and every value musst be positiv \\
+\hline
+{\em new\+\_\+offset} & the new offset of the Grid to the parameter point 0 musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+{\em new\+\_\+increment} & the new increment vektor for the Grid musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L every value musst be positiv \\
+\hline
+\end{DoxyParams}

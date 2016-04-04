@@ -8,6 +8,7 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import javafx.concurrent.Task;
+import model.MySession;
 
 /**
  * A task for establishing a connection to a session.
@@ -41,6 +42,7 @@ public class EstablishConnectionTask extends Task<Void>{
      */
      @Override
     protected Void call() throws Exception {
+        
             updateMessage("Trying to connect");
             currentSession.connect();
             ChannelExec testChannel = (ChannelExec) currentSession.openChannel("exec");
@@ -48,8 +50,9 @@ public class EstablishConnectionTask extends Task<Void>{
             testChannel.connect();
             updateMessage("Session successfully established!");
             testChannel.disconnect();
-        
-            return null;
+         
+         
+         return null;
     }
     
   

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>datamining/grid/ArrayHandlerTestCase.h</itemPath>
+      <itemPath>datamining/grid/DataStorageTestCase.h</itemPath>
+      <itemPath>database/DatabaseHandlerTestCase.h</itemPath>
+      <itemPath>database/DatabaseTestSuite.h</itemPath>
+      <itemPath>scheduler/FIFOTestCase.h</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestCase.h</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestSuite.h</itemPath>
+      <itemPath>datamining/grid/GridLibraryTestCase.h</itemPath>
+      <itemPath>scheduler/LIFOTestCase.h</itemPath>
+      <itemPath>scheduler/LJFTestCase.h</itemPath>
+      <itemPath>scheduler/SJFTestCase.h</itemPath>
+      <itemPath>scheduler/SchedulerTestSuite.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>datamining/grid/ArrayHandlerTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/DataStorageTestCase.cpp</itemPath>
+      <itemPath>database/DatabaseHandlerTestCase.cpp</itemPath>
+      <itemPath>database/DatabaseTestSuite.cpp</itemPath>
+      <itemPath>scheduler/FIFOTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestCase.cpp</itemPath>
+      <itemPath>datamining/grid/GridDataMiningTestSuite.cpp</itemPath>
+      <itemPath>datamining/grid/GridLibraryTestCase.cpp</itemPath>
+      <itemPath>scheduler/LIFOTestCase.cpp</itemPath>
+      <itemPath>scheduler/LJFTestCase.cpp</itemPath>
+      <itemPath>scheduler/SJFTestCase.cpp</itemPath>
+      <itemPath>scheduler/SchedulerTestSuite.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>test-Makefile.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>test-Makefile.mk</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <standard>10</standard>
+          <incDir>
+            <pElem>/usr/include/</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <stripSymbols>true</stripSymbols>
+          <standard>8</standard>
+          <commandlineTool>mpic++</commandlineTool>
+          <incDir>
+            <pElem>/usr/include/cppunit</pElem>
+            <pElem>/usr/include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <commandlineTool>mpic++</commandlineTool>
+          <linkerLibItems>
+            <linkerLibFileItem>../bin/libscheduler.a</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/libcppunit.so</linkerLibFileItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="database/DatabaseHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="database/DatabaseHandlerTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="database/DatabaseTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/FIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/FIFOTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/LIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/LIFOTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/LJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/LJFTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/SchedulerTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SchedulerTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>Intel|Intel</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="database/DatabaseHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="database/DatabaseHandlerTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="database/DatabaseTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="database/DatabaseTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/ArrayHandlerTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/DataStorageTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridDataMiningTestSuite.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="datamining/grid/GridLibraryTestCase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/FIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/FIFOTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/LIFOTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/LIFOTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/LJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/LJFTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SJFTestCase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scheduler/SchedulerTestSuite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scheduler/SchedulerTestSuite.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

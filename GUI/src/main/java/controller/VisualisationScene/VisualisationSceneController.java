@@ -16,8 +16,12 @@ import java.util.ResourceBundle;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,12 +34,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import model.MySession;
 import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
 import model.visualiser.dataholding.Task;
+import services.VisualisationTask;
 
 public class VisualisationSceneController  implements Initializable, Controller{
 	
@@ -46,7 +52,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
     @FXML
     private URL location;
     @FXML
-    private ChoiceBox<Visualiser> diagramBox;
+    private ChoiceBox<String> diagramBox;
     @FXML
     private ChoiceBox<String> calculationBox;
     @FXML
@@ -57,6 +63,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private TabPane diagramPane;
     @FXML
     private Tab addDiagramTab;
+    @FXML
+    private Button cl;
     
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
@@ -67,32 +75,75 @@ public class VisualisationSceneController  implements Initializable, Controller{
     
     @FXML
     public void show(ActionEvent event) {
-        Visualiser diagramType = diagramBox.getValue();
+        final Visualiser diagramType = visualiserMap.get(diagramBox.getValue());
         String calculation = calculationBox.getValue();
         Tab tab = new Tab();
         HashMap<Long, Task> taskMap = null;
         List<Event> eventList = null;//parser.parseStatistic("/home/kai/Dokumente/PSE/testdata/Statisics.txt");
-        Pane pane = new AnchorPane();
+        final Pane pane = new AnchorPane();
         //System.out.println(taskMap.toString());
         Datakeeper keeper = null;
         if (keeperMap.containsKey(calculation)) {
             keeper = keeperMap.get(calculation);
         } else {
-            keeper = new Datakeeper(baseDir + calculation);
+            keeper = new Datakeeper(baseDir + "/" + calculation);
             keeperMap.put(calculation, keeper);
         }
-        diagramType.getVisualisation(pane, keeper);
-        tab.setText(calculation + " - " );
-        tab.setContent(pane);
-        tab.setClosable(true);
-        diagramPane.getTabs().add(tab);
+        final Datakeeper ikeeper = keeper;
+        //Thread t = new Thread(new Runnable() {
+           // public void run()
+           // {
+               // diagramType.getVisualisation(pane, ikeeper);
+               // System.out.println("testt");
+                //tab.setText(calculation + " --- " + diagramBox.getValue());
+                //tab.setContent(pane);
+                //tab.setClosable(true);
+                //diagramPane.getTabs().add(tab);
+            //}
+        //});
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                diagramType.getVisualisation(pane, ikeeper);
+                Tab tab = new Tab();
+                tab.setText(calculation + " --- " + diagramBox.getValue());
+                tab.setContent(pane);
+                tab.setClosable(true);
+                diagramPane.getTabs().add(tab);
+            }
+            
+        });
+        //pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
+        //    System.out.println("test");
+        //    c.next();
+        //    Pane ipane = (Pane)c.getAddedSubList().get(0);
+        //    Tab itab = new Tab();
+        //    itab.setText(calculation + " -- " + diagramBox.getValue());
+        //    itab.setContent(ipane);
+        //    itab.setClosable(true);
+        //    diagramPane.getTabs().add(itab);
+        //});
+        //diagramType.getVisualisation(pane, keeper);
+        //tab.setText(calculation + " - " + diagramBox.getValue());
+        //tab.setContent(pane);
+        //tab.setClosable(true);
+        //diagramPane.getTabs().add(tab);
+        
+        //VisualisationTask task = new VisualisationTask();
+        //task.setVisualiser(diagramType);
+        //task.setDatakeeper(ikeeper);
+        //task.setDiagramPane(diagramPane);
+        
+        //Thread th = new Thread(task);
+        //th.setDaemon(true);
+        //th.start();
     }
 
     @FXML
     public void refresh(ActionEvent event) {
         Parent root;
         try {
-           FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
            //System.out.println(loader.getLocation());
            root = (Parent)loader.<Parent>load();
            Stage stage = new Stage();
@@ -154,12 +205,14 @@ public class VisualisationSceneController  implements Initializable, Controller{
         while(visualiserService.hasNext()) {
             Visualiser visualiser = visualiserService.next();
             String[] split = visualiser.toString().split("Visualiser", 1);
-            visualiserMap.put(split[0], visualiser);
-            diagramBox.getItems().add(visualiser);
+            String name = split[0].replace("model.visualiser.","");
+            name = name.replace("@[0-9]*", "");
+            visualiserMap.put(name, visualiser);
+            diagramBox.getItems().add(name);
         }
         
-        this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
-        /*File[] directories = new File(baseDir).listFiles(File::isDirectory);
+        this.baseDir = System.getProperty("user.dir");//"/home/kai/Dokumente/PSE/testdata/";
+        File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
         }*/
@@ -201,5 +254,17 @@ public class VisualisationSceneController  implements Initializable, Controller{
 
     static protected void setBaseDir(String basedir){
         baseDir = basedir;
+        
+    }
+    
+    public void chooseLoc(ActionEvent e) {
+        DirectoryChooser dc = new DirectoryChooser();
+        File sd = dc.showDialog(new Stage());
+        baseDir = sd.getAbsolutePath();
+        File[] directories = new File(baseDir).listFiles(File::isDirectory);
+        calculationBox.getItems().clear();
+        for(int i = 0; i < directories.length; i++) {
+            calculationBox.getItems().add(directories[i].getName());
+        }
     }
 }

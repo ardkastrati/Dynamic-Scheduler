@@ -1,35 +1,23 @@
-\section{System model}%TODO queue out of database 
+\section{System model}
 	\subsection{System structure}
 			\subsubsection{Modules}
-The dynamic scheduler for scientific simulations follows these design architectures: \begin{itemize}
-	\item {Master-Worker}
-	\item {Task Stealing}
-\end{itemize}
-
-			\subsubsection{Master-Worker}
-%The 'Master', the 'ExecutorWorker' and the 'Database' are subclasses of the Executor. Every instance of these classes runs as an independent MPI process, communicating via MPI messages. Therefore the minimum number of processes required to schedule the computation is three MPI nodes \left(one of each \right). Additional nodes will perform the 'ExecuterWorker' process, 'Master' and 'Database' nodes are singular.
-The master class inheriting from 'AbstractScheduler' manages the simulation. It keeps a list of free workers and uses a scheduling strategy like FIFO to schedule tasks from the scientific code. While the task queue defined in the scheduling strategy is not empty, the master pops the next task, looks for a free worker to pass the task to, who will then execute it.
-During the execution, in case a new scientific task appears, the worker sends it to the master, who adds the new task to the queue, according to the chosen policy. The worker also notifies the Database of all events occurring $($p.e. task appears, task started, task finished, …$)$ who tracks them in a bookkeeping database.
-After finishing executing a task, the worker notifies the master to add him to the list of free workers. The worker also provides the runtime of the task to the Database to store it in the statistic database for further usage $($data mining, plotting, etc.$)$.
-If statistic based scheduling strategies $($SJF, LJF$)$ are chosen, the master calls the 'Database' to estimate a task's runtime in her data mining module, which is updated continuously during the simulation.
-After the entire simulation process, the master sends a stop message to the other process in the MPI\_World communicator to exit the program.
-
-			\subsubsection{Task Stealing}
-In this architecture, one instance of the 'TaskstealingScheduler' and the 'Worker' class run on a single MPI node. One notifying the other in this case is implemented by calling the other's functions. In addition a singular 'Database' node is used. Therefore the minimum number of nodes required for scheduling the simulation is two MPI nodes. Calculation and database nodes communicate via MPI messages. Calculation nodes use MPI one sided communication to inform each other.
-'TaskstealingScheduler' instances work fully independend from one another. While their queue is not empty they pop the next task and give it to their worker. If the queue is empty, a 'TaskstealingScheduler' will try to steal a scientific task from another 'TaskstealingScheduler' and give it to his worker.
-The worker performs the task. He notifies the Database of all events occurring $($p.e. task appears, task started, task finished, ... $)$, who tracks them in a bookkeeping database. If a new task appears the  worker also calls the 'TaskstealingScheduler' to insert the task to the scheduling queue.
-After completion the worker informs the corresponding scheduler that he's done and provides the runtime of the task to the Database to store it in the statistic database for further usage $($data mining, plotting, etc. $)$.
-If statistic based scheduling strategies $($SJF, LJF $)$ are chosen, the 'TaskstealingScheduler' calls 'Database' to estimate a task's runtime in her data mining module, which is updated continuously during the simulation.
-After the entire simulation process, the master sends a stop message to the other process in the MPI\_World communicator to exit the program.
-
+				%TODO INSERT SYSTEMMODELCHART HERE
+				The main architecture pattern, the system is oriented to, is the Model-View-Controller. Yet only the architecture should be seen as parallel model.
+			\subsubsection{Controller}
+				The controller is basically the whole scheduler-module. It controls the data flow with the 				data structure(Model) and the Data Mining-module which both of them are part of the 						scheduler. Furthermore, the scheduler is responsible for the communication with the code-             				and executer interface and the MPI-world. There will be a scientific code bound to the 						scheduler and executed with different tasks(different parameter input), those will be 						brought in order through the scheduler. This will be organized with special scheduler 						algorithms depend on the data mining and the statistics
+			\subsubsection{Model}
+				The Model is represented as an high performance file system. Data which will be collected 					for statistics will be stored in such a file in the file system. Also the data for 							bookkeeping with information about the progress of the tasks which are executed on the 						computer cluster will be stored in one file. The queue of the task order will be also 						placed in a file. 
+			\subsubsection{View}
+				The essential point of visualization will be the graphical output of the collected data. 					Bookkeeping and statistic can be plotted after the calculation.
+				A GUI is a nice-to-have feature and is first of all not in planning. The input for the 						controller will be managed trough the MOAB Interface.
 \newpage
 \subsection{Scenarios}
 			
 \subsubsection{Expanding universe simulation}
 
-Jimmy Ellmersino, a scientist at Karlsruhe Institute of Technologie, wrote some computer code to simulate the physics of mass in an expanding universe. In order to track trillions of particles in the universe, the code should be executed on a HPC in an organized and smart manner. 
-Firstly, Jimmy reserves the required number of nodes using the MOAB Workload Manager. After receiving the specific number of nodes, Jimmy runs the scheduler and chooses whether he wants to have multiple-queue or single queue scheduling. The scheduler initializes the scientific code and starts to schedule the initial tasks. The scheduler strives to keep as many processes as possible running at the same time and get
-their results as soon as possible. After the simulation is complete Jimmy checks the scheduling performance by taking a look at the diagrams plotted by the visualization tool.
+A scientist named John wrote some computer code to simulate the physics of mass in an expanding universe. In order to track trillions of particles in universe, the code should be executed on a HPC in an organized and smart manner. 
+Firstly, John reserves the required number of nodes using MOAB Workload Manager. After receiving the specific number of nodes, John runs the scheduler and chooses whether he wants to have multiple-queue or single queue scheduling. The scheduler initializes the scientific code and starts to schedule the initial tasks. The scheduler strives to keep as many processes as possible running at the same time and get
+their results as soon as possible. To achieve these results, the scheduler uses different strategies at specific times (e.g. Shortest Job First, First In First Out, Longest Job First, etc). After all tasks have been successfully executed, John gets an information that the expanding universe was successfully simulated. 
 
 \subsection{Use cases}
 
@@ -90,7 +78,7 @@ The main modules of the project are the following:
 		\subitem Contains a variety of scheduling algorithms and strategies
 		\subitem Queries Data Mining module how much resources the task needs
 		\subitem Decides how to place a task in a schedule
-		\subitem Sends bookkeeping notifications for the following events:
+		\subitem Does bookkeeping for the following events:
 			\subsubitem - task appears
 			\subsubitem - task started
 			\subsubitem - task finished
@@ -111,7 +99,7 @@ The main modules of the project are the following:
 			\subsubitem run\_task(task):run result
 	
 	\item Database
-		\subitem Keeps statistics, stores bookkeeping
+		\subitem Keeps statistics, does bookkeeping and local schedule
 		
 	\item Communicator (Optional)
 		\subitem Has to organize multi-level communication among multiple parallel schedulers
@@ -127,8 +115,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 \newpage
 
 \subsection{Dynamic models}
-\subsubsection{Task Stealing - activity diagram with textual description}
-%TODO must have
+\subsubsection{Task Stealing (Nice to have) - activity diagram with textual description}
 \vspace{1.5cm}
 \begin{figure}[H]
 	\includegraphics[width=15cm]{images/task_stealing_pap.jpg}
@@ -137,7 +124,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 
 \begin{description}
 	\item [1. Brief Description]\hfill \\
-	Use case describing the way the task stealing algorithm works inside the dynamic scheduler in order to reduce idle time of all processors.
+	Use case describing the way the task stealing algorithm works inside the dynamic scheduler in order to reduce the amount of process migration between processors.
 	
 	\item [2. Actors]\hfill \\
 	No actors. 
@@ -151,7 +138,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 	\end{itemize}
 	
 	\item [4. Basic Flow of Events]\hfill \\
-	The use case begins when the scheduler checks if there are tasks in its own queue. If there is a task in the queue, it will be executed. After the task has been executed, all collected results will get placed in the database in an organized manner.
+	The use case begins when the scheduler checks if there are tasks in its own queue.If there is a task in the queue, it will be executed. After the task has been executed, all collected results will get placed in the database in an organized manner.
 	If there isn't any task in the queue, the task stealing process will be initiated.\newline First of all, the scheduler will cycle through all running processes in other processors and try to steal an idle task from them. In order to check the other processes' queue for an idle task, the scheduler tries to block the RMA window for offsets and statuses, after which it checks whether there are any idle tasks. If the queue is empty or if the RMA window is currently blocked, the scheduler repeats the same procedure for remaining processors. If after checking all processes, no idle task was found, the scheduler changes its own state to idle. If this idle state doesn't change for a specific amount of cycles, which means that no tasks were stolen in this period, the scheduler finally checks to make sure that no process is currently running in any processor and if that's the case, it finishes its own routine. 
 	
 	
@@ -171,7 +158,7 @@ The picture below describes the basic object model of the dynamic scheduler, its
 	
 \end{description}
 \vspace{0.5cm}
-\subsubsection{Single-queue scheduling managed by master/slave design }
+\subsubsection{Single-queue master-managed scheduling}
 \vspace{0.5cm}
 A single-queue master-managed scheduling is a way to schedule many tasks, where each process (instance of the task) can request master to access the queue. The picture below describes the program flow of a scheduler by a single queue, where the queue is managed by only one process (master). 
 \vspace{1cm}
@@ -181,8 +168,7 @@ A single-queue master-managed scheduling is a way to schedule many tasks, where 
 	\caption{Single queue scheduling with a master-slave diagram} 
 	\end{figure}
 \newpage
-\subsubsection{Multiple-queues scheduling}
-%TODO unite with taskstealing paragraphs (must have)	
+\subsubsection{Multiple-queues scheduling (nice-to-have)}	
 
 \vspace{0.5cm}
 A multiple-queues scheduling is a way to schedule many tasks, where each process has its own queue, and does the same task. The picture below describes the program flow of a scheduler designed by multiple queues, where the queue managing is based on task-stealing algorithm.
@@ -203,10 +189,9 @@ A multiple-queues scheduling is a way to schedule many tasks, where each process
 				
 			\item OPTIONS:
 							
-				\subitem -design: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
-				%TODO spelling				
+				\subitem -d: choose between multiple-queue scheduling (multi-queue) and Master-Worker scheduling (master-worker) (e.g. -d multi-queue or -d master-worker). The default strategy is master-worker (nice-to-have)
 				
-				\subitem -strategy: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
+				\subitem -s: choose between several scheduling algorithms or automatic dynamic scheduling (auto) (e.g. -s fifo or -s auto). Default is automatic dynamic scheduling.
 					
 			\item RUN ARGUMENTS:
 				\subitem The run arguments is passed to the scientific code for initialization

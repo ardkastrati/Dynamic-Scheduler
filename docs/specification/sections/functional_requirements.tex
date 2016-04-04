@@ -13,49 +13,45 @@
 	\subsubsection{Scheduler}
 	
 		\begin{itemize}
-			\item Provide Master-Worker scheduling design 
-			\item Provide Multiple-queue parallel scheduling design (task stealing)
-			\item First in first out scheduling strategy
-			\item Last in first out scheduling strategy
-			\item Shortest job first scheduling strategy
-			\item Longest job first scheduling strategy 
-			%TODO \item Change scheduling strategy
-			\item Provide interface for adding further scheduling strategies
+			\item Provides Master-Worker scheduling design 
+			\item Provides Multiple-queue parallel scheduling design
+			\item First in first out strategy
+			\item Last in first out strategy
+			\item Shortest job first strategy
+			\item Longest job first strategy 
+			\item Change scheduling strategy
+			\item Add a strategy to program
 			\item CLI parameter processing
 			\item MPI-World initialization
 			\item Execute master functions
 			\item Execute worker functions
 			\item Initialize scientific code
 			\item Receive new tasks from scientific code
-			\item Insert tasks into the scheduling queue
-			\item Remove tasks from the scheduling queue% Delete or remove 
-			\item Query runtime estimation of each task at data mining
+			\item Enqueue tasks in the scheduling queue
+			\item Dequeue task from the scheduling queue
+			\item Query weight estimation of each task at data mining
 			\item Read data from the bookkeeping database
 			\item Write data into bookkeeping database
 			\item Send task via MPI to Worker
 			\item Receive 'finished task' message via MPI  
-			%\item Save computation results
-			%\item Task-stealing multiple-queues strategy
-			\item Possibility to import statistic files as initial database
+			\item Save computation results
 		\end{itemize}
 	
 	\subsubsection{Database}
 	
 		\begin{itemize}
-			\item Initialize database
-			\item Read data from statistic database
-			\item Write data into statistic database
-			\item Write data into bookkeeping database
-			\item Pass data do data mining module
+			\item Initialie database
 			%\item Files will be placed after computation as usable files for plotting.
 		\end{itemize}
 		
 		\subsubsection{Data mining}
 	
 			\begin{itemize}
-				\item Read data from database memory
+				\item Read data from statistics database
+				\item Write data into statistics database
 				\item Process task queries from scheduler
-				\item Calculate runtime estimation 
+				\item Calculate weight estimation 
+				\item Create statistics from task computation
 			\end{itemize}
 	
 		%\subsubsection{Queue database} %into scheduler
@@ -74,18 +70,18 @@
 					\item Task appears
 					\item Task started
 					\item Task finished 
-					\item optional: Interconnection between processes
 				\end{enumerate}
 			\end{itemize}
 	
 		\subsubsection{Statistics database}
 	
+			%TODO WARNING
 			\begin{itemize}
-				\item Provide Read/Write functions for the data mining module.
-				%\item Search for similar and equal data in statistics
-				%\item Duplication of files on too high amount of requests.
-				%\item Delete duplicated files after finishing the scientific simulation
-				\item Store information about the runtime of the task and task parameters.
+				\item Read-/write-functions for the data mining module for the statistic file.
+				\item Search for similar and equal data in statistics
+				\item Duplication of files on too high amount of requests.
+				\item Delete duplicated files after finishing the scientific simulation
+				\item Collect information about the runtime of the task depending on task parameters.
 			\end{itemize}
 	
 	
@@ -93,30 +89,26 @@
 		\begin{itemize}
 		
 			\item The program must provide the place\_task interface
-			%\item Receive different task types from the scientific code
+			\item Receive different task types from the scientific code
 		\end{itemize}
 		
 		
 	\subsubsection{Visualization}
 	
 		\begin{itemize}
-			%\item Export bookkeeping to .vtk format
-			%\item Export statistics to .vtk format
-			\item Plot usage graph
-			\item Plot statistic diagram
+			\item Export bookkeeping to .vtk format
+			\item Export statistics to .vtk format
 		\end{itemize}
 		
 	\subsection{Functions required for optional features}
 	
 		\begin{itemize}
-			\item Provide a graphical user interface (GUI)
-			\item Create and show a graph in the graphical user interface describing the current progress of the simulation
-			\item Update the graph periodically
-			\item Plot interconnection diagram
-		
+			\item Task-stealing multiple-queues strategy%nice
+			\item Possibility to import an already used statistic file%nice
 						%\item Support of multiple-queues parallel scheduling strategy
 			%\item Rule-based multiple-queues strategy
-			%\item Random multiple-queues strategy strategy%nice
+			%\item Random multiple-queues strategy
+			%\item Task-stealing multiple-queues strategy%nice
 			%\item Statistics-based multiple-queues strategy
 		\end{itemize}
 		

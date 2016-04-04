@@ -5,7 +5,6 @@
 package model;
 
 import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -40,10 +39,11 @@ public class MySession {
     
     
      // Executor for background tasks:        
-    public static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
+    private ExecutorService exec = Executors.newCachedThreadPool(r -> {
         Thread t = new Thread(r);
+        
         t.setDaemon(true);
-        return t ;
+        return t;
     });
 
     public ChannelSftp getSFTPChannel() {
@@ -60,7 +60,7 @@ public class MySession {
         }
         return sftpChannel;
     }
-    
+   
     /**
     * This enum represents the possible types of statuses of the session.<br/>
     * The following list specifies the allowed status types:
@@ -88,7 +88,15 @@ public class MySession {
         /**
          * The session couldn't be connected because a failure occured, or the user never tried to connect to the server.
          */ 
-        DISCONNECTED;
+        DISCONNECTED,
+        /**
+         * The session is trying to connect with the server.
+         */ 
+        CONNECTING,
+        /**
+         * The session is establishing connection.
+         */
+        ESTABLISHING;
     }
     
     // observable property for current load status:
@@ -98,7 +106,6 @@ public class MySession {
     
     
     private JSch jsch = new JSch();
-    
     private Session currentSession;
     private String username;
     private String host;
@@ -119,10 +126,10 @@ public class MySession {
     public static MySession getInstant() {
         return thisSession;
     }
-    
     public Session getSession() {
         return this.currentSession;
     }
+    
    /*
     private void connect() {
             EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
@@ -155,12 +162,13 @@ public class MySession {
     */
     
     public void initializeSession(String username, String host, int port, String password) throws JSchException {
-        
+       
         CreateNewSessionTask newSession = new CreateNewSessionTask(username, host, password, port, userInfo);
         this.username = username;
         this.host = host;
         this.port = port;
         this.password = password;
+        setSessionStatus(SessionStatus.CONNECTING);
         exec.submit(newSession);
         newSession.setOnSucceeded(event -> {
            currentSession = newSession.getValue();
@@ -168,7 +176,6 @@ public class MySession {
             setSessionStatus(SessionStatus.READY);
         });
         newSession.setOnFailed(event -> {
-            System.out.println("Failed to initialize seession");
             setSessionStatus(SessionStatus.DISCONNECTED);
         });
         
@@ -181,9 +188,9 @@ public class MySession {
      * from the given data then if succeeded the chanel type will be opened.
      */ 
     public void initiateOpeningChannel(String channelType) {
-        
-        
+       
          EstablishConnectionTask firstTry = new EstablishConnectionTask(currentSession);
+         setSessionStatus(SessionStatus.ESTABLISHING);
             exec.submit(firstTry);
             firstTry.setOnSucceeded(event -> {
                 
@@ -193,11 +200,13 @@ public class MySession {
                 exec.submit(channelTask);
                  
                 channelTask.setOnSucceeded(event3 -> {
+                    
                     setSessionStatus(SessionStatus.ONLINE);
                     currentOpenedChannel = channelTask.getValue();
                  });
                  channelTask.setOnFailed(event3 -> {
-                     System.out.println("no channel could be opened");
+                    
+                     currentSession.disconnect();
                     setSessionStatus(SessionStatus.READY);
                  });
                
@@ -208,6 +217,7 @@ public class MySession {
                  
                  System.out.println("Session kaputt. Baue neue.");
                  CreateNewSessionTask secondTry = new CreateNewSessionTask(username, host, password, port, userInfo);
+                 
                  exec.submit(secondTry);
                  secondTry.setOnSucceeded(event2 -> {
                      
@@ -217,11 +227,15 @@ public class MySession {
                      exec.submit(channelTask);
                      
                      channelTask.setOnSucceeded(event3 -> {
+                         System.out.println("Channel is opened");
                          currentOpenedChannel = channelTask.getValue();
                          setSessionStatus(SessionStatus.ONLINE);
                      });
+                     
                      channelTask.setOnFailed(event3 -> {
+                          System.out.println("Channel opening failed");
                          System.out.println("no channel could be opened");
+                         currentSession.disconnect();
                          setSessionStatus(SessionStatus.READY);
                      });
                  });
@@ -233,11 +247,12 @@ public class MySession {
           });
         
     }
+    
+
     /**    
      * Closes the current channel and at the same time disconnects the current session because of the limited time.
      */ 
     public void closeChannel() {
-        
         if (currentOpenedChannel != null && currentOpenedChannel.isConnected()) { 
             
             ((ChannelSftp) currentOpenedChannel).quit();
@@ -248,6 +263,7 @@ public class MySession {
             currentSession.disconnect();
             setSessionStatus(SessionStatus.READY);
         }
+        
     }
     
     /**
@@ -255,6 +271,8 @@ public class MySession {
      * which it had in the beginning of the program.
      */ 
     public void removeConnection() {
+        
+        
         if (currentOpenedChannel != null) { 
             ((ChannelSftp) currentOpenedChannel).quit();
             currentOpenedChannel = null;
@@ -270,6 +288,7 @@ public class MySession {
         this.host = null;
         userInfo = new MyUserInfo();
         setSessionStatus(SessionStatus.DISCONNECTED);
+        
     }
     
     /**
@@ -354,14 +373,15 @@ public class MySession {
 
                 @Override
 		public boolean promptPassword(String message) {
-			Object[] ob = { passwordField };
+                        return false;
+			/*Object[] ob = { passwordField };
 			int result = JOptionPane.showConfirmDialog(null, ob, message, JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION) {
 				passwd = passwordField.getText();
 				return true;
 			} else {
 				return false;
-			}
+			}*/
 		}
 
                 @Override

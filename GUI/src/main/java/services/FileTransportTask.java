@@ -4,9 +4,11 @@
  */
 package services;
 
+import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
+import javax.swing.JOptionPane;
 import model.MySession;
 
 /**
@@ -54,6 +57,7 @@ public class FileTransportTask extends Task<Void> {
      */
     @Override
     protected Void call() throws SftpException, FileNotFoundException, IOException {
+       
        updateMessage("The file is beeing transferred via SFTP ...");
        
        File file = new File("src/main/resources/generated_docs/dummy.sh");
@@ -65,56 +69,66 @@ public class FileTransportTask extends Task<Void> {
        
        
        ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
-       ChannelExec exec = null;
-        try {
-            exec = (ChannelExec) MySession.getInstant().getSession().openChannel("exec");
-        } catch (JSchException ex) {
-            Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       //sftp.cd(directory);
        try {
             sftp.put(new FileInputStream(file), nameOfFile);
-            exec.setCommand("msub " + nameOfFile);
-            
-             //channel.setInputStream(System.in);
-      exec.setInputStream(null);
-
-      //channel.setOutputStream(System.out);
-
-      //FileOutputStream fos=new FileOutputStream("/tmp/stderr");
-      //((ChannelExec)channel).setErrStream(fos);
-      ((ChannelExec)exec).setErrStream(System.err);
-
-      InputStream in=exec.getInputStream();
-
-           try {
-               exec.connect();
-           } catch (JSchException ex) {
-               Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
-           }
-
-      byte[] tmp=new byte[1024];
-      while(true){
-        while(in.available()>0){
-          int i=in.read(tmp, 0, 1024);
-          if(i<0)break;
-          System.out.print(new String(tmp, 0, i));
-        }
-        if(exec.isClosed()){
-          if(in.available()>0) continue; 
-          System.out.println("exit-status: "+exec.getExitStatus());
-          break;
-        }
-        try{Thread.sleep(1000);}
-        catch(Exception ee){}
-      }
-       } catch (IOException e) {
+       } catch (FileNotFoundException | SftpException e) {
             updateMessage("The file could't be transferred! Cause:  " + e.getMessage());
             throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());
        }
         updateMessage("The file is successfully transfered via SFTP to server.");
        
+       
+        
+        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int n = JOptionPane.showConfirmDialog (null, "Do you want also to run the generated script in the server?","Run Job",dialogButton);
+      
+        
+        if(n == JOptionPane.YES_OPTION){ 
+                         Channel channel = null;
+                try {
+                    channel = MySession.getInstant().getSession().openChannel("exec");
+                } catch (JSchException ex) {
+                    Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               ((ChannelExec)channel).setCommand("msub " + nameOfFile);
+
+              channel.setInputStream(null);
+
+
+              ((ChannelExec)channel).setErrStream(System.err);
+
+              InputStream in=channel.getInputStream();
+
+                try {
+                    channel.connect();
+                } catch (JSchException ex) {
+                    updateMessage("File is transferred but an error occurred while trying to run it");
+                }
+
+              byte[] tmp=new byte[1024];
+              StringBuilder job = new StringBuilder();
+              while(true){
+                while(in.available()>0){
+                  int i=in.read(tmp, 0, 1024);
+                  if(i<0)break;
+                 job.append(new String(tmp, 0, i));
+                }
+                if(channel.isClosed()){
+                  if(in.available()>0) continue; 
+                 // updateMessage("exit-status: "+channel.getExitStatus());
+                  break;
+                }
+                
+              }
+              updateMessage("File is successfully transferred and job " + job.toString() + " is initiated");
+              channel.disconnect();
+        }
+     
+       
+       
        return null;
+        
     }
                
     

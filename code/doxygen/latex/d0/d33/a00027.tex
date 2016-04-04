@@ -1,0 +1,180 @@
+\hypertarget{a00027}{}\subsection{Mpi\+Proxy Class Reference}
+\label{a00027}\index{Mpi\+Proxy@{Mpi\+Proxy}}
+
+
+{\ttfamily \#include $<$Mpi\+Proxy.\+h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00027_ad22c1c930a79774e8ffaa83a2d3c4d0a}{Mpi\+Proxy} (int nr\+\_\+of\+\_\+dimensions, int rank, int target\+\_\+rank)
+\item 
+\hyperlink{a00027_a7ae10385700f03ae8540f51df13b9bd5}{$\sim$\+Mpi\+Proxy} ()
+\item 
+int $\ast$ \hyperlink{a00027_a20a8ccb288eac8a7afe0685d7d326be6}{get\+\_\+dimensions} ()
+\item 
+double $\ast$ \hyperlink{a00027_a2fec3ea7837878aec42f111f260e892e}{get\+\_\+offset} ()
+\item 
+double $\ast$ \hyperlink{a00027_a3d0fdc842c0a2534fefeff5281c48feb}{get\+\_\+increment} ()
+\item 
+long \hyperlink{a00027_ad61ef78eb8e9c0ce3d6bccf2f31373ed}{get\+\_\+time} (int index)
+\item 
+double \hyperlink{a00027_a8669e778c6946551fed36437199b3f29}{get\+\_\+correction\+\_\+vektor} (int index)
+\item 
+void \hyperlink{a00027_a5b23a639ad129acb53669adea92621d1}{set\+\_\+new\+\_\+array} (int $\ast$new\+\_\+dimensions, double $\ast$new\+\_\+offset, double $\ast$new\+\_\+increment)
+\item 
+void \hyperlink{a00027_a0da318d216e55c3d9e6a0c82eae86ad5}{push\+\_\+new\+\_\+array} ()
+\item 
+void \hyperlink{a00027_a72e4d7eaa47e6b9e06b699e8c22d6125}{set\+\_\+correction\+\_\+vektor} (int index, double new\+\_\+vektor\+\_\+value)
+\item 
+void \hyperlink{a00027_acdd2ee63120b275fde43e6c4d5f62f29}{set\+\_\+time} (int index, long new\+\_\+time)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Project Dynamic Scheduler for Scientific Simulations 
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{a00027_ad22c1c930a79774e8ffaa83a2d3c4d0a}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!Mpi\+Proxy@{Mpi\+Proxy}}
+\index{Mpi\+Proxy@{Mpi\+Proxy}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{Mpi\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Proxy\+::\+Mpi\+Proxy (
+\begin{DoxyParamCaption}
+\item[{int}]{nr\+\_\+of\+\_\+dimensions, }
+\item[{int}]{rank, }
+\item[{int}]{traget\+\_\+rank}
+\end{DoxyParamCaption}
+)}\label{a00027_ad22c1c930a79774e8ffaa83a2d3c4d0a}
+The constructor of the M\+P\+I Proxy it initialize the M\+P\+I shared memory and the attributes with default values 
+\begin{DoxyParams}{Parameters}
+{\em nr\+\_\+of\+\_\+dimensions} & the number of dimensions in the virtual multidimensional array musst be bigger than zero \\
+\hline
+{\em rank} & the own rank in the M\+P\+I world musst not be negativ \\
+\hline
+{\em target\+\_\+rank} & the rank of the instanz that hold the M\+P\+I shared memory musst not be negativ\\
+\hline
+\end{DoxyParams}
+Project Dynamic Scheduler for Scientific Simulations \hyperlink{a00027}{Mpi\+Proxy} implementation \hypertarget{a00027_a7ae10385700f03ae8540f51df13b9bd5}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!````~Mpi\+Proxy@{$\sim$\+Mpi\+Proxy}}
+\index{````~Mpi\+Proxy@{$\sim$\+Mpi\+Proxy}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{$\sim$\+Mpi\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}Mpi\+Proxy\+::$\sim$\+Mpi\+Proxy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00027_a7ae10385700f03ae8540f51df13b9bd5}
+The destructor of the M\+P\+I Proxy it deletes the M\+P\+I shared memory window 
+
+\subsubsection{Member Function Documentation}
+\hypertarget{a00027_a8669e778c6946551fed36437199b3f29}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!get\+\_\+correction\+\_\+vektor@{get\+\_\+correction\+\_\+vektor}}
+\index{get\+\_\+correction\+\_\+vektor@{get\+\_\+correction\+\_\+vektor}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{get\+\_\+correction\+\_\+vektor}]{\setlength{\rightskip}{0pt plus 5cm}double Mpi\+Proxy\+::get\+\_\+correction\+\_\+vektor (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{a00027_a8669e778c6946551fed36437199b3f29}
+Getter for the correction vektor of a singel Grid point 
+\begin{DoxyParams}{Parameters}
+{\em index} & of the correction vektor array musst not be negativ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the correction vektor at the point with index index 
+\end{DoxyReturn}
+\hypertarget{a00027_a20a8ccb288eac8a7afe0685d7d326be6}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!get\+\_\+dimensions@{get\+\_\+dimensions}}
+\index{get\+\_\+dimensions@{get\+\_\+dimensions}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{get\+\_\+dimensions}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ Mpi\+Proxy\+::get\+\_\+dimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00027_a20a8ccb288eac8a7afe0685d7d326be6}
+Getter for dimensions \begin{DoxyReturn}{Returns}
+a copy of the actual dimensions 
+\end{DoxyReturn}
+\hypertarget{a00027_a3d0fdc842c0a2534fefeff5281c48feb}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!get\+\_\+increment@{get\+\_\+increment}}
+\index{get\+\_\+increment@{get\+\_\+increment}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{get\+\_\+increment}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Mpi\+Proxy\+::get\+\_\+increment (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00027_a3d0fdc842c0a2534fefeff5281c48feb}
+Getter for increment \begin{DoxyReturn}{Returns}
+a copy of the increment vektor 
+\end{DoxyReturn}
+\hypertarget{a00027_a2fec3ea7837878aec42f111f260e892e}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!get\+\_\+offset@{get\+\_\+offset}}
+\index{get\+\_\+offset@{get\+\_\+offset}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{get\+\_\+offset}]{\setlength{\rightskip}{0pt plus 5cm}double $\ast$ Mpi\+Proxy\+::get\+\_\+offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00027_a2fec3ea7837878aec42f111f260e892e}
+Getter for offset \begin{DoxyReturn}{Returns}
+a copy of the offset vektor of the grid to the parameter point 0 
+\end{DoxyReturn}
+\hypertarget{a00027_ad61ef78eb8e9c0ce3d6bccf2f31373ed}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!get\+\_\+time@{get\+\_\+time}}
+\index{get\+\_\+time@{get\+\_\+time}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{get\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}long Mpi\+Proxy\+::get\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{a00027_ad61ef78eb8e9c0ce3d6bccf2f31373ed}
+Getter for the time array 
+\begin{DoxyParams}{Parameters}
+{\em index} & of the Grid point whose time is requestet musst not be negativ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the time of the Grid point with the index index 
+\end{DoxyReturn}
+\hypertarget{a00027_a0da318d216e55c3d9e6a0c82eae86ad5}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!push\+\_\+new\+\_\+array@{push\+\_\+new\+\_\+array}}
+\index{push\+\_\+new\+\_\+array@{push\+\_\+new\+\_\+array}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{push\+\_\+new\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Proxy\+::push\+\_\+new\+\_\+array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00027_a0da318d216e55c3d9e6a0c82eae86ad5}
+deletes the old M\+P\+I shared Memory and set the new one instead just callable if taget rank is equal rank and if set\+\_\+new\+\_\+array is called before \hypertarget{a00027_a72e4d7eaa47e6b9e06b699e8c22d6125}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!set\+\_\+correction\+\_\+vektor@{set\+\_\+correction\+\_\+vektor}}
+\index{set\+\_\+correction\+\_\+vektor@{set\+\_\+correction\+\_\+vektor}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{set\+\_\+correction\+\_\+vektor}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Proxy\+::set\+\_\+correction\+\_\+vektor (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{double}]{new\+\_\+vektor\+\_\+value}
+\end{DoxyParamCaption}
+)}\label{a00027_a72e4d7eaa47e6b9e06b699e8c22d6125}
+Setter for the correction\+\_\+vektor 
+\begin{DoxyParams}{Parameters}
+{\em index} & the index of the correction vektor array musst not be negativ \\
+\hline
+{\em new\+\_\+vektor\+\_\+value} & the new vektor value \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00027_a5b23a639ad129acb53669adea92621d1}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!set\+\_\+new\+\_\+array@{set\+\_\+new\+\_\+array}}
+\index{set\+\_\+new\+\_\+array@{set\+\_\+new\+\_\+array}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{set\+\_\+new\+\_\+array}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Proxy\+::set\+\_\+new\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{new\+\_\+dimensions, }
+\item[{double $\ast$}]{new\+\_\+offset, }
+\item[{double $\ast$}]{new\+\_\+increment}
+\end{DoxyParamCaption}
+)}\label{a00027_a5b23a639ad129acb53669adea92621d1}
+Creates a new M\+P\+I window with the new size B\+U\+T dose not change something at the old M\+P\+I window 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+dimensions} & the new size of the time and the correction vektor arry musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+{\em new\+\_\+offset} & the new offset of the Grid to the parameter point 0 musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+{\em new\+\_\+increment} & the new increment vektor for the Grid musst be nr\+\_\+of\+\_\+dimensions long musst not be N\+U\+L\+L \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00027_acdd2ee63120b275fde43e6c4d5f62f29}{}\index{Mpi\+Proxy@{Mpi\+Proxy}!set\+\_\+time@{set\+\_\+time}}
+\index{set\+\_\+time@{set\+\_\+time}!Mpi\+Proxy@{Mpi\+Proxy}}
+\paragraph[{set\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}void Mpi\+Proxy\+::set\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{long}]{new\+\_\+time}
+\end{DoxyParamCaption}
+)}\label{a00027_acdd2ee63120b275fde43e6c4d5f62f29}
+Setter for the time array 
+\begin{DoxyParams}{Parameters}
+{\em index} & the index of the Grid point whoes time should be changed musst not be negativ \\
+\hline
+{\em new\+\_\+time} & the new time of the Grid point musst not be negativ \\
+\hline
+\end{DoxyParams}

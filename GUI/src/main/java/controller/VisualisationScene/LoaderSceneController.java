@@ -4,15 +4,21 @@
  */
 package controller.VisualisationScene;
 
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import components.LoaderTreeItem;
 import components.SftpTreeItem;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -22,6 +28,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.MySession;
 
 
@@ -45,11 +54,20 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     public void choose(ActionEvent event){
         VisualisationSceneController.setBaseDir(localDir);
+        DirectoryChooser fc = new DirectoryChooser();
+        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        File sd = fc.showDialog(new Stage());
+        VisualisationSceneController.setBaseDir(sd.getAbsolutePath());
     }
 
     @FXML
     public void download(ActionEvent event){
-        
+        try {
+            ChannelSftp channel = MySession.getInstant().getSFTPChannel();
+            channel.get("Bookkeeping.txt");
+        } catch (SftpException ex) {
+            Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -139,15 +157,11 @@ public class LoaderSceneController implements Initializable, Controller {
        System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
        String localHost = ".";
-       try {
-           localHost = InetAddress.getLocalHost().getHostName();
-       }
-       catch(UnknownHostException u) {
-       }
-       TreeItem<String> root = new TreeItem<>(localHost);
+       try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
+       LoaderTreeItem root = new LoaderTreeItem(Paths.get(localHost));
        Iterable<Path> rootDir = FileSystems.getDefault().getRootDirectories();
        for(Path p:rootDir) {
-           TreeItem<String> node = new TreeItem(p);
+           LoaderTreeItem node = new LoaderTreeItem(p);
            node.setExpanded(true);
            root.getChildren().add(node);
        }

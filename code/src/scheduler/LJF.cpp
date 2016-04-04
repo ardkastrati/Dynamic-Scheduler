@@ -1,25 +1,12 @@
-/**
- * Project Dynamic Scheduler for Scientific Simulations
- */
-
-
 #include "LJF.h"
 
-/**
- * LJF implementation
- * 
- * Implements the SchedulingStrategy interface and realises the Longest Job First (LJF) scheduling strategy. Longest Job First scheduling uses the estimated runtime of tasks  to order the task queue.
- * LJF is a statistically based scheduling strategy
- */
-
-bool ComparisonClassLJF::operator ()(TaskTimeType task1, TaskTimeType task2) {
-    return task1.second < task2.second;
+bool ComparisonClassLJF::operator ()(TaskTimeType task_time_1, TaskTimeType task_time_2) {
+    return task_time_1.second < task_time_2.second;
 }
 
-LJF::LJF()
+LJF::LJF() :
+queue(new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassLJF>())
 {
-    //TODO:Set right comparer
-    queue = new std::priority_queue<TaskTimeType, std::vector<TaskTimeType>, ComparisonClassLJF>();
 }
 
 LJF::~LJF()
@@ -27,7 +14,7 @@ LJF::~LJF()
     delete queue;
 }
 
-TaskType LJF::get_next_task()
+Task LJF::get_next_task()
 {
     TaskTimeType result = queue->top();
     return result.first;
@@ -38,12 +25,15 @@ int LJF::get_task_count()
     return queue->size();
 }
 
-void LJF::pop_next_task()
+Task LJF::pop_next_task()
 {
+    TaskTimeType result;
+    result = queue->top();
     queue->pop();
+    return result.first;
 }
 
-void LJF::push_new_task(TaskType task, long runtime)
+void LJF::push_new_task(Task task, long runtime)
 {
     TaskTimeType taskTime;
     taskTime.first = task;
@@ -61,4 +51,9 @@ SchedulingStrategy* LJF::change_strategy(SchedulingStrategy *new_strategy)
         new_strategy->push_new_task(taskTime.first, taskTime.second);
     }
     return new_strategy;
+}
+
+bool LJF::is_statistic_based()
+{
+    return true;
 }

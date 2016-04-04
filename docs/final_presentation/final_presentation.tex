@@ -1,0 +1,119 @@
+%% LaTeX-Beamer template for KIT design
+%% by Erik Burger, Christian Hammer
+%% title picture by Klaus Krogmann
+%%
+%% version 2.1
+%%
+%% mostly compatible to KIT corporate design v2.0
+%% http://intranet.kit.edu/gestaltungsrichtlinien.php
+%%
+%% Problems, bugs and comments to
+%% burger@kit.edu
+
+\documentclass[18pt,handout]{beamer}
+%% SLIDE FORMAT
+
+% use 'beamerthemekit' for standard 4:3 ratio
+% for widescreen slides (16:9), use 'beamerthemekitwide'
+
+%\usepackage{templates/beamerthemekit}
+\usepackage{templates/beamerthemekitwide}
+
+%% TITLE PICTURE
+
+% if a custom picture is to be used on the title page, copy it into the 'logos'
+% directory, in the line below, replace 'mypicture' with the 
+% filename (without extension) and uncomment the following line
+% (picture proportions: 63 : 20 for standard, 169 : 40 for wide
+% *.eps format if you use latex+dvips+ps2pdf, 
+% *.jpg/*.png/*.pdf if you use pdflatex)
+
+\titleimage{title}
+
+%% TITLE LOGO
+
+% for a custom logo on the front page, copy your file into the 'logos'
+% directory, insert the filename in the line below and uncomment it
+
+\titlelogo{scc-logo}
+
+% (*.eps format if you use latex+dvips+ps2pdf,
+% *.jpg/*.png/*.pdf if you use pdflatex)
+
+%% TikZ INTEGRATION
+
+% use these packages for PCM symbols and UML classes
+% \usepackage{templates/tikzkit}
+% \usepackage{templates/tikzuml}
+
+% the presentation starts here
+
+\title[Project Presentation]{Dynamic Scheduler for Scientific Simulations}
+\subtitle{Project Presentation}
+\author{Kai Bittner, Ard Kastrati, Fabio Broghammer, Jan Ellmers, David Krenz, Benjamin-Philipp Roth}
+
+\institute{Steinbuch Centre for Computing - SCC}
+
+% Bibliography
+
+\usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
+\addbibresource{templates/example.bib}
+\bibhang1em
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{automata}
+\usepackage{marvosym}
+\usepackage[ngerman]{babel}
+\usetikzlibrary{shapes}
+\begin{document}
+
+% change the following line to "ngerman" for German style date and logos
+\selectlanguage{english}
+
+%title page
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+
+%table of contents
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Overview}
+\include{overview}
+\section{Scheduler}
+\include{scheduler}
+\section{Database}
+\include{overview}
+
+\include{database}
+\section{Data Mining}
+\include{overview}
+\include{GridDatamining2}
+\section{GUI}
+\include{overview}
+\include{gui}
+\begin{frame}
+	\begin{center}
+			\huge{\textbf{Live Demo}}
+	\end{center}		
+\end{frame}
+\include{visualization}
+\section{Summary}
+\include{summary}
+\section{Statistics}
+\include{statistics}
+\section{Experience}
+\include{experience}
+\begin{frame}
+	\begin{center}
+			\huge{\textbf{End}}
+	\end{center}		
+\end{frame}
+\end{document}
