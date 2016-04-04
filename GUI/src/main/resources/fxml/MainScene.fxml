@@ -84,11 +84,7 @@
                   </Tab>
                   <Tab id="visualizer" fx:id="visualizer">
                     <content>
-<<<<<<< HEAD
-                      <fx:include fx:id="visualizer" source="DiagramScene.fxml" />
-=======
                       <fx:include fx:id="visualizer" source="VisualisationScene.fxml"/>
->>>>>>> kai
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />

@@ -158,13 +158,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
             diagramBox.getItems().add(visualiser);
         }
         
-<<<<<<< HEAD
-       /* this.baseDir = "/home/a/Dokumente/PSE/testdata/";
-        File[] directories = new File(baseDir).listFiles(File::isDirectory);
-        for(int i = 0; i < directories.length; i++) {
-            calculationBox.getItems().add(directories[i].getName());
-        }*/
-=======
+
         this.baseDir = "/home/kai/Dokumente/PSE/testdata/";
         /*File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
@@ -189,7 +183,6 @@ public class VisualisationSceneController  implements Initializable, Controller{
         //sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 	//		sftpPath.setText(newValue.getValue());
 	//	});
->>>>>>> kai
     }
 
     @Override

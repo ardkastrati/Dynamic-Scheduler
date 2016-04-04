@@ -1,17 +1,7 @@
 package model.visualiser;
 
-<<<<<<< HEAD
-import java.util.HashMap;
-import java.util.List;
-import javafx.concurrent.Task;
-import javafx.scene.layout.Pane;
-import model.visualiser.dataholding.Event;
-
-/*
-=======
 
 
->>>>>>> kai
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.FRLayout;
 import edu.uci.ics.jung.visualization.Layout;
@@ -33,19 +23,11 @@ import javafx.scene.layout.Pane;
 import model.visualiser.dataholding.Task;
 import model.visualiser.dataholding.Datakeeper;
 //import jung.SimpleGraphView;
-*/
+
 
 public class TaskFlowVisualiser implements Visualiser {
 
-<<<<<<< HEAD
-    
-        /* @Override
-	public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            //SimpleGraphView sgv = new SimpleGraphView();
-           // Graph/*<MyLink,SparseVertex>*/ //g;
-           /* g = new DirectedSparseGraph();
-=======
+
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -53,10 +35,10 @@ public class TaskFlowVisualiser implements Visualiser {
 
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
-        /*    HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
+            HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
             Graph g;
             g = new DirectedSparseGraph();
->>>>>>> kai
+
             
             HashMap<Long,Vertex> vertexMap = new HashMap();
             Vertex zero = new SparseVertex();
@@ -90,18 +72,8 @@ public class TaskFlowVisualiser implements Visualiser {
             node.setContent( vv );
             	
             parent.getChildren().add(node);
-<<<<<<< HEAD
-        }      */
+        }      
 
-    @Override
-    public void getVisualisation(Pane parent, HashMap<Integer, model.visualiser.dataholding.Task> taskMap, List<Event> eventList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-=======
-                */
         }      
     
->>>>>>> kai
-           
-}
+
