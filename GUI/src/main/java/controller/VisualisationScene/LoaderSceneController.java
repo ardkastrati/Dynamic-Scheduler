@@ -24,7 +24,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -43,7 +45,12 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     private TreeView localTreeView;
     @FXML
-    private TreeView remoteTreeView;
+    private TreeView<String> remoteTreeView;
+    
+    @FXML
+    private Label noConnectionLabel;
+    @FXML
+    private ProgressIndicator connectingIndicator;
     
     private ChangeListener<MySession.SessionStatus> listener;
     
@@ -72,23 +79,37 @@ public class LoaderSceneController implements Initializable, Controller {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listener = (obs, oldStatus, newStatus) -> {
-            if (newStatus == MySession.SessionStatus.DISCONNECTED) {
-                
-            } else if (newStatus == MySession.SessionStatus.READY) {
-                
-            } else {
-                init();
-            }
-            
-        };
+       // Change listener for the session status
+		listener = (obs, oldStatus, newStatus) -> {
+			if (newStatus == MySession.SessionStatus.DISCONNECTED) {
+				remoteTreeView.setDisable(true);
+				connectingIndicator.setVisible(false);
+				noConnectionLabel.setVisible(true);
+				
+			} else if (newStatus == MySession.SessionStatus.ESTABLISHING) {
+				remoteTreeView.setDisable(true);
+				connectingIndicator.setVisible(true);
+				connectingIndicator.setProgress(-1);
+				noConnectionLabel.setVisible(false);
+				
+			} else if(newStatus == MySession.SessionStatus.ONLINE) {
+				connectingIndicator.setVisible(false);
+				remoteTreeView.setDisable(false);
+				noConnectionLabel.setVisible(false);
+				
+				init();
+			} else if(newStatus == MySession.SessionStatus.READY) {
+                                MySession.getInstant().initiateOpeningChannel("sftp");
+                        }
+		};
     }
     
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            LoaderTreeItem item = (LoaderTreeItem)newValue;
-            remoteDir = item.getPath();
+            /*LoaderTreeItem item = (LoaderTreeItem)newValue;
+            remoteDir = item.getPath();*/
         });
+       // remoteTreeView.setRoot(new SftpTreeItem("."));
         remoteTreeView.setRoot(new SftpTreeItem("."));
         initRemoteTree();
     }
@@ -156,6 +177,7 @@ public class LoaderSceneController implements Initializable, Controller {
     public void onEntry() {
        System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
+        MySession.getInstant().initiateOpeningChannel("sftp");
        String localHost = ".";
        try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
        LoaderTreeItem root = new LoaderTreeItem(Paths.get(localHost));
@@ -177,7 +199,7 @@ public class LoaderSceneController implements Initializable, Controller {
             }
         });
        System.out.println(localTreeView.getRoot().getChildren());
-       MySession.getInstant().initiateOpeningChannel("sftp");
+      
     }
 
     @Override

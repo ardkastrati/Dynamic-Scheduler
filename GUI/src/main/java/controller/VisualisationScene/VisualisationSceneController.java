@@ -71,7 +71,6 @@ public class VisualisationSceneController  implements Initializable, Controller{
     static private String baseDir;
     private boolean CurrentDirty;
     private String runningDir;
-    private ChangeListener<MySession.SessionStatus> listener;
     
     @FXML
     public void show(ActionEvent event) {
@@ -215,10 +214,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
-        }*/
+        }
         
         // Change listener for the session status
-        listener = (obs, oldStatus, newStatus) -> {
+       /* listener = (obs, oldStatus, newStatus) -> {
             if (newStatus == MySession.SessionStatus.READY || newStatus == MySession.SessionStatus.DISCONNECTED) {
                 refreshButton.setDisable(false);
                 refreshIndicator.setVisible(false);
@@ -231,7 +230,7 @@ public class VisualisationSceneController  implements Initializable, Controller{
                 refreshIndicator.setVisible(true);
                
             }
-        };
+        };*/
         //sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 	//		sftpPath.setText(newValue.getValue());
 	//	});
@@ -239,17 +238,12 @@ public class VisualisationSceneController  implements Initializable, Controller{
 
     @Override
     public void onEntry() {
-        System.out.println("Add listener");
-        MySession.getInstant().sessionStatusProperty().addListener(listener);
         //System.out.println("Debug");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onExit() {
-        System.out.println("Remove listener");
-        MySession.getInstant().sessionStatusProperty().removeListener(listener);
-         MySession.getInstant().closeChannel();
     }
 
     static protected void setBaseDir(String basedir){

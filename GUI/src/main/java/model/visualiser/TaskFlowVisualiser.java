@@ -47,6 +47,7 @@ public class TaskFlowVisualiser implements Visualiser {
 
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+            /*
             HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
             Graph g;
             g = new DirectedSparseGraph();
