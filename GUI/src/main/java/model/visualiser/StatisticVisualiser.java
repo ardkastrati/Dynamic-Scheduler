@@ -22,6 +22,7 @@ import com.panayotis.gnuplot.style.Style;
 import com.panayotis.gnuplot.swing.JPlot;
 import java.awt.Component;
 import javafx.embed.swing.SwingNode;
+import model.visualiser.dataholding.Datakeeper;
 /**
  *
  * 
@@ -30,7 +31,8 @@ public class StatisticVisualiser implements Visualiser{
 
     
     @Override
-    public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
+    public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+       List<Event> eventList = datakeeper.getEventList();
        JavaPlot javaPlot = new JavaPlot(true);
        final JPlot plot = new JPlot(javaPlot);
        final JavaPlot p = plot.getJavaPlot();
@@ -61,6 +63,11 @@ public class StatisticVisualiser implements Visualiser{
        SwingNode node = new SwingNode();    
        node.setContent(plot);
        parent.getChildren().add(node);
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

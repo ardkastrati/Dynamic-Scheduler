@@ -8,6 +8,7 @@ package controller.mainScene;
 import controller.Controller;
 import controller.MOABScene.MOABSceneController;
 import controller.SSHConnectionScene.SSHConnectionController;
+import controller.VisualisationScene.VisualisationSceneController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -41,6 +42,8 @@ public class MainSceneController implements Initializable, Controller {
 	private SSHConnectionController sshConnectionController;
 	@FXML
 	private MOABSceneController moabController;
+        @FXML
+        private VisualisationSceneController visualizerController;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         @FXML
 	private BorderPane border;
 	@FXML
@@ -85,7 +88,7 @@ public class MainSceneController implements Initializable, Controller {
 				// jobsControler.onExit();
 				break;
 			case "visualizer":
-				// visualizerController.onExit();
+				visualizerController.onExit();
 				break;
 			default:
 				assert false : this;
@@ -106,7 +109,7 @@ public class MainSceneController implements Initializable, Controller {
 				// jobsController.onExit();
 				break;
 			case "visualizer":
-				// visualizerController.onExit();
+				 visualizerController.onEntry();
 				break;
 			default:
 				assert false : this;

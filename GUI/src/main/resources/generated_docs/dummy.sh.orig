@@ -1,8 +1,14 @@
         #### MOAB commands
 
+<<<<<<< HEAD
+#MSUB  -q singlenode
+#MSUB  -l nodes=1:ppn=1
+#MSUB  -N test
+=======
 #MSUB  -q develop
 #MSUB  -l nodes=2:ppn=2
 #MSUB  -N ard
+>>>>>>> kai
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
 
@@ -14,4 +20,8 @@ cd ./pse
 
         #### MPI commands
 
+<<<<<<< HEAD
 mpirun ls
+=======
+mpirun -n 4 ls
+>>>>>>> kai

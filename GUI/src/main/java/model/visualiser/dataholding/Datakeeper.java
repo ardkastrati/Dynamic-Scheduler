@@ -20,9 +20,29 @@ import java.util.logging.Logger;
  */
 public class Datakeeper {
     
-    HashMap<Integer, Task> taskMap;
+    HashMap<Long, Task> taskMap;
     
     List<Event> eventList;
+    
+    long overAllStartTime;
+
+    public long getOverAllStartTime() {
+        return overAllStartTime;
+    }
+
+    public void setOverAllStartTime(long overAllStartTime) {
+        this.overAllStartTime = overAllStartTime;
+    }
+
+    public int getNumberOfProcessors() {
+        return numberOfProcessors;
+    }
+
+    public void setNumberOfProcessors(int numberOfProcessors) {
+        this.numberOfProcessors = numberOfProcessors;
+    }
+    
+    int numberOfProcessors;
     
     /**
      * Constructs a new Datakeeper with the files at the given base directory
@@ -44,13 +64,15 @@ public class Datakeeper {
         } catch (ParserException ex) {
             //MainSceneController.showPopupMessage("Statistic file has wrong format", diagramPane, 100, 150, true, true);
         } 
+        
     }
+    
     
     /**
      * Returns the taskMap of this calculation
      * @return the taskMap of this calculation
      */
-    public HashMap<Integer, Task> getTaskMap() {
+    public HashMap<Long, Task> getTaskMap() {
         return this.taskMap;
     }
     
