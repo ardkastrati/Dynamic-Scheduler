@@ -1,12 +1,7 @@
 package model.visualiser;
 
-import java.util.HashMap;
-import java.util.List;
-import javafx.concurrent.Task;
-import javafx.scene.layout.Pane;
-import model.visualiser.dataholding.Event;
 
-/*
+
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.FRLayout;
 import edu.uci.ics.jung.visualization.Layout;
@@ -14,51 +9,38 @@ import edu.uci.ics.jung.visualization.PluggableRenderer;
 import edu.uci.ics.jung.visualization.Renderer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.graph.impl.DirectedSparseGraph;
-import edu.uci.ics.jung.graph.ArchetypeEdge;
-import edu.uci.ics.jung.graph.ArchetypeGraph;
-import edu.uci.ics.jung.graph.ArchetypeVertex;
 import edu.uci.ics.jung.graph.DirectedEdge;
-import edu.uci.ics.jung.graph.Edge;
 import edu.uci.ics.jung.graph.Vertex;
-import edu.uci.ics.jung.graph.decorators.ToStringLabeller;
 import edu.uci.ics.jung.graph.impl.DirectedSparseEdge;
 import edu.uci.ics.jung.graph.impl.SparseVertex;
-import edu.uci.ics.jung.utils.Pair;
-import edu.uci.ics.jung.utils.UserDataContainer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javafx.embed.swing.SwingNode;
 
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import model.visualiser.dataholding.Event;
 import model.visualiser.dataholding.Task;
-//import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
-import edu.uci.ics.jung.visualization.transform.MutableTransformer;
-import edu.uci.ics.jung.visualization.transform.Transformer;
-import java.awt.geom.Point2D;
 //import jung.SimpleGraphView;
-*/
+
 
 public class TaskFlowVisualiser implements Visualiser {
 
+    @Override
+    public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-        /* @Override
+    
+}
+/*
+        @Override
 	public void getVisualisation(Pane parent, HashMap<Integer, Task> taskMap, List<Event> eventList) {
              throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            //SimpleGraphView sgv = new SimpleGraphView();
-           // Graph/*<MyLink,SparseVertex>*/ //g;
-           /* g = new DirectedSparseGraph();
+            SimpleGraphView sgv = new SimpleGraphView();
+            Graph<MyLink,SparseVertex> g;
+            g = new DirectedSparseGraph();
             
             HashMap<Long,Vertex> vertexMap = new HashMap();
             Vertex zero = new SparseVertex();
@@ -108,12 +90,9 @@ public class TaskFlowVisualiser implements Visualiser {
             node.setContent( vv );
             	
             parent.getChildren().add(node);
-        }      */
-
-    @Override
-    public void getVisualisation(Pane parent, HashMap<Integer, model.visualiser.dataholding.Task> taskMap, List<Event> eventList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+}   */
 
            
-}
+
+

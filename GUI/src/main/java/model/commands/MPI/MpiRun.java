@@ -168,7 +168,7 @@ public class MpiRun implements ICommand {
         StringBuilder command = new StringBuilder();
         if(parameter == null && design == null && strategy == null) { return ""; }
         
-        command.append("mpirun ");
+       // command.append("mpirun ");
         if(parameter != null) {
             
             command.append(parameter);
@@ -176,12 +176,12 @@ public class MpiRun implements ICommand {
         System.out.println(design);
         System.out.println(strategy);
         if(design != null) {
-            command.append(" -design ");
+            command.append(" --design ");
             command.append(design.toString());
             
         }
         if(strategy != null) {
-           command.append(" -strategy ");
+           command.append(" --strategy ");
            command.append(strategy.toString());
         }
         return command.toString();
