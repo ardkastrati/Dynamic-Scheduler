@@ -65,6 +65,7 @@ public class LoaderSceneController implements Initializable, Controller {
         DirectoryChooser fc = new DirectoryChooser();
         //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         File sd = fc.showDialog(new Stage());
+        localDir = sd.getAbsolutePath();
         VisualisationSceneController.setBaseDir(sd.getAbsolutePath());
     }
 
@@ -76,8 +77,19 @@ public class LoaderSceneController implements Initializable, Controller {
         //} catch (SftpException ex) {
         //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
         //}
-        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/test" + "/Bookkeeping.txt");
-        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/test" + "/Statistic.txt");
+        remoteTreeView.getSelectionModel().getSelectedItems().get(0);
+        String dir = "test";
+        File file = new File(remoteDir + "/" + dir);
+        if (!file.exists()) {
+            if (file.mkdir()) {
+                System.out.println("Directory is created!");
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }
+        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/" + dir + "/Bookkeeping.txt");
+        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/" + dir + "/Statistic.txt");
+        System.err.println("Remote:"+ remoteDir +"local:" + localDir);
         Thread bookThread = new Thread(task);
         bookThread.setDaemon(true);
         Thread statThread = new Thread(taskStat);
@@ -115,8 +127,12 @@ public class LoaderSceneController implements Initializable, Controller {
     
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            /*LoaderTreeItem item = (LoaderTreeItem)newValue;
-            remoteDir = item.getPath();*/
+            //LoaderTreeItem item = (LoaderTreeItem)newValue;
+            //System.out.println("remote");
+            if (newValue != null) {
+                remoteDir = newValue.getValue();
+            }
+            //remoteDir = item.getPath();
         });
        // remoteTreeView.setRoot(new SftpTreeItem("."));
         remoteTreeView.setRoot(new SftpTreeItem("."));

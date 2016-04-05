@@ -106,12 +106,14 @@ public class VisualisationSceneController  implements Initializable, Controller{
                 Tab tab = new Tab();
                 final ProgressIndicator pi = new ProgressIndicator();
                 pi.setProgress(-1);
+                tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pi);
+                tab.setClosable(true);
                 diagramPane.getTabs().add(tab);
                 diagramType.getVisualisation(pane, ikeeper);
-                tab.setText(calculation + " --- " + diagramBox.getValue());
+                //tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
-                tab.setClosable(true);
+                //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
             }
             

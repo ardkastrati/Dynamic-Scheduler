@@ -59,9 +59,13 @@ public class Parser {
             line = input.nextLine();
             splitLine = line.split(";");
             runtime = Long.parseLong(splitLine[0]);
-            Double parameters[] = new Double[splitLine.length - 1];
-            for(int i = 1; i < splitLine.length; i++) {
-                parameters[i-1] = Double.parseDouble(splitLine[1]);
+            Double parameters[] = new Double[splitLine.length - 2];
+            for(int i = 1; i < splitLine.length - 1; i++) {
+                try {
+                parameters[i-1] = Double.parseDouble(splitLine[i]);
+                } catch (NumberFormatException n) {
+                    throw new ParserException();
+                }
             }
             Event event = new Event();
             event.setTime(runtime);
