@@ -18,6 +18,7 @@ import edu.uci.ics.jung.graph.impl.DirectedSparseEdge;
 import edu.uci.ics.jung.graph.impl.SparseVertex;
 import edu.uci.ics.jung.utils.Pair;
 import edu.uci.ics.jung.utils.UserDataContainer;
+import edu.uci.ics.jung.visualization.GraphMouseListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -39,6 +40,7 @@ import model.visualiser.dataholding.Task;
 //import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.Transformer;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import model.visualiser.dataholding.Datakeeper;
 //import jung.SimpleGraphView;
@@ -72,6 +74,7 @@ public class TaskFlowVisualiser implements Visualiser {
                 Task task2 = (Task)pair2.getValue(); 
                 Vertex ver = vertexMap.get(task2.getId());
                 Vertex parVer = vertexMap.get((long)task2.getParent());
+                
                 if(parVer != null) {
                     DirectedEdge e = (DirectedEdge) g.addEdge(new DirectedSparseEdge(ver, parVer));
                 }
@@ -80,6 +83,28 @@ public class TaskFlowVisualiser implements Visualiser {
             Layout l = new FRLayout( g );
             Renderer r = new PluggableRenderer();
             VisualizationViewer vv = new VisualizationViewer( l, r );
+            
+            vv.addGraphMouseListener(new GraphMouseListener() {
+                @Override
+                public void graphClicked(Vertex vertex, MouseEvent me) {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+
+                @Override
+                public void graphPressed(Vertex vertex, MouseEvent me) {
+                    System.out.println("pressed");
+                    System.out.println(vertex.hashCode());
+                    //Iterator iterator = vertex.getUserDatumKeyIterator();
+                    //vertex.getUserDatum(iterator.next());
+                }
+
+                @Override
+                public void graphReleased(Vertex vertex, MouseEvent me) {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+                
+            });
+            //vv.vertexToolTipTransformer();
             //VertexLabelAsShapeRenderer.
             //vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
             //Transformer transformer = new Transformer() {

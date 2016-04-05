@@ -104,12 +104,16 @@ public class VisualisationSceneController  implements Initializable, Controller{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                diagramType.getVisualisation(pane, ikeeper);
                 Tab tab = new Tab();
+                final ProgressIndicator pi = new ProgressIndicator();
+                pi.setProgress(-1);
+                tab.setContent(pi);
+                diagramPane.getTabs().add(tab);
+                diagramType.getVisualisation(pane, ikeeper);
                 tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
                 tab.setClosable(true);
-                diagramPane.getTabs().add(tab);
+                //diagramPane.getTabs().add(tab);
             }
             
         });
@@ -232,6 +236,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
     static protected void setBaseDir(String basedir){
         baseDir = basedir;
         
+    }
+    
+    protected String getBaseDir() {
+      return baseDir;
     }
     
     public void chooseLoc(ActionEvent e) {

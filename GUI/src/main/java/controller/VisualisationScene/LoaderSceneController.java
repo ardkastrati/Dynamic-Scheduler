@@ -88,30 +88,22 @@ public class LoaderSceneController implements Initializable, Controller {
       directoryChooser.setTitle("Local directory of the downloaded file");
       File outputFolder = directoryChooser.showDialog(new Stage());
 
-        if (outputFolder != null) {
-            nodes.setVisible(false);
-            downloadButton.setDisable(true);
-           DownloadFileTask downloadTask = new DownloadFileTask(sftpPath.getText(), outputFolder.getPath());
-		
-		downloadTask.setOnSucceeded(event2 -> {
-			 successImage.setVisible(true);
-                         startTransition(successImage);
-                         
-		});
-
-		downloadTask.setOnFailed(event2 -> {
-			failureImage.setVisible(true);
-                        startTransition(failureImage);
-                        
-		});
-                message.setVisible(true);
-                downloadingIndicator.visibleProperty().bind(downloadTask.runningProperty());
-                message.textProperty().bind(downloadTask.messageProperty());
-		Thread t = new Thread(downloadTask);
-                t.setDaemon(true);
-                t.start();
-        }
-  
+    @FXML
+    public void download(ActionEvent event){
+        //try {
+        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
+        //    channel.get("Bookkeeping.txt");
+        //} catch (SftpException ex) {
+        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/test" + "/Bookkeeping.txt");
+        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/test" + "/Statistic.txt");
+        Thread bookThread = new Thread(task);
+        bookThread.setDaemon(true);
+        Thread statThread = new Thread(taskStat);
+        statThread.setDaemon(true);
+        bookThread.start();
+        statThread.start();
     }
 
     
