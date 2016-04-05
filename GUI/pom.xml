@@ -117,34 +117,17 @@
             <version>8.40.10</version>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.vfsjfilechooser2</groupId>
-            <artifactId>vfsjfilechooser2</artifactId>
-            <version>0.2.5</version>
-        </dependency>
-        <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>3.3</version>
         </dependency>
-	 <!--<dependency>
-           <groupId>javafx</groupId>
-            <artifactId>javafx</artifactId>
-	    <version>2.2</version>
-	    <scope>system</scope>
-            <systemPath>/usr/java/jdk1.7.0_60/jre/lib/jfxrt.jar</systemPath>
-        </dependency>-->
         <dependency>
             <groupId>com.panayotis.gnuplot</groupId>
             <artifactId>gnuplot</artifactId>
             <version>1.0</version>
             <type>jar</type>
         </dependency>
-	<dependency>
-		<groupId>edu.uci.ics.jung</groupId>
-		<artifactId>jung</artifactId>
-		<version>1.7.6</version>
-	    <type>jar</type>
-	</dependency>
+	
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -156,6 +139,28 @@
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
             <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <!--<dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung2</artifactId>
+            <version>2.0.1</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-graph-impl</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-visualization</artifactId>
+            <version>2.0.1</version>
+        </dependency>-->
+        <dependency>
+            <groupId>jung</groupId>
+            <artifactId>jung</artifactId>
+            <version>1.7.6</version>
             <type>jar</type>
         </dependency>
     </dependencies>

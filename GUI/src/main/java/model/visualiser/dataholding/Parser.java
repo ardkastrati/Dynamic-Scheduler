@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Parser {
 	
-    private HashMap<Integer,Task> taskMap;
+    private HashMap<Long,Task> taskMap;
 	
 	//####DATA_START####
 	// line: (ID);Time;Event;Mode;Parent;Start_Time;End_Time;Rank;Param_Size;#
@@ -36,11 +36,14 @@ public class Parser {
     public List<Event> parseStatistic(String path) throws FileNotFoundException, ParserException{
         List<Event> eventList = new ArrayList<Event>();
         File file = new File(path);
+        
         Scanner input = null;
         try {
             input = new Scanner(file);
         } catch (FileNotFoundException e) {
                 //TODO handle Error
+            System.out.println("DEBUG");
+            System.out.println(path);
         }
         String line = null;
         String[] splitLine;
@@ -56,9 +59,13 @@ public class Parser {
             line = input.nextLine();
             splitLine = line.split(";");
             runtime = Long.parseLong(splitLine[0]);
-            Double parameters[] = new Double[splitLine.length - 1];
-            for(int i = 1; i < splitLine.length; i++) {
-                parameters[i-1] = Double.parseDouble(splitLine[1]);
+            Double parameters[] = new Double[splitLine.length - 2];
+            for(int i = 1; i < splitLine.length - 1; i++) {
+                try {
+                parameters[i-1] = Double.parseDouble(splitLine[i]);
+                } catch (NumberFormatException n) {
+                    throw new ParserException();
+                }
             }
             Event event = new Event();
             event.setTime(runtime);
@@ -77,9 +84,9 @@ public class Parser {
      * @throws FileNotFoundException thrown if file was not found
      * @throws ParserException thrown if the file was not structured as expected
      */
-    public HashMap<Integer,Task> parseBookkeeping(String path) throws FileNotFoundException, ParserException{
+    public HashMap<Long,Task> parseBookkeeping(String path) throws FileNotFoundException, ParserException{
 	if(taskMap == null) {
-            taskMap = new HashMap<Integer, Task>();
+            taskMap = new HashMap<Long, Task>();
         }
                 
         File file = new File(path);
@@ -99,7 +106,7 @@ public class Parser {
             //System.out.println("Line:" + line);
             line = input.nextLine();
             splitLine = line.split(";");
-            int id = Integer.parseInt(splitLine[0]);
+            long id = Long.parseLong(splitLine[0]);
             if(id == 0){
                 continue;
             }
@@ -108,7 +115,7 @@ public class Parser {
             task = taskMap.getOrDefault(id, task);        
             long time = Long.parseLong(splitLine[1]);
             String event = splitLine[2];
-            int parent = Integer.parseInt(splitLine[4]);
+            long parent = Long.parseLong(splitLine[4]);
             task.setParent(parent);
             int rank = Integer.parseInt(splitLine[7]);
             task.setId(id);

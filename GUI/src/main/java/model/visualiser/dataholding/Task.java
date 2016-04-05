@@ -14,15 +14,15 @@ public class Task {
 	
 	private int rank;
 	
-	private int id;
+	private long id;
         
-        private int parent;
+        private long parent;
 
     /**
      * Returns the id of the parent task
      * @return The id of the parent task
      */
-    public int getParent() {
+    public long getParent() {
         return parent;
     }
 
@@ -30,7 +30,7 @@ public class Task {
      * Sets the id of the parent task
      * @param parent id of the parent task
      */
-    public void setParent(int parent) {
+    public void setParent(long parent) {
         this.parent = parent;
     }
 
@@ -110,7 +110,7 @@ public class Task {
      * Sets the id of this task
      * @param id the id of this task
      */
-    public void setId(int id) {
+    public void setId(long id) {
 		this.id = id;
 	}
 

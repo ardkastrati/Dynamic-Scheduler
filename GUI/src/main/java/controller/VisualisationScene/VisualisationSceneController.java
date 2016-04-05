@@ -3,7 +3,9 @@ package controller.VisualisationScene;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import controller.Controller;
+import controller.mainScene.MainSceneController;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,90 +17,191 @@ import java.util.ResourceBundle;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import model.MySession;
 import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 import model.visualiser.dataholding.Event;
 import model.visualiser.dataholding.Task;
+import services.VisualisationTask;
 
 public class VisualisationSceneController  implements Initializable, Controller{
 	
     @FXML
     private ResourceBundle resources;
     @FXML
+    private ProgressIndicator refreshIndicator;
+    @FXML
     private URL location;
     @FXML
-    private ChoiceBox<Visualiser> diagramBox;
+    private ChoiceBox<String> diagramBox;
     @FXML
     private ChoiceBox<String> calculationBox;
     @FXML
     private Button showButton;
     @FXML
+    private Button refreshButton;
+    @FXML
     private TabPane diagramPane;
     @FXML
     private Tab addDiagramTab;
+    @FXML
+    private Button cl;
+    @FXML
+    private ProgressIndicator refreshindicator;
     
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
-    private String baseDir;
+    static private String baseDir;
     private boolean CurrentDirty;
     private String runningDir;
     
     @FXML
     public void show(ActionEvent event) {
-        Visualiser diagramType = diagramBox.getValue();
+        final Visualiser diagramType = visualiserMap.get(diagramBox.getValue());
         String calculation = calculationBox.getValue();
         Tab tab = new Tab();
-        //Parser parser = new Parser();
-        HashMap<Integer, Task> taskMap = null;
-        //try {
-        //    taskMap = parser.parseBookkeeping("/home/kai/Dokumente/PSE/testdata/Bookkeeping.txt");
-        //} catch (FileNotFoundException ex) {
-        //    MainSceneController.showPopupMessage("Bookkeeping file not found", diagramPane, 100, 50, true, true);
-        //} catch (ParserException ex) {
-        //    MainSceneController.showPopupMessage("Bookkeeping file has wrong format", diagramPane, 100, 50, true, true);
-        //}
+        HashMap<Long, Task> taskMap = null;
         List<Event> eventList = null;//parser.parseStatistic("/home/kai/Dokumente/PSE/testdata/Statisics.txt");
-        Pane pane = new AnchorPane();
+        final Pane pane = new AnchorPane();
         //System.out.println(taskMap.toString());
+        Datakeeper keeper = null;
         if (keeperMap.containsKey(calculation)) {
-            taskMap = keeperMap.get(calculation).getTaskMap();
-            eventList = keeperMap.get(calculation).getEventList();
+            keeper = keeperMap.get(calculation);
         } else {
-            Datakeeper datakeeper = new Datakeeper(baseDir + calculation);
-            keeperMap.put(calculation, datakeeper);
-            taskMap = datakeeper.getTaskMap();
-            eventList = datakeeper.getEventList();
+            keeper = new Datakeeper(baseDir + "/" + calculation);
+            keeperMap.put(calculation, keeper);
         }
-        diagramType.getVisualisation(pane, taskMap, eventList);
-        tab.setText(calculation + " - " );
-        tab.setContent(pane);
-        diagramPane.getTabs().add(tab);
+        final Datakeeper ikeeper = keeper;
+        //Thread t = new Thread(new Runnable() {
+           // public void run()
+           // {
+               // diagramType.getVisualisation(pane, ikeeper);
+               // System.out.println("testt");
+                //tab.setText(calculation + " --- " + diagramBox.getValue());
+                //tab.setContent(pane);
+                //tab.setClosable(true);
+                //diagramPane.getTabs().add(tab);
+            //}
+        //});
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (ikeeper == null) {
+                    MainSceneController.showPopupMessage("Data not found!", pane, 0, 0, true, true);
+                    return;
+                }
+                Tab tab = new Tab();
+                refreshindicator.setProgress(-1);
+                refreshindicator.setVisible(true);
+                final ProgressIndicator pi = new ProgressIndicator();
+                pi.setProgress(-1);
+                Pane apane = new AnchorPane();
+                apane.getChildren().add(pi);
+                tab.setText(calculation + " --- " + diagramBox.getValue());
+                tab.setContent(apane);
+                tab.setClosable(true);
+                diagramPane.getTabs().add(tab);
+                System.out.println("Added");
+                diagramType.getVisualisation(pane, ikeeper);
+                //tab.setText(calculation + " --- " + diagramBox.getValue());
+                tab.setContent(pane);
+                refreshindicator.setVisible(false);
+                refreshindicator.setProgress(0);
+                //tab.setClosable(true);
+                //diagramPane.getTabs().add(tab);
+            }
+            
+        });
+        //pane.getChildren().addListener((ListChangeListener.Change<? extends Object> c) -> {
+        //    System.out.println("test");
+        //    c.next();
+        //    Pane ipane = (Pane)c.getAddedSubList().get(0);
+        //    Tab itab = new Tab();
+        //    itab.setText(calculation + " -- " + diagramBox.getValue());
+        //    itab.setContent(ipane);
+        //    itab.setClosable(true);
+        //    diagramPane.getTabs().add(itab);
+        //});
+        //diagramType.getVisualisation(pane, keeper);
+        //tab.setText(calculation + " - " + diagramBox.getValue());
+        //tab.setContent(pane);
+        //tab.setClosable(true);
+        //diagramPane.getTabs().add(tab);
+        
+        //VisualisationTask task = new VisualisationTask();
+        //task.setVisualiser(diagramType);
+        //task.setDatakeeper(ikeeper);
+        //task.setDiagramPane(diagramPane);
+        
+        //Thread th = new Thread(task);
+        //th.setDaemon(true);
+        //th.start();
     }
 
     @FXML
     public void refresh(ActionEvent event) {
-        MySession session = MySession.getInstant();
-        ChannelSftp sftp = session.getSFTPChannel("sftp");
+        Parent root;
         try {
-            sftp.get("Bookkeeping.txt", baseDir + runningDir + "/Bookkeeping.txt");
-        } catch (SftpException ex) {
-            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
+           
+           root = (Parent)loader.load();
+           Stage stage = new Stage();
+           stage.setTitle("File directory of the server");
+           stage.setScene(new Scene(root,600,400));
+           Controller controller = loader.getController();
+           controller.onEntry();
+           stage.setOnCloseRequest(ev -> {
+               controller.onExit();
+           });
+           
+           stage.show();
+           
+        } catch(IOException e) {
+            e.printStackTrace();
         }
-         try {
-            sftp.get("Statistic.txt", baseDir + runningDir + "/Statistic.txt");
-        } catch (SftpException ex) {
-            Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //MySession.getInstant().initiateOpeningChannel("sftp");
+    }
+    private void refresh() {
+            
+       /*   
+       ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
+        //try {
+            System.out.println("Trying to get Bookkeeping text");
+            //sftp.get("Bookkeeping.txt", baseDir + runningDir + "/Bookkeeping.txt");
+        //} catch (SftpException ex) {
+            System.out.println("Error");
+           //(()) Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+        // try {
+              System.out.println("Trying to get Statistic text");
+            ///sftp.get("Statistic.txt", baseDir + runningDir + "/Statistic.txt");
+        //} catch (SftpException ex) {
+            System.out.println("Error");
+           // Logger.getLogger(VisualisationSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
+       */
+        
     }
     
     @Override
@@ -119,26 +222,52 @@ public class VisualisationSceneController  implements Initializable, Controller{
         }
         while(visualiserService.hasNext()) {
             Visualiser visualiser = visualiserService.next();
-            visualiserMap.put(visualiser.toString(), visualiser);
-            diagramBox.getItems().add(visualiser);
+            String[] split = visualiser.toString().split("Visualiser", 1);
+            String name = split[0].replace("model.visualiser.","");
+            name = name.replace("@[0-9]*", "");
+            visualiserMap.put(name, visualiser);
+            diagramBox.getItems().add(name);
         }
         
-       /* this.baseDir = "/home/a/Dokumente/PSE/testdata/";
+        this.baseDir = System.getProperty("user.dir");//"/home/kai/Dokumente/PSE/testdata/";
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         for(int i = 0; i < directories.length; i++) {
             calculationBox.getItems().add(directories[i].getName());
-        }*/
+        }
+        
+       
+       
     }
 
     @Override
     public void onEntry() {
-        System.out.println("Debug");
+        //System.out.println("Debug");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onExit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    static protected void setBaseDir(String basedir){
+        baseDir = basedir;
+        
+    }
+    
+    protected String getBaseDir() {
+      return baseDir;
+    }
+    
+    public void chooseLoc(ActionEvent e) {
+        DirectoryChooser dc = new DirectoryChooser();
+        File sd = dc.showDialog(new Stage());
+        if (sd != null) {
+            baseDir = sd.getAbsolutePath();
+        }
+        File[] directories = new File(baseDir).listFiles(File::isDirectory);
+        calculationBox.getItems().clear();
+        for(int i = 0; i < directories.length; i++) {
+            calculationBox.getItems().add(directories[i].getName());
+        }
+    }
 }

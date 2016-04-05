@@ -33,7 +33,7 @@
             </Label>
             <Label text="mpirun" GridPane.columnIndex="2" />
             <Separator orientation="VERTICAL" prefHeight="65.0" prefWidth="31.0" GridPane.columnIndex="1" />
-            <TextField fx:id="mpiCommand" promptText="-np 4 ./myexec" GridPane.columnIndex="3" />
+            <TextField fx:id="mpiCommand" promptText="-np 4 ./myexec" text="/opt/bwhpc/common/compiler/intel/compxe.2015.3.187/impi/5.0.3.048/intel64/bin/mpirun ./scheduler" GridPane.columnIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.98339080810547" minWidth="10.0" prefWidth="154.98339080810547" />

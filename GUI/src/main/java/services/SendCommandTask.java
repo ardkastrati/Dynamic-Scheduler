@@ -52,7 +52,7 @@ public class SendCommandTask extends Task<String> {
         
         
         
-                    Channel channel = null;
+           Channel channel = null;
            try {
                channel = MySession.getInstant().getSession().openChannel("exec");
            } catch (JSchException ex) {
@@ -91,10 +91,9 @@ public class SendCommandTask extends Task<String> {
          updateMessage("Command is successfully executed: " + commandReturn.toString());
          channel.disconnect();
 
+         System.out.println("Job overview: \n  " + commandReturn.toString());
 
-
-
-       return null;
+        return "Job overview: \n  " + commandReturn.toString();
         
     }
                
