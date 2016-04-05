@@ -30,6 +30,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.MySession;
+import services.DownloadFileTask;
 
 
 /**
@@ -70,7 +71,42 @@ public class LoaderSceneController implements Initializable, Controller {
       DirectoryChooser directoryChooser = new DirectoryChooser();
       directoryChooser.setTitle("Local directory of the downloaded file");
       File outputFolder = directoryChooser.showDialog(new Stage());
-      
+      if (outputFolder != null) {
+	 
+           nodes.setVisible(false);
+	 
+           downloadButton.setDisable(true);
+	 
+          DownloadFileTask downloadTask = new DownloadFileTask(sftpPath.getText(), outputFolder.getPath());
+	 
+		downloadTask.setOnSucceeded(event2 -> {
+ 			 successImage.setVisible(true);
+	 
+                        startTransition(successImage);
+	 		});
+	 
+
+	 
+		downloadTask.setOnFailed(event2 -> {
+	 
+			failureImage.setVisible(true);
+	 
+                       startTransition(failureImage);
+	 
+                      
+	 
+		});
+ 
+              message.setVisible(true);
+	 
+              downloadingIndicator.visibleProperty().bind(downloadTask.runningProperty());
+             message.textProperty().bind(downloadTask.messageProperty());
+		Thread t = new Thread(downloadTask);
+               t.setDaemon(true);
+             t.start();
+	 
+       }
+
     }
     
     @Override
