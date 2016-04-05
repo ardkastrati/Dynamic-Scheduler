@@ -25,6 +25,7 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -143,10 +144,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
         Parent root;
         try {
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoaderScene.fxml"));
-           //System.out.println(loader.getLocation());
-           root = (Parent)loader.<Parent>load();
+           
+           root = (Parent)loader.load();
            Stage stage = new Stage();
-           stage.setTitle("Loader");
+           stage.setTitle("File directory of the server");
            stage.setScene(new Scene(root,600,400));
            Controller controller = loader.getController();
            controller.onEntry();
@@ -157,8 +158,6 @@ public class VisualisationSceneController  implements Initializable, Controller{
            stage.show();
            
         } catch(IOException e) {
-            //System.out.println(loader);
-            System.out.println("DEBUG");
             e.printStackTrace();
         }
         //MySession.getInstant().initiateOpeningChannel("sftp");
@@ -216,24 +215,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
             calculationBox.getItems().add(directories[i].getName());
         }
         
-        // Change listener for the session status
-       /* listener = (obs, oldStatus, newStatus) -> {
-            if (newStatus == MySession.SessionStatus.READY || newStatus == MySession.SessionStatus.DISCONNECTED) {
-                refreshButton.setDisable(false);
-                refreshIndicator.setVisible(false);
-                //Was willst du machen in wenn du nicht connected bist
-            } else if (newStatus == MySession.SessionStatus.ONLINE) {
-                refresh();
-            //Was willst du machen wenn du verbunden bist    
-            } else { //andere Zustände wenn du brauchst
-                refreshButton.setDisable(true);
-                refreshIndicator.setVisible(true);
-               
-            }
-        };*/
-        //sftpTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-	//		sftpPath.setText(newValue.getValue());
-	//	});
+       
+       
     }
 
     @Override

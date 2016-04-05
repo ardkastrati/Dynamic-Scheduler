@@ -17,15 +17,22 @@ import services.LoadSftpTreeTask;
  * @see TreeItem
  */
 public class SftpTreeItem extends TreeItem<String> {
-
+        
 	// Executor for background tasks:
 	private static final ExecutorService exec = Executors.newCachedThreadPool(r -> {
 		Thread t = new Thread(r);
 		t.setDaemon(true);
 		return t;
 	});
+    
 
+         public enum Mode {
+            DIRECTORYS_ONLY,
+            ALL_FILES;
+        }
+    
 	private static ChannelSftp sftp;
+        private final Mode mode;
 	// private static LoadSftpTreeService sftpService;
 
 	/**
@@ -38,6 +45,7 @@ public class SftpTreeItem extends TreeItem<String> {
 	public enum ChildrenLoadedStatus {
 		NOT_LOADED, LOADING, LOADED
 	}
+       
 
 	// observable property for current load status:
 	private final ObjectProperty<ChildrenLoadedStatus> childrenLoadedStatus = new SimpleObjectProperty<>(
@@ -47,8 +55,9 @@ public class SftpTreeItem extends TreeItem<String> {
 	 * Initializes the SftpTreeItem object
 	 * @param value the value of the SFTP tree item
 	 */
-	public SftpTreeItem(String value) {
-		super(value);
+	public SftpTreeItem(String value, Mode mode) {
+            super(value);
+            this.mode = mode;
 	}
 
 	// getChildren() method loads children lazily
@@ -81,12 +90,8 @@ public class SftpTreeItem extends TreeItem<String> {
 		 * 
 		 * };
 		 */
-		if (sftp == null) {
-			System.out.println("Sftp not set");
-		}
-
-		LoadSftpTreeTask loadTask = new LoadSftpTreeTask(value);
-		System.out.println(loadTask);
+		
+		LoadSftpTreeTask loadTask = new LoadSftpTreeTask(value, mode);
 		// when loading is complete:
 		// 1. set actual child nodes to loaded nodes
 		// 2. update status to "loaded"
