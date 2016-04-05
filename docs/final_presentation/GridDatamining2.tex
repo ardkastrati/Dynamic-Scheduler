@@ -3,19 +3,27 @@
 \begin{frame}
 	\frametitle{Objectives}
 		\begin{itemize}
-			\item<2-> {Estimate runtime in 'constant' time}
-				\begin{itemize}
-					\item<3-> {Constant to the amount of tasks already executed}	
-				\end{itemize}
-				\item<4-> {Estimation based on variable amounts of parameters}
+			\pause			
+			\item {Approximate runtime}
+			\begin{itemize}
+				\pause
+				\item {variable amounts of parameters}
+				\pause
+				\item {$O(1)$}
 			\end{itemize}
+				
+				%\begin{itemize}
+				%	\item<3-> {Constant to the amount of tasks already executed}	
+				%\end{itemize}
+				%\item<4-> {Estimation based on variable amounts of parameters}
+		\end{itemize}
 \end{frame}		
 		
 \begin{frame} 
 	\frametitle{Concepts}
 		\begin{itemize}
-			\item<2-> {Strong correlation between parameters and runtime of a task}
-			\item<3-> {Tasks with similar parameters have similar runtime}
+			\item<2-> {Strong correlation between parameters and runtime}
+			\item<3-> {Similar parameters $\Rightarrow$ similar runtime}
 				\begin{itemize}
 					\item<4-> {identical parameters $\Rightarrow$ identical runtime}	
 				\end{itemize}	
