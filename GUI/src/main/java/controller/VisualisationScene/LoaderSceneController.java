@@ -4,25 +4,16 @@
  */
 package controller.VisualisationScene;
 
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.SftpException;
 import controller.Controller;
-import components.LoaderTreeItem;
 import components.SftpTreeItem;
 import components.SftpTreeItem.Mode;
 import java.io.File;
-import java.net.InetAddress;
 import java.net.URL;
-import java.net.UnknownHostException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,12 +23,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.MySession;
@@ -75,7 +64,6 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     private ImageView failureImage;
     
-    private String remoteDir;
     
     @FXML
     public void download(ActionEvent event){
@@ -96,16 +84,9 @@ public class LoaderSceneController implements Initializable, Controller {
                         startTransition(successImage);
 	 		});
 	 
-
-	 
 		downloadTask.setOnFailed(event2 -> {
-	 
 			failureImage.setVisible(true);
-	 
                        startTransition(failureImage);
-	 
-                      
-	 
 		});
  
               message.setVisible(true);
@@ -227,7 +208,6 @@ public class LoaderSceneController implements Initializable, Controller {
 
     @Override
     public void onEntry() {
-       System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
         MySession.getInstant().initiateOpeningChannel("sftp");
        

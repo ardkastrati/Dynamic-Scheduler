@@ -4,9 +4,7 @@
  */
 package model.commands.MOAB;
 
-import com.jcraft.jsch.Channel;
 import java.util.ArrayList;
-import javafx.scene.control.Control;
 import model.commands.ICommand;
 
 /**
@@ -17,19 +15,6 @@ public class Showq implements ICommand {
 
     @Override
     public String getCommand() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    @Override
-    public ArrayList<String> getScriptCommands() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    @Override
-    public String toString() {
         return "showq";
     }
     
@@ -41,5 +26,10 @@ public class Showq implements ICommand {
      */
     public boolean equals(ICommand command) {
        return command.toString().equalsIgnoreCase(this.toString());        
+    }
+
+    @Override
+    public ArrayList<String> getScriptCommands() {
+        return null;
     }
 }

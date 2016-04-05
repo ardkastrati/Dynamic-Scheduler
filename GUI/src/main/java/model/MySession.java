@@ -171,9 +171,10 @@ public class MySession {
         setSessionStatus(SessionStatus.CONNECTING);
         exec.submit(newSession);
         newSession.setOnSucceeded(event -> {
-           currentSession = newSession.getValue();
+            currentSession = newSession.getValue();
+            System.out.println("Current session: " + currentSession.isConnected());
             currentSession.disconnect();
-            setSessionStatus(SessionStatus.READY);
+             setSessionStatus(SessionStatus.READY);
         });
         newSession.setOnFailed(event -> {
             setSessionStatus(SessionStatus.DISCONNECTED);
@@ -233,7 +234,7 @@ public class MySession {
                      });
                      
                      channelTask.setOnFailed(event3 -> {
-                          System.out.println("Channel opening failed");
+                         System.out.println("Channel opening failed");
                          System.out.println("no channel could be opened");
                          currentSession.disconnect();
                          setSessionStatus(SessionStatus.READY);

@@ -6,6 +6,7 @@
 package controller.mainScene;
 
 import controller.Controller;
+import controller.JobScene.JobSceneController;
 import controller.MOABScene.MOABSceneController;
 import controller.SSHConnectionScene.SSHConnectionController;
 import controller.VisualisationScene.VisualisationSceneController;
@@ -40,6 +41,8 @@ public class MainSceneController implements Initializable, Controller {
 	private Label status;
         @FXML
 	private SSHConnectionController sshConnectionController;
+        @FXML
+        private JobSceneController jobsController;
 	@FXML
 	private MOABSceneController moabController;
         @FXML
@@ -85,7 +88,7 @@ public class MainSceneController implements Initializable, Controller {
 				moabController.onExit();
 				break;
 			case "jobs":
-				// jobsControler.onExit();
+                                jobsController.onExit();
 				break;
 			case "visualizer":
 				visualizerController.onExit();
@@ -106,7 +109,7 @@ public class MainSceneController implements Initializable, Controller {
 				moabController.onEntry();
 				break;
 			case "jobs":
-				// jobsController.onExit();
+                                jobsController.onEntry();
 				break;
 			case "visualizer":
 				 visualizerController.onEntry();

@@ -1,7 +1,9 @@
         #### MOAB commands
 
 #MSUB  -q singlenode
-#MSUB  -l nodes=1:ppn=1
+#MSUB  -l nodes=1:ppn=4
+#MSUB  -l walltime=600
+#MSUB  -l pmem=200
 #MSUB  -N test
 #MSUB  -o 
 #MSUB  -S #!/bin/bash
@@ -9,9 +11,9 @@
 
         ##### Directory
 
-cd ./pse
+cd ./test
 
 
         #### MPI commands
 
-mpirun ls
+/opt/bwhpc/common/compiler/intel/compxe.2015.3.187/impi/5.0.3.048/intel64/bin/mpirun ./scheduler

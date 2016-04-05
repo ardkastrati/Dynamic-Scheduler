@@ -8,6 +8,10 @@ import controller.Controller;
 import components.SftpTreeItem;
 import components.SftpTreeItem.Mode;
 import java.io.File;
+<<<<<<< HEAD
+=======
+import java.net.InetAddress;
+>>>>>>> kai
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -64,47 +68,8 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     private ImageView failureImage;
     
+    private String remoteDir;
     
-    
-<<<<<<< HEAD
-    @FXML
-    public void choose(ActionEvent event){
-        VisualisationSceneController.setBaseDir(localDir);
-        DirectoryChooser fc = new DirectoryChooser();
-        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        File sd = fc.showDialog(new Stage());
-        localDir = sd.getAbsolutePath();
-        VisualisationSceneController.setBaseDir(sd.getAbsolutePath());
-    }
-
-    @FXML
-    public void download(ActionEvent event){
-        //try {
-        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
-        //    channel.get("Bookkeeping.txt");
-        //} catch (SftpException ex) {
-        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-        remoteTreeView.getSelectionModel().getSelectedItems().get(0);
-        String dir = "test";
-        File file = new File(remoteDir + "/" + dir);
-        if (!file.exists()) {
-            if (file.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
-        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/" + dir + "/Bookkeeping.txt");
-        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/" + dir + "/Statistic.txt");
-        System.err.println("Remote:"+ remoteDir +"local:" + localDir);
-        Thread bookThread = new Thread(task);
-        bookThread.setDaemon(true);
-        Thread statThread = new Thread(taskStat);
-        statThread.setDaemon(true);
-        bookThread.start();
-        statThread.start();
-=======
     @FXML
     public void download(ActionEvent event){
       DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -124,6 +89,7 @@ public class LoaderSceneController implements Initializable, Controller {
                         startTransition(successImage);
 	 		});
 	 
+<<<<<<< HEAD
 
 	 
 		downloadTask.setOnFailed(event2 -> {
@@ -146,7 +112,30 @@ public class LoaderSceneController implements Initializable, Controller {
 	 
        }
 
->>>>>>> ee3e7e7500addf1940abd343bbedde0280e0fff7
+=======
+
+	 
+		downloadTask.setOnFailed(event2 -> {
+	 
+			failureImage.setVisible(true);
+	 
+                       startTransition(failureImage);
+	 
+                      
+	 
+		});
+ 
+              message.setVisible(true);
+	 
+              downloadingIndicator.visibleProperty().bind(downloadTask.runningProperty());
+             message.textProperty().bind(downloadTask.messageProperty());
+		Thread t = new Thread(downloadTask);
+               t.setDaemon(true);
+             t.start();
+	 
+       }
+
+>>>>>>> kai
     }
     
     @Override
@@ -184,18 +173,9 @@ public class LoaderSceneController implements Initializable, Controller {
    
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-<<<<<<< HEAD
-            //LoaderTreeItem item = (LoaderTreeItem)newValue;
-            //System.out.println("remote");
-            if (newValue != null) {
-                remoteDir = newValue.getValue();
-            }
-            //remoteDir = item.getPath();
-=======
             if(newValue != null) {
 			sftpPath.setText(newValue.getValue());
             }
->>>>>>> ee3e7e7500addf1940abd343bbedde0280e0fff7
         });
       
         remoteTreeView.setRoot(new SftpTreeItem(".", Mode.ALL_FILES));
@@ -265,6 +245,7 @@ public class LoaderSceneController implements Initializable, Controller {
 
     @Override
     public void onEntry() {
+       System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
         MySession.getInstant().initiateOpeningChannel("sftp");
        

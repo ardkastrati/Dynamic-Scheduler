@@ -183,7 +183,9 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
                         noConnectionLabel.setVisible(false);
                         tryNewConnection.setVisible(false);
                 }*/
-		MySession.getInstant().initiateOpeningChannel("sftp");
+                if(MySession.getInstant().getSessionStatus() != MySession.SessionStatus.DISCONNECTED) {
+                    MySession.getInstant().initiateOpeningChannel("sftp");
+                }
 	}
 
         @Override
