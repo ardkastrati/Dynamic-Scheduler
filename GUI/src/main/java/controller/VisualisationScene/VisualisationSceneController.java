@@ -66,6 +66,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private Tab addDiagramTab;
     @FXML
     private Button cl;
+    @FXML
+    private ProgressIndicator refreshindicator;
     
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
@@ -105,15 +107,22 @@ public class VisualisationSceneController  implements Initializable, Controller{
             @Override
             public void run() {
                 Tab tab = new Tab();
+                refreshindicator.setProgress(-1);
+                refreshindicator.setVisible(true);
                 final ProgressIndicator pi = new ProgressIndicator();
                 pi.setProgress(-1);
+                Pane apane = new AnchorPane();
+                apane.getChildren().add(pi);
                 tab.setText(calculation + " --- " + diagramBox.getValue());
-                tab.setContent(pi);
+                tab.setContent(apane);
                 tab.setClosable(true);
                 diagramPane.getTabs().add(tab);
+                System.out.println("Added");
                 diagramType.getVisualisation(pane, ikeeper);
                 //tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
+                refreshindicator.setVisible(false);
+                refreshindicator.setProgress(0);
                 //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
             }
