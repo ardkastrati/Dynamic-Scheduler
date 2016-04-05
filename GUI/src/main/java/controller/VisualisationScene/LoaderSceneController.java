@@ -84,16 +84,9 @@ public class LoaderSceneController implements Initializable, Controller {
                         startTransition(successImage);
 	 		});
 	 
-
-	 
 		downloadTask.setOnFailed(event2 -> {
-	 
 			failureImage.setVisible(true);
-	 
                        startTransition(failureImage);
-	 
-                      
-	 
 		});
  
               message.setVisible(true);

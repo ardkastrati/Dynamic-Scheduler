@@ -104,7 +104,7 @@ public class SSHConnectionController implements Initializable, Controller {
 
 		ChangeListener<MySession.SessionStatus> listener;
 		listener = (obs, oldStatus, newStatus) -> {
-                    if (newStatus ==  MySession.SessionStatus.DISCONNECTED && oldStatus == MySession.SessionStatus.CONNECTING) {
+                    if (newStatus ==  MySession.SessionStatus.DISCONNECTED && oldStatus == MySession.SessionStatus.CONNECTING ) {
                             gridPane.setVisible(false);
                             imageOnFailure.setVisible(true);
                             onTryingToConnect.setText(("Failed to connect with SSH. Please try again!"));

@@ -11,9 +11,9 @@
 
         ##### Directory
 
-cd ./Documents
+cd ./test
 
 
         #### MPI commands
 
-/opt/bwhpc/common/compiler/intel/compxe.2015.3.187/impi/5.0.3.048/intel64/bin/mpirun ./scheduler --design master-worker --strategy fifo
+/opt/bwhpc/common/compiler/intel/compxe.2015.3.187/impi/5.0.3.048/intel64/bin/mpirun ./scheduler
