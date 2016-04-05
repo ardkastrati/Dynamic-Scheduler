@@ -123,7 +123,8 @@ public class TaskFlowVisualiser implements Visualiser {
                     System.out.println("pressed");
                     //System.out.println(taskMap.get((long)vertex.hashCode()).getId());
                     Double[] parameters = eventList.get(vertex.hashCode()).getParameters();
-                    String text = "";
+                    Long time = eventList.get(vertex.hashCode()).getTime();
+                    String text = "Runtime: " + time;
                     for (int i = 0; i < parameters.length; i++) {
                         text = text + "Parameter" + i + ": " + parameters[i].toString() + "\n";
                     }
