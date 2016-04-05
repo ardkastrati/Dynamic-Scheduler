@@ -65,7 +65,6 @@ public class LoaderSceneController implements Initializable, Controller {
     private ImageView failureImage;
     
     
-    
     @FXML
     public void download(ActionEvent event){
       DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -85,16 +84,9 @@ public class LoaderSceneController implements Initializable, Controller {
                         startTransition(successImage);
 	 		});
 	 
-
-	 
 		downloadTask.setOnFailed(event2 -> {
-	 
 			failureImage.setVisible(true);
-	 
                        startTransition(failureImage);
-	 
-                      
-	 
 		});
  
               message.setVisible(true);
@@ -217,7 +209,9 @@ public class LoaderSceneController implements Initializable, Controller {
     @Override
     public void onEntry() {
        MySession.getInstant().sessionStatusProperty().addListener(listener);
-        MySession.getInstant().initiateOpeningChannel("sftp");
+       if(MySession.getInstant().getSessionStatus() != MySession.SessionStatus.DISCONNECTED) {
+                    MySession.getInstant().initiateOpeningChannel("sftp");
+        }
        
       
     }

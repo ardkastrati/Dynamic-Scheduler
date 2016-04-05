@@ -47,13 +47,13 @@ public class FileLoaderTask extends Task<Void>{
             output.write(bytes,0,read);
         }
         } catch (SftpException|IOException e) {
-            
+            e.printStackTrace();
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch(IOException e) {
-                    
+                    e.printStackTrace();
                 }
                         
             }
@@ -61,7 +61,7 @@ public class FileLoaderTask extends Task<Void>{
                 try {
                     output.close();
                 } catch(IOException e) {
-                    
+                    e.printStackTrace();
                 }
             }
         }

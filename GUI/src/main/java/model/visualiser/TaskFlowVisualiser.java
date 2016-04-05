@@ -1,5 +1,6 @@
 package model.visualiser;
 
+import controller.mainScene.MainSceneController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.FRLayout;
 import edu.uci.ics.jung.visualization.Layout;
@@ -42,16 +43,42 @@ import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.Transformer;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.visualiser.dataholding.Datakeeper;
+import org.controlsfx.control.Notifications;
 //import jung.SimpleGraphView;
 
 
 public class TaskFlowVisualiser implements Visualiser {
 
+    @Override
+    public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+        /*
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
-            /*
+            
             HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
+            List<Event> eventList = datakeeper.getEventList();
             Graph g;
             g = new DirectedSparseGraph();
             
@@ -82,7 +109,7 @@ public class TaskFlowVisualiser implements Visualiser {
             }
             
             Layout l = new FRLayout( g );
-            Renderer r = new PluggableRenderer();
+            PluggableRenderer r = new PluggableRenderer();
             VisualizationViewer vv = new VisualizationViewer( l, r );
             
             vv.addGraphMouseListener(new GraphMouseListener() {
@@ -94,9 +121,71 @@ public class TaskFlowVisualiser implements Visualiser {
                 @Override
                 public void graphPressed(Vertex vertex, MouseEvent me) {
                     System.out.println("pressed");
-                    System.out.println(vertex.hashCode());
-                    //Iterator iterator = vertex.getUserDatumKeyIterator();
-                    //vertex.getUserDatum(iterator.next());
+                    //System.out.println(taskMap.get((long)vertex.hashCode()).getId());
+                    Double[] parameters = eventList.get(vertex.hashCode()).getParameters();
+                    String text = "";
+                    for (int i = 0; i < parameters.length; i++) {
+                        text = text + "Parameter" + i + ": " + parameters[i].toString() + "\n";
+                    }
+                    Label label = new Label(text);
+                    label.setWrapText(true);
+                    final String ftext = text;
+                    Platform.runLater(() -> {
+                        Stage owner = new Stage(StageStyle.TRANSPARENT);
+                        StackPane root = new StackPane();
+                        root.setStyle("-fx-background-color: TRANSPARENT");
+                        Scene scene = new Scene(root, 1, 1);
+                        scene.setFill(Color.TRANSPARENT);
+                        owner.setScene(scene);
+                        owner.setWidth(1);
+                        owner.setHeight(1);
+                        owner.toBack();
+                        owner.show();
+                        Notifications.create().title("Task").text(ftext).showInformation();
+                        //MainSceneController.showPopupMessage(text, root, 0, 0, true, true);
+                        }
+                    );
+                    Pane pane = new Pane();
+                    pane.getScene().getWindow().setX(0.0);
+                    pane.getScene().getWindow().setY(0.0);
+                    MainSceneController.showPopupMessage(text, new Pane(), 0, 0, true, true);
+                    //final Stage dialog = new Stage();
+                    //Parent root;
+                    //FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Popup.fxml"));
+                    //try {
+                      //  root = (Parent)loader.<Parent>load();
+                        //dialog.setTitle("Task");
+                        //dialog.setScene(new Scene(root,300,100));
+                        
+                        //dialog.initModality(Modality.APPLICATION_MODAL);
+                        //dialog.initOwner(primaryStage);
+                        //VBox dialogVbox = new VBox(20);
+                        //dialogVbox.getChildren().add(new Text("This is a Dialog"));
+                        //Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                        //dialog.setScene(dialogScene);
+                        //dialog.show();
+                        
+                        //label.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 20; -fx-text-fill: darkred;");
+                        
+                        //final Popup popup = new Popup(); popup.setX(300); popup.setY(200);
+                        //Platform.setImplicitExit(false);
+                        //popup.getContent().add(label);
+                        //final Stage stage = new Stage();
+                        //popup.show(stage);
+                        //stage.show();
+                        //Tooltip tip = new Tooltip();
+                        //tip.setText(text);
+                        //tip.show();
+                        
+                        //Stage stage = new Stage();
+                        //stage.setTitle("Task");
+                        //stage.setScene(new Scene(label,600,400));
+                        //stage.show();
+                        //Iterator iterator = vertex.getUserDatumKeyIterator();
+                        //vertex.getUserDatum(iterator.next());
+                    //} catch (IOException ex) {
+                      //  Logger.getLogger(TaskFlowVisualiser.class.getName()).log(Level.SEVERE, null, ex);
+                    //}
                 }
 
                 @Override
@@ -126,7 +215,7 @@ public class TaskFlowVisualiser implements Visualiser {
             node.setContent( vv );
             	
             parent.getChildren().add(node);
-                */
+                
         }      
 
     @Override
@@ -138,5 +227,5 @@ public class TaskFlowVisualiser implements Visualiser {
     public String toString() {
         return "TaskFlow";
     }
-           
+           */
 }

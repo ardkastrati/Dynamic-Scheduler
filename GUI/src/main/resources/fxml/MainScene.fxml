@@ -74,9 +74,9 @@
                         <Label alignment="CENTER" prefHeight="59.0" prefWidth="100.0" text="Run Job via MOAB" textAlignment="CENTER" wrapText="true" />
                      </graphic>
                 </Tab>
-                  <Tab id="jobs" fx:id="jobs" disable="true">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <Tab id="jobs" fx:id="JOBS" closable="false">
+                   <content>
+                        <fx:include fx:id="jobs" source="JobScene.fxml" />
                     </content>
                      <graphic>
                         <Label text="Jobs" />
@@ -84,7 +84,7 @@
                   </Tab>
                   <Tab id="visualizer" fx:id="visualizer2">
                     <content>
-                      <fx:include fx:id="visualizer" source="VisualisationScene.fxml"/>
+                      <fx:include fx:id="visualizer" source="VisualisationScene.fxml" />
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />
