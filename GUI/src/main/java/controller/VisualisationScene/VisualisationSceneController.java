@@ -3,6 +3,7 @@ package controller.VisualisationScene;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import controller.Controller;
+import controller.mainScene.MainSceneController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -66,6 +67,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private Tab addDiagramTab;
     @FXML
     private Button cl;
+    @FXML
+    private ProgressIndicator refreshindicator;
     
     private HashMap<String,Datakeeper> keeperMap;
     private HashMap<String,Visualiser> visualiserMap;
@@ -104,16 +107,27 @@ public class VisualisationSceneController  implements Initializable, Controller{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                if (ikeeper == null) {
+                    MainSceneController.showPopupMessage("Data not found!", pane, 0, 0, true, true);
+                    return;
+                }
                 Tab tab = new Tab();
+                refreshindicator.setProgress(-1);
+                refreshindicator.setVisible(true);
                 final ProgressIndicator pi = new ProgressIndicator();
                 pi.setProgress(-1);
+                Pane apane = new AnchorPane();
+                apane.getChildren().add(pi);
                 tab.setText(calculation + " --- " + diagramBox.getValue());
-                tab.setContent(pi);
+                tab.setContent(apane);
                 tab.setClosable(true);
                 diagramPane.getTabs().add(tab);
+                System.out.println("Added");
                 diagramType.getVisualisation(pane, ikeeper);
                 //tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
+                refreshindicator.setVisible(false);
+                refreshindicator.setProgress(0);
                 //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
             }
@@ -247,7 +261,9 @@ public class VisualisationSceneController  implements Initializable, Controller{
     public void chooseLoc(ActionEvent e) {
         DirectoryChooser dc = new DirectoryChooser();
         File sd = dc.showDialog(new Stage());
-        baseDir = sd.getAbsolutePath();
+        if (sd != null) {
+            baseDir = sd.getAbsolutePath();
+        }
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         calculationBox.getItems().clear();
         for(int i = 0; i < directories.length; i++) {
