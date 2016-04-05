@@ -62,9 +62,11 @@ public class FileTransportTask extends Task<Void> {
        
        File file = new File("src/main/resources/generated_docs/dummy.sh");
        System.out.println(text.getText());
-       FileWriter writer = new FileWriter(file);
-       writer.write(text.getText());
-       writer.close();
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(text.getText());
+        }catch(Exception e) {
+            updateMessage("The file couldn't be created.");
+        }
        updateMessage("The file is successfully created");
        
        

@@ -11,7 +11,7 @@
 
         ##### Directory
 
-cd ./test
+cd ./Documents
 
 
         #### MPI commands

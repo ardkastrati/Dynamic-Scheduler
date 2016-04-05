@@ -27,10 +27,10 @@
                 <version>2.6</version>
                 <executions>
                     <execution>
-                        <id>unpack-dependencies</id>
+                        <id>copy-dependencies</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>unpack-dependencies</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
                             <excludeScope>system</excludeScope>
@@ -50,9 +50,10 @@
                         
                         <phase>package</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>java</goal>
                         </goals>
                         <configuration>
+                            <mainClass>MainApp</mainClass>
                             <executable>${java.home}/../bin/javafxpackager</executable>
                             <arguments>
                                 <argument>-createjar</argument>
@@ -74,10 +75,15 @@
                             <goal>exec</goal>                            
                         </goals>
                         <configuration>
+                            
                             <executable>${java.home}/../bin/java</executable>
                             <commandlineArgs>${runfx.args}</commandlineArgs>
                         </configuration>
+                        <!--<configuration>
+                            <executable>maven</executable>
+                        </configuration>-->
                     </execution>
+                   
                 </executions>  
             </plugin>
             <plugin>
@@ -163,6 +169,11 @@
             <version>1.7.6</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+        <groupId>org.pitest</groupId>
+        <artifactId>highwheel-ant</artifactId>
+        <version>1.0</version>
+       </dependency>
     </dependencies>
     
 </project>
