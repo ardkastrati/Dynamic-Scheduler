@@ -2,15 +2,15 @@
 	\begin{frame}{Introduction}
 		\begin{itemize}
 			\pause
-			\item Easy usage of MOAB Workload Manager and Dynamic Scheduler
+			\item Easy usage of MOAB and Dynamic Scheduler
 			\pause
-			\item Generate shell scripts for MOAB Workload Manager 
+			\item Shell script generator for MOAB 
 			\begin{itemize}
 				\pause
-				\item  send script via SSH to the bwUniCluster
+				\item send script via SSH to bwUniCluster
 			\end{itemize}
 			\pause
-			\item Visualization
+			\item Visualization tool
 			
 		\end{itemize}
 	\end{frame}
@@ -37,40 +37,40 @@
 %	\end{frame}
 	
 
-	\begin{frame}{SSH-Connection}
-		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=3cm,thick,main node/.style={ ellipse,draw,font=\sffamily\Large\bfseries}]
+%	\begin{frame}{SSH-Connection}
+%		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=3cm,thick,main node/.style={ ellipse,draw,font=\sffamily\Large\bfseries}]
  
-  \node[main node] (1) {Disconnected};
-  \node[main node] (2) [below right of=1]{Connecting};
-  \node[main node] (3) [below right of=2] {Ready};
-  \node[main node] (4) [above right of=3] {Establishing};
-  \node[main node] (5) [above right of=4] {Online};
+%  \node[main node] (1) {Disconnected};
+%  \node[main node] (2) [below right of=1]{Connecting};
+%  \node[main node] (3) [below right of=2] {Ready};
+%  \node[main node] (4) [above right of=3] {Establishing};
+%  \node[main node] (5) [above right of=4] {Online};
 
-  \path[every node/.style={font=\sffamily\small}]
-    (1) edge [bend right] node[left] {Try Connection} (2)
+%  \path[every node/.style={font=\sffamily\small}]
+%   (1) edge [bend right] node[left] {Try Connection} (2)
         
-    (2) edge [bend right] node[right] {Connection Failed} (1)
-        edge [bend right] node[left] {Valid Connection} (3)
-    (3) edge [bend left] node[right] {Initiate Connection} (4)
+%    (2) edge [bend right] node[right] {Connection Failed} (1)
+%        edge [bend right] node[left] {Valid Connection} (3)
+%    (3) edge [bend left] node[right] {Initiate Connection} (4)
     		
-    (4) edge [bend right] node[right] {Initiation Failed} (1)
-       	edge [bend left] node[right] {Success} (5)
-    (5)  edge [bend right] node[above] {Disconnect} (1)
-         edge [bend left=90] node[right] {Offline} (3);
-	\end{tikzpicture}
-	\end{frame}
+%    (4) edge [bend right] node[right] {Initiation Failed} (1)
+%       	edge [bend left] node[right] {Success} (5)
+%    (5)  edge [bend right] node[above] {Disconnect} (1)
+%         edge [bend left=90] node[right] {Offline} (3);
+%	\end{tikzpicture}
+%	\end{frame}
 	
 	\begin{frame}{Script Generator}
 	\begin{itemize}
 		\pause
-		\item Shell script generator for MOAB Workload Manager:
+		\item Shell script generator for MOAB:
 		
 		\begin{itemize}
 			\pause
 			\item parse msub command
 			
 			\pause			
-			\item specify the directory in server using lazy tree 
+			\item specify directory in server %using lazy tree 
 			 
 			\pause
 			\item parse mpirun command

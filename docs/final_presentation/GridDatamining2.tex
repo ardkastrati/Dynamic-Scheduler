@@ -1,5 +1,3 @@
-
-
 \begin{frame}
 	\frametitle{Objectives}
 		\begin{itemize}
@@ -7,7 +5,7 @@
 			\item {Approximate runtime}
 			\begin{itemize}
 				\pause
-				\item {variable amounts of parameters}
+				\item {variable amount of parameters}
 				\pause
 				\item {$O(1)$}
 			\end{itemize}
@@ -19,16 +17,16 @@
 		\end{itemize}
 \end{frame}		
 		
-\begin{frame} 
-	\frametitle{Concepts}
-		\begin{itemize}
-			\item<2-> {Strong correlation between parameters and runtime}
-			\item<3-> {Similar parameters $\Rightarrow$ similar runtime}
-				\begin{itemize}
-					\item<4-> {identical parameters $\Rightarrow$ identical runtime}	
-				\end{itemize}	
-		\end{itemize}
-\end{frame}
+%\begin{frame} 
+%	\frametitle{Concepts}
+%		\begin{itemize}
+%			\item<2-> {Strong correlation between parameters and runtime}
+%			\item<3-> {Similar parameters $\Rightarrow$ similar runtime}
+%				\begin{itemize}
+%					\item<4-> {identical parameters $\Rightarrow$ identical runtime}	
+%				\end{itemize}	
+%		\end{itemize}
+%\end{frame}
 
 
 \begin{frame}
@@ -37,7 +35,7 @@
 		\begin{itemize}
 			\item<2-> {Array of 'grid points'}
 				\begin{itemize}
-					\item<3-> {similar to a Cartesian coordinate system}
+					\item<3-> {"Cartesian coordinate system"}
 					%\item<3->{grid points: "pointer" to 'closest' task already executed}
 					%\begin{itemize}
 					%	\item<4->{closest defined as 'smallest parameter differences'}	
@@ -95,10 +93,7 @@
 		%	\item<1-> {Array of 'grid points'}
 				\begin{itemize}
 		%			\item<2-> {Similar to a Cartesian coordinate system}
-					\item<2->{Grid points: "pointer" to 'closest' task already executed}
-					\begin{itemize}
-						\item<3->{closest defined as 'smallest parameter differences'}	
-					\end{itemize}
+					\item<2->{Grid points $\widehat{=}$ "pointer" to closest task already executed}
 				\end{itemize}	
 		%\end{itemize}
 	\end{minipage}\hfill
@@ -135,11 +130,8 @@
 	\begin{minipage}[t]{0.45\linewidth}
 		\begin{itemize}
 			\item<2-> {Grid origin $\neq$ Cartesian origin}
-			\item<3-> {Grid origin = grid point with the  smallest coordinates} 
-			\item<4-> {Distance between grid points in every dimension flexible}
-				\begin{itemize}
-					\item<5-> {'increment' vector consisting of all 'increment' values}	
-				\end{itemize}
+			%\item<3-> {Grid origin = grid point with the  smallest coordinates} 
+			\item<3-> {Distance between grid points in every dimension flexible}
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.55\linewidth}
@@ -197,7 +189,7 @@
 	\frametitle{Runtime Approximation I}
 	\begin{minipage}[t]{0.40\linewidth}
 		\begin{itemize}
-			\item<2->{Determine the surrounding grid points to a task}
+			\item<2->{Determine surrounding grid points}
 			%\item<2->{Calculate the influence factor $F_i$ per grid point}
 			%\begin{itemize}
 				%\item<3->{Check whether the distance to the point is 0}
@@ -249,7 +241,7 @@
 	\begin{minipage}[t]{0.40\linewidth}
 		\begin{itemize}
 			%\item<1->{Determine the surrounding grid points to a task}
-			\item<2->{Calculate the influence factor $F_i$ per grid point}
+			\item<2->{Calculate influence factor $F_i$ per grid point}
 			%\begin{itemize}
 				%\item<3->{Check whether the distance to the point is 0}
 				%\begin{itemize}
@@ -307,9 +299,9 @@
 	\frametitle {Runtime Approximation III}	
 		\begin{itemize}
 			\pause
-			\item{The total sum of all influence factors is 1}
-			\pause			
-			\item{Multiply the runtime of each grid point with its corresponding factor}
+			\item{$\Sigma$ influence factors $= 1$}
+			%\pause			
+			%\item{Multiply the runtime of each grid point with its corresponding factor}
 			\pause			
 			\item{Approximated runtime = $\sum t_i * F_i$}
 			\begin{itemize}
@@ -324,16 +316,12 @@
 	%1
 \begin{minipage}[t]{0.48\linewidth}
 		\begin{itemize}
-			\item<2->{Check whether the task is 'suited' as value of a 													surrounding grid point}
-			\begin{itemize}
-				\item<3->{grid points 'always' point to the closet task already inserted}
-				\item<4->{note that inserting a point only adapts the 														closest grid points}
-			\end{itemize}
-			\item<5->{Adapt surrounding grid points, if necessary}
-		\end{itemize}
-		
-		\begin{itemize}
-			\item<6->{'Hard insert': check \textbf{all} grid points and eventually adapt them}
+			\item<2-> {Determine surrounding grid points}
+			\item<3-> {check surrounding grid points}
+			\item<4-> {if $distance_{new}$ $<$ $distance_{old}$:}
+				\begin{itemize}
+					\item<5-> {adapt grid point}
+				\end{itemize}
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.48\linewidth}
@@ -375,16 +363,12 @@
 	%2
 \begin{minipage}[t]{0.48\linewidth}
 		\begin{itemize}
-			\item{Check whether the task is 'suited' as value of a 													surrounding grid point}
-			\begin{itemize}
-				\item{grid points 'always' point to the closet task already inserted}
-				\item{note that inserting a point only adapts the 														closest grid points}
-			\end{itemize}
-			\item{Adapt surrounding grid points, if necessary}
-		\end{itemize}
-		
-		\begin{itemize}
-			\item{'Hard insert': check \textbf{all} grid points and eventually adapt them}
+			\item {Determine surrounding grid points}
+			\item {check surrounding grid points}
+			\item {if $distance_{new}$ $<$ $distance_{old}$:}
+				\begin{itemize}
+					\item {adapt grid point}
+				\end{itemize}
 		\end{itemize}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.48\linewidth}
