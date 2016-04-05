@@ -2,6 +2,7 @@
 package components;
 
 import com.jcraft.jsch.ChannelSftp;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.beans.property.ObjectProperty;
@@ -96,12 +97,15 @@ public class SftpTreeItem extends TreeItem<String> {
 		// 1. set actual child nodes to loaded nodes
 		// 2. update status to "loaded"
 		loadTask.setOnSucceeded(event -> {
+                    
+                        //System.out.println(loadTask.getValue());
 			super.getChildren().setAll(loadTask.getValue());
 			setChildrenLoadedStatus(ChildrenLoadedStatus.LOADED);
 		});
 
 		loadTask.setOnFailed(event -> {
 			setChildrenLoadedStatus(ChildrenLoadedStatus.NOT_LOADED);
+                       
 		});
 
 		// execute task in background

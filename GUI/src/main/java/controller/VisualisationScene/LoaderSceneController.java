@@ -209,7 +209,9 @@ public class LoaderSceneController implements Initializable, Controller {
     @Override
     public void onEntry() {
        MySession.getInstant().sessionStatusProperty().addListener(listener);
-        MySession.getInstant().initiateOpeningChannel("sftp");
+       if(MySession.getInstant().getSessionStatus() != MySession.SessionStatus.DISCONNECTED) {
+                    MySession.getInstant().initiateOpeningChannel("sftp");
+        }
        
       
     }

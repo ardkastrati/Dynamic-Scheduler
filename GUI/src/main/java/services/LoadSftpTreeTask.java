@@ -50,6 +50,17 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
        
         ArrayList<SftpTreeItem> treeChildrens = null;
            
+       SftpATTRS attrs=null;
+        try {
+            attrs = sftp.stat(path);
+        } catch (Exception e) {
+            System.out.println(path + " not found ");
+        }
+        
+        if (attrs == null || !attrs.isDir()) {
+            return new ArrayList<>();
+        } else {
+        
                  System.out.println("path:" + path);
                  System.out.println(sftp);
                  Vector childrens = null;
@@ -57,9 +68,11 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
                      childrens = sftp.ls(path);
                      
                  } catch(Exception e) {
-                        System.out.println(e.getCause()); 
+                        System.out.println("Test error " + e.getCause()); 
+                        
                  }
-                if(childrens != null){
+                 
+                 if(childrens != null){
                     SftpATTRS stat = null;
                     treeChildrens = new ArrayList<>(childrens.size());
                     System.out.println(childrens.size());
@@ -88,7 +101,7 @@ public class LoadSftpTreeTask extends Task<ArrayList<SftpTreeItem>> {
                       updateProgress(childrens.size(), childrens.size());
                     
                 }
-            
+        }
           
         return treeChildrens;
     }
