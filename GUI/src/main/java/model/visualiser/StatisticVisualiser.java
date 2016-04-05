@@ -64,6 +64,8 @@ public class StatisticVisualiser implements Visualiser{
            param1.getItems().add("Parameter" + k);
            param2.getItems().add("Parameter" + k);
        }
+       param1.getSelectionModel().select(0);
+       param2.getSelectionModel().select(1);
        Button choose = new Button();
        choose.setText("Choose");
        choose.setOnAction(new EventHandler(){
