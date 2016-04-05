@@ -4,28 +4,16 @@
  */
 package controller.VisualisationScene;
 
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.SftpException;
 import controller.Controller;
-import components.LoaderTreeItem;
 import components.SftpTreeItem;
 import components.SftpTreeItem.Mode;
 import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URL;
-import java.net.UnknownHostException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,18 +23,13 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.MySession;
-import services.DownloadFileTask;
-import services.LoadSftpTreeTask;
 
 
 /**
@@ -87,25 +70,8 @@ public class LoaderSceneController implements Initializable, Controller {
       DirectoryChooser directoryChooser = new DirectoryChooser();
       directoryChooser.setTitle("Local directory of the downloaded file");
       File outputFolder = directoryChooser.showDialog(new Stage());
-
-    @FXML
-    public void download(ActionEvent event){
-        //try {
-        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
-        //    channel.get("Bookkeeping.txt");
-        //} catch (SftpException ex) {
-        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/test" + "/Bookkeeping.txt");
-        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/test" + "/Statistic.txt");
-        Thread bookThread = new Thread(task);
-        bookThread.setDaemon(true);
-        Thread statThread = new Thread(taskStat);
-        statThread.setDaemon(true);
-        bookThread.start();
-        statThread.start();
+      
     }
-
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
