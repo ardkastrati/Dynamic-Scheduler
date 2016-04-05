@@ -9,6 +9,7 @@ import com.jcraft.jsch.SftpException;
 import controller.Controller;
 import components.LoaderTreeItem;
 import components.SftpTreeItem;
+import components.SftpTreeItem.Mode;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.URL;
@@ -17,24 +18,30 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.MySession;
-import services.FileLoaderTask;
+import services.DownloadFileTask;
 
 
 /**
@@ -43,59 +50,74 @@ import services.FileLoaderTask;
  */
 public class LoaderSceneController implements Initializable, Controller {
     
-    @FXML
-    private TreeView localTreeView;
+    
     @FXML
     private TreeView<String> remoteTreeView;
     
     @FXML
+    private TextField sftpPath;
+    @FXML
     private Label noConnectionLabel;
     @FXML
     private ProgressIndicator connectingIndicator;
-    
+    @FXML
+    private ProgressIndicator downloadingIndicator;
+    @FXML
+    private Button downloadButton;
+    @FXML
+    private Label message;
+    @FXML
+    private VBox nodes;
     private ChangeListener<MySession.SessionStatus> listener;
     
-    private String localDir;
+    @FXML
+    private ImageView successImage;
+    @FXML
+    private ImageView failureImage;
     
     private String remoteDir;
     
     @FXML
-    public void choose(ActionEvent event){
-        VisualisationSceneController.setBaseDir(localDir);
-        DirectoryChooser fc = new DirectoryChooser();
-        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        File sd = fc.showDialog(new Stage());
-        localDir = sd.getAbsolutePath();
-        VisualisationSceneController.setBaseDir(sd.getAbsolutePath());
-    }
-
-    @FXML
     public void download(ActionEvent event){
-        //try {
-        //    ChannelSftp channel = MySession.getInstant().getSFTPChannel();
-        //    channel.get("Bookkeeping.txt");
-        //} catch (SftpException ex) {
-        //    Logger.getLogger(LoaderSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-        remoteTreeView.getSelectionModel().getSelectedItems().get(0);
-        String dir = "test";
-        File file = new File(remoteDir + "/" + dir);
-        if (!file.exists()) {
-            if (file.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
-        FileLoaderTask task = new FileLoaderTask(remoteDir + "/Bookkeeping.txt", localDir + "/" + dir + "/Bookkeeping.txt");
-        FileLoaderTask taskStat = new FileLoaderTask(remoteDir + "/Statistic.txt", localDir + "/" + dir + "/Statistic.txt");
-        System.err.println("Remote:"+ remoteDir +"local:" + localDir);
-        Thread bookThread = new Thread(task);
-        bookThread.setDaemon(true);
-        Thread statThread = new Thread(taskStat);
-        statThread.setDaemon(true);
-        bookThread.start();
-        statThread.start();
+      DirectoryChooser directoryChooser = new DirectoryChooser();
+      directoryChooser.setTitle("Local directory of the downloaded file");
+      File outputFolder = directoryChooser.showDialog(new Stage());
+      if (outputFolder != null) {
+	 
+           nodes.setVisible(false);
+	 
+           downloadButton.setDisable(true);
+	 
+          DownloadFileTask downloadTask = new DownloadFileTask(sftpPath.getText(), outputFolder.getPath());
+	 
+		downloadTask.setOnSucceeded(event2 -> {
+ 			 successImage.setVisible(true);
+	 
+                        startTransition(successImage);
+	 		});
+	 
+
+	 
+		downloadTask.setOnFailed(event2 -> {
+	 
+			failureImage.setVisible(true);
+	 
+                       startTransition(failureImage);
+	 
+                      
+	 
+		});
+ 
+              message.setVisible(true);
+	 
+              downloadingIndicator.visibleProperty().bind(downloadTask.runningProperty());
+             message.textProperty().bind(downloadTask.messageProperty());
+		Thread t = new Thread(downloadTask);
+               t.setDaemon(true);
+             t.start();
+	 
+       }
+
     }
     
     @Override
@@ -106,6 +128,7 @@ public class LoaderSceneController implements Initializable, Controller {
 				remoteTreeView.setDisable(true);
 				connectingIndicator.setVisible(false);
 				noConnectionLabel.setVisible(true);
+                                downloadButton.setDisable(true);
 				
 			} else if (newStatus == MySession.SessionStatus.ESTABLISHING) {
 				remoteTreeView.setDisable(true);
@@ -117,29 +140,31 @@ public class LoaderSceneController implements Initializable, Controller {
 				connectingIndicator.setVisible(false);
 				remoteTreeView.setDisable(false);
 				noConnectionLabel.setVisible(false);
+                                downloadButton.setDisable(false);
 				
 				init();
 			} else if(newStatus == MySession.SessionStatus.READY) {
                                 MySession.getInstant().initiateOpeningChannel("sftp");
                         }
 		};
+                
+                
+
     }
     
+   
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //LoaderTreeItem item = (LoaderTreeItem)newValue;
-            //System.out.println("remote");
-            if (newValue != null) {
-                remoteDir = newValue.getValue();
+            if(newValue != null) {
+			sftpPath.setText(newValue.getValue());
             }
-            //remoteDir = item.getPath();
         });
-       // remoteTreeView.setRoot(new SftpTreeItem("."));
-        remoteTreeView.setRoot(new SftpTreeItem("."));
-        initRemoteTree();
+      
+        remoteTreeView.setRoot(new SftpTreeItem(".", Mode.ALL_FILES));
+        initTrees();
     }
     
-    public void initRemoteTree() {
+    private void initTrees() {
         remoteTreeView.setCellFactory(tv -> {
 
             // the cell:
@@ -196,6 +221,8 @@ public class LoaderSceneController implements Initializable, Controller {
 
 			return cell;
 		});
+       
+        
     }
 
     @Override
@@ -203,27 +230,7 @@ public class LoaderSceneController implements Initializable, Controller {
        System.out.println("ENTRY");
        MySession.getInstant().sessionStatusProperty().addListener(listener);
         MySession.getInstant().initiateOpeningChannel("sftp");
-       String localHost = ".";
-       try{localHost = InetAddress.getLocalHost().getHostName();}catch(UnknownHostException u) {}
-       LoaderTreeItem root = new LoaderTreeItem(Paths.get(localHost));
-       Iterable<Path> rootDir = FileSystems.getDefault().getRootDirectories();
-       for(Path p:rootDir) {
-           LoaderTreeItem node = new LoaderTreeItem(p);
-           node.setExpanded(true);
-           root.getChildren().add(node);
-       }
-       root.setExpanded(true);
-       localTreeView.setRoot(root);// = new TreeView<String>(root);
-       localTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldVal, Object newVal) {
-                LoaderTreeItem item = (LoaderTreeItem)newVal;
-                localDir = item.getPath();
-                System.out.println(localDir);
-                System.out.println(oldVal + " new: " + newVal);
-            }
-        });
-       System.out.println(localTreeView.getRoot().getChildren());
+       
       
     }
 
@@ -232,5 +239,20 @@ public class LoaderSceneController implements Initializable, Controller {
         MySession.getInstant().sessionStatusProperty().removeListener(listener);
         MySession.getInstant().closeChannel();
     }
+    
+    /**
+     * A simple method which makes a simple transition of the image.
+     * @param image 
+     */
+     private void startTransition(ImageView image) {
+        // tick image Transition
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(1500), image);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(1500), image);
+        translateTransition.setByY(78);
+        ParallelTransition parallelTransition = new ParallelTransition(fadeTransition, translateTransition);
+        parallelTransition.play();
+     }
     
 }

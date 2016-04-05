@@ -71,10 +71,7 @@ public class FileTransportTask extends Task<Void> {
        ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
        try {
             sftp.put(new FileInputStream(file), nameOfFile);
-       } catch (FileNotFoundException | SftpException e) {
-            updateMessage("The file could't be transferred! Cause:  " + e.getMessage());
-            throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());
-       }
+      
         updateMessage("The file is successfully transfered via SFTP to server.");
        
        
@@ -125,7 +122,10 @@ public class FileTransportTask extends Task<Void> {
               channel.disconnect();
         }
      
-       
+        } catch (FileNotFoundException | SftpException e) {
+            updateMessage("The file could't be transferred! Cause:  " + e.getMessage());
+            throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());
+       }
        
        return null;
         

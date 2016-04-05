@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VisualisationScene.LoaderSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VisualisationScene.LoaderSceneController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="300.0">
+      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="315.0" pickOnBounds="false" prefHeight="39.0" prefWidth="455.0" text="Test" visible="false" />
+      <ImageView fx:id="failureImage" fitHeight="160.0" fitWidth="171.0" layoutX="221.0" layoutY="26.0" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/onFailure.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="successImage" fitHeight="182.0" fitWidth="190.0" layoutX="208.0" layoutY="26.0" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/successfullyConnected.png" />
+         </image>
+      </ImageView>
+      <ProgressIndicator fx:id="downloadingIndicator" focusTraversable="false" layoutX="207.0" layoutY="52.0" pickOnBounds="false" prefHeight="160.0" prefWidth="201.0" visible="false" />
+      <VBox fx:id="nodes" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="630.0" prefWidth="300.0">
                <children>
-                  <TreeView fx:id="remoteTreeView" prefHeight="361.0" prefWidth="300.0" />
-                  <Label fx:id="noConnectionLabel" layoutY="232.0" prefHeight="51.0" prefWidth="300.0" text="There cannot be established a connection to the server. Please try to connect again." textAlignment="CENTER" wrapText="true" />
-                  <ProgressIndicator fx:id="connectingIndicator" focusTraversable="false" layoutX="100.0" layoutY="130.0" prefHeight="80.0" prefWidth="126.0" progress="0.0" visible="false" />
+                  <TextField fx:id="sftpPath" disable="true" layoutX="99.0" layoutY="320.0" prefHeight="27.0" prefWidth="455.0" promptText="." />
+                  <TreeView fx:id="remoteTreeView" layoutX="112.0" layoutY="31.0" prefHeight="278.0" prefWidth="389.0" />
+                  <Label fx:id="noConnectionLabel" layoutX="164.0" layoutY="155.0" pickOnBounds="false" prefHeight="51.0" prefWidth="300.0" text="There cannot be established a connection to the server. Please try to connect again." textAlignment="CENTER" wrapText="true" />
+                  <ProgressIndicator fx:id="connectingIndicator" focusTraversable="false" layoutX="200.0" layoutY="76.0" pickOnBounds="false" prefHeight="134.0" prefWidth="212.0" progress="0.0" visible="false" />
+                  <Label layoutX="22.0" layoutY="325.0" prefHeight="17.0" prefWidth="66.0" text="Directory:" />
+                  <Label layoutX="119.0" layoutY="6.0" text="Please choose the file you want to download from the server:" />
                </children>
             </AnchorPane>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button fx:id="downloadButton" mnemonicParsing="false" onAction="#download" text="Download" />
-              </items>
-            </ToolBar>
-         </children>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="300.0">
-         <children>
-            <TreeView fx:id="localTreeView" prefHeight="400.0" prefWidth="300.0" />
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button fx:id="ChooseButton" mnemonicParsing="false" onAction="#choose" text="Choose" />
-              </items>
+               <items>
+                  <AnchorPane prefHeight="27.0" prefWidth="565.0">
+                     <children>
+                        <Button fx:id="downloadButton" layoutX="253.0" mnemonicParsing="false" onAction="#download" text="Download" />
+                     </children></AnchorPane>
+               </items>
             </ToolBar>
          </children>
       </VBox>
    </children>
-</HBox>
+</AnchorPane>
