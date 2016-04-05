@@ -46,6 +46,7 @@ public class StatisticVisualiser implements Visualiser{
        Pane pane = new Pane();
        Pane box = new HBox();
        Pane buttonPane = new VBox();
+       
        //JavaPlot javaPlot = new JavaPlot(true);
        //final JPlot plot = new JPlot(javaPlot);
        //final JavaPlot p = plot.getJavaPlot();
@@ -216,7 +217,7 @@ public class StatisticVisualiser implements Visualiser{
        
        PlotStyle style = new PlotStyle();
        //style.setFill(new FillStyle(FillStyle.Fill.SOLID));
-       style.setStyle(Style.BOXES);
+       style.setStyle(Style.POINTS);
        datasetplot.setPlotStyle(style);
        //datasetplot.setSmooth(Smooth.BEZIER);
        p.addPlot(datasetplot);

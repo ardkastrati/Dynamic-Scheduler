@@ -112,8 +112,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
                     return;
                 }
                 Tab tab = new Tab();
-                refreshindicator.setProgress(-1);
-                refreshindicator.setVisible(true);
+                //refreshindicator.setProgress(-1);
+                //refreshindicator.setVisible(true);
                 final ProgressIndicator pi = new ProgressIndicator();
                 pi.setProgress(-1);
                 Pane apane = new AnchorPane();
@@ -126,8 +126,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
                 diagramType.getVisualisation(pane, ikeeper);
                 //tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
-                refreshindicator.setVisible(false);
-                refreshindicator.setProgress(0);
+                //refreshindicator.setVisible(false);
+                //refreshindicator.setProgress(0);
                 //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
             }
