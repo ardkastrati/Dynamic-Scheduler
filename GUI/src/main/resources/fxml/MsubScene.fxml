@@ -59,7 +59,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <NumericTextField fx:id="memory" text="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <NumericTextField fx:id="memory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="91.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="47.0" text="Nodes:" textAlignment="RIGHT" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="10.0" />
@@ -88,7 +88,7 @@
             <NumericTextField fx:id="nodes" text="1" GridPane.columnIndex="1" />
             <NumericTextField fx:id="processesPerNode" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <NumericTextField fx:id="walltime" text="600" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="memoryUnits" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="32.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ComboBox fx:id="memoryUnits" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <TextField fx:id="reservationName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="nodeAccessPolicy" prefHeight="27.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
