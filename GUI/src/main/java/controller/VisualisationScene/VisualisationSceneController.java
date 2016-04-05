@@ -3,6 +3,7 @@ package controller.VisualisationScene;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import controller.Controller;
+import controller.mainScene.MainSceneController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -106,6 +107,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                if (ikeeper == null) {
+                    MainSceneController.showPopupMessage("Data not found!", pane, 0, 0, true, true);
+                    return;
+                }
                 Tab tab = new Tab();
                 refreshindicator.setProgress(-1);
                 refreshindicator.setVisible(true);
@@ -256,7 +261,9 @@ public class VisualisationSceneController  implements Initializable, Controller{
     public void chooseLoc(ActionEvent e) {
         DirectoryChooser dc = new DirectoryChooser();
         File sd = dc.showDialog(new Stage());
-        baseDir = sd.getAbsolutePath();
+        if (sd != null) {
+            baseDir = sd.getAbsolutePath();
+        }
         File[] directories = new File(baseDir).listFiles(File::isDirectory);
         calculationBox.getItems().clear();
         for(int i = 0; i < directories.length; i++) {
