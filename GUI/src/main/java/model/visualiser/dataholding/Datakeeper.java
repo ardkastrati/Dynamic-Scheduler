@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.layout.Pane;
 
 
 /**
@@ -51,6 +52,7 @@ public class Datakeeper {
      * @param basePath base directory for this Datakeeper
      */
     public Datakeeper(String basePath) {
+       
         Parser parser = new Parser();
         try {
             this.taskMap = parser.parseBookkeeping(basePath + "/Bookkeeping.txt");
@@ -62,9 +64,12 @@ public class Datakeeper {
         try {
             this.eventList = parser.parseStatistic(basePath + "/Statistic.txt");
         } catch (FileNotFoundException ex) {
-            //MainSceneController.showPopupMessage("Statistic file not found", diagramPane, 100, 150, true, true);
+            //Pane pane = new Pane();
+            //pane.getScene().getWindow().setX(0.0);
+            //pane.getScene().getWindow().setY(0.0);
+            //MainSceneController.showPopupMessage("Statistic file not found", pane, 100, 150, true, true);
         } catch (ParserException ex) {
-            //MainSceneController.showPopupMessage("Statistic file has wrong format", diagramPane, 100, 150, true, true);
+            //MainSceneController.showPopupMessage("Statistic file has wrong format", pane, 100, 150, true, true);
         } 
         this.overAllStartTime = Long.MAX_VALUE;
         Iterator taskIterator = taskMap.entrySet().iterator();

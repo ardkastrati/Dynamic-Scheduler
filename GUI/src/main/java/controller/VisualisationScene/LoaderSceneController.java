@@ -65,7 +65,6 @@ public class LoaderSceneController implements Initializable, Controller {
     private ImageView failureImage;
     
     
-    
     @FXML
     public void download(ActionEvent event){
       DirectoryChooser directoryChooser = new DirectoryChooser();
