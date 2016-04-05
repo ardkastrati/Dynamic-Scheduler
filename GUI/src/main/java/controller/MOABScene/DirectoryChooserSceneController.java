@@ -5,6 +5,7 @@
 package controller.MOABScene;
 
 import components.SftpTreeItem;
+import components.SftpTreeItem.Mode;
 import controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,7 +89,7 @@ public class DirectoryChooserSceneController implements Initializable, Controlle
                     }
 		});
 		// switch to the root directory
-                sftpTree.setRoot(new SftpTreeItem("."));
+                sftpTree.setRoot(new SftpTreeItem(".", Mode.DIRECTORYS_ONLY));
 		initTree();
 	}
 

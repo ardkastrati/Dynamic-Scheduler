@@ -82,9 +82,9 @@
                         <Label text="Jobs" />
                      </graphic>
                   </Tab>
-                  <Tab id="visualizer" fx:id="visualizer">
+                  <Tab id="visualizer" fx:id="visualizer2">
                     <content>
-                      <fx:include fx:id="visualizer" source="DiagramScene.fxml" />
+                      <fx:include fx:id="visualizer" source="VisualisationScene.fxml"/>
                     </content>
                      <graphic>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="Visualizer" textAlignment="CENTER" />

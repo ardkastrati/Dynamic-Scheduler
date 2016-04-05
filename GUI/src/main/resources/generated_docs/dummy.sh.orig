@@ -1,0 +1,27 @@
+        #### MOAB commands
+
+<<<<<<< HEAD
+#MSUB  -q develop
+#MSUB  -l nodes=2:ppn=2
+#MSUB  -N ard
+=======
+#MSUB  -q singlenode
+#MSUB  -l nodes=1:ppn=1
+#MSUB  -N test
+>>>>>>> 9c64815a74178df76d58df7d36d34544947ddac3
+#MSUB  -o 
+#MSUB  -S #!/bin/bash
+
+
+        ##### Directory
+
+cd ./pse
+
+
+        #### MPI commands
+
+<<<<<<< HEAD
+mpirun -n 4 ls
+=======
+mpirun ls
+>>>>>>> 9c64815a74178df76d58df7d36d34544947ddac3
