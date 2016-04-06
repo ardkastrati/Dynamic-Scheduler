@@ -66,6 +66,9 @@ public class StatisticVisualiser implements Visualiser{
        }
        param1.getSelectionModel().select(0);
        param2.getSelectionModel().select(1);
+       param1.setMaxWidth(100);
+       param1.setPrefWidth(100);
+       param2.setMaxWidth(100);
        Button choose = new Button();
        choose.setText("Choose");
        choose.setOnAction(new EventHandler(){

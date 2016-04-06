@@ -41,6 +41,7 @@ import model.visualiser.dataholding.Task;
 //import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 import edu.uci.ics.jung.visualization.transform.Transformer;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -50,6 +51,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -76,6 +79,7 @@ public class TaskFlowVisualiser implements Visualiser {
        */ 
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
+            
             
             HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
             List<Event> eventList = datakeeper.getEventList();
@@ -124,7 +128,7 @@ public class TaskFlowVisualiser implements Visualiser {
                     //System.out.println(taskMap.get((long)vertex.hashCode()).getId());
                     Double[] parameters = eventList.get(vertex.hashCode()).getParameters();
                     Long time = eventList.get(vertex.hashCode()).getTime();
-                    String text = "Runtime: " + time;
+                    String text = "Runtime: " + time + "\n";
                     for (int i = 0; i < parameters.length; i++) {
                         text = text + "Parameter" + i + ": " + parameters[i].toString() + "\n";
                     }
@@ -212,10 +216,18 @@ public class TaskFlowVisualiser implements Visualiser {
             //    }
             //};
             //vv.setViewTransformer((MutableTransformer) transformer);
+            vv.setMinimumSize(new Dimension(1000,1000));
             SwingNode node = new SwingNode();   
             node.setContent( vv );
-            	
-            parent.getChildren().add(node);
+            //node.maxHeight(200);
+            //vv.setMinimumSize(new Dimension(-1,-1));
+            //node.get
+            ScrollPane sp = new ScrollPane();
+            sp.setContent(node);
+            sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+            sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+            sp.setFitToHeight(false);
+            parent.getChildren().add(sp);
                 
         }      
 
