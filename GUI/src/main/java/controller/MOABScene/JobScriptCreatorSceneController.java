@@ -18,6 +18,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import model.MySession;
 import model.commands.CommandException;
 import services.JobScriptGeneratorTask;
 
@@ -158,7 +159,12 @@ public class JobScriptCreatorSceneController implements Initializable, CommandCo
 
 	@Override
 	public void onCancelClicked() {
-            // nothing to be done if script generator is canceled!
+           if(wizardController != null) {
+               wizardController.onExit();
+           } 
+           if(scriptController != null) {
+               scriptController.onExit();
+           }
 	}
 
 	@Override

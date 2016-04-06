@@ -145,9 +145,13 @@ public class MsubController  implements Initializable, CommandController {
            msub.setQueueType((QueueType) queueTypes.getSelectionModel().getSelectedItem());  // ?
         }
         
-        
-         msub.setJobName(jobName.getText());
-         msub.setOutPutFileName(outputFileName.getText());
+         if(!jobName.getText().equals("")) {
+             msub.setJobName(jobName.getText());
+         }
+         if(!outputFileName.getText().equals("")) {
+            msub.setOutPutFileName(outputFileName.getText());
+         }
+         
          msub.setShell((shell.getText().equals("")) ? shell.getPromptText() : shell.getText());
          
          if(!nodes.getText().equals("") && !processesPerNode.equals("")) {

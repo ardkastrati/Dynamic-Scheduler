@@ -45,11 +45,11 @@ public class DownloadFileTask extends Task<Void> {
        ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
       try {
             sftp.get(remotePath, localPath);
-        updateMessage("The file is successfully transfered via SFTP to your local computer.");
+            updateMessage("The file is successfully transfered via SFTP to your local computer.");
        
               
         } catch (SftpException e) {
-            updateMessage("The file could't be transferred!\n" + e.getMessage());
+            updateMessage("The file could't be transferred!\n Cause: " + e.getMessage());
             throw new IOException("File couldn't be transfered! Cause: " + e.getMessage());
        }
        

@@ -5,13 +5,12 @@
 #MSUB  -l walltime=600
 #MSUB  -l pmem=200
 #MSUB  -N test
-#MSUB  -o 
 #MSUB  -S #!/bin/bash
 
 
         ##### Directory
 
-cd ./test
+cd ./Documents
 
 
         #### MPI commands

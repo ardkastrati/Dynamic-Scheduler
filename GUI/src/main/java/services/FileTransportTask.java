@@ -61,7 +61,7 @@ public class FileTransportTask extends Task<Void> {
        updateMessage("The file is beeing transferred via SFTP ...");
        
        File file = new File("src/main/resources/generated_docs/dummy.sh");
-       System.out.println(text.getText());
+       
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(text.getText());
         }catch(Exception e) {
@@ -80,7 +80,7 @@ public class FileTransportTask extends Task<Void> {
         
         
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int n = JOptionPane.showConfirmDialog (null, "Do you want also to run the generated script in the server?","Run Job",dialogButton);
+        int n = JOptionPane.showConfirmDialog (null, "Do you also want to run the generated script in the server?","Run Job",dialogButton);
       
         
         if(n == JOptionPane.YES_OPTION){ 
@@ -115,13 +115,14 @@ public class FileTransportTask extends Task<Void> {
                 }
                 if(channel.isClosed()){
                   if(in.available()>0) continue; 
-                 // updateMessage("exit-status: "+channel.getExitStatus());
+                   updateMessage("exit-status: "+ channel.getExitStatus());
                   break;
                 }
                 
               }
-              updateMessage("File is successfully transferred and job " + job.toString() + " is initiated");
+             
               channel.disconnect();
+              updateMessage("File is successfully transferred.\n Job message and status: " + job.toString() + " " + channel.getExitStatus());
         }
      
         } catch (FileNotFoundException | SftpException e) {

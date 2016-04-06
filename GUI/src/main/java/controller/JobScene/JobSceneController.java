@@ -5,7 +5,6 @@ import controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -56,11 +55,10 @@ public class JobSceneController implements Initializable, Controller {
         
         @FXML
         private void refresh() {
-            System.out.println("Refreshing...");
+            
             Showq command = new Showq();
             SendCommandTask refreshTask = new SendCommandTask(command);
-            refreshTask.setOnSucceeded(event -> {
-                System.out.println("Refreshing succeeded");
+            refreshTask.setOnSucceeded(event -> {;
                 updateMessage.textProperty().unbind();
                 refreshing.visibleProperty().unbind();
                 jobState.visibleProperty().unbind();
@@ -69,7 +67,6 @@ public class JobSceneController implements Initializable, Controller {
                 refresh.setDisable(false);
             });
             refreshTask.setOnFailed(event -> {
-                System.out.println("Refreshing failed");
                 updateMessage.textProperty().unbind();
                 refreshing.visibleProperty().unbind();
                 jobState.visibleProperty().unbind();

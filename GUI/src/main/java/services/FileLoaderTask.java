@@ -34,7 +34,7 @@ public class FileLoaderTask extends Task<Void>{
     protected Void call() throws Exception {
         ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();
         InputStream input = null;
-         OutputStream output = null;
+        OutputStream output = null;
         try {
             input = sftp.get(path);
         
@@ -46,14 +46,14 @@ public class FileLoaderTask extends Task<Void>{
         while ((read = input.read(bytes)) != -1) {
             output.write(bytes,0,read);
         }
-        } catch (SftpException|IOException e) {
-            e.printStackTrace();
+        } catch (SftpException | IOException e) {
+            updateMessage(e.getMessage());
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch(IOException e) {
-                    e.printStackTrace();
+                    updateMessage(e.getMessage());
                 }
                         
             }
@@ -61,7 +61,7 @@ public class FileLoaderTask extends Task<Void>{
                 try {
                     output.close();
                 } catch(IOException e) {
-                    e.printStackTrace();
+                    updateMessage(e.getMessage());
                 }
             }
         }

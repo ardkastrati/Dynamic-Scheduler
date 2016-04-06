@@ -162,6 +162,7 @@ public class MOABSceneController implements Initializable, Controller {
 	 */
 	@FXML
 	public void cancel() {
+                
                 currentCommandController.onCancelClicked();
 		grid.getChildren().remove(grid.getChildren().size() - 1);
 		currentCommandController = null;

@@ -7,6 +7,7 @@ package services;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,9 +55,15 @@ public class SendCommandTask extends Task<String> {
         
            Channel channel = null;
            try {
-               channel = MySession.getInstant().getSession().openChannel("exec");
+               Session session = MySession.getInstant().getSession();
+               if(session != null) {
+                   channel = session.openChannel("exec");
+               } else {
+                   throw new JSchException();
+               }
+               
            } catch (JSchException ex) {
-               Logger.getLogger(FileTransportTask.class.getName()).log(Level.SEVERE, null, ex);
+               updateMessage("No connection available");
            }
           ((ChannelExec)channel).setCommand(command.getCommand());
 
@@ -88,12 +95,11 @@ public class SendCommandTask extends Task<String> {
            }
            try{Thread.sleep(1000);}catch(Exception ee){}
          }
-         updateMessage("Command is successfully executed: " + commandReturn.toString());
+         updateMessage("Command is successfully executed.");
          channel.disconnect();
 
-         System.out.println("Job overview: \n  " + commandReturn.toString());
-
-        return "Job overview: \n  " + commandReturn.toString();
+        
+        return "- Job overview - \n  " + commandReturn.toString();
         
     }
                
