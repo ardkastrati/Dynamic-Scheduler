@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 /**
  * The main GUI entry point.
@@ -17,6 +18,7 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+            //Notifications.create().title("Task").text("test").showInformation();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScene.fxml"));
 
         

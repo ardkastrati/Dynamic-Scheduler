@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -50,6 +51,10 @@ public class SSHConnectionController implements Initializable, Controller {
 	private ImageView imageOnSuccess;
         @FXML
         private ImageView imageOnFailure;
+        @FXML
+        private ProgressIndicator connecting;
+        @FXML
+        private Button cancelConnecting;
 
 	/**
 	 * Called when the user connects using SSH and initializes the SSH session.
@@ -68,13 +73,20 @@ public class SSHConnectionController implements Initializable, Controller {
 
         @FXML
         private void onTryAgain() {
+            disconnect.setVisible(false);
             onTryingToConnect.setVisible(false);
             imageOnFailure.setVisible(false);
             imageOnFailure.setY(imageOnFailure.getY() - 78);
             tryAgain.setVisible(false);
             gridPane.setVisible(true);
         }
-	@FXML
+        @FXML
+        private void onCancel(){
+            MySession.getInstant().removeConnection();
+            
+        }    
+            
+        @FXML
 	private void onDisconnect() {
             MySession.getInstant().removeConnection();
             onTryingToConnect.setVisible(false);
@@ -105,7 +117,9 @@ public class SSHConnectionController implements Initializable, Controller {
 		ChangeListener<MySession.SessionStatus> listener;
 		listener = (obs, oldStatus, newStatus) -> {
                     if (newStatus ==  MySession.SessionStatus.DISCONNECTED && oldStatus == MySession.SessionStatus.CONNECTING ) {
-                            
+                            cancelConnecting.setVisible(false);
+                            disconnect.setVisible(true);
+                            connecting.setVisible(false);
                             gridPane.setVisible(false);
                             gridPane.setDisable(false);
                             imageOnFailure.setVisible(true);
@@ -113,11 +127,13 @@ public class SSHConnectionController implements Initializable, Controller {
                             tryAgain.setVisible(true);
                             onTryingToConnect.setVisible(true);
                             startTickTransition(imageOnFailure);
+                            
 
 
                     } else if (newStatus == MySession.SessionStatus.READY
                                     && oldStatus == MySession.SessionStatus.CONNECTING) {
-                            
+                             cancelConnecting.setVisible(false);
+                            connecting.setVisible(false);
                             gridPane.setVisible(false);
                             gridPane.setDisable(false);
                             imageOnSuccess.setVisible(true);
@@ -125,8 +141,11 @@ public class SSHConnectionController implements Initializable, Controller {
                             onTryingToConnect.setText("Successfully connected.");
                             onTryingToConnect.setVisible(true);
                             startTickTransition(imageOnSuccess);
+                           
                     } else if(newStatus == MySession.SessionStatus.CONNECTING) {
                             gridPane.setDisable(true);
+                            connecting.setVisible(true);
+                            cancelConnecting.setVisible(true);
                     }
                       
                 
