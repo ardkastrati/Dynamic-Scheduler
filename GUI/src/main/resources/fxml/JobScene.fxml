@@ -13,7 +13,15 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="740.0">
          <children>
-            <Label fx:id="jobState" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="68.0" prefHeight="362.0" prefWidth="617.0" text="No jobs available! Please try to connect with the server again." />
+            <ScrollPane layoutX="53.0" layoutY="67.0" prefHeight="362.0" prefWidth="657.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="640.0">
+                     <children>
+                        <Label fx:id="jobState" alignment="CENTER" contentDisplay="CENTER" prefHeight="553.0" prefWidth="640.0" text="No jobs available! Please try to connect with the server again." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
             <Label layoutX="330.0" layoutY="44.0" text="Current jobs:" />
             <Button fx:id="refresh" disable="true" layoutX="292.0" layoutY="445.0" mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="209.0" text="Refresh" />
             <Label fx:id="updateMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="486.0" prefHeight="17.0" prefWidth="347.0" textAlignment="CENTER" />
