@@ -51,7 +51,7 @@
                         
                         <phase>package</phase>
                         <goals>
-                            <goal>java</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
                             <mainClass>MainApp</mainClass>
