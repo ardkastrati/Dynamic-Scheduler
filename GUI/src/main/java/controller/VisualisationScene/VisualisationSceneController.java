@@ -76,6 +76,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
     private boolean CurrentDirty;
     private String runningDir;
     
+    /**
+     * Shows the choosen diagram and calculation in a new tab
+     * @param event button click event 
+     */
     @FXML
     public void show(ActionEvent event) {
         final Visualiser diagramType = visualiserMap.get(diagramBox.getValue());
@@ -112,8 +116,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
                     return;
                 }
                 Tab tab = new Tab();
-                refreshindicator.setProgress(-1);
-                refreshindicator.setVisible(true);
+                //refreshindicator.setProgress(-1);
+                //refreshindicator.setVisible(true);
                 final ProgressIndicator pi = new ProgressIndicator();
                 pi.setProgress(-1);
                 Pane apane = new AnchorPane();
@@ -126,8 +130,8 @@ public class VisualisationSceneController  implements Initializable, Controller{
                 diagramType.getVisualisation(pane, ikeeper);
                 //tab.setText(calculation + " --- " + diagramBox.getValue());
                 tab.setContent(pane);
-                refreshindicator.setVisible(false);
-                refreshindicator.setProgress(0);
+                //refreshindicator.setVisible(false);
+                //refreshindicator.setProgress(0);
                 //tab.setClosable(true);
                 //diagramPane.getTabs().add(tab);
             }
@@ -159,6 +163,10 @@ public class VisualisationSceneController  implements Initializable, Controller{
         //th.start();
     }
 
+    /**
+     * Opens a window for downloading data from the hpc
+     * @param event button click event
+     */
     @FXML
     public void refresh(ActionEvent event) {
         Parent root;
@@ -204,6 +212,12 @@ public class VisualisationSceneController  implements Initializable, Controller{
         
     }
     
+    /**
+     * Initializes this scene
+     * Must be called before entering this scene
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert diagramPane != null : "fx:id=\"diagramPane\" was not injected: check your FXML file 'DiagramScene.fxml'.";
@@ -239,25 +253,43 @@ public class VisualisationSceneController  implements Initializable, Controller{
        
     }
 
+    /**
+     * Commands executed once the user enters this scene
+     */
     @Override
     public void onEntry() {
         //System.out.println("Debug");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Commands executed once the user leaves this scene
+     */
     @Override
     public void onExit() {
     }
 
+    /**
+     * Sets the base directory for the calculation data
+     * @param basedir new base directory
+     */
     static protected void setBaseDir(String basedir){
         baseDir = basedir;
         
     }
     
+    /**
+     * returns the base directory for the calculation data
+     * @return the base directory for the calculation data
+     */
     protected String getBaseDir() {
       return baseDir;
     }
     
+    /**
+     * Choose a new local base for the calculation data
+     * @param e button click event
+     */
     public void chooseLoc(ActionEvent e) {
         DirectoryChooser dc = new DirectoryChooser();
         File sd = dc.showDialog(new Stage());

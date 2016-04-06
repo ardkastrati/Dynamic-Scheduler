@@ -29,18 +29,34 @@ public class Datakeeper {
     
     long overAllStartTime;
 
+    /**
+     * Returns the overall start time
+     * @return the overall start time
+     */
     public long getOverAllStartTime() {
         return overAllStartTime;
     }
 
+    /**
+     * Sets the overall start time
+     * @overAllStartTime overall start time
+     */
     public void setOverAllStartTime(long overAllStartTime) {
         this.overAllStartTime = overAllStartTime;
     }
 
+    /**
+     * Returns the total number of used cpus
+     * @return total number of used cpus
+     */
     public int getNumberOfProcessors() {
         return numberOfProcessors;
     }
 
+    /**
+     * Sets the total number of used cpus
+     * @param numberOfProcessors the total number of used cpus
+     */
     public void setNumberOfProcessors(int numberOfProcessors) {
         this.numberOfProcessors = numberOfProcessors;
     }

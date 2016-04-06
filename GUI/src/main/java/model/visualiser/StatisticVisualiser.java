@@ -39,13 +39,18 @@ import model.visualiser.dataholding.Datakeeper;
  */
 public class StatisticVisualiser implements Visualiser{
 
-    
+    /**
+     * creates a new statistic diagram and renders it on the parent pane
+     * @param parent the pane to render on
+     * @param datakeeper the data available for rendering
+     */
     @Override
     public void getVisualisation(Pane parent, Datakeeper datakeeper) {
        List<Event> eventList = datakeeper.getEventList();
        Pane pane = new Pane();
        Pane box = new HBox();
        Pane buttonPane = new VBox();
+       
        //JavaPlot javaPlot = new JavaPlot(true);
        //final JPlot plot = new JPlot(javaPlot);
        //final JavaPlot p = plot.getJavaPlot();
@@ -63,6 +68,11 @@ public class StatisticVisualiser implements Visualiser{
            param1.getItems().add("Parameter" + k);
            param2.getItems().add("Parameter" + k);
        }
+       param1.getSelectionModel().select(0);
+       param2.getSelectionModel().select(1);
+       param1.setMaxWidth(100);
+       param1.setPrefWidth(100);
+       param2.setMaxWidth(100);
        Button choose = new Button();
        choose.setText("Choose");
        choose.setOnAction(new EventHandler(){
@@ -168,11 +178,22 @@ public class StatisticVisualiser implements Visualiser{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Returns the name of this visualiser
+     * @return Name of this visualiser
+     */
         @Override
     public String toString() {
         return "Statistic";
     }
     
+    /**
+     * Renders a new statistic diagram with the given parameter
+     * @param pane The pane to render on
+     * @param eventList a list of statistic events
+     * @param param1 the parameter rendered on the xaxis
+     * @param param2 the parameter rendered on the yaxis
+     */
     private void render(Pane pane, List<Event> eventList, int param1, int param2) {
        JavaPlot javaPlot = new JavaPlot(true);
        final JPlot plot = new JPlot(javaPlot);
@@ -216,7 +237,7 @@ public class StatisticVisualiser implements Visualiser{
        
        PlotStyle style = new PlotStyle();
        //style.setFill(new FillStyle(FillStyle.Fill.SOLID));
-       style.setStyle(Style.BOXES);
+       style.setStyle(Style.POINTS);
        datasetplot.setPlotStyle(style);
        //datasetplot.setSmooth(Smooth.BEZIER);
        p.addPlot(datasetplot);

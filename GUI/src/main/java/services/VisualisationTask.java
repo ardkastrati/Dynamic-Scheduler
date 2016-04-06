@@ -13,7 +13,7 @@ import model.visualiser.Visualiser;
 import model.visualiser.dataholding.Datakeeper;
 
 /**
- *
+ * Callculates a Visualisation in the background
  * 
  */
 public class VisualisationTask extends Task<Void>{
@@ -24,18 +24,35 @@ public class VisualisationTask extends Task<Void>{
     
     private TabPane diagramPane;
     
+    /**
+     * Sets the used visualiser
+     * @param visualiser the visualiser to use
+     */
     public void setVisualiser(Visualiser visualiser) {
         this.visualiser = visualiser;
     }
     
+    /**
+     * Sets the dataset for the calculation
+     * @param datakeeper the dataset for the calculation
+     */
     public void setDatakeeper(Datakeeper datakeeper) {
         this.datakeeper = datakeeper;
     }
     
+    /**
+     * Sets the pane to render on
+     * @param diagramPane the pane to render on
+     */
     public void setDiagramPane(TabPane diagramPane) {
         this.diagramPane = diagramPane;
     }   
 
+    /**
+     * Renders a new diagram with the given data and prints it on the diagram pane
+     * @return null
+     * @throws Exception thrown if the calculation gone wrong
+     */
     @Override
     protected Void call() throws Exception {
         Pane pane = new AnchorPane();

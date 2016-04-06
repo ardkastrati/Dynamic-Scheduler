@@ -22,7 +22,12 @@ import model.visualiser.dataholding.Task;
  * 
  */
 public class UsageVisualiser implements Visualiser{
-
+    
+    /**
+     * Creates a 'usage-diagram' and renders it onto the given parent pane
+     * @param parent The pane to render on
+     * @param datakeeper Data available for the visualisation
+     */
     @Override
     public void getVisualisation(Pane parent, Datakeeper datakeeper) {
         HashMap<Long,Task> taskMap = datakeeper.getTaskMap();
@@ -77,6 +82,10 @@ public class UsageVisualiser implements Visualiser{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Returns the name of this visualiser
+     * @return Name of this visualiser
+     */
         @Override
     public String toString() {
         return "Usage";
