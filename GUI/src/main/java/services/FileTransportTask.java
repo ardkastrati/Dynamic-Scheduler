@@ -60,7 +60,7 @@ public class FileTransportTask extends Task<Void> {
        
        updateMessage("The file is beeing transferred via SFTP ...");
        
-       File file = new File("generated_docs/dummy.sh");
+       File file = new File("/generated_docs/dummy.sh");
        
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(text.getText());
