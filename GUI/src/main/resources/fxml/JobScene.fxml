@@ -13,10 +13,10 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="740.0">
          <children>
-            <Label fx:id="jobState" alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="138.0" prefHeight="229.0" prefWidth="574.0" text="No jobs available! Please try to connect with the server again." />
-            <Label layoutX="342.0" layoutY="113.0" text="Current jobs:" />
-            <Button fx:id="refresh" disable="true" layoutX="291.0" layoutY="416.0" mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="209.0" text="Refresh" />
-            <Label fx:id="updateMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="472.0" prefHeight="17.0" prefWidth="347.0" textAlignment="CENTER" />
+            <Label fx:id="jobState" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="68.0" prefHeight="362.0" prefWidth="617.0" text="No jobs available! Please try to connect with the server again." />
+            <Label layoutX="330.0" layoutY="44.0" text="Current jobs:" />
+            <Button fx:id="refresh" disable="true" layoutX="292.0" layoutY="445.0" mnemonicParsing="false" onAction="#refresh" prefHeight="27.0" prefWidth="209.0" text="Refresh" />
+            <Label fx:id="updateMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="486.0" prefHeight="17.0" prefWidth="347.0" textAlignment="CENTER" />
             <ProgressIndicator fx:id="refreshing" layoutX="250.0" layoutY="138.0" pickOnBounds="false" prefHeight="224.0" prefWidth="271.0" visible="false" />
          </children></AnchorPane>
    </content>
