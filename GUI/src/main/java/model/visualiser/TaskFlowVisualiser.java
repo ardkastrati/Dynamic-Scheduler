@@ -67,8 +67,14 @@ import org.controlsfx.control.Notifications;
 
 public class TaskFlowVisualiser implements Visualiser {
 
-    
-        
+
+
+        /**
+         * Creates a new taskflow diagram and renders it on the parent pane
+         * @param parent the pane to render on
+         * @param datakeeper the data available for rendering
+         */
+
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
             
@@ -127,23 +133,21 @@ public class TaskFlowVisualiser implements Visualiser {
                     Label label = new Label(text);
                     label.setWrapText(true);
                     final String ftext = text;
-                    Platform.runLater(new Runnable() {
-
-                        public void run() {
-                            Stage owner = new Stage(StageStyle.TRANSPARENT);
-                            StackPane root = new StackPane();
-                            root.setStyle("-fx-background-color: TRANSPARENT");
-                            Scene scene = new Scene(root, 1, 1);
-                            scene.setFill(Color.TRANSPARENT);
-                            owner.setScene(scene);
-                            owner.setWidth(1);
-                            owner.setHeight(1);
-                            owner.toBack();
-                            owner.show();
-                            Notifications.create().title("Task").text(ftext).showInformation();
-                            //MainSceneController.showPopupMessage(text, root, 0, 0, true, true);
+                    Platform.runLater(() -> {
+                        Stage owner = new Stage(StageStyle.TRANSPARENT);
+                        StackPane root = new StackPane();
+                        root.setStyle("-fx-background-color: TRANSPARENT");
+                        Scene scene = new Scene(root, 1, 1);
+                        scene.setFill(Color.TRANSPARENT);
+                        owner.setScene(scene);
+                        owner.setWidth(1);
+                        owner.setHeight(1);
+                        owner.toBack();
+                        owner.show();
+                        Notifications.create().title("Task").text(ftext).showInformation();
+                        //MainSceneController.showPopupMessage(text, root, 0, 0, true, true);
                         }
-                    });
+                    );
                     Pane pane = new Pane();
                     pane.getScene().getWindow().setX(0.0);
                     pane.getScene().getWindow().setY(0.0);
