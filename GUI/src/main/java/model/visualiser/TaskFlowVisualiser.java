@@ -76,7 +76,12 @@ public class TaskFlowVisualiser implements Visualiser {
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-       */ 
+       */
+        /**
+         * Creates a new taskflow diagram and renders it on the parent pane
+         * @param parent the pane to render on
+         * @param datakeeper the data available for rendering
+         */
 	@Override
 	public void getVisualisation(Pane parent, Datakeeper datakeeper) {
             
@@ -236,6 +241,10 @@ public class TaskFlowVisualiser implements Visualiser {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Returns the name of this visualiser
+     * @return Name of this visualiser
+     */
     @Override
     public String toString() {
         return "TaskFlow";

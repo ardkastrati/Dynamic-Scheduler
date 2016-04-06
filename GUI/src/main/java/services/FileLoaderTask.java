@@ -15,7 +15,7 @@ import javafx.concurrent.Task;
 import model.MySession;
 
 /**
- *
+ * This Task loads a file from the remote computer to the local
  * 
  */
 public class FileLoaderTask extends Task<Void>{
@@ -24,12 +24,22 @@ public class FileLoaderTask extends Task<Void>{
     
     private String localPath;
     
+    /**
+     * Constructor of this task
+     * @param path the path on the remote computer to load the file from
+     * @param localPath the path on the local computer to store the file to
+     */
     public FileLoaderTask(String path, String localPath) {
         super();
         this.path = path;
         this.localPath = localPath;
     }
 
+    /**
+     * Loads a file from the hpc
+     * @return null
+     * @throws Exception if loading goes wrong
+     */
     @Override
     protected Void call() throws Exception {
         ChannelSftp sftp = (ChannelSftp) MySession.getInstant().getCurrentOpenedChannel();

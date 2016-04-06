@@ -34,7 +34,7 @@ import services.DownloadFileTask;
 
 
 /**
- *
+ * This scene controlles loading data from the remote hpc to the local computer
  * 
  */
 public class LoaderSceneController implements Initializable, Controller {
@@ -64,7 +64,10 @@ public class LoaderSceneController implements Initializable, Controller {
     @FXML
     private ImageView failureImage;
     
-    
+    /**
+     * Downloads bookkeeping and statistic file form the choosen remote to local dictionary
+     * @param event button click event
+     */
     @FXML
     public void download(ActionEvent event){
       DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -101,6 +104,12 @@ public class LoaderSceneController implements Initializable, Controller {
 
     }
     
+     /**
+     * Initializes this scene
+     * Must be called before entering this scene
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        // Change listener for the session status
@@ -133,7 +142,9 @@ public class LoaderSceneController implements Initializable, Controller {
 
     }
     
-   
+   /**
+    * initializes the treeview for choosing the remote directory
+    */
     public void init() {
         remoteTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
@@ -145,6 +156,9 @@ public class LoaderSceneController implements Initializable, Controller {
         initTrees();
     }
     
+    /**
+     * initializes the treeview for choosing the remote directory
+     */
     private void initTrees() {
         remoteTreeView.setCellFactory(tv -> {
 
@@ -206,6 +220,9 @@ public class LoaderSceneController implements Initializable, Controller {
         
     }
 
+    /**
+     * Commands executed once the user enters this scene
+     */
     @Override
     public void onEntry() {
        MySession.getInstant().sessionStatusProperty().addListener(listener);
@@ -216,6 +233,9 @@ public class LoaderSceneController implements Initializable, Controller {
       
     }
 
+    /**
+     * Commands executed once the user leaves this scene
+     */
     @Override
     public void onExit() {
         MySession.getInstant().sessionStatusProperty().removeListener(listener);

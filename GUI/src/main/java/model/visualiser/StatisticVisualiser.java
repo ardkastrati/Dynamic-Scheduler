@@ -39,7 +39,11 @@ import model.visualiser.dataholding.Datakeeper;
  */
 public class StatisticVisualiser implements Visualiser{
 
-    
+    /**
+     * creates a new statistic diagram and renders it on the parent pane
+     * @param parent the pane to render on
+     * @param datakeeper the data available for rendering
+     */
     @Override
     public void getVisualisation(Pane parent, Datakeeper datakeeper) {
        List<Event> eventList = datakeeper.getEventList();
@@ -174,11 +178,22 @@ public class StatisticVisualiser implements Visualiser{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Returns the name of this visualiser
+     * @return Name of this visualiser
+     */
         @Override
     public String toString() {
         return "Statistic";
     }
     
+    /**
+     * Renders a new statistic diagram with the given parameter
+     * @param pane The pane to render on
+     * @param eventList a list of statistic events
+     * @param param1 the parameter rendered on the xaxis
+     * @param param2 the parameter rendered on the yaxis
+     */
     private void render(Pane pane, List<Event> eventList, int param1, int param2) {
        JavaPlot javaPlot = new JavaPlot(true);
        final JPlot plot = new JPlot(javaPlot);
